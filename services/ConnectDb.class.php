@@ -1,17 +1,14 @@
 <?php
 
-// Singleton to connect db.
 class ConnectDb {
-  // Hold the class instance.
   private static $instance = null;
   private $conn;
 
   private $host = 'localhost:3306';
   private $user = 'root';
-  private $pass = 'Ch33zeB@llFestival!!;
+  private $pass = 'Ch33zeB@llFestival!!';
   private $db = 'RapidsCemetery';
-   
-  // The db connection is established in the private constructor.
+
   private function __construct()
   {
     try{
@@ -25,19 +22,16 @@ class ConnectDb {
 
     $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
   }
-  
+
   public static function getInstance()
   {
-    echo "get instance";
-
     if(!self::$instance)
     {
       self::$instance = new ConnectDb();
     }
-
     return self::$instance;
   }
-  
+
   public function getConnection()
   {
     return $this->conn;
