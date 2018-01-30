@@ -6,6 +6,6 @@
     include 'HistoricFilter.class.php';
     include 'Location.class.php';
     include 'TrackableObject.class.php';
-    include 'TypeFilter.class.php'
+    include 'TypeFilter.class.php';
 
 ?>
