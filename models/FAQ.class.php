@@ -7,7 +7,7 @@ class FAQ {
 	private $answer;
 
 	public function getIdFAQ(){
-		return $this->idEvent;
+		return $this->idFAQ;
 	}
 
 	public function getQuestion(){
@@ -18,3 +18,5 @@ class FAQ {
 		return $this->answer;
 	}
 }
+
+?>
