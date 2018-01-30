@@ -1,5 +1,8 @@
 <?php
 
+include '../models/Account.class.php';
+
+
 class ConnectDb {
   private static $instance = null;
   private $conn;

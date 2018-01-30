@@ -28,7 +28,9 @@
 <?php
     $data = $instance->getAllAccounts();
     foreach($data as $account){
-        echo $account['firstName'] . " " . $account['lastName'] . "<br/>";
+        //echo $account['firstName'] . " " . $account['lastName'] . "<br/>";
+        echo $account->getFirstName() . " " . $account->getLastName();
+
     }
 
 ?>
