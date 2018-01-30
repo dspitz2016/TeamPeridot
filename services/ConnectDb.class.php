@@ -90,6 +90,10 @@ class ConnectDb {
     function getAllTrackableObjects(){
         return $this->returnObject("TrackableObject", "");
     }
+
+    function getAllHistoricFilters(){
+        return $this->returnObject("HistoricFilter", "");
+    }
 }
 
 ?>

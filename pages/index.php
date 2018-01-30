@@ -82,7 +82,7 @@
 
 <h3> Get Historic Filters </h3>
 <?php
-    $data = $instance->getAllTypeFilters();
+    $data = $instance->getAllHistoricFilters();
     foreach($data as $historicFilter){
         echo "Historic Filter: " . $historicFilter->getDescription() . "<br/>";
     }
