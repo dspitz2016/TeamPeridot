@@ -1,6 +1,6 @@
 <?php
 
-include '../models/Account.class.php';
+include '../models/includeAllObjects.php';
 
 
 class ConnectDb {
