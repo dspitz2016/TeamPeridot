@@ -1,6 +1,6 @@
 <?php
 
-class Event {
+class HistoricFilter {
 
 	private $idHistoricFilter;
 	private $HistoricFilter;
@@ -44,3 +44,5 @@ class Event {
     }
 
 }
+
+?>

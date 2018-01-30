@@ -18,3 +18,5 @@ class TypeFilter {
 		return $this->description;
 	}
 }
+
+?>
