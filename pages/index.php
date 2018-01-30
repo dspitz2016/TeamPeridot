@@ -28,7 +28,6 @@
 <?php
     $data = $instance->getAllAccounts();
     foreach($data as $account){
-        //echo $account['firstName'] . " " . $account['lastName'] . "<br/>";
         echo $account->getFirstName() . " " . $account->getLastName();
 
     }
@@ -41,9 +40,9 @@
 <?php
     $data = $instance->getAllLocations();
     foreach($data as $location){
-        echo "Location: " . $location['name'] . "<br/>";
-        echo "Latitude: " . $location['latitude'] . "<br/>";
-        echo "Longitude: " . $location['longitude'] . "<br/>";
+        echo "Location: " . $location->getName() . "<br/>";
+        echo "Latitude: " . $location->getLatitude() . "<br/>";
+        echo "Longitude: " . $location->getLongitude() . "<br/>";
     }
 ?>
 <hr>
@@ -53,19 +52,19 @@
 <?php
     $data = $instance->getAllEvents();
     foreach($data as $event){
-        echo "Event: " . $event['name'] . "<br/>";
-        echo "Description: " . $event['description'] . "<br/>";
+        echo "Event: " . $event->getName() . "<br/>";
+        echo "Description: " . $event->getDescription() . "<br/>";
     }
 ?>
 <hr>
 <br/>
 
-<h3> Get Event </h3>
+<h3> Get FAQ </h3>
 <?php
     $data = $instance->getAllFAQs();
     foreach($data as $faq){
-        echo "Question: " . $faq['question'] . "<br/>";
-        echo "Answer: " . $faq['answer'] . "<br/>";
+        echo "Question: " . $faq->getQuestion() . "<br/>";
+        echo "Answer: " . $faq->getAnswer() . "<br/>";
     }
 ?>
 <hr>
@@ -75,7 +74,7 @@
 <?php
     $data = $instance->getAllTypeFilters();
     foreach($data as $type){
-        echo "Type: " . $type['typeFilter'] . "<br/>";
+        echo "Type: " . $type->getTypeFilter() . "<br/>";
     }
 ?>
 <hr>
@@ -85,7 +84,7 @@
 <?php
     $data = $instance->getAllTypeFilters();
     foreach($data as $historicFilter){
-        echo "Historic Filter: " . $historicFilter['HistoricFilter'] . "<br/>";
+        echo "Historic Filter: " . $historicFilter->getDescription() . "<br/>";
     }
 ?>
 <hr>
@@ -95,9 +94,9 @@
 <?php
     $data = $instance->getAllTrackableObjects();
     foreach($data as $tobj){
-        echo "Name: " . $tobj['Name'] . "<br/>";
-        echo "Longitude: " . $tobj['longitude'] . "<br/>";
-        echo "Latitude: " . $tobj['latitude'] . "<br/>";
+        echo "Longitude: " . $tobj->getLongitude() . "<br/>";
+        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
+        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
     }
 ?>
 <hr>
