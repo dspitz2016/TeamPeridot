@@ -67,6 +67,26 @@ class ConnectDb {
     function getAllAccounts(){
         return $this->returnObject("Account", "");
     }
+
+    function getAllEvents(){
+        return $this->returnObject("Event", "");
+    }
+
+    function getAllFAQs(){
+        return $this->returnObject("FAQ", "");
+    }
+
+    function getAllLocations(){
+        return $this->returnObject("Location", "");
+    }
+
+    function getAllTypeFilters(){
+        return $this->returnObject("TypeFilter", "");
+    }
+
+    function getAllTrackableObjects(){
+        return $this->returnObject("TrackableObject", "");
+    }
 }
 
 ?>
