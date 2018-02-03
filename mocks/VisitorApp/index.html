@@ -1,6 +1,49 @@
-<!DOCTYPE html>
+<!--
+   index.html -- Visitor App
+-->
+
 <html>
+
+<head>
+	<title>Home - Rapids Cemetary</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="../../css/materialize.css" media="screen,projection">
+	<link type="text/css" rel="stylesheet" href="../../css/main.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <body>
-<p> Hello World </p>
+	
+	<nav>
+	<div class="nav-wrapper cust-color-nav">
+	  <a href="#!" class="brand-logo">Rapids</a>
+	  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+	  <ul class="right hide-on-med-and-down">
+		<li><a href="#">Tours</a></li>
+		<li><a href="#">FAQ</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Contact</a></li>
+	  </ul>
+	  <ul class="side-nav cust-color-side" id="mobile-demo">
+		<h3>Naviagation</h3>
+		<hr />
+		<li><a href="#">Tours</a></li>
+		<li><a href="#">FAQ</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Contact</a></li>
+	  </ul>
+	</div>
+	</nav>
+         
+	
+	<div id="map"></div>
+
+
+
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+	<script src="../../js/materialize.js"></script>
+	<script src="../../js/main.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap"
+    async defer></script>
+	
 </body>
 </html>
