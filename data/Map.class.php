@@ -65,6 +65,7 @@ Class Map
             $stmt->setFetchMode(PDO::FETCH_CLASS, "MapPin");
 
             while($result = $stmt->fetch()){
+                echo "Result: " . $result;
                 $trackableObjectPins[] = $result;
             }
             return $trackableObjectPins;

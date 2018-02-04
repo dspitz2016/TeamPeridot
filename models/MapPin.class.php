@@ -2,44 +2,16 @@
 
 class MapPin {
 
-    private $idTrackableObject;
-    private $latitude;
+    private $type;
     private $longitude;
-    private $imageDescription;
-    private $imageLocation;
-    private $name;
-    private $pinColor;
+    private $latitude;
 
     /**
      * @return mixed
      */
-    public function getIdTrackableObject()
+    public function getType()
     {
-        return $this->idTrackableObject;
-    }
-
-    /**
-     * @param mixed $idTrackableObject
-     */
-    public function setIdTrackableObject($idTrackableObject)
-    {
-        $this->idTrackableObject = $idTrackableObject;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * @param mixed $latitude
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
+        return $this->type;
     }
 
     /**
@@ -51,43 +23,11 @@ class MapPin {
     }
 
     /**
-     * @param mixed $longitude
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    }
-
-    /**
      * @return mixed
      */
-    public function getImageDescription()
+    public function getLatitude()
     {
-        return $this->imageDescription;
-    }
-
-    /**
-     * @param mixed $imageDescription
-     */
-    public function setImageDescription($imageDescription)
-    {
-        $this->imageDescription = $imageDescription;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImageLocation()
-    {
-        return $this->imageLocation;
-    }
-
-    /**
-     * @param mixed $imageLocation
-     */
-    public function setImageLocation($imageLocation)
-    {
-        $this->imageLocation = $imageLocation;
+        return $this->latitude;
     }
 
     /**
@@ -99,27 +39,14 @@ class MapPin {
     }
 
     /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
      * @return mixed
      */
     public function getPinColor()
     {
         return $this->pinColor;
     }
+    private $name;
+    private $pinColor;
 
-    /**
-     * @param mixed $pinColor
-     */
-    public function setPinColor($pinColor)
-    {
-        $this->pinColor = $pinColor;
-    }
 
 }
