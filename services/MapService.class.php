@@ -1,15 +1,32 @@
 <?php
 
-class MapService {
+include '../data/Map.Class.php';
 
- // Get Locations
+class MapService
+{
 
- // Get Trackable Objects
+    /**
+     * MapService constructor.
+     */
+    public function __construct()
+    {
+    }
 
- // Get all Map items (Location & Trackable Objects)
+    public static function getInstance()
+    {
+        if(!self::$instance)
+        {
+            self::$instance = new MapService();
+        }
+        return self::$instance;
+    }
 
- // Get Maps By Type Filter
+    function getAllTrackableObjects()
+    {
+        return Map::getInstance()->getAllTrackableObjects();
+    }
 
- // Get Map By Historic Filter
 
+
+}
 ?>
