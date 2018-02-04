@@ -44,30 +44,29 @@ Class Map
         try{
             $trackableObjectPins = array();
             $qry = "SELECT * FROM(
-                SELECT type, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinColor
+                SELECT idTrackableObject, type, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinColor
                 FROM Grave G 
                 JOIN TrackableObject T on G.idGrave = T.idGrave
                 JOIN Type TF on T.idType = TF.idType
                 UNION 
-                SELECT type, longitude, latitude, commonName as name, pinColor
+                SELECT idTrackableObject, type, longitude, latitude, commonName as name, pinColor
                 FROM Vegetation V
                 JOIN TrackableObject T on V.idVegetation = T.idVegetation
                 JOIN Type TF on T.idType = TF.idType
                 Union
-                SELECT type, longitude, latitude, name, pinColor
+                SELECT idTrackableObject, type, longitude, latitude, name, pinColor
                 FROM OtherObject O
                 JOIN TrackableObject T on O.idOtherObject = T.idOtherObject
                 JOIN Type TF on T.idType = TF.idType
-                ) as Pins";
+                ) as MapPin";
 
             echo "Query: " . $qry;
             $stmt = $this->conn->prepare($qry);
 
             $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_CLASS, "MapPin");
+            //$stmt->setFetchMode(PDO::FEtch_ob, "MapPin");
 
             while($result = $stmt->fetch()){
-                echo "Result: " . $result;
                 $trackableObjectPins[] = $result;
             }
             return $trackableObjectPins;

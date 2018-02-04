@@ -2,9 +2,12 @@
 
 class MapPin {
 
+    private $idTrackableObject;
     private $type;
     private $longitude;
     private $latitude;
+    private $name;
+    private $pinColor;
 
     /**
      * @return mixed
@@ -45,8 +48,5 @@ class MapPin {
     {
         return $this->pinColor;
     }
-    private $name;
-    private $pinColor;
-
 
 }
