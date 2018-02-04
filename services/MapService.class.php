@@ -22,7 +22,7 @@ class MapService
 
     function getAllTrackableObjects()
     {
-        return Map::getInstance()->getAllTrackableObjects();
+        return Map::getInstance()->getAllTrackableObjectPins();
     }
 
 }
