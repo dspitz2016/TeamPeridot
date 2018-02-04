@@ -17,7 +17,9 @@ Class Map
         echo "Map Constructor <br/>";
 
         try{
-            $conn = ConnectDb::getInstance()->getConnection();
+            $this->conn = ConnectDb::getInstance()->getConnection();
+            echo "Map Conn: ";
+            var_dump($this->conn);
         }
         catch(PDOException $e){
             echo $e->getMesage();
