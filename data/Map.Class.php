@@ -14,6 +14,8 @@ Class Map
      */
     public function __construct()
     {
+        echo "Map Constructor <br/>";
+
         try{
             $conn = ConnectDb::getInstance()->getConnection();
         }
@@ -25,6 +27,8 @@ Class Map
 
     public static function getInstance()
     {
+        echo "Map Instance <br/>";
+
         if(!self::$instance)
         {
             self::$instance = new Map();
@@ -32,12 +36,9 @@ Class Map
         return self::$instance;
     }
 
-    public function getConnection()
-    {
-        return $this->conn;
-    }
-
     public function getAllTrackableObjectPins(){
+        echo "Map getAllObjectPins <br/>";
+
         try{
             $trackableObjectPins = array();
             $stmt = $this->conn->prepare("SELECT * FROM(

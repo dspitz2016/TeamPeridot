@@ -99,7 +99,7 @@
         echo "Latitude: " . $tobj->getLatitude() . "<br/>";
         echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
     }
-    $data = MapService::getInstance()->getAllTrackableObjects();
+    $data = MapService::getInstance()->getAllTrackableObjectsPins();
     foreach($data as $pin){
         echo "Longitude: " . $pin->getLongitude(); . "<br/>";
         echo "Latitude: " . $pin->getLatitude() . "<br/>";
