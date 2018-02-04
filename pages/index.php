@@ -101,7 +101,7 @@
     }
     $data = MapService::getInstance()->getAllTrackableObjects();
     foreach($data as $pin){
-        echo "Longitude: " . $pin->getLogitude(); . "<br/>";
+        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
         echo "Latitude: " . $pin->getLatitude() . "<br/>";
         echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
     }
