@@ -93,18 +93,18 @@
 
 <h3> Get Trackable Pins </h3>
 <?php
-//    $data = $instance->getAllTrackableObjects();
-//    foreach($data as $tobj){
-//        echo "Longitude: " . $tobj->getLongitude() . "<br/>";
-//        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
-//        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
-//    }
-    $data = MapService::getInstance()->getAllTrackableObjects();
-    foreach($data as $pin){
-        echo "Longitude: " . $pin->getLogitude(); . "<br/>";
-        echo "Latitude: " . $pin->getLatitude() . "<br/>";
-        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
+    $data = $instance->getAllTrackableObjects();
+    foreach($data as $tobj){
+        echo "Longitude: " . $tobj->getLongitude() . "<br/>";
+        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
+        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
     }
+//    $data = MapService::getInstance()->getAllTrackableObjects();
+//    foreach($data as $pin){
+//        echo "Longitude: " . $pin->getLogitude(); . "<br/>";
+//        echo "Latitude: " . $pin->getLatitude() . "<br/>";
+//        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
+//    }
 ?>
 <hr>
 <br/>
