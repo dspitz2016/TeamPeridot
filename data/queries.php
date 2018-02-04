@@ -1,6 +1,6 @@
 <?php
 
-  global $trackableObjectPinQry = "SELECT * FROM(
+   $trackableObjectPinQry = "SELECT * FROM(
 	SELECT type, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinColor
     FROM Grave G 
     JOIN TrackableObject T on G.idGrave = T.idGrave

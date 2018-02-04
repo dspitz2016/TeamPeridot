@@ -1,6 +1,6 @@
 <?php
 
-include '../data/Map.Class.php';
+include '../data/Map.class.php';
 
 class MapService
 {
@@ -16,7 +16,7 @@ class MapService
 
     public static function getInstance()
     {
-        echo "MapService getIntance <br/>";
+        echo "MapService getInstance <br/>";
 
         if(!self::$instance)
         {

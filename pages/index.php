@@ -71,26 +71,6 @@
 <hr>
 <br/>
 
-<h3> Get Type Filters </h3>
-<?php
-    $data = $instance->getAllTypeFilters();
-    foreach($data as $type){
-        echo "Type: " . $type->getTypeFilter() . "<br/>";
-    }
-?>
-<hr>
-<br/>
-
-<h3> Get Historic Filters </h3>
-<?php
-    $data = $instance->getAllHistoricFilters();
-    foreach($data as $historicFilter){
-        echo "Historic Filter: " . $historicFilter->getDescription() . "<br/>";
-    }
-?>
-<hr>
-<br/>
-
 <h3> Get Trackable Pins </h3>
 <?php
     $data = $instance->getAllTrackableObjects();
@@ -100,12 +80,13 @@
         echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
     }
     $data = MapService::getInstance()->getAllTrackableObjectsPins();
-    foreach($data as $pin){
-        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
-        echo "Latitude: " . $pin->getLatitude() . "<br/>";
-        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
-    }
+//    foreach($data as $pin){
+//        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
+//        echo "Latitude: " . $pin->getLatitude() . "<br/>";
+//        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
+//    }
 ?>
+
 <hr>
 <br/>
 
