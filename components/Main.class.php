@@ -18,8 +18,8 @@ class Main {
         echo '<head>';
         echo '<title>Rapids Cemetery</title>';
         echo    '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
-        echo    '<link type="text/css" rel="stylesheet" href="../../css/materialize.css" media="screen,projection">';
-        echo    '<link type="text/css" rel="stylesheet" href="../../css/main.css" />';
+        echo    '<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection">';
+        echo    '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
         echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
         echo '</head>';
         echo '<body>';
