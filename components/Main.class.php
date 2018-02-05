@@ -2,9 +2,9 @@
 
 class Main {
 
-  private $instance = null;
+  private static $instance = null;
 
-  public static function getIntance(){
+  public static function getInstance(){
       if(!self::$instance){
           self::$instance = new Main();
       }
