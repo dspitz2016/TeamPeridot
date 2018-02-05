@@ -29,8 +29,8 @@ class Main {
   public function getNavigationBar(){
         echo '<nav>';
             echo '<div class="nav-wrapper cust-color-nav">';
-            echo '<a href="#!" class="brand-logo">Rapids</a>';
-            echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
+                echo '<a href="#!" class="brand-logo">Rapids</a>';
+                echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
             echo '<ul class="right hide-on-med-and-down">';
                 echo '<li><a href="#">Tours</a></li>';
                 echo '<li><a href="#">FAQ</a></li>';
