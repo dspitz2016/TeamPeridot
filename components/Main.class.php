@@ -33,7 +33,6 @@ class Main {
         echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
         echo '</head>';
         echo '<body>';
-        echo '<div class="container">';
     }
 
     public function getNavigationBar(){
@@ -67,7 +66,6 @@ class Main {
     }
 
     public function getFooter(){
-        echo '</div>';
         echo "</body>";
         echo "</html>";
     }
