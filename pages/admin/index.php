@@ -1,7 +1,7 @@
 <?php
-    include '../../components/Main.class.php';
+    include '../../components/VisitorMain.class.php';
     $main = Main::getInstance();
-    $main->getHeader();
+    $main->getHeader("admin");
 ?>
 
 <div class="section"></div>
@@ -58,6 +58,6 @@
 </main>
 
 <?php
-    $main->getScripts();
+    $main->getScripts("admin");
     $main->getFooter();
 ?>
