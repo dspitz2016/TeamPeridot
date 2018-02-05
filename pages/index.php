@@ -2,9 +2,11 @@
 
     include '../components/Main.class.php';
 
-    Main::getInstance()->getHeader();
+    $main = Main::getInstance();
+    $main->getHeader();
+    $main->getNavigationBar();
 
     echo "<h1>Hello World</h1>";
 
-    Main::getInstance()->getFooter();
+    $main->getFooter();
 ?>
