@@ -6,7 +6,7 @@
     $main->getHeader();
     $main->getNavigationBar();
 
-    echo "<h1>Hello World</h1>";
+    echo '<div id="map"></div>';
 
     $main->getScripts();
     $main->getFooter();

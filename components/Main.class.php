@@ -23,7 +23,6 @@ class Main {
         echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
         echo '</head>';
         echo '<body>';
-        echo '<div id="map"></div>';
   }
 
   public function getNavigationBar(){
