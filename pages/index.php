@@ -6,13 +6,8 @@
     $main->getHeader();
     $main->getNavigationBar();
 
-    echo '<div class="container">';
-        echo '<div class="row">';
-            echo '<div id="map"></div>';
-        echo '</div>';
-    echo '</div>';
+    echo '<div id="map"></div>';
 
-
-$main->getScripts();
+    $main->getScripts();
     $main->getFooter();
 ?>
