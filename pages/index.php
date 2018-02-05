@@ -8,8 +8,8 @@
 
     echo '<div class="container">';
         echo '<div class="row">';
-            echo '<div class="col s3"><h2>Upcoming Events</h2></div>';
-            echo '<div class="col s9"><div id="map"></div></div>';
+            echo '<div class="col s3 m3 l3"><h2>Upcoming Events</h2></div>';
+            echo '<div class="col s9 m9 l9"><div id="map"></div></div>';
         echo '</div>';
     echo '</div>';
 
