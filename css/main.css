@@ -19,3 +19,8 @@ html, body {
 .cust-color-side{
 	background-color: #A7B3A5;
 }
+
+/* Override Materialize */
+.container{
+	width: 100%;
+}
