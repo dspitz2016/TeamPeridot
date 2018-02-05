@@ -16,7 +16,7 @@ class Main {
         $path = '../';
         if($page == "admin"){
             $path = "../../";
-        } else if ($page = "main"){
+        } else if ($page == "main"){
             $path = "../";
         }
         return $path;
@@ -64,7 +64,7 @@ class Main {
         echo '<script src="'.$this->getPath($page).'js/main.js"></script>';
         echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>';
     }
-    
+
     public function getFooter(){
         echo "</body>";
         echo "</html>";
