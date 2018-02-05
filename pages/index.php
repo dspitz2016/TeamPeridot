@@ -1,6 +1,6 @@
 <?php
 
-    include '../components/VisitorMain.class.php';
+    include '../components/Main.class.php';
 
     $main = Main::getInstance();
     $main->getHeader("main");
