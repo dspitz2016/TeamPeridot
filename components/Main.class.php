@@ -23,6 +23,7 @@ class Main {
         echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
         echo '</head>';
         echo '<body>';
+        echo '<div id="map"></div>';
   }
 
   public function getNavigationBar(){
@@ -48,6 +49,12 @@ class Main {
         echo '</nav>';
   }
 
+  public function getScripts(){
+	echo '<script src="../js/jquery-3.3.1.min.js"></script>';
+	echo '<script src="../js/materialize.js"></script>';
+	echo '<script src="../js/main.js"></script>';
+	echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>';
+  }
   public function getFooter(){
         echo "</body>";
         echo "</html>";

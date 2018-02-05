@@ -8,5 +8,6 @@
 
     echo "<h1>Hello World</h1>";
 
+    $main->getScripts();
     $main->getFooter();
 ?>
