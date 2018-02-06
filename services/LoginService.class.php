@@ -20,7 +20,7 @@ class LoginService
         $user = filter_var($username, FILTER_SANITIZE_STRING);
         $pass = filter_var($password, FILTER_SANITIZE_STRING);
 
-        return Login::getInstance()-->$this->validatePassword($user, $pass);
+        return Login::getInstance()->validatePassword($user, $pass);
     }
 }
 
