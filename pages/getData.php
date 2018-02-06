@@ -25,70 +25,70 @@
 ?>
 
 <hr>
-
-<h3> Get Account </h3>
+<!---->
+<!--<h3> Get Account </h3>-->
 <?php
-    $data = $instance->getAllAccounts();
-    foreach($data as $account){
-        echo $account->getFirstName() . " " . $account->getLastName() . "<br/>";
-    }
-
-?>
-<hr>
-<br/>
-
-<h3> Get Locations </h3>
+//    $data = $instance->getAllAccounts();
+//    foreach($data as $account){
+//        echo $account->getFirstName() . " " . $account->getLastName() . "<br/>";
+//    }
+//
+//?>
+<!--<hr>-->
+<!--<br/>-->
+<!---->
+<!--<h3> Get Locations </h3>-->
 <?php
-    $data = $instance->getAllLocations();
-    foreach($data as $location){
-        echo "Location: " . $location->getName() . "<br/>";
-        echo "Latitude: " . $location->getLatitude() . "<br/>";
-        echo "Longitude: " . $location->getLongitude() . "<br/>";
-    }
-?>
-<hr>
-<br/>
-
-<h3> Get Event </h3>
+//    $data = $instance->getAllLocations();
+//    foreach($data as $location){
+//        echo "Location: " . $location->getName() . "<br/>";
+//        echo "Latitude: " . $location->getLatitude() . "<br/>";
+//        echo "Longitude: " . $location->getLongitude() . "<br/>";
+//    }
+//?>
+<!--<hr>-->
+<!--<br/>-->
+<!---->
+<!--<h3> Get Event </h3>-->
 <?php
-    $data = $instance->getAllEvents();
-    foreach($data as $event){
-        echo "Event: " . $event->getName() . "<br/>";
-        echo "Description: " . $event->getDescription() . "<br/>";
-    }
-?>
-<hr>
-<br/>
-
-<h3> Get FAQ </h3>
+//    $data = $instance->getAllEvents();
+//    foreach($data as $event){
+//        echo "Event: " . $event->getName() . "<br/>";
+//        echo "Description: " . $event->getDescription() . "<br/>";
+//    }
+//?>
+<!--<hr>-->
+<!--<br/>-->
+<!---->
+<!--<h3> Get FAQ </h3>-->
 <?php
-    $data = $instance->getAllFAQs();
-    foreach($data as $faq){
-        echo "Question: " . $faq->getQuestion() . "<br/>";
-        echo "Answer: " . $faq->getAnswer() . "<br/>";
-    }
-?>
-<hr>
-<br/>
-
-<h3> Get Trackable Pins </h3>
+//    $data = $instance->getAllFAQs();
+//    foreach($data as $faq){
+//        echo "Question: " . $faq->getQuestion() . "<br/>";
+//        echo "Answer: " . $faq->getAnswer() . "<br/>";
+//    }
+//?>
+<!--<hr>-->
+<!--<br/>-->
+<!---->
+<!--<h3> Get Trackable Pins </h3>-->
 <?php
-    $mapService = new MapService();
-    $pins = $mapService->getAllTrackableObjectsAsPins();
-    var_dump($pins);
-?>
-
-<hr>
-<br/>
-
-<h3> Get Password Validation </h3>
+//    $mapService = new MapService();
+//    $pins = $mapService->getAllTrackableObjectsAsPins();
+//    var_dump($pins);
+//?>
+<!---->
+<!--<hr>-->
+<!--<br/>-->
+<!---->
+<!--<h3> Get Password Validation </h3>-->
 <?php
-    $data = LoginService::getInstance()->validatePassword("dts5425@rit.edu", "pwd123");
-    var_dump($data);
-?>
-
-<hr>
-<br/>
+//    $data = LoginService::getInstance()->validatePassword("dts5425@rit.edu", "pwd123");
+//    var_dump($data);
+//?>
+<!---->
+<!--<hr>-->
+<!--<br/>-->
 
 </body>
 </html>
