@@ -100,7 +100,8 @@ var_dump($data);
 //        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
 //        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
 //    }
-    $data = MapService::getInstance()->getAllTrackableObjectsPins();
+    $mapService = new MapService();
+    $pins = $mapService->getAllTrackableObjectsPins();
     var_dump($data);
 //    foreach($data as $pin){
 //        echo "Longitude: " . $pin->getLongitude(); . "<br/>";

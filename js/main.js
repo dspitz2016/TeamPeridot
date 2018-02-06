@@ -11,6 +11,7 @@ function initMap() {
 	  mapTypeControl: false,
 	  streetViewControl: false
 	});
+
 	map.setTilt(45);
 	
 	//var image = path/to/image;
