@@ -30,7 +30,7 @@ class Login {
 
         if(!self::$instance)
         {
-            self::$instance = new Map();
+            self::$instance = new Login();
         }
         return self::$instance;
     }

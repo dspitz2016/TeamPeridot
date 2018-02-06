@@ -1,7 +1,37 @@
 <?php
     include '../../components/Main.class.php';
+    include '../../services/LoginService.class.php';
+
     $main = Main::getInstance();
     $main->getHeader("admin");
+
+    /**
+    * If someone is logged in currently clear session
+    **/
+    if($_SESSION['email']){
+        sesion_unset();
+    }
+
+    /**
+    * If form submitted login
+    **/
+    if(isset($_POST['submit'])){
+        if($_POST['email'] != "" && $_POST['password'] != ""){
+            $validateEmail = LoginService::getInstance()->validatePassword($_POST['email'], $_POST['password']);
+
+            if($validateEmail){
+                $_SESSION['email'] = $_POST['email'];
+                echo "You will be redirect to admin home page";
+                header('Location: admin.php');
+            } else {
+                echo "Incorrect Credentials";
+                header('Location: adminLogin.php');
+            }
+        } else {
+            echo "Please enter an email and password";
+        }
+
+    }
 
     echo $_POST['email'];
     echo $_POST['password'];
