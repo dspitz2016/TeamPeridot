@@ -26,26 +26,6 @@
 
 <hr>
 
-<h3> Sample Update Event </h3>
-<?php
-//    $data = $instance->getAllTrackableObjects();
-//    foreach($data as $tobj){
-//        echo "Longitude: " . $tobj->getLongitude() . "<br/>";
-//        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
-//        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
-//    }
-$data = MapService::getInstance()->getAllTrackableObjectsPins();
-var_dump($data);
-//    foreach($data as $pin){
-//        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
-//        echo "Latitude: " . $pin->getLatitude() . "<br/>";
-//        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
-//    }
-?>
-
-<hr>
-<br/>
-
 <h3> Get Account </h3>
 <?php
     $data = $instance->getAllAccounts();
