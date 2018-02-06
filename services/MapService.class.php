@@ -13,7 +13,16 @@ class MapService {
      * Initialize Map Object
      */
     public function initMap() {
-        $mapInit = "";
+        $mapInit = "        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 43.1293659, lng: -77.6394728},
+            zoom: 25,
+            mapTypeId: 'satellite',
+            mapTypeControl: false,
+            streetViewControl: false
+        });
+        
+        map.setTilt(45);
+        var infoWindow = new google.maps.InfoWindow;";
         return $mapInit;
     }
 
