@@ -13,7 +13,6 @@ function initMap() {
 	});
 	map.setTilt(45);
 	
-	<?php echo "hello"; ?>
 	//var image = path/to/image;
 	var marker = new google.maps.Marker({
 	  position: {lat: 43.1293659, lng: -77.6394728},
