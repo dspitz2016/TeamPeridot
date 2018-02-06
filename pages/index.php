@@ -31,7 +31,6 @@
     var map;
     function initMap() {
         <?php echo $mapService->initMap($pins); ?>
-
     }
 
 </script>
