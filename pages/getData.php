@@ -30,8 +30,7 @@
 <?php
     $data = $instance->getAllAccounts();
     foreach($data as $account){
-        echo $account->getFirstName() . " " . $account->getLastName();
-
+        echo $account->getFirstName() . " " . $account->getLastName() . "<br/>";
     }
 
 ?>
@@ -74,20 +73,9 @@
 
 <h3> Get Trackable Pins </h3>
 <?php
-//    $data = $instance->getAllTrackableObjects();
-//    foreach($data as $tobj){
-//        echo "Longitude: " . $tobj->getLongitude() . "<br/>";
-//        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
-//        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
-//    }
     $mapService = new MapService();
-    $pins = $mapService->getAllTrackableObjectsPins();
+    $pins = $mapService->getAllTrackableObjectsAsPins();
     var_dump($pins);
-//    foreach($data as $pin){
-//        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
-//        echo "Latitude: " . $pin->getLatitude() . "<br/>";
-//        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
-//    }
 ?>
 
 <hr>
@@ -95,19 +83,8 @@
 
 <h3> Get Password Validation </h3>
 <?php
-//    $data = $instance->getAllTrackableObjects();
-//    foreach($data as $tobj){
-//        echo "Longitude: " . $tobj->getLongitude() . "<br/>";
-//        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
-//        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
-//    }
-$data = LoginService::getInstance()->validatePassword("dts5425@rit.edu", "pwd123");
-var_dump($data);
-//    foreach($data as $pin){
-//        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
-//        echo "Latitude: " . $pin->getLatitude() . "<br/>";
-//        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
-//    }
+    $data = LoginService::getInstance()->validatePassword("dts5425@rit.edu", "pwd123");
+    var_dump($data);
 ?>
 
 <hr>

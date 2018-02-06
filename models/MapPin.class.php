@@ -10,6 +10,25 @@ class MapPin {
     private $pinColor;
 
     /**
+     * MapPin constructor.
+     * @param $idTrackableObject
+     * @param $type
+     * @param $longitude
+     * @param $latitude
+     * @param $name
+     * @param $pinColor
+     */
+    public function __construct($idTrackableObject, $type, $longitude, $latitude, $name, $pinColor)
+    {
+        $this->idTrackableObject = $idTrackableObject;
+        $this->type = $type;
+        $this->longitude = $longitude;
+        $this->latitude = $latitude;
+        $this->name = $name;
+        $this->pinColor = $pinColor;
+    }
+
+    /**
      * @return mixed
      */
     public function getType()

@@ -4,7 +4,7 @@ include '../services/ConnectDb.class.php';
 include '../models/MapPin.class.php';
 include 'queries.php';
 
-Class Map
+Class MapData
 {
     private static $instance = null;
     private $conn;
@@ -38,7 +38,7 @@ Class Map
         return self::$instance;
     }
 
-    public function getAllTrackableObjectPins(){
+    public function getAllTrackableObjectPinData(){
         echo "Map getAllObjectPins <br/>";
 
         try{
