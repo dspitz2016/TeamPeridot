@@ -53,7 +53,7 @@ class MapService {
         foreach ($pinObjectsArray as $pin) {
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
-            position: {lat: " . $pin -> getLatitude() . ", lng: " . $pin -> getLongitude() . "},
+            position: {lat: " . $pin -> getLongitude() . ", lng: " . $pin -> getLongitude() . "},
             icon:'" . $pin -> getPinColor() . "',
             title: '" . $pin -> getName() . "' ,
             map: map });";

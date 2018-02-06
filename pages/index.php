@@ -1,6 +1,7 @@
 <?php
 
     include '../components/Main.class.php';
+    include '../services/MapService.class.php';
 
     $main = Main::getInstance();
     $main->getHeader("main");
@@ -22,56 +23,66 @@
 
 <?php
     $mapService = new MapService();
-    $markers = $mapService->createMapPins($mapService->getAllTrackableObjectsAsPins());
+    $pins = $mapService->getAllTrackableObjectsAsPins();
+    $markers = $mapService->createMapPins($pins);
 ?>
 
 <script type="text/javascript">
-var map;
-function initMap() {
-map = new google.maps.Map(document.getElementById('map'), {
-center: {lat: 43.1293659, lng: -77.6394728},
-zoom: 25,
-mapTypeId: 'satellite',
-mapTypeControl: false,
-streetViewControl: false
-});
 
-map.setTilt(45);
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 43.1293659, lng: -77.6394728},
+            zoom: 25,
+            mapTypeId: 'satellite',
+            mapTypeControl: false,
+            streetViewControl: false
+        });
 
-var infoWindow = new google.maps.InfoWindow;
+        map.setTilt(45);
 
-<?php
-    echo $markers;
-?>
-// Try HTML5 geolocation.
-if (navigator.geolocation) {
-navigator.geolocation.getCurrentPosition(function(position) {
-var pos = {
-lat: position.coords.latitude,
-lng: position.coords.longitude
-};
+        //var image = path/to/image;
+        // var marker = new google.maps.Marker({
+        //     position: {lat: 43.1293659, lng: -77.6394728},
+        //     map: map,
+        //     animation: google.maps.Animation.DROP,
+        //     title: "Hello World!"
+        //     //icon: image
+        // });
 
-infoWindow.setPosition(pos);
-infoWindow.setContent('Location found.');
-infoWindow.open(map);
-map.setCenter(pos);
-console.log(pos);
-}, function() {
-handleLocationError(true, infoWindow, map.getCenter());
-});
-} else {
-// Browser doesn't support Geolocation
-handleLocationError(false, infoWindow, map.getCenter());
-}
-}
+        var infoWindow = new google.maps.InfoWindow;
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-infoWindow.setPosition(pos);
-infoWindow.setContent(browserHasGeolocation ?
-'Error: The Geolocation service failed.' :
-'Error: Your browser doesn\'t support geolocation.');
-infoWindow.open(map);
-}
+        <?php echo $markers; ?>
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                infoWindow.open(map);
+                map.setCenter(pos);
+                console.log(pos);
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
 
 </script>
 
