@@ -54,7 +54,8 @@ class MapService {
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin -> getLongitude() . ", lng: " . $pin -> getLongitude() . "},
-            icon:'" . $pin -> getPinColor() . "',
+            icon:'{ path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, strokeColor:" . $pin -> getPinColor() . "}',
+           
             title: '" . $pin -> getName() . "' ,
             map: map });";
             $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
