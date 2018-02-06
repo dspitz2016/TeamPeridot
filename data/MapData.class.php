@@ -11,13 +11,9 @@ Class MapData{
     /**
      * Map constructor.
      */
-    public function __construct()
-    {
-        echo "Map Constructor <br/>";
-
+    public function __construct(){
         try{
             $this->conn = ConnectDb::getInstance()->getConnection();
-            echo "Map Conn: ";
         }
         catch(PDOException $e){
             echo $e->getMessage();
@@ -25,8 +21,7 @@ Class MapData{
         }
     }
 
-    public static function getInstance()
-    {
+    public static function getInstance(){
         echo "Map Instance <br/>";
 
         if(!self::$instance)
@@ -63,6 +58,7 @@ Class MapData{
             while($result = $stmt->fetch()){
                 $trackableObjectPins[] = $result;
             }
+
             return $trackableObjectPins;
         }
         catch(PDOException $e){

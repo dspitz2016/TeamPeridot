@@ -21,15 +21,18 @@ class MapService {
         $allMapPins = array();
 
         foreach($pinData as $pinArray){
-            $pin = new MapPin($pinArray['idTrackableObject'],
+            $pin = new MapPin(
+                $pinArray['idTrackableObject'],
                 $pinArray['type'],
                 $pinArray['longitude'],
                 $pinArray['latitude'],
                 $pinArray['name'],
-                $pinArray['pinColor']);
+                $pinArray['pinColor']
+            );
 
 =           array_push($allMapPins, $pin);
         }
+
         return $allMapPins;
     }
 
