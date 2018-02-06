@@ -22,6 +22,7 @@
 
             $validateEmail = LoginService::getInstance()->validatePassword($_POST['email'], $_POST['password']);
             echo "Validate Email: " . $vaildateEmail . "<br/>";
+            var_dump($validateEmail);
 
             if($validateEmail){
                 $_SESSION['email'] = $_POST['email'];
