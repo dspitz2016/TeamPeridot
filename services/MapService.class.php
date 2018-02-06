@@ -93,18 +93,38 @@ class MapService {
         $markerName = "marker" . $markerCounter;
         $setMarkerCode = $markerName . ".setMap(map);";
         foreach ($pinObjectsArray as $pin) {
+            $pinColor = $this->colorHandler($pin->getPinColor());
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
-            position: {lat: " . $pin->getLatitude() . ", lng: " . $pin -> getLongitude() . "},
-            icon:'{ path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, strokeColor:" . $pin -> getPinColor() . "}',
-           
-            title: '" . $pin -> getName() . "' ,
+            position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
+            icon:'" . $pinColor . "',
+            title: '" . $pin->getName() . "' ,
             map: map });";
             $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
             $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
             $markerCounter += 1;
         }
         return $generatedMarkers;
+    }
+
+    public function colorHandler($pinColor){
+        $googleMarkerColor = "";
+        switch($pinColor){
+            case "red";
+                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+                break;
+            case "blue";
+                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+                break;
+            case "green";
+                break;
+                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+            case "yellow";
+                break;
+                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+        }
+
+        return $googleMarkerColor;
     }
 
 
