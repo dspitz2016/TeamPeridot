@@ -5,6 +5,7 @@ require_once '../services/ConnectDb.class.php';
 class Login {
 
 
+    private static $instance = null;
     private $conn;
 
     /**

@@ -9,6 +9,7 @@
     * If someone is logged in currently clear session
     **/
     if($_SESSION['email']){
+        echo "Email Unset";
         sesion_unset();
     }
 
@@ -16,9 +17,11 @@
     * If form submitted login
     **/
     if(isset($_POST['submit'])){
+        echo "Submit clicked and being processed <br/>";
         if($_POST['email'] != "" && $_POST['password'] != ""){
-            $validateEmail = LoginService::getInstance()->validatePassword($_POST['email'], $_POST['password']);
 
+            $validateEmail = LoginService::getInstance()->validatePassword($_POST['email'], $_POST['password']);
+            echo "Validate Email: " . $vaildateEmail . "<br/>";
             if($validateEmail){
                 $_SESSION['email'] = $_POST['email'];
                 echo "You will be redirect to admin home page";
@@ -32,9 +35,6 @@
         }
 
     }
-
-    echo $_POST['email'];
-    echo $_POST['password'];
 ?>
 
 <div class="section"></div>
@@ -77,7 +77,7 @@
                     <br />
                     <center>
                         <div class='row'>
-                            <button type='submit' name='btn_login' class='col s12 btn btn-large brown lighten-1 waves-effect brown'>Login</button>
+                            <button type='submit' name='submit' value='submit' class='col s12 btn btn-large brown lighten-1 waves-effect brown'>Login</button>
                         </div>
                     </center>
                 </form>
