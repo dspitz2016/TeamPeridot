@@ -20,12 +20,28 @@ class MapPin {
      */
     public function __construct($idTrackableObject, $type, $longitude, $latitude, $name, $pinColor)
     {
+        $this->setIdTrackableObject($idTrackableObject);
+        $this->setType($type);
+        $this->setLongitude($longitude);
+        $this->setLatitude($latitude);
+        $this->setName($name);
+        $this->setPinColor($pinColor);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdTrackableObject()
+    {
+        return $this->idTrackableObject;
+    }
+
+    /**
+     * @param mixed $idTrackableObject
+     */
+    public function setIdTrackableObject($idTrackableObject)
+    {
         $this->idTrackableObject = $idTrackableObject;
-        $this->type = $type;
-        $this->longitude = $longitude;
-        $this->latitude = $latitude;
-        $this->name = $name;
-        $this->pinColor = $pinColor;
     }
 
     /**
@@ -37,11 +53,27 @@ class MapPin {
     }
 
     /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
      * @return mixed
      */
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * @param mixed $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
     }
 
     /**
@@ -53,11 +85,27 @@ class MapPin {
     }
 
     /**
+     * @param mixed $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
      * @return mixed
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -67,5 +115,14 @@ class MapPin {
     {
         return $this->pinColor;
     }
+
+    /**
+     * @param mixed $pinColor
+     */
+    public function setPinColor($pinColor)
+    {
+        $this->pinColor = $pinColor;
+    }
+
 
 }

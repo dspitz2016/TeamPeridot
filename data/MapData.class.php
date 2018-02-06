@@ -18,7 +18,6 @@ Class MapData{
         try{
             $this->conn = ConnectDb::getInstance()->getConnection();
             echo "Map Conn: ";
-            var_dump($this->conn);
         }
         catch(PDOException $e){
             echo $e->getMessage();
@@ -42,7 +41,22 @@ Class MapData{
 
         try{
             $trackableObjectPins = array();
-            $stmt = $this->conn->prepare($trackablePinQuery);
+            $stmt = $this->conn->prepare("SELECT * FROM(
+                SELECT idTrackableObject, type, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinColor
+                FROM Grave G 
+                JOIN TrackableObject T on G.idGrave = T.idGrave
+                JOIN Type TF on T.idType = TF.idType
+                UNION 
+                SELECT idTrackableObject, type, longitude, latitude, commonName as name, pinColor
+                FROM Vegetation V
+                JOIN TrackableObject T on V.idVegetation = T.idVegetation
+                JOIN Type TF on T.idType = TF.idType
+                Union
+                SELECT idTrackableObject, type, longitude, latitude, name, pinColor
+                FROM OtherObject O
+                JOIN TrackableObject T on O.idOtherObject = T.idOtherObject
+                JOIN Type TF on T.idType = TF.idType
+                ) as MapPin");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, "MapPin.class");
 
@@ -55,7 +69,7 @@ Class MapData{
             echo $e->getMessage();
             die();
         }
-    } // end of get all TrackableObjectPins
+    }
 
 }
 ?>

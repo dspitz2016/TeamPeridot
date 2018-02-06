@@ -14,25 +14,22 @@ class MapService {
      * @return array - returns array of map pins
      */
     public function getAllTrackableObjectsAsPins(){
-        echo "MapService::getAllTrackableObjectsAsPins() <br/>";
+        echo "MapService getAllTrackableObjectsAsPins() <br/>";
 
         $mapData = new MapData();
         $pinData = $mapData->getAllTrackableObjectPinData();
         $allMapPins = array();
 
         foreach($pinData as $pinArray){
-            $pin = new MapPin(
-                $pinArray['idTrackableObject'],
+            $pin = new MapPin($pinArray['idTrackableObject'],
                 $pinArray['type'],
                 $pinArray['longitude'],
                 $pinArray['latitude'],
                 $pinArray['name'],
-                $pinArray['pinColor']
-            );
+                $pinArray['pinColor']);
 
-            $allMapPins = $pin;
+=           array_push($allMapPins, $pin);
         }
-
         return $allMapPins;
     }
 
