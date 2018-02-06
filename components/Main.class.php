@@ -62,7 +62,7 @@ class Main {
         echo '<script src="'.$this->getPath($page).'js/jquery-3.3.1.min.js"></script>';
         echo '<script src="'.$this->getPath($page).'js/materialize.js"></script>';
         echo '<script src="'.$this->getPath($page).'js/main.js"></script>';
-        //echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>';
+//        echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>';
     }
 
     public function getFooter(){

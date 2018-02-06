@@ -14,10 +14,6 @@ class MapService {
      */
     public function initMap() {
         $mapInit = "
-        
-        var map;
-        function initMap() {
-
                  map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 43.1293659, lng: -77.6394728},
                     zoom: 25,
@@ -56,8 +52,7 @@ class MapService {
                     'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
             }
-    
-        }";
+        ";
 
         return $mapInit;
     }

@@ -28,10 +28,12 @@
 ?>
 
 <script type="text/javascript">
-
+    var map;
+    function initMap() {
         <?php echo $mapService->initMap(); ?>
-        
+
         <?php //echo $markers; ?>
+    }
 
 </script>
 
