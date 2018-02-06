@@ -1,11 +1,10 @@
 <?php
 
 include '../services/ConnectDb.class.php';
-include '../models/MapPin.class.php';
 include 'queries.php';
 
-Class MapData
-{
+Class MapData{
+
     private static $instance = null;
     private $conn;
 
@@ -33,7 +32,7 @@ Class MapData
 
         if(!self::$instance)
         {
-            self::$instance = new Map();
+            self::$instance = new MapData();
         }
         return self::$instance;
     }
