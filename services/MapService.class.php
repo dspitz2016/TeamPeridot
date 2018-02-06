@@ -30,7 +30,7 @@ class MapService {
                 $pinArray['pinColor']
             );
 
-=           array_push($allMapPins, $pin);
+           array_push($allMapPins, $pin);
         }
 
         return $allMapPins;
