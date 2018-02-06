@@ -12,7 +12,7 @@ class MapService {
     /*
      * Initialize Map Object
      */
-    public function initMap() {
+    public function initMap($pinArray) {
         $mapInit = "
                  map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 43.1293659, lng: -77.6394728},
@@ -23,8 +23,11 @@ class MapService {
                 });
             
                 map.setTilt(45);
+                
+                ".$this->createMapPins($pinArray)."
                 var infoWindow = new google.maps.InfoWindow;
-                      if (navigator.geolocation) {
+                
+                if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var pos = {
                             lat: position.coords.latitude,
@@ -43,7 +46,6 @@ class MapService {
                     // Browser doesn't support Geolocation
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
-            }
     
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                 infoWindow.setPosition(pos);
@@ -93,7 +95,7 @@ class MapService {
         foreach ($pinObjectsArray as $pin) {
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
-            position: {lat: " . $pin -> getLongitude() . ", lng: " . $pin -> getLongitude() . "},
+            position: {lat: " . $pin->getLatitude() . ", lng: " . $pin -> getLongitude() . "},
             icon:'{ path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW, strokeColor:" . $pin -> getPinColor() . "}',
            
             title: '" . $pin -> getName() . "' ,

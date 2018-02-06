@@ -23,16 +23,15 @@
 
 <?php
     $mapService = new MapService();
-//    $pins = $mapService->getAllTrackableObjectsAsPins();
+    $pins = $mapService->getAllTrackableObjectsAsPins();
 //    $markers = $mapService->createMapPins($pins);
 ?>
 
 <script type="text/javascript">
     var map;
     function initMap() {
-        <?php echo $mapService->initMap(); ?>
+        <?php echo $mapService->initMap($pins); ?>
 
-        <?php //echo $markers; ?>
     }
 
 </script>
