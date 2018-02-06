@@ -102,7 +102,7 @@ var_dump($data);
 //    }
     $mapService = new MapService();
     $pins = $mapService->getAllTrackableObjectsPins();
-    var_dump($data);
+    var_dump($pins);
 //    foreach($data as $pin){
 //        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
 //        echo "Latitude: " . $pin->getLatitude() . "<br/>";
