@@ -38,9 +38,12 @@ class Login {
     public function validatePassword($email, $password)
     {
         try{
+            echo "Validating Password Against DB";
+
             $userPassword = null;
             $stmt = $this->conn->prepare("SELECT password FROM Account WHERE email = :email");
             $stmt->execute(array(":email"=>$email));
+
             while ($row = $stmt->fetch())
             {
                 $userPassword = $row;
