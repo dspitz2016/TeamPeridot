@@ -22,9 +22,9 @@
     </div>
 
 <?php
-    $mapService = new MapService();
-    $pins = $mapService->getAllTrackableObjectsAsPins();
-    $markers = $mapService->createMapPins($pins);
+//    $mapService = new MapService();
+//    $pins = $mapService->getAllTrackableObjectsAsPins();
+//    $markers = $mapService->createMapPins($pins);
 ?>
 
 <script type="text/javascript">
@@ -41,18 +41,18 @@
 
         map.setTilt(45);
 
-        //var image = path/to/image;
-        // var marker = new google.maps.Marker({
-        //     position: {lat: 43.1293659, lng: -77.6394728},
-        //     map: map,
-        //     animation: google.maps.Animation.DROP,
-        //     title: "Hello World!"
-        //     //icon: image
-        // });
+        var image = path/to/image;
+        var marker = new google.maps.Marker({
+            position: {lat: 43.1293659, lng: -77.6394728},
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title: "Hello World!"
+            //icon: image
+        });
 
         var infoWindow = new google.maps.InfoWindow;
 
-        <?php echo $markers; ?>
+        <?php //echo $markers; ?>
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
