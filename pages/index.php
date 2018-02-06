@@ -24,11 +24,12 @@
 <?php
     $mapService = new MapService();
     $pins = $mapService->getAllTrackableObjectsAsPins();
-//    $markers = $mapService->createMapPins($pins);
 ?>
 
 <script type="text/javascript">
     var map;
+    var infoWindow;
+
     function initMap() {
         <?php echo $mapService->initMap($pins); ?>
     }
