@@ -9,6 +9,25 @@ include '../models/MapPin.class.php';
  */
 class MapService {
 
+    /*
+     * Initialize Map Object
+     */
+    public function initMap($elementID, $centerLongitude, $centerlatitude, $mapType) {
+        $mapInit = "
+            <script type='text/javascript'>
+                map = new google.maps.Map(document.getElementById($elementID), {
+                  center: {lat: $centerlatitude, lng: $centerLongitude},
+                  zoom: 25,
+                  mapTypeId: $mapType,
+                  mapTypeControl: false,
+                  streetViewControl: false
+                });
+            </script>
+        ";
+
+        return $mapInit;
+    }
+
     /**
      * Gets all Mappable objects from the database and returns them as map pins.
      * @return array - returns array of map pins
@@ -37,9 +56,6 @@ class MapService {
     }
 
 
-    /*
-     *
-     */
     public function createMapPins(pinObjectsArray) {
         $generatedMark$ers = "";
         $markerCounter = 0;

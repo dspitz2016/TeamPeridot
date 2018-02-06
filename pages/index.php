@@ -20,17 +20,11 @@
         </div>
     </div>
 
-<script type="text/javascript">
+<?php
+    $mapService = new MapService();
 
-var map;
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-	  center: {lat: 43.1293659, lng: -77.6394728},
-	  zoom: 25,
-	  mapTypeId: 'satellite',
-	  mapTypeControl: false,
-	  streetViewControl: false
-	});
+    echo $mapService->initMap('map',-77.6394728, 43.1293659, 'satellite');
+?>
 
 	map.setTilt(45);
 
