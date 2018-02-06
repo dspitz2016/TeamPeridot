@@ -36,5 +36,29 @@ class MapService {
         return $allMapPins;
     }
 
+
+    /*
+     *
+     */
+    public function createMapPins(pinObjectsArray) {
+        $generatedMark$ers = "";
+        $markerCounter = 0;
+        $markerName = "marker" . $markerCounter;
+        $setMarkerCode = $markerName . ".setMap(map);";
+        foreach ($pinObjectsArray as $pin) {
+            $markerName = "marker" . $markerCounter;
+            $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
+            position: {lat: " . $pin -> getLatitude() . ", lng: " . $pin -> getLongitude() . "},
+            icon:'" . $pin -> getPinDesign() . "',
+            title: '" . $pin -> getName() . "' ,
+            map: map });";
+            $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
+            $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
+            $markerCounter += 1;
+        }
+        return $generatedMarkers;
+    }
+
+
 }
 ?>
