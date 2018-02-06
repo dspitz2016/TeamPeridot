@@ -28,7 +28,7 @@ catch(Exception $e){
 
 <h3> Get Account </h3>
 <?php
-    $data = $instance->getAllAccounts();
+    $data = ConnectDb::getInstance()->getAllAccounts();
     foreach($data as $account){
         echo $account->getFirstName() . " " . $account->getLastName() . "<br/>";
     }
