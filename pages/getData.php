@@ -2,6 +2,7 @@
 <?php
     include '../services/ConnectDb.class.php';
     include '../services/MapService.class.php';
+    include '../services/LoginService.class.php';
 ?>
 
 <html>
@@ -101,6 +102,26 @@ var_dump($data);
 //    }
     $data = MapService::getInstance()->getAllTrackableObjectsPins();
     var_dump($data);
+//    foreach($data as $pin){
+//        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
+//        echo "Latitude: " . $pin->getLatitude() . "<br/>";
+//        echo "Scavenger Hunt Hint: " . $pin->getScavengerHuntHint() . "<br/>";
+//    }
+?>
+
+<hr>
+<br/>
+
+<h3> Get Password Validation </h3>
+<?php
+//    $data = $instance->getAllTrackableObjects();
+//    foreach($data as $tobj){
+//        echo "Longitude: " . $tobj->getLongitude() . "<br/>";
+//        echo "Latitude: " . $tobj->getLatitude() . "<br/>";
+//        echo "Scavenger Hunt Hint: " . $tobj->getScavengerHuntHint() . "<br/>";
+//    }
+$data = LoginService::getInstance()->validatePassword("dts5425@rit.edu", "pwd123");
+var_dump($data);
 //    foreach($data as $pin){
 //        echo "Longitude: " . $pin->getLongitude(); . "<br/>";
 //        echo "Latitude: " . $pin->getLatitude() . "<br/>";

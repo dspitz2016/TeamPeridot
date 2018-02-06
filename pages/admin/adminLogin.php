@@ -22,6 +22,7 @@
 
             $validateEmail = LoginService::getInstance()->validatePassword($_POST['email'], $_POST['password']);
             echo "Validate Email: " . $vaildateEmail . "<br/>";
+
             if($validateEmail){
                 $_SESSION['email'] = $_POST['email'];
                 echo "You will be redirect to admin home page";
@@ -51,7 +52,7 @@
         <div class="container">
             <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-                <form class="col s12" method="post" action="login.php">
+                <form class="col s12" method="post" action="<?php print $_SERVER['PHP_SELF']?>">
                     <div class='row'>
                         <div class='col s12'>
                         </div>

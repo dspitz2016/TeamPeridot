@@ -15,10 +15,10 @@ class LoginService
         return self::$instance;
     }
 
-    public function validatePassword($username, $password){
+    public function validatePassword($email, $password){
         // Sanitize
-        $user = filter_var($username, FILTER_SANITIZE_STRING);
-        $pass = filter_var($password, FILTER_SANITIZE_STRING);
+        //$user = filter_var($email, FILTER_SANITIZE_STRING);
+        //$pass = filter_var($password, FILTER_SANITIZE_STRING);
 
         echo "Validate Password Function <br/>";
         echo "User: " . $user . "<br/>";

@@ -9,7 +9,7 @@ class Login {
     private $conn;
 
     /**
-     * Map constructor.
+     * Login constructor.
      */
     public function __construct()
     {
@@ -20,7 +20,7 @@ class Login {
             echo "Login Conn: ";
         }
         catch(PDOException $e){
-            echo $e->getMesage();
+            echo $e->getMessage();
             die();
         }
     }

@@ -22,7 +22,7 @@ Class Map
             var_dump($this->conn);
         }
         catch(PDOException $e){
-            echo $e->getMesage();
+            echo $e->getMessage();
             die();
         }
     }
