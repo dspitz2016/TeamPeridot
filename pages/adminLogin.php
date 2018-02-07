@@ -1,6 +1,6 @@
 <?php
-    include '../../components/Main.class.php';
-    include '../../services/LoginService.class.php';
+    include '../components/Main.class.php';
+    include '../services/LoginService.class.php';
 
     $main = Main::getInstance();
     $main->getHeader("admin");
@@ -20,7 +20,8 @@
         echo "Submit clicked and being processed <br/>";
         if($_POST['email'] != "" && $_POST['password'] != ""){
 
-            $validateEmail = LoginService::getInstance()->validatePassword($_POST['email'], $_POST['password']);
+            $longinService = new LoginService();
+            $validateEmail = $longinService->validatePassword($_POST['email'], $_POST['password']);
             echo "Validate Email: " . $vaildateEmail . "<br/>";
             var_dump($validateEmail);
 
