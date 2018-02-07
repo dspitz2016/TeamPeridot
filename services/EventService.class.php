@@ -3,7 +3,7 @@ ini_set( 'error_reporting', E_ALL );
 ini_set( 'display_errors', true );
 
 include '../data/EventData.class.php';
-//include '../models/Event.class.php';
+include '../models/Event.class.php';
 
 class EventService {
 
