@@ -2,7 +2,6 @@
 
 class Event {
 
-	private $idEvent;
 	private $name;
 	private $description;
 	private $startTime;
@@ -30,33 +29,102 @@ class Event {
         $this->imageDescription = $imageDescription;
     }
 
-    public function getIdEvent(){
-		return $this->idEvent;
-	}
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	public function getName(){
-		return $this->name;
-	}
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-	public function getDescription(){
-		return $this->description;
-	}
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-	public function getStartTime(){
-		return $this->startTime;
-	}
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 
-	public function getEndTime(){
-		return $this->endTime;
-	}
+    /**
+     * @return mixed
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
 
-    public function getImagePath(){
+    /**
+     * @param mixed $startTime
+     */
+    public function setStartTime($startTime)
+    {
+        $this->startTime = $startTime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndTime()
+    {
+        return $this->endTime;
+    }
+
+    /**
+     * @param mixed $endTime
+     */
+    public function setEndTime($endTime)
+    {
+        $this->endTime = $endTime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagePath()
+    {
         return $this->imagePath;
     }
 
-    public function getImageDescription(){
+    /**
+     * @param mixed $imagePath
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageDescription()
+    {
         return $this->imageDescription;
     }
+
+    /**
+     * @param mixed $imageDescription
+     */
+    public function setImageDescription($imageDescription)
+    {
+        $this->imageDescription = $imageDescription;
+    }
+
 
 }
 
