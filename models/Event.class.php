@@ -10,7 +10,27 @@ class Event {
 	private $imagePath;
 	private $imageDescription;
 
-	public function getIdEvent(){
+    /**
+     * Event constructor.
+     * @param $idEvent
+     * @param $name
+     * @param $description
+     * @param $startTime
+     * @param $endTime
+     * @param $imagePath
+     * @param $imageDescription
+     */
+    public function __construct($name, $description, $startTime, $endTime, $imagePath, $imageDescription)
+    {
+        $this->name = $name;
+        $this->description = $description;
+        $this->startTime = $startTime;
+        $this->endTime = $endTime;
+        $this->imagePath = $imagePath;
+        $this->imageDescription = $imageDescription;
+    }
+
+    public function getIdEvent(){
 		return $this->idEvent;
 	}
 

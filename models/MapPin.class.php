@@ -18,14 +18,15 @@ class MapPin {
      * @param $name
      * @param $pinColor
      */
+
     public function __construct($idTrackableObject, $type, $longitude, $latitude, $name, $pinColor)
     {
-        $this->setIdTrackableObject($idTrackableObject);
-        $this->setType($type);
-        $this->setLongitude($longitude);
-        $this->setLatitude($latitude);
-        $this->setName($name);
-        $this->setPinColor($pinColor);
+        $this->idTrackableObject = $idTrackableObject;
+        $this->type = $type;
+        $this->longitude = $longitude;
+        $this->latitude = $latitude;
+        $this->name = $name;
+        $this->pinColor = $pinColor;
     }
 
     /**
