@@ -6,7 +6,7 @@ include '../models/Event.class.php';
 class EventService {
 
     public function getAllEventsOrderedByDate(){
-        echo "MapService getAllTrackableObjectsAsPins() <br/>";
+        echo "Event Service";
 
         $eventData = new EventData();
         $eventsData = $eventData->getAllEventsOrderedByDate();
