@@ -6,6 +6,7 @@ include '../models/MapPin.class.php';
 /*
  * MapService Class
  *  > Contains Functionality to pull data for mapped objects
+ *  > Collaborators : Team Garnet
  */
 class MapService {
 
@@ -128,11 +129,10 @@ class MapService {
         $markerName = "marker" . $markerCounter;
         $setMarkerCode = $markerName . ".setMap(map);";
         foreach ($pinObjectsArray as $pin) {
-            $pinColor = $this->colorHandler($pin->getPinColor());
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
-            icon:'" . $pinColor . "',
+            icon:'" . $pin->getPinColor() . "',
             title: '" . $pin->getName() . "' ,
             map: map });";
 //            $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
@@ -141,27 +141,6 @@ class MapService {
         }
         return $generatedMarkers;
     }
-
-    public function colorHandler($pinColor){
-        $googleMarkerColor = "";
-        switch($pinColor){
-            case "red";
-                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
-                break;
-            case "blue";
-                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
-                break;
-            case "green";
-                break;
-                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
-            case "yellow";
-                break;
-                $googleMarkerColor = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
-        }
-
-        return $googleMarkerColor;
-    }
-
 
 }
 ?>
