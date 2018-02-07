@@ -1,6 +1,6 @@
 <?php
 
-include '../data/Login.class.php';
+include '../data/LoginData.class.php';
 
 class LoginService
 {
@@ -23,7 +23,7 @@ class LoginService
         echo "Validate Password Function <br/>";
         echo "User: " . $user . "<br/>";
         echo "Pass: " . $pass . "<br/>";
-        $validatedResult = Login::getInstance()->validatePassword($user, $pass);
+        $validatedResult = LoginData::getInstance()->validatePassword($user, $pass);
         echo "Is Valid? " . $validatedResult . "<br/>";
         return $validatedResult;
     }

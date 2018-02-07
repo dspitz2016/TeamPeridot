@@ -2,7 +2,7 @@
 
 include '../services/ConnectDb.class.php';
 
-class Login {
+class LoginData {
 
     private static $instance = null;
     private $conn;
@@ -30,7 +30,7 @@ class Login {
 
         if(!self::$instance)
         {
-            self::$instance = new Login();
+            self::$instance = new LoginData();
         }
         return self::$instance;
     }
