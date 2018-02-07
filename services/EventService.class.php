@@ -12,22 +12,22 @@ class EventService {
 
         $eventData = new EventData();
         $eventsData = $eventData->getAllEventsOrderedByDate();
-        $allEvents = array();
+//        $allEvents = array();
+//
+//        foreach($eventsData as $event){
+//            $newEvent = new Event(
+//                    $event['name'],
+//                    $event['description'],
+//                    $event['startTime'],
+//                    $event['endTime'],
+//                    $event['imagePath'],
+//                    $event['imageDescription']
+//            );
+//
+//            array_push($allEvents, $newEvent);
+//        };
 
-        foreach($eventsData as $event){
-            $newEvent = new Event(
-                    $event['name'],
-                    $event['description'],
-                    $event['startTime'],
-                    $event['endTime'],
-                    $event['imagePath'],
-                    $event['imageDescription']
-            );
-
-            array_push($allEvents, $newEvent);
-        };
-
-        return $allEvents;
+        return $eventsData;
     }
 }
 
