@@ -3,34 +3,31 @@
 class MapPin {
 
     private $idTrackableObject;
-    private $latitude;
+    private $type;
     private $longitude;
-    private $imageDescription;
-    private $imageLocation;
+    private $latitude;
     private $name;
     private $pinColor;
-    
+
     /**
      * MapPin constructor.
      * @param $idTrackableObject
-     * @param $latitude
+     * @param $type
      * @param $longitude
-     * @param $imageDescription
-     * @param $imageLocation
+     * @param $latitude
      * @param $name
      * @param $pinColor
      */
-    public function __construct($idTrackableObject, $latitude, $longitude, $imageDescription, $imageLocation, $name, $pinColor)
+
+    public function __construct($idTrackableObject, $type, $longitude, $latitude, $name, $pinColor)
     {
         $this->idTrackableObject = $idTrackableObject;
-        $this->latitude = $latitude;
+        $this->type = $type;
         $this->longitude = $longitude;
-        $this->imageDescription = $imageDescription;
-        $this->imageLocation = $imageLocation;
+        $this->latitude = $latitude;
         $this->name = $name;
         $this->pinColor = $pinColor;
     }
-
 
     /**
      * @return mixed
@@ -51,17 +48,17 @@ class MapPin {
     /**
      * @return mixed
      */
-    public function getLatitude()
+    public function getType()
     {
-        return $this->latitude;
+        return $this->type;
     }
 
     /**
-     * @param mixed $latitude
+     * @param mixed $type
      */
-    public function setLatitude($latitude)
+    public function setType($type)
     {
-        $this->latitude = $latitude;
+        $this->type = $type;
     }
 
     /**
@@ -83,33 +80,17 @@ class MapPin {
     /**
      * @return mixed
      */
-    public function getImageDescription()
+    public function getLatitude()
     {
-        return $this->imageDescription;
+        return $this->latitude;
     }
 
     /**
-     * @param mixed $imageDescription
+     * @param mixed $latitude
      */
-    public function setImageDescription($imageDescription)
+    public function setLatitude($latitude)
     {
-        $this->imageDescription = $imageDescription;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImageLocation()
-    {
-        return $this->imageLocation;
-    }
-
-    /**
-     * @param mixed $imageLocation
-     */
-    public function setImageLocation($imageLocation)
-    {
-        $this->imageLocation = $imageLocation;
+        $this->latitude = $latitude;
     }
 
     /**
@@ -143,5 +124,6 @@ class MapPin {
     {
         $this->pinColor = $pinColor;
     }
+
 
 }
