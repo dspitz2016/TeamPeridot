@@ -21,12 +21,12 @@ class MapPin {
 
     public function __construct($idTrackableObject, $type, $longitude, $latitude, $name, $pinColor)
     {
-        $this->idTrackableObject = $idTrackableObject;
-        $this->type = $type;
-        $this->longitude = $longitude;
-        $this->latitude = $latitude;
-        $this->name = $name;
-        $this->pinColor = $pinColor;
+        $this->idTrackableObject = $this->setIdTrackableObject($idTrackableObject);
+        $this->type = $this->setType($type);
+        $this->longitude = $this->setLongitude($longitude);
+        $this->latitude = $this->setLatitude($latitude);
+        $this->name = $this->setName($name);
+        $this->pinColor = $this->setPinColor($pinColor);
     }
 
     /**
