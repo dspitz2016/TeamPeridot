@@ -11,7 +11,6 @@ class Event {
 
     /**
      * Event constructor.
-     * @param $idEvent
      * @param $name
      * @param $description
      * @param $startTime
