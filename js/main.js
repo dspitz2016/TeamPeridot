@@ -3,8 +3,11 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    $('.collapsible').collapsible();
+    $('.collapsible').collapsible({
+		accordian: true
+	});
 });
+
 
 //
 // var map;
