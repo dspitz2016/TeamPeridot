@@ -66,7 +66,7 @@ class MapService {
         $mapData = new MapData();
         $pinData = $mapData->getAllTrackableObjectPinData();
         $allMapPins = array();
-        
+
         foreach($pinData as $pinArray){
             $pin = new MapPin(
                 $pinArray['idTrackableObject'],
