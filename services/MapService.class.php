@@ -96,11 +96,23 @@ class MapService {
             icon:'" . $pin->getPinColor() . "',
             title: '" . $pin->getName() . "' ,
             map: map });";
-//            $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
-//            $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
-//            $markerCounter += 1;
+            $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
+            $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
+            $markerCounter += 1;
         }
         return $generatedMarkers;
+    }
+
+    public function generateInfoWindowConfig($pin, $markerName) {
+        $infoWindowContent = ' " ' . "<div id=" . "'infoWindow'>". $pin->getName()."</div>" . '"';
+        $infoWindowGenerator = "var infowindow = new google.maps.InfoWindow();";
+        $infoWindowListener = "google.maps.event.addListener(" . $markerName . ", 'click', (function(" . $markerName . ") {
+            return function() {
+                infoWindow.setContent(" . $infoWindowContent . ");
+                infoWindow.open(map," . $markerName . ");
+            }
+            })(" . $markerName . "));";
+        return $infoWindowGenerator . $infoWindowListener;
     }
 
 }
