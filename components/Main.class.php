@@ -37,7 +37,7 @@ class Main {
 
     public function getNavigationBar(){
         echo '<nav>';
-        echo '<div class="nav-wrapper cust-color-nav">';
+        echo '<div class="nav-wrapper cust-color-rust z-depth-1">';
         echo '<a href="index.php" class="brand-logo">Rapids</a>';
         echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
         echo '<ul class="right hide-on-med-and-down">';
@@ -46,7 +46,7 @@ class Main {
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
-        echo '<ul class="side-nav cust-color-side" id="mobile-demo">';
+        echo '<ul class="side-nav cust-color-slade z-depth-3" id="mobile-demo">';
         echo '<h3>Naviagation</h3>';
         echo '<hr />';
         echo '<li><a href="index.php">History</a></li>';

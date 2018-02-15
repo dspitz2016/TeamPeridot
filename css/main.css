@@ -11,16 +11,25 @@ html, body {
 	padding: 0;
 }
 
-.cust-color-nav{
+.cust-color-rust{
 	background-color: #B56357;
-	padding: .5em;
 }
 
-.cust-color-side{
+.cust-color-slade{
+	background-color: #A7B3A5;
+}
+
+.cust-color-mint{
+	background-color: #B4DBC0;
+}
+
+.cust-color-seafoam{
 	background-color: #A7B3A5;
 }
 
 /* Override Materialize */
+
 .container{
 	width: 100%;
 }
+
