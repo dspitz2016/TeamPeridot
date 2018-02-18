@@ -29,6 +29,21 @@
  
 	<div id="map"></div>
 
+<?php
+$mapService = new MapService();
+$pins = $mapService->getAllTrackableObjectsAsPins();
+?>
+
+<script type="text/javascript">
+
+    var map, infoWindow;
+
+    function initMap() {
+        <?php echo $mapService->initMap($pins); ?>
+    }
+
+</script>
+
 <?php $main->getScripts("main"); ?>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>

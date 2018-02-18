@@ -30,7 +30,6 @@
 
 <?php $main->getScripts("main"); ?>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>
 
 <?php
 	$mapService = new MapService();
@@ -46,5 +45,7 @@
     }
 
 </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>
 
 <?php $main->getFooter(); ?>

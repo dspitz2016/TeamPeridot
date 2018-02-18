@@ -1,7 +1,6 @@
 <?php
 
 include '../services/ConnectDb.class.php';
-include 'queries.php';
 
 Class MapData{
 

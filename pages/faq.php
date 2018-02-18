@@ -1,30 +1,65 @@
 <?php
 
 include '../components/Main.class.php';
-include '../services/MapService.class.php';
+include '../services/FAQService.class.php';
 
 $main = Main::getInstance();
 $main->getHeader("main");
 $main->getNavigationBar();
 ?>
 
-<h1>FAQ Page</h1>
-Questions and answers
+<!--<div class="parallax-container">-->
+<!--    <div class="parallax"><img src="https://i.imgur.com/rG4MHt1.jpg"></div>-->
+<!--</div>-->
 
-<ul class="collapsible" data-collapsible="accordion">
-    <li>
-        <div class="collapsible-header cust-color-slate"><i class="material-icons">arrow_drop_down</i>To be or not to be?</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-        <div class="collapsible-header cust-color-mint"><i class="material-icons">arrow_drop_down</i>What are latin words?</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-</ul>
+<div class="section cust-color-seafoam lighten-3">
+    <div class="row">
+        <h3 class="header center-align white-text">Frequently Asked Questions</h3>
+    </div>
 
-<hr>
+</div>
 
-<a href="https://codyhouse.co/demo/faq-template/index.html">Sample Collapsible FAQ</a>
+<div class="section cust-color-slate">
+    <div class="row container">
+        <div class="col s12 center">
+            <ul class="collapsible" data-collapsible="accordion">
+
+                <?php
+                $faqService = new FAQService();
+                $data = $faqService->getAllFAQs();
+
+                foreach ($data as $faq){
+                    echo '<li>
+                            <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>'.$faq->getQuestion().'</div>
+                            <div class="collapsible-body cust-color-white"><span>'.$faq->getAnswer().'</span></div>
+                          </li>';
+                }
+
+
+                ?>
+
+            </ul>
+
+<!--            <ul class="collapsible" data-collapsible="accordion">-->
+<!--                <li>-->
+<!--                    <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>To be or not to be?</div>-->
+<!--                    <div class="collapsible-body cust-color-white"><span>Lorem ipsum dolor sit amet.</span></div>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>What are latin words?</div>-->
+<!--                    <div class="collapsible-body cust-color-white"><span>Lorem ipsum dolor sit amet.</span></div>-->
+<!--                </li>-->
+<!--            </ul>-->
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!--<a href="https://codyhouse.co/demo/faq-template/index.html">Sample Collapsible FAQ</a>-->
 
 <?php $main->getScripts("main"); ?>
 <?php $main->getFooter(); ?>

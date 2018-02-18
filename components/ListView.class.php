@@ -3,6 +3,4 @@
 Class ListView{
 
 }
-
-}
 ?>

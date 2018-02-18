@@ -9,6 +9,7 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	font-family: 'Roboto', sans-serif;
 }
 
 .cust-color-rust{
@@ -25,6 +26,10 @@ html, body {
 
 .cust-color-seafoam{
 	background-color: #A7B3A5;
+}
+
+.cust-color-white{
+	background-color: #fff;
 }
 
 /* Override Materialize */
