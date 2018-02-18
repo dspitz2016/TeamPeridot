@@ -46,7 +46,7 @@ class Main {
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
-        echo '<ul class="side-nav cust-color-slade z-depth-3" id="mobile-demo">';
+        echo '<ul class="side-nav cust-color-seafoam z-depth-3" id="mobile-demo">';
         echo '<h3>Naviagation</h3>';
         echo '<hr />';
         echo '<li><a href="index.php">History</a></li>';
