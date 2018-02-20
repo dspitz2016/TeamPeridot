@@ -31,7 +31,6 @@
 
 <?php
 $mapService = new MapService();
-$pins = $mapService->getAllTrackableObjectsAsPins();
 ?>
 
 <script type="text/javascript">

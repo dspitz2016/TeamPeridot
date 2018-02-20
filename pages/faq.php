@@ -40,23 +40,10 @@ $main->getNavigationBar();
 
             </ul>
 
-<!--            <ul class="collapsible" data-collapsible="accordion">-->
-<!--                <li>-->
-<!--                    <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>To be or not to be?</div>-->
-<!--                    <div class="collapsible-body cust-color-white"><span>Lorem ipsum dolor sit amet.</span></div>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>What are latin words?</div>-->
-<!--                    <div class="collapsible-body cust-color-white"><span>Lorem ipsum dolor sit amet.</span></div>-->
-<!--                </li>-->
-<!--            </ul>-->
         </div>
     </div>
 
 </div>
-
-
-
 
 
 <!--<a href="https://codyhouse.co/demo/faq-template/index.html">Sample Collapsible FAQ</a>-->

@@ -13,10 +13,21 @@ include '../models/MapPin.class.php';
  */
 class MapService {
 
-    /*
-     * Initialize Map Object
+    public $mapPins;
+
+    /**
+     * MapService constructor.
+     * initializes an array of Map Pins to be manipulated by the service.
      */
-    public function initMap($pinArray) {
+    public function __construct()
+    {
+        $this->mapPins = $this->getAllTrackableObjectsAsPins();
+    }
+
+    /*
+     * Initialize Map Object with all the pins
+     */
+    public function initMap() {
 
         $mapInit = "
             var myLatlng = new google.maps.LatLng(43.129467, -77.639153);
@@ -29,7 +40,7 @@ class MapService {
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
             infoWindow = new google.maps.InfoWindow;
 
-        ".$this->createMapPins($pinArray)."
+        ".$this->createMapPins()."
              if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var pos = {
@@ -61,8 +72,6 @@ class MapService {
      * @return array - returns array of map pins
      */
     public function getAllTrackableObjectsAsPins(){
-        echo "MapService getAllTrackableObjectsAsPins() <br/>";
-
         $mapData = new MapData();
         $pinData = $mapData->getAllTrackableObjectPinData();
         $allMapPins = array();
@@ -84,18 +93,25 @@ class MapService {
     }
 
 
-    public function createMapPins($pinObjectsArray) {
+    /*
+     * Converts the Array of MapPin Objects to HTML markers that are placed on the map
+     */
+    public function createMapPins() {
         $generatedMarkers = "";
         $markerCounter = 0;
         $markerName = "marker" . $markerCounter;
         $setMarkerCode = $markerName . ".setMap(map);";
-        foreach ($pinObjectsArray as $pin) {
+        foreach ($this->mapPins as $pin) {
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
             icon:'" . $pin->getPinColor() . "',
             title: '" . $pin->getName() . "' ,
             map: map });";
+
+            $generatedMarkers .= "google.maps.event.addListener(".$markerName.", 'click', function(){
+                $('#modal').modal();
+            });";
             $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
             $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
             $markerCounter += 1;
@@ -103,8 +119,13 @@ class MapService {
         return $generatedMarkers;
     }
 
+    /*
+     * Creates a window when the pin is clicked
+     */
     public function generateInfoWindowConfig($pin, $markerName) {
-        $infoWindowContent = ' " ' . "<div id=" . "'infoWindow'>". $pin->getName()."</div>" . '"';
+        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#modal1'>Modal</a>"
+.'"';
+
         $infoWindowGenerator = "var infowindow = new google.maps.InfoWindow();";
         $infoWindowListener = "google.maps.event.addListener(" . $markerName . ", 'click', (function(" . $markerName . ") {
             return function() {
@@ -113,6 +134,23 @@ class MapService {
             }
             })(" . $markerName . "));";
         return $infoWindowGenerator . $infoWindowListener;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getMapPins()
+    {
+        return $this->mapPins;
+    }
+
+    /**
+     * @param mixed $mapPins
+     */
+    public function setMapPins($mapPins)
+    {
+        $this->mapPins = $mapPins;
     }
 
 }

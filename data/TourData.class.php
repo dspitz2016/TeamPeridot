@@ -5,7 +5,7 @@ ini_set( 'display_errors', true );
 
 include '../services/ConnectDb.class.php';
 
-class FAQData {
+class TourData {
 
     private static $instance = null;
     private $conn;
@@ -30,7 +30,7 @@ class FAQData {
 
         if(!self::$instance)
         {
-            self::$instance = new FAQData();
+            self::$instance = new TourData();
         }
         return self::$instance;
     }
@@ -38,13 +38,15 @@ class FAQData {
     // CREATE
 
     // READ
-    public function getAllFAQs(){
-        return ConnectDb::getInstance()->returnObject("FAQ.class", "Select idFAQ, question, answer FROM Faq");
+    public function getAllTourData(){
+        return ConnectDb::getInstance()->returnObject("Tour.class", "SELECT idTour, name, description FROM Tour");
     }
 
     // UPDATE
 
     // DELETE
+}
+
 }
 
 ?>
