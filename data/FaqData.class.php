@@ -39,7 +39,7 @@ class FAQData {
 
     // READ
     public function getAllFAQs(){
-        return ConnectDb::getInstance()->returnObject("FAQ.class", "Select idFAQ, question, answer FROM Faq");
+        return ConnectDb::getInstance()->returnObject("FAQ.class", "Select idFAQ, question, answer FROM FAQ");
     }
 
     // UPDATE
