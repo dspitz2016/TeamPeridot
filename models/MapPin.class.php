@@ -6,7 +6,7 @@ class MapPin {
     private $longitude;
     private $latitude;
     private $name;
-    private $pinColor;
+    private $pinDesign;
     private $idType;
     private $idHistoricFilter;
 
@@ -16,17 +16,17 @@ class MapPin {
      * @param $longitude
      * @param $latitude
      * @param $name
-     * @param $pinColor
+     * @param $pinDesign
      * @param $idType
      * @param $idHistoricFilter
      */
-    public function __construct($idTrackableObject, $longitude, $latitude, $name, $pinColor, $idType, $idHistoricFilter)
+    public function __construct($idTrackableObject, $longitude, $latitude, $name, $pinDesign, $idType, $idHistoricFilter)
     {
         $this->idTrackableObject = $idTrackableObject;
         $this->longitude = $longitude;
         $this->latitude = $latitude;
         $this->name = $name;
-        $this->pinColor = $pinColor;
+        $this->pinDesign = $pinDesign;
         $this->idType = $idType;
         $this->idHistoricFilter = $idHistoricFilter;
     }
@@ -98,17 +98,17 @@ class MapPin {
     /**
      * @return mixed
      */
-    public function getPinColor()
+    public function getPinDesign()
     {
-        return $this->pinColor;
+        return $this->pinDesign;
     }
 
     /**
-     * @param mixed $pinColor
+     * @param mixed $pinDesign
      */
-    public function setPinColor($pinColor)
+    public function setPinDesign($pinDesign)
     {
-        $this->pinColor = $pinColor;
+        $this->pinDesign = $pinDesign;
     }
 
     /**

@@ -15,21 +15,10 @@ include '../models/HistoricFilter.class.php';
  */
 class MapService {
 
-    public $mapPins;
-
-    /**
-     * MapService constructor.
-     * initializes an array of Map Pins to be manipulated by the service.
-     */
-    public function __construct()
-    {
-        $this->mapPins = $this->getAllTrackableObjectsAsPins();
-    }
-
     /*
      * Initialize Map Object with all the pins
      */
-    public function initMap() {
+    public function initMap($mapPinObjects) {
 
         $mapInit = "
             var myLatlng = new google.maps.LatLng(43.129467, -77.639153);
@@ -42,7 +31,7 @@ class MapService {
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
             infoWindow = new google.maps.InfoWindow;
 
-        ".$this->createMapPins()."
+        ".$this->createMapPins($mapPinObjects)."
              if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var pos = {
@@ -76,24 +65,35 @@ class MapService {
     public function getAllTrackableObjectsAsPins(){
         $mapData = new MapData();
         $pinData = $mapData->getAllTrackableObjectPinData();
-        $allMapPins = array();
+        return $this->addMapPinObjects($pinData);
+    }
 
-        foreach($pinData as $pinArray){
+    public function getAllScavengerHuntObjectsAsPins(){
+        $mapData = new MapData();
+        $pinData = $mapData->getScavengerHuntData();
+        return $this->addMapPinObjects($pinData);
+    }
+
+    public function addMapPinObjects($mapPinDataAry){
+        $temp = array();
+
+        foreach($mapPinDataAry as $pinArray){
             $pin = new MapPin(
                 $pinArray['idTrackableObject'],
                 $pinArray['longitude'],
                 $pinArray['latitude'],
                 $pinArray['name'],
-                $pinArray['pinColor'],
+                $pinArray['pinDesign'],
                 $pinArray['idType'],
                 $pinArray['idHistoricFilter']
             );
 
-           array_push($allMapPins, $pin);
+            array_push($temp, $pin);
         }
 
-        return $allMapPins;
+        return $temp;
     }
+
 
     public function getTypeFilters(){
         $mapData = new MapData();
@@ -134,16 +134,16 @@ class MapService {
     /*
      * Converts the Array of MapPin Objects to HTML markers that are placed on the map
      */
-    public function createMapPins() {
+    public function createMapPins($mapPins) {
         $generatedMarkers = "";
         $markerCounter = 0;
         $markerName = "marker" . $markerCounter;
         $setMarkerCode = $markerName . ".setMap(map);";
-        foreach ($this->mapPins as $pin) {
+        foreach ($mapPins as $pin) {
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
-            icon:'" . $pin->getPinColor() . "',
+            icon:'" . $pin->getPinDesign() . "',
             title: '" . $pin->getName() . "' ,
             idType: '" . $pin->getIdType() . "' ,
             idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,

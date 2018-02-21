@@ -30,25 +30,50 @@ Class MapData{
 
     public function getAllTrackableObjectPinData(){
         return ConnectDb::getInstance()->returnObject("MapPin.class", "SELECT * FROM(
-                SELECT idTrackableObject, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinColor, TF.idType as idType, hf.idHistoricFilter as idHistoricFilter
+                SELECT idTrackableObject, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinDesign, TF.idType as idType, hf.idHistoricFilter as idHistoricFilter
                 FROM Grave G 
                 JOIN TrackableObject T on G.idGrave = T.idGrave
                 JOIN HistoricFilter hf on G.idHistoricFilter = hf.idHistoricFilter
                 JOIN Type TF on T.idType = TF.idType
                 UNION 
                 
-                SELECT idTrackableObject, longitude, latitude, commonName as name, pinColor, TF.idType as idType, concat(\"\") as idHistoricFilter
+                SELECT idTrackableObject, longitude, latitude, commonName as name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
                 FROM Vegetation V
                 JOIN TrackableObject T on V.idVegetation = T.idVegetation
                 JOIN Type TF on T.idType = TF.idType
                 UNION
                 
-                SELECT idTrackableObject, longitude, latitude, name, pinColor, TF.idType as idType, concat(\"\") as idHistoricFilter
+                SELECT idTrackableObject, longitude, latitude, name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
                 FROM OtherObject O
                 JOIN TrackableObject T on O.idOtherObject = T.idOtherObject
                 JOIN Type TF on T.idType = TF.idType
                 
                 ) as MapPin");
+    }
+
+    public function getScavengerHuntData(){
+
+        return ConnectDb::getInstance()->returnObject("MapPin.class", "SELECT * FROM(
+                SELECT idTrackableObject, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinDesign, TF.idType as idType, hf.idHistoricFilter as idHistoricFilter
+                FROM Grave G 
+                JOIN TrackableObject T on G.idGrave = T.idGrave
+                JOIN HistoricFilter hf on G.idHistoricFilter = hf.idHistoricFilter
+                JOIN Type TF on T.idType = TF.idType
+                UNION 
+                
+                SELECT idTrackableObject, longitude, latitude, commonName as name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
+                FROM Vegetation V
+                JOIN TrackableObject T on V.idVegetation = T.idVegetation
+                JOIN Type TF on T.idType = TF.idType
+                UNION
+                
+                SELECT idTrackableObject, longitude, latitude, name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
+                FROM OtherObject O
+                JOIN TrackableObject T on O.idOtherObject = T.idOtherObject
+                JOIN Type TF on T.idType = TF.idType
+                
+                ) as MapPin
+                ORDER BY RAND() LIMIT 2");
     }
 
     public function getAllTypeFilters(){
