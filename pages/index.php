@@ -2,10 +2,14 @@
 
 include '../components/Main.class.php';
 include '../services/MapService.class.php';
+include '../components/FilterBar.class.php';
 
 $main = Main::getInstance();
 $main->getHeader("main");
 $main->getNavigationBar();
+
+$mapService = new MapService();
+
 ?>
 
 <div class="parallax-container">
@@ -56,18 +60,11 @@ $main->getNavigationBar();
     </div>
 </div>
 
-<div class="section cust-color-seafoam">
-    <div class="row container white-text">
-
-        <div class="col s12 center-align">
-            <a class="waves-effect waves-light btn light-blue"><i class="material-icons left">filter_list</i>Graves</a>
-            <a class="waves-effect waves-light btn light-green"><i class="material-icons left">filter_list</i>Flora</a>
-            <a class="waves-effect waves-light btn red"><i class="material-icons left">filter_list</i>Other</a>
-        </div>
-
-    </div>
-</div>
-
+<?php
+    $filterBar = new FilterBar();
+    $filterBar->getTypeFilterBar($mapService->getTypeFilters());
+    $filterBar->getHistoricFilterBar($mapService->getHistoricFilters())
+?>
 
 <div id="map"></div>
 
@@ -92,7 +89,6 @@ $main->getNavigationBar();
 </div>
 
 <?php
-    $mapService = new MapService();
     $pins = $mapService->getAllTrackableObjectsAsPins();
 ?>
 

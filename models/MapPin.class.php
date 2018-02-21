@@ -3,30 +3,32 @@
 class MapPin {
 
     private $idTrackableObject;
-    private $type;
     private $longitude;
     private $latitude;
     private $name;
     private $pinColor;
+    private $idType;
+    private $idHistoricFilter;
 
     /**
      * MapPin constructor.
      * @param $idTrackableObject
-     * @param $type
      * @param $longitude
      * @param $latitude
      * @param $name
      * @param $pinColor
+     * @param $idType
+     * @param $idHistoricFilter
      */
-
-    public function __construct($idTrackableObject, $type, $longitude, $latitude, $name, $pinColor)
+    public function __construct($idTrackableObject, $longitude, $latitude, $name, $pinColor, $idType, $idHistoricFilter)
     {
         $this->idTrackableObject = $idTrackableObject;
-        $this->type = $type;
         $this->longitude = $longitude;
         $this->latitude = $latitude;
         $this->name = $name;
         $this->pinColor = $pinColor;
+        $this->idType = $idType;
+        $this->idHistoricFilter = $idHistoricFilter;
     }
 
     /**
@@ -43,22 +45,6 @@ class MapPin {
     public function setIdTrackableObject($idTrackableObject)
     {
         $this->idTrackableObject = $idTrackableObject;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
     }
 
     /**
@@ -123,6 +109,38 @@ class MapPin {
     public function setPinColor($pinColor)
     {
         $this->pinColor = $pinColor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdType()
+    {
+        return $this->idType;
+    }
+
+    /**
+     * @param mixed $idType
+     */
+    public function setIdType($idType)
+    {
+        $this->idType = $idType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdHistoricFilter()
+    {
+        return $this->idHistoricFilter;
+    }
+
+    /**
+     * @param mixed $idHistoricFilter
+     */
+    public function setIdHistoricFilter($idHistoricFilter)
+    {
+        $this->idHistoricFilter = $idHistoricFilter;
     }
 
 }

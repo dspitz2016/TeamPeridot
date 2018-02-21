@@ -29,38 +29,38 @@ Class MapData{
     }
 
     public function getAllTrackableObjectPinData(){
-        try{
-            $trackableObjectPins = array();
-            $stmt = $this->conn->prepare("SELECT * FROM(
-                SELECT idTrackableObject, type, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinColor
+        return ConnectDb::getInstance()->returnObject("MapPin.class", "SELECT * FROM(
+                SELECT idTrackableObject, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinColor, TF.idType as idType, hf.idHistoricFilter as idHistoricFilter
                 FROM Grave G 
                 JOIN TrackableObject T on G.idGrave = T.idGrave
+                JOIN HistoricFilter hf on G.idHistoricFilter = hf.idHistoricFilter
                 JOIN Type TF on T.idType = TF.idType
                 UNION 
-                SELECT idTrackableObject, type, longitude, latitude, commonName as name, pinColor
+                
+                SELECT idTrackableObject, longitude, latitude, commonName as name, pinColor, TF.idType as idType, concat(\"\") as idHistoricFilter
                 FROM Vegetation V
                 JOIN TrackableObject T on V.idVegetation = T.idVegetation
                 JOIN Type TF on T.idType = TF.idType
-                Union
-                SELECT idTrackableObject, type, longitude, latitude, name, pinColor
+                UNION
+                
+                SELECT idTrackableObject, longitude, latitude, name, pinColor, TF.idType as idType, concat(\"\") as idHistoricFilter
                 FROM OtherObject O
                 JOIN TrackableObject T on O.idOtherObject = T.idOtherObject
                 JOIN Type TF on T.idType = TF.idType
+                
                 ) as MapPin");
-            $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_CLASS, "MapPin.class");
-
-            while($result = $stmt->fetch()){
-                $trackableObjectPins[] = $result;
-            }
-
-            return $trackableObjectPins;
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-            die();
-        }
     }
+
+    public function getAllTypeFilters(){
+        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT idType, typeFilter, buttonColor FROM Type;
+        ) as typeFilters");
+    }
+
+    public function getAllHistoricFilters(){
+        return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter;");
+    }
+
+
 
 }
 ?>

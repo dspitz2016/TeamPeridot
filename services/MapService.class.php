@@ -5,6 +5,8 @@ ini_set( 'display_errors', true );
 
 include '../data/MapData.class.php';
 include '../models/MapPin.class.php';
+include '../models/TypeFilter.class.php';
+include '../models/HistoricFilter.class.php';
 
 /*
  * MapService Class
@@ -79,11 +81,12 @@ class MapService {
         foreach($pinData as $pinArray){
             $pin = new MapPin(
                 $pinArray['idTrackableObject'],
-                $pinArray['type'],
                 $pinArray['longitude'],
                 $pinArray['latitude'],
                 $pinArray['name'],
-                $pinArray['pinColor']
+                $pinArray['pinColor'],
+                $pinArray['idType'],
+                $pinArray['idHistoricFilter']
             );
 
            array_push($allMapPins, $pin);
@@ -92,6 +95,41 @@ class MapService {
         return $allMapPins;
     }
 
+    public function getTypeFilters(){
+        $mapData = new MapData();
+        $typeFilterData = $mapData->getAllTypeFilters();
+        $allTypeFilters = array();
+
+        foreach($typeFilterData as $typeFilter){
+            $filterBtn = new TypeFilter(
+                $typeFilter['idType'],
+                $typeFilter['typeFilter'],
+                $typeFilter['buttonColor']
+            );
+
+            array_push($allTypeFilters, $filterBtn);
+        }
+
+        return $allTypeFilters;
+    }
+
+    public function getHistoricFilters(){
+        $mapData = new MapData();
+        $historicFilterData = $mapData->getAllHistoricFilters();
+        $allHistoricalFilters = array();
+
+        foreach($historicFilterData as $historicFilter){
+            $filterBtn = new HistoricFilter(
+                $historicFilter['idHistoricFilter'],
+                $historicFilter['historicFilter'],
+                $historicFilter['buttonColor']
+            );
+
+            array_push($allHistoricalFilters, $filterBtn);
+        }
+
+        return $allHistoricalFilters;
+    }
 
     /*
      * Converts the Array of MapPin Objects to HTML markers that are placed on the map
@@ -107,6 +145,8 @@ class MapService {
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
             icon:'" . $pin->getPinColor() . "',
             title: '" . $pin->getName() . "' ,
+            idType: '" . $pin->getIdType() . "' ,
+            idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,
             map: map });";
 
             $generatedMarkers .= "google.maps.event.addListener(".$markerName.", 'click', function(){
