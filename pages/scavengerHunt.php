@@ -12,6 +12,13 @@ $mapService = new MapService();
 
 <h1>Scavenger Hunt Page</h1>
 
+<h4>To do</h4>
+<ul>
+    <li>1. Fix Pin Size</li>
+    <li>2. Add User buttons for interactions, move to next object, tell me where it is</li>
+    <li>3. Onclick next show next hint</li>
+    <li>4. Onclick tell me where it is, change icon where idTrackableObject = clicked object</li>
+</ul>
 <div id="map"></div>
 
 
@@ -22,8 +29,15 @@ $mapService = new MapService();
 
     function initMap() {
 
+        // Scavenger hunt is random pull of trackable objects
         <?php echo $mapService->initMap($mapService->getAllScavengerHuntObjectsAsPins()); ?>
 
+
+
+        // Display All pins
+
+        // When user selects Tell me where it is correct pin is highlighted
+        // In Array of markers highlight the one where idTrackable = observed pin
     }
 
 </script>

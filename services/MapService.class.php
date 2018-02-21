@@ -70,8 +70,24 @@ class MapService {
 
     public function getAllScavengerHuntObjectsAsPins(){
         $mapData = new MapData();
-        $pinData = $mapData->getScavengerHuntData();
-        return $this->addMapPinObjects($pinData);
+        $pinData = $mapData->getAllTrackableObjectPinData();
+        $temp = array();
+
+        foreach($pinData as $pinArray){
+            $pin = new MapPin(
+                $pinArray['idTrackableObject'],
+                $pinArray['longitude'],
+                $pinArray['latitude'],
+                $pinArray['name'],
+    "https://cdn0.iconfinder.com/data/icons/travel-vacation/289/travel-transport-hotel-vacation-holidays-tourist-tourism-travelling-traveling_178-128.png",
+                $pinArray['idType'],
+                $pinArray['idHistoricFilter']
+            );
+
+            array_push($temp, $pin);
+        }
+
+        return $temp;
     }
 
     public function addMapPinObjects($mapPinDataAry){
