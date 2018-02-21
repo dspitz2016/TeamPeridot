@@ -5,11 +5,13 @@ class FilterBar {
     // Take in array of objects and format them into a map filter
     public function getTypeFilterBar($typeFilterObjectArray){
         echo '<div class="section cust-color-slate">';
-            echo '<div class="row container white-text">';
+            echo '<div class="row container white-text center">';
                 echo '<h5>Type Filters<h5>';
 
                 foreach($typeFilterObjectArray as $typeFilter){
-                    echo '<a class="waves-effect waves-light btn light-blue"><i class="material-icons left">filter_list</i>'.$typeFilter->getTypeFilter().'</a>';
+                    echo '<button class="btn waves-effect waves-light" type="submit" name="action" style="background-color:#'.$typeFilter->getButtonColor().'">'.$typeFilter->getTypeFilter();
+                         echo '<i class="material-icons right">filter_list</i>';
+                    echo '</button>';
                 }
 
             echo '</div>';
@@ -19,11 +21,11 @@ class FilterBar {
 
     public function getHistoricFilterBar($historicFilterObjectArray){
         echo '<div class="section cust-color-seafoam">';
-            echo '<div class="row container white-text">';
+            echo '<div class="row container white-text center">';
                 echo '<h5>Historic Filters<h5>';
 
                 foreach($historicFilterObjectArray as $historicFilter){
-                    echo '<a class="waves-effect waves-light btn light-blue"><i class="material-icons left">filter_list</i>'.$historicFilter->getHistoricFilter().'</a>';
+                    echo '<button class="btn waves-effect waves-light" type="submit" name="action" style="background-color:#'.$historicFilter->getButtonColor().'">'.$historicFilter->getHistoricFilter();
                 }
 
             echo '</div>';
