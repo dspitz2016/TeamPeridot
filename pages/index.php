@@ -95,9 +95,12 @@ $mapService = new MapService();
 <script type="text/javascript">
 
     var map, infoWindow;
+    var markerAry = [];
 
     function initMap() {
-        <?php echo $mapService->initMap($pins); ?>
+
+    <?php echo $mapService->initMap($pins); ?>
+
     }
 
 </script>

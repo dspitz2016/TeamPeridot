@@ -45,6 +45,7 @@ class Main {
         echo '<li><a href="/pages/tours.php">Tours</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
+        echo '<li><a href="/pages/events.php">Events</a></li>';
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
         echo '<ul class="side-nav cust-color-seafoam z-depth-3" id="mobile-demo">';
@@ -54,6 +55,7 @@ class Main {
         echo '<li><a href="/pages/tours.php">Tours</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
+        echo '<li><a href="/pages/events.php">Events</a></li>';
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
         echo '</div>';

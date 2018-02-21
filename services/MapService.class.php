@@ -147,7 +147,11 @@ class MapService {
             title: '" . $pin->getName() . "' ,
             idType: '" . $pin->getIdType() . "' ,
             idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,
-            map: map });";
+            map: map });
+            console.log(".$markerName.".title);
+            markerAry.push({title:".$markerName.".title, idType:".$markerName.".idType, idHistoricFilter:".$markerName.".idHistoricFilter});
+            ";
+
 
             $generatedMarkers .= "google.maps.event.addListener(".$markerName.", 'click', function(){
                 $('#modal').modal();
