@@ -29,6 +29,11 @@ class FilterBar {
                     echo '<i class="material-icons right">filter_list</i>';
                     echo '</button>';
                 }
+            echo '<br/><br/>';
+
+            echo '<button class="btn waves-effect waves-light" type="submit" name="action" onclick="clearMapFilters()">Clear Filters';
+            echo '<i class="material-icons right">filter_list</i>';
+            echo '</button>';
 
             echo '</div>';
         echo '</div>';

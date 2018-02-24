@@ -13,6 +13,14 @@ $(document).ready(function(){
  Map Filter Functions
  ************/
 
+function clearMapFilters(){
+	var len = markerAry.length;
+
+	for(var i = 0; i < len; i++){
+		markerAry[i].setVisible(true);
+	}
+}
+
 function setHistoricFilter(idHistoricFilter){
 
     var len = markerAry.length;
