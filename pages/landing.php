@@ -37,6 +37,8 @@ $mapService = new MapService();
 
     var map, infoWindow;
 
+    var markerAry = [];
+
     function initMap() {
         <?php echo $mapService->initMap($pins); ?>
     }

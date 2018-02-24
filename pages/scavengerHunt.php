@@ -32,8 +32,6 @@ $mapService = new MapService();
         // Scavenger hunt is random pull of trackable objects
         <?php echo $mapService->initMap($mapService->getAllScavengerHuntObjectsAsPins()); ?>
 
-
-
         // Display All pins
 
         // When user selects Tell me where it is correct pin is highlighted
@@ -41,6 +39,16 @@ $mapService = new MapService();
     }
 
 </script>
+
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>
 

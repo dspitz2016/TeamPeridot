@@ -165,7 +165,7 @@ class MapService {
             idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,
             map: map });
             console.log(".$markerName.".title);
-            markerAry.push({title:".$markerName.".title, idType:".$markerName.".idType, idHistoricFilter:".$markerName.".idHistoricFilter});
+            markerAry.push(".$markerName.");
             ";
 
 
