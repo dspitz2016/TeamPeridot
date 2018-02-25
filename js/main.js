@@ -65,7 +65,7 @@ function loadModalContent(id){
         	var jsonData = $.parseJSON(jsonStr);
 
         	if(jsonData.idType == 0){ //Grave
-\
+
                 $('#graveName').html(jsonData.firstName + " " + jsonData.middleName + " " + jsonData.lastName);
                 $('#graveModalDescription').html(jsonData.description);
                 $('#graveImage').src = jsonData.imagePath;
