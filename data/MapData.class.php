@@ -85,7 +85,27 @@ Class MapData{
         return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter;");
     }
 
+    public function getModalInformation($id){
+        // Grave
+        if($id == 0) {
+            return json_encode(ConnectDb::getInstance()->returnObject("", "Select * from TrackableObject tobj
+                Join Grave g on tobj.idGrave = g.idGrave where tobj.idTrackableObject = 
+                " . $id));
+        }
+        else if ($id == 1){
+            return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj
+Join Vegetation v on tobj.idVegetation = v.idVegetation
+where tobj.idTrackableObject =".$id)[0]);
 
+        } else {
+            return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj
+Join OtherObject oo on tobj.idOtherObject = oo.idOtherObject
+where tobj.idTrackableObject =  ".$id)[0]);
+
+        }
+
+
+    }
 
 }
 ?>

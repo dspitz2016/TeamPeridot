@@ -12,6 +12,7 @@ $mapService = new MapService();
 
 ?>
 
+
 <div class="parallax-container">
     <div class="parallax"><img src="https://www.gannett-cdn.com/-mm-/f924d923a0260fd170c12b5a1c21c61aa1590bc4/c=0-222-2163-1444&r=x803&c=1600x800/local/-/media/2015/11/10/Rochester/Rochester/635827519552760428-TY-110815-RAPIDS-CEMETERY-I.JPG"></div>
 </div>
@@ -78,15 +79,38 @@ $mapService = new MapService();
     </div>
 </div>
 
-<div id="modal1" class="modal bottom-sheet">
+<div id="graveModal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4>Grave</h4>
+        <p id="graveModalDescription">I tried</p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>
+
+<div id="vegetationModal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Vegetation</h4>
+        <p id="vegetationModalDescription">I tried</p>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
+<div id="otherObjectModal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Other</h4>
+        <p id="otherModalDescription">I tried</p>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
 
 <?php
     $pins = $mapService->getAllTrackableObjectsAsPins();

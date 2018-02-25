@@ -46,3 +46,22 @@ function setTypeFilter(idType){
     }
 }
 
+function loadModalContent(id){
+
+	console.log(id);
+    $.ajax({
+        datatype: "json",
+        type: "GET",
+        url: "../services/MapService.Class.php",
+        data: "id="+id,
+        success: function(data) {
+			alert("Yay: " + data);
+			$('#graveModalDescription').replaceWith(data);
+            $('#vegetationModalDescription').replaceWith(data);
+            $('#otherModalDescription').replaceWith(data);
+
+        }
+    });
+    return false;
+
+}

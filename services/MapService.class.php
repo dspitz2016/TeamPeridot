@@ -8,6 +8,12 @@ include '../models/MapPin.class.php';
 include '../models/TypeFilter.class.php';
 include '../models/HistoricFilter.class.php';
 
+
+if(isset($_GET['id'])){
+    $mapService = new MapService();
+    $data = $mapService->getModalInformation($_GET['id']);
+    var_dump($data);
+}
 /*
  * MapService Class
  *  > Contains Functionality to pull data for mapped objects
@@ -153,15 +159,20 @@ class MapService {
     public function createMapPins($mapPins) {
         $generatedMarkers = "";
         $markerCounter = 0;
+
         $markerName = "marker" . $markerCounter;
         $setMarkerCode = $markerName . ".setMap(map);";
         foreach ($mapPins as $pin) {
+            $idType = $pin->getIdType();
+
+
+
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
             icon:'" . $pin->getPinDesign() . "',
             title: '" . $pin->getName() . "' ,
-            idType: '" . $pin->getIdType() . "' ,
+            idType: '" . $idType . "' ,
             idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,
             map: map });
             console.log(".$markerName.".title);
@@ -169,9 +180,11 @@ class MapService {
             ";
 
 
-            $generatedMarkers .= "google.maps.event.addListener(".$markerName.", 'click', function(){
-                $('#modal').modal();
+            $generatedMarkers .= "google.maps.event.addListener(" . $markerName . ", 'click', function(){
+                $(".$this->getModalId($idType).").modal();
             });";
+
+
             $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
             $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
             $markerCounter += 1;
@@ -183,7 +196,7 @@ class MapService {
      * Creates a window when the pin is clicked
      */
     public function generateInfoWindowConfig($pin, $markerName) {
-        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#modal1'>Modal</a>"
+        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#".$this->getModalId($pin->getIdType())."' onclick='loadModalContent(".$pin->getIdTrackableObject().")'>Modal</a>"
 .'"';
 
         $infoWindowGenerator = "var infowindow = new google.maps.InfoWindow();";
@@ -196,6 +209,27 @@ class MapService {
         return $infoWindowGenerator . $infoWindowListener;
     }
 
+
+    public function getModalInformation($id){
+        $mapData = new MapData();
+
+        return $mapData->getModalInformation($id);
+        //echo "Made it to the Map Service: " . $id;
+    }
+
+    public function getModalId($id){
+        switch($id){
+            case 0: // Grave
+                return "graveModal";
+                break;
+            case 1:
+                return "vegetationModal";
+                break;
+            default:
+                return "otherObjectModal";
+                break;
+        }
+    }
 
     /**
      * @return mixed
