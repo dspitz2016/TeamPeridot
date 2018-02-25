@@ -9,18 +9,38 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	font-family: 'Roboto', sans-serif;
 }
 
-.cust-color-nav{
+.cust-color-rust{
 	background-color: #B56357;
-	padding: .5em;
 }
 
-.cust-color-side{
+.cust-color-slate{
+	background-color: #EAE3EA;
+}
+
+.cust-color-mint{
+	background-color: #B4DBC0;
+}
+
+.cust-color-seafoam{
 	background-color: #A7B3A5;
 }
 
+.cust-color-white{
+	background-color: #fff;
+}
+
+/*************************
+ PIN INFO WINDOW STYLING
+ ************************/
+
+
+
 /* Override Materialize */
+
 .container{
 	width: 100%;
 }
+

@@ -44,15 +44,16 @@ class LoginData {
             $stmt = $this->conn->prepare("SELECT password FROM Account WHERE email = :email");
             $stmt->execute(array(":email"=>$email));
 
-            while ($row = $stmt->fetch())
-            {
-                $userPassword = $row;
-            }
-            echo $userPassword[0] . "<br/>";
-            if($userPassword[0] == $password){
-                return true;
-            } else {
-                return false;
+            $stmt->bindValue(':email', $email);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if($user !== false){
+                if($password == $user['password']){
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
         catch(PDOException $e){

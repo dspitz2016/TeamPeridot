@@ -2,46 +2,73 @@
 
 class HistoricFilter {
 
-	private $idHistoricFilter;
-	private $HistoricFilter;
-	private $description;
-	private $startDate;
-	private $endDate;
-	private $imagePath;
-	private $imageDescription;
-	private $url;
 
-	public function getIdHistoricFilter(){
-		return $this->IdHistoricFilter;
-	}
+    private $idHistoricFilter;
+    private $historicFilter;
+    private $buttonColor;
 
-	public function getHistoricFilter(){
-		return $this->HistoricFilter;
-	}
-
-	public function getDescription(){
-		return $this->description;
-	}
-
-	public function getStartDate(){
-		return $this->startDate;
-	}
-
-	public function getEndDate(){
-		return $this->endDate;
-	}
-
-    public function getImagePath(){
-        return $this->imagePath;
+    /**
+     * HistoricFilter constructor.
+     * @param $idHistoricFilter
+     * @param $historicFilter
+     * @param $buttonColor
+     */
+    public function __construct($idHistoricFilter, $historicFilter, $buttonColor)
+    {
+        $this->idHistoricFilter = $idHistoricFilter;
+        $this->historicFilter = $historicFilter;
+        $this->buttonColor = $buttonColor;
     }
 
-    public function getImageDescription(){
-        return $this->imageDescription;
+    /**
+     * @return mixed
+     */
+    public function getIdHistoricFilter()
+    {
+        return $this->idHistoricFilter;
     }
 
-    public function getUrl(){
-        return $this->url;
+    /**
+     * @param mixed $idHistoricFilter
+     */
+    public function setIdHistoricFilter($idHistoricFilter)
+    {
+        $this->idHistoricFilter = $idHistoricFilter;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getHistoricFilter()
+    {
+        return $this->historicFilter;
+    }
+
+    /**
+     * @param mixed $historicFilter
+     */
+    public function setHistoricFilter($historicFilter)
+    {
+        $this->historicFilter = $historicFilter;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getButtonColor()
+    {
+        return $this->buttonColor;
+    }
+
+    /**
+     * @param mixed $buttonColor
+     */
+    public function setButtonColor($buttonColor)
+    {
+        $this->buttonColor = $buttonColor;
+    }
+
+
 
 }
 

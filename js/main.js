@@ -1,56 +1,93 @@
 $(document).ready(function(){
 	$(".button-collapse").sideNav();
+	$('.parallax').parallax();
+	$('.modal').modal();
+    $('.collapsible').collapsible({
+		accordian: true
+	});
+
 });
-//
-// var map;
-// function initMap() {
-// 	map = new google.maps.Map(document.getElementById('map'), {
-// 	  center: {lat: 43.1293659, lng: -77.6394728},
-// 	  zoom: 25,
-// 	  mapTypeId: 'satellite',
-// 	  mapTypeControl: false,
-// 	  streetViewControl: false
-// 	});
-//
-// 	map.setTilt(45);
-//
-// 	//var image = path/to/image;
-// 	var marker = new google.maps.Marker({
-// 	  position: {lat: 43.1293659, lng: -77.6394728},
-// 	  map: map,
-// 	  animation: google.maps.Animation.DROP,
-// 	  title: "Hello World!"
-// 	  //icon: image
-// 	});
-//
-// 	var infoWindow = new google.maps.InfoWindow;
-//
-// 	// Try HTML5 geolocation.
-// 	if (navigator.geolocation) {
-// 	  navigator.geolocation.getCurrentPosition(function(position) {
-// 		var pos = {
-// 		  lat: position.coords.latitude,
-// 		  lng: position.coords.longitude
-// 		};
-//
-// 		infoWindow.setPosition(pos);
-// 		infoWindow.setContent('Location found.');
-// 		infoWindow.open(map);
-// 		map.setCenter(pos);
-// 		console.log(pos);
-// 	  }, function() {
-// 		handleLocationError(true, infoWindow, map.getCenter());
-// 	  });
-// 	} else {
-// 	  // Browser doesn't support Geolocation
-// 	  handleLocationError(false, infoWindow, map.getCenter());
-// 	}
-// }
-//
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-// infoWindow.setPosition(pos);
-// infoWindow.setContent(browserHasGeolocation ?
-// 					  'Error: The Geolocation service failed.' :
-// 					  'Error: Your browser doesn\'t support geolocation.');
-// infoWindow.open(map);
-// }
+
+
+/************
+ Map Filter Functions
+ ************/
+
+function clearMapFilters(){
+	var len = markerAry.length;
+
+	for(var i = 0; i < len; i++){
+		markerAry[i].setVisible(true);
+	}
+}
+
+function setHistoricFilter(idHistoricFilter){
+
+    var len = markerAry.length;
+
+    for (var i = 0; i < len; i++) {
+        if(markerAry[i].idHistoricFilter == String(idHistoricFilter)){
+            markerAry[i].setVisible(true);
+        } else {
+            markerAry[i].setVisible(false);
+        }
+    }
+}
+
+function setTypeFilter(idType){
+    var len = markerAry.length;
+
+    for (var i = 0; i < len; i++) {
+        if(markerAry[i].idType == String(idType)){
+            markerAry[i].setVisible(true);
+        } else {
+            markerAry[i].setVisible(false);
+        }
+    }
+}
+
+function loadModalContent(id){
+
+	console.log(id);
+
+    $.ajax({
+        datatype: "text",
+        type: "GET",
+        url: "../services/MapService.class.php",
+        data: "id="+id,
+		async: true,
+        success: function(data) {
+
+        	var str = data;
+        	var jsonStr = data.substring( str.indexOf("{"), str.length-2);
+
+
+        	var jsonData = $.parseJSON(jsonStr);
+
+        	if(jsonData.idType == 0){ //Grave
+
+                $('#graveName').html(jsonData.firstName + " " + jsonData.middleName + " " + jsonData.lastName);
+                $('#graveModalDescription').html(jsonData.description);
+                $('#graveImage').src = jsonData.imagePath;
+
+            } else if(jsonData.idType == 1){ // Vegetation
+
+                $('#vegetationCommonName').html(jsonData.commonName);
+				$('#vegetationScientificName').html(jsonData.scientificName);
+                $('#vegetationDescription').html(jsonData.description);
+
+
+            } else { // other object
+
+                $('#otherObjectName').html(jsonData.name);
+                $('#otherObjectDescription').html(jsonData.description);
+
+            }
+
+
+
+        }
+    });
+    return false;
+
+}

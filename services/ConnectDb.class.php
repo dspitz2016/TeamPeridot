@@ -1,8 +1,5 @@
 <?php
 
-include '../models/includeAllObjects.php';
-
-
 class ConnectDb {
   private static $instance = null;
   private $conn;
