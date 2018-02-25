@@ -65,14 +65,12 @@ function loadModalContent(id){
         	var jsonData = $.parseJSON(jsonStr);
 
         	if(jsonData.idType == 0){ //Grave
-                alert(jsonData.firstName);
-
+\
                 $('#graveName').html(jsonData.firstName + " " + jsonData.middleName + " " + jsonData.lastName);
                 $('#graveModalDescription').html(jsonData.description);
                 $('#graveImage').src = jsonData.imagePath;
 
             } else if(jsonData.idType == 1){ // Vegetation
-                alert(jsonData.commonName);
 
                 $('#vegetationCommonName').html(jsonData.commonName);
 				$('#vegetationScientificName').html(jsonData.scientificName);
@@ -80,7 +78,6 @@ function loadModalContent(id){
 
 
             } else { // other object
-                alert(jsonData.name);
 
                 $('#otherObjectName').html(jsonData.name);
                 $('#otherObjectDescription').html(jsonData.description);
