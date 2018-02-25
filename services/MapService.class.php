@@ -14,6 +14,12 @@ if(isset($_GET['id'])){
     $data = $mapService->getModalInformation($_GET['id']);
     var_dump($data);
 }
+
+if(isset($_GET['idLocation'])){
+    $mapService = new MapService();
+    $data = $mapService->getLocationModalInformation($_GET['idLocation']);
+    var_dump($data);
+}
 /*
  * MapService Class
  *  > Contains Functionality to pull data for mapped objects
@@ -25,7 +31,7 @@ class MapService {
      * Initialize Map Object with all the pins
      * Takes An array of Map Pin objects and calls createMapPins() to create markers
      */
-    public function initMap($mapPinObjects, $mapLatitude, $mapLongitude, $mapZoom) {
+    public function initMap($mapPinObjects, $mapLatitude, $mapLongitude, $mapZoom, $isLocation) {
 
         $mapInit = "
             var myLatlng = new google.maps.LatLng(".$mapLatitude.", ".$mapLongitude.");
@@ -38,7 +44,7 @@ class MapService {
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
             infoWindow = new google.maps.InfoWindow;
 
-        ".$this->createMapPins($mapPinObjects)."
+        ".$this->createMapPins($mapPinObjects, $isLocation)."
              if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var pos = {
@@ -117,7 +123,7 @@ class MapService {
 
     public function getWiderAreaMapAsPins(){
         $mapData = new MapData();
-        $pinData = $mapData->getAllWiderAreaMapData();
+        $pinData = $mapData->getAllWiderAreaMapInfo();
 
         $temp = array();
 
@@ -183,21 +189,19 @@ class MapService {
     /*
      * Converts the Array of MapPin Objects to HTML markers that are placed on the map
      */
-    public function createMapPins($mapPins) {
+    public function createMapPins($mapPins, $isLocation) {
         $generatedMarkers = "";
         $markerCounter = 0;
 
         $markerName = "marker" . $markerCounter;
         $setMarkerCode = $markerName . ".setMap(map);";
         foreach ($mapPins as $pin) {
-            $idType = $pin->getIdType();
-
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
             icon:'" . $pin->getPinDesign() . "',
             title: '" . $pin->getName() . "' ,
-            idType: '" . $idType . "' ,
+            idType: '" . $pin->getIdType() . "' ,
             idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,
             map: map });
             markerAry.push(".$markerName.");
@@ -205,11 +209,11 @@ class MapService {
 
 
             $generatedMarkers .= "google.maps.event.addListener(" . $markerName . ", 'click', function(){
-                $(".$this->getModalId($idType).").modal();
+                $('modal').modal();
             });";
 
 
-            $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
+            $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName, $isLocation);
             $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
             $markerCounter += 1;
         }
@@ -219,8 +223,17 @@ class MapService {
     /*
      * Creates a window when the pin is clicked
      */
-    public function generateInfoWindowConfig($pin, $markerName) {
-        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#".$this->getModalId($pin->getIdType())."' onclick='loadModalContent(".$pin->getIdTrackableObject().")'>Modal</a>"
+    public function generateInfoWindowConfig($pin, $markerName, $isLocation) {
+        $ajaxFunction = "";
+
+        if($isLocation){
+            $ajaxFunction = "loadLocationModal(".$pin->getIdLocation().")";
+        } else {
+            $ajaxFunction = "loadModalContent(".$pin->getIdTrackableObject().")";
+        }
+
+
+        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#modal' onclick='".$ajaxFunction."')>Modal</a>"
 .'"';
 
         $infoWindowGenerator = "var infowindow = new google.maps.InfoWindow();";
@@ -238,6 +251,13 @@ class MapService {
         $mapData = new MapData();
 
         return $mapData->getModalInformation($id);
+        //echo "Made it to the Map Service: " . $id;
+    }
+
+    public function getLocationModalInformation($id){
+        $mapData = new MapData();
+
+        return $mapData->getAllWiderAreaMapModalInfo($id);
         //echo "Made it to the Map Service: " . $id;
     }
 

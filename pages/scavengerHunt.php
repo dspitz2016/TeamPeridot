@@ -30,7 +30,7 @@ $mapService = new MapService();
     function initMap() {
 
         // Scavenger hunt is random pull of trackable objects
-        <?php echo $mapService->initMap($mapService->getAllScavengerHuntObjectsAsPins(),43.129467, -77.639153, 20); ?>
+        <?php echo $mapService->initMap($mapService->getAllScavengerHuntObjectsAsPins(),43.129467, -77.639153, 20, false); ?>
 
         // Display All pins
 
@@ -40,13 +40,12 @@ $mapService = new MapService();
 
 </script>
 
-<div id="modal1" class="modal bottom-sheet">
+<div id="modal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Return to Map </a>
     </div>
 </div>
 
