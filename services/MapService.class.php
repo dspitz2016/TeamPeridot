@@ -25,12 +25,12 @@ class MapService {
      * Initialize Map Object with all the pins
      * Takes An array of Map Pin objects and calls createMapPins() to create markers
      */
-    public function initMap($mapPinObjects) {
+    public function initMap($mapPinObjects, $mapLatitude, $mapLongitude, $mapZoom) {
 
         $mapInit = "
-            var myLatlng = new google.maps.LatLng(43.129467, -77.639153);
+            var myLatlng = new google.maps.LatLng(".$mapLatitude.", ".$mapLongitude.");
             var mapOptions = {
-                zoom: 20,
+                zoom: ".$mapZoom.",
                 center: myLatlng,
                 mapTypeId: google.maps.MapTypeId.HYBRID
             };

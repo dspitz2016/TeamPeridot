@@ -30,7 +30,7 @@ $mapService = new MapService();
     function initMap() {
 
         // Scavenger hunt is random pull of trackable objects
-        <?php echo $mapService->initMap($mapService->getAllScavengerHuntObjectsAsPins()); ?>
+        <?php echo $mapService->initMap($mapService->getAllScavengerHuntObjectsAsPins(),43.129467, -77.639153, 20); ?>
 
         // Display All pins
 

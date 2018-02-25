@@ -126,7 +126,7 @@ $mapService = new MapService();
 
     function initMap() {
 
-    <?php echo $mapService->initMap($pins); ?>
+    <?php echo $mapService->initMap($pins, 43.129467, -77.639153, 20); ?>
 
     }
 
