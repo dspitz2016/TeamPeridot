@@ -7,7 +7,13 @@ include '../data/MapData.class.php';
 include '../models/MapPin.class.php';
 include '../models/TypeFilter.class.php';
 include '../models/HistoricFilter.class.php';
+include '../models/Location.class.php';
 
+if(isset($_GET['id'])){
+    $mapService = new MapService();
+    $data = $mapService->getModalInformation($_GET['id']);
+    var_dump($data);
+}
 /*
  * MapService Class
  *  > Contains Functionality to pull data for mapped objects
@@ -17,13 +23,14 @@ class MapService {
 
     /*
      * Initialize Map Object with all the pins
+     * Takes An array of Map Pin objects and calls createMapPins() to create markers
      */
-    public function initMap($mapPinObjects) {
+    public function initMap($mapPinObjects, $mapLatitude, $mapLongitude, $mapZoom) {
 
         $mapInit = "
-            var myLatlng = new google.maps.LatLng(43.129467, -77.639153);
+            var myLatlng = new google.maps.LatLng(".$mapLatitude.", ".$mapLongitude.");
             var mapOptions = {
-                zoom: 20,
+                zoom: ".$mapZoom.",
                 center: myLatlng,
                 mapTypeId: google.maps.MapTypeId.HYBRID
             };
@@ -58,16 +65,11 @@ class MapService {
         return $mapInit;
     }
 
-    /**
-     * Gets all Mappable objects from the database and returns them as map pins.
-     * @return array - returns array of map pins
-     */
-    public function getAllTrackableObjectsAsPins(){
-        $mapData = new MapData();
-        $pinData = $mapData->getAllTrackableObjectPinData();
-        return $this->addMapPinObjects($pinData);
-    }
 
+    /**
+     * @return array
+     * Returns an array fo TrackableObjects 
+     */
     public function getAllScavengerHuntObjectsAsPins(){
         $mapData = new MapData();
         $pinData = $mapData->getAllTrackableObjectPinData();
@@ -90,10 +92,13 @@ class MapService {
         return $temp;
     }
 
-    public function addMapPinObjects($mapPinDataAry){
+    public function getAllTrackableObjectsAsPins(){
+        $mapData = new MapData();
+        $pinData = $mapData->getAllTrackableObjectPinData();
+
         $temp = array();
 
-        foreach($mapPinDataAry as $pinArray){
+        foreach($pinData as $pinArray){
             $pin = new MapPin(
                 $pinArray['idTrackableObject'],
                 $pinArray['longitude'],
@@ -110,6 +115,34 @@ class MapService {
         return $temp;
     }
 
+    public function getWiderAreaMapAsPins(){
+        $mapData = new MapData();
+        $pinData = $mapData->getAllWiderAreaMapData();
+
+        $temp = array();
+
+        foreach($pinData as $pinArray){
+            $pin = new Location(
+                $pinArray['idLocation'],
+                $pinArray['name'],
+                $pinArray['description'],
+                $pinArray['url'],
+                $pinArray['longitude'],
+                $pinArray['latitude'],
+                $pinArray['address'],
+                $pinArray['city'],
+                $pinArray['state'],
+                $pinArray['zipcode'],
+                $pinArray['imagePath'],
+                $pinArray['imageDescription'],
+                $pinArray['pinDesign']
+            );
+
+            array_push($temp, $pin);
+        }
+
+        return $temp;
+    }
 
     public function getTypeFilters(){
         $mapData = new MapData();
@@ -153,25 +186,29 @@ class MapService {
     public function createMapPins($mapPins) {
         $generatedMarkers = "";
         $markerCounter = 0;
+
         $markerName = "marker" . $markerCounter;
         $setMarkerCode = $markerName . ".setMap(map);";
         foreach ($mapPins as $pin) {
+            $idType = $pin->getIdType();
+
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
             icon:'" . $pin->getPinDesign() . "',
             title: '" . $pin->getName() . "' ,
-            idType: '" . $pin->getIdType() . "' ,
+            idType: '" . $idType . "' ,
             idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,
             map: map });
-            console.log(".$markerName.".title);
-            markerAry.push({title:".$markerName.".title, idType:".$markerName.".idType, idHistoricFilter:".$markerName.".idHistoricFilter});
+            markerAry.push(".$markerName.");
             ";
 
 
-            $generatedMarkers .= "google.maps.event.addListener(".$markerName.", 'click', function(){
-                $('#modal').modal();
+            $generatedMarkers .= "google.maps.event.addListener(" . $markerName . ", 'click', function(){
+                $(".$this->getModalId($idType).").modal();
             });";
+
+
             $infoWidowConfig = $this -> generateInfoWindowConfig($pin, $markerName);
             $generatedMarkers .= $infoWidowConfig . $setMarkerCode;
             $markerCounter += 1;
@@ -183,7 +220,7 @@ class MapService {
      * Creates a window when the pin is clicked
      */
     public function generateInfoWindowConfig($pin, $markerName) {
-        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#modal1'>Modal</a>"
+        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#".$this->getModalId($pin->getIdType())."' onclick='loadModalContent(".$pin->getIdTrackableObject().")'>Modal</a>"
 .'"';
 
         $infoWindowGenerator = "var infowindow = new google.maps.InfoWindow();";
@@ -196,6 +233,27 @@ class MapService {
         return $infoWindowGenerator . $infoWindowListener;
     }
 
+
+    public function getModalInformation($id){
+        $mapData = new MapData();
+
+        return $mapData->getModalInformation($id);
+        //echo "Made it to the Map Service: " . $id;
+    }
+
+    public function getModalId($id){
+        switch($id){
+            case 0: // Grave
+                return "graveModal";
+                break;
+            case 1:
+                return "vegetationModal";
+                break;
+            default:
+                return "otherObjectModal";
+                break;
+        }
+    }
 
     /**
      * @return mixed

@@ -12,6 +12,7 @@ $mapService = new MapService();
 
 ?>
 
+
 <div class="parallax-container">
     <div class="parallax"><img src="https://www.gannett-cdn.com/-mm-/f924d923a0260fd170c12b5a1c21c61aa1590bc4/c=0-222-2163-1444&r=x803&c=1600x800/local/-/media/2015/11/10/Rochester/Rochester/635827519552760428-TY-110815-RAPIDS-CEMETERY-I.JPG"></div>
 </div>
@@ -78,15 +79,41 @@ $mapService = new MapService();
     </div>
 </div>
 
-<div id="modal1" class="modal bottom-sheet">
+<div id="graveModal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4 id="graveName">Name</h4> <br/>
+        <p id="graveModalDescription">I tried</p> <br/>
+        <img id="graveImage" src="" alt=""/> <br/>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>
+
+<div id="vegetationModal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 id="vegetationCommonName">Vegetation</h4> <br/>
+        <h4 id="vegetationScientificName">Vegetation</h4> <br/>
+        <p id="vegetationModalDescription">I tried</p> <br/>
+        <img id="vegetationImage" src="" alt=""/> <br/>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
+<div id="otherObjectModal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4 id="otherObjectName">Other</h4>
+        <p id="otherObjectDescription">I tried</p>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
 
 <?php
     $pins = $mapService->getAllTrackableObjectsAsPins();
@@ -99,7 +126,7 @@ $mapService = new MapService();
 
     function initMap() {
 
-    <?php echo $mapService->initMap($pins); ?>
+    <?php echo $mapService->initMap($pins, 43.129467, -77.639153, 20); ?>
 
     }
 
