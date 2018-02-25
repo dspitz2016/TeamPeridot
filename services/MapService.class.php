@@ -23,6 +23,7 @@ class MapService {
 
     /*
      * Initialize Map Object with all the pins
+     * Takes An array of Map Pin objects and calls createMapPins() to create markers
      */
     public function initMap($mapPinObjects) {
 
@@ -74,6 +75,10 @@ class MapService {
         return $this->addMapPinObjects($pinData);
     }
 
+    /**
+     * @return array
+     * Returns an array fo TrackableObjects 
+     */
     public function getAllScavengerHuntObjectsAsPins(){
         $mapData = new MapData();
         $pinData = $mapData->getAllTrackableObjectPinData();
