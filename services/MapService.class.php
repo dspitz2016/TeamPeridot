@@ -7,7 +7,7 @@ include '../data/MapData.class.php';
 include '../models/MapPin.class.php';
 include '../models/TypeFilter.class.php';
 include '../models/HistoricFilter.class.php';
-
+include '../models/Location.class.php';
 
 if(isset($_GET['id'])){
     $mapService = new MapService();
@@ -115,6 +115,34 @@ class MapService {
         return $temp;
     }
 
+    public function getWiderAreaMapAsPins(){
+        $mapData = new MapData();
+        $pinData = $mapData->getAllWiderAreaMapData();
+
+        $temp = array();
+
+        foreach($pinData as $pinArray){
+            $pin = new Location(
+                $pinArray['idLocation'],
+                $pinArray['name'],
+                $pinArray['description'],
+                $pinArray['url'],
+                $pinArray['longitude'],
+                $pinArray['latitude'],
+                $pinArray['address'],
+                $pinArray['city'],
+                $pinArray['state'],
+                $pinArray['zipcode'],
+                $pinArray['imagePath'],
+                $pinArray['imageDescription'],
+                $pinArray['pinDesign']
+            );
+
+            array_push($temp, $pin);
+        }
+
+        return $temp;
+    }
 
     public function getTypeFilters(){
         $mapData = new MapData();
@@ -164,8 +192,6 @@ class MapService {
         foreach ($mapPins as $pin) {
             $idType = $pin->getIdType();
 
-
-
             $markerName = "marker" . $markerCounter;
             $generatedMarkers .= "var " . $markerName . " = new google.maps.Marker({
             position: {lat: " . $pin->getLatitude() . ", lng: " . $pin->getLongitude() . "},
@@ -174,7 +200,6 @@ class MapService {
             idType: '" . $idType . "' ,
             idHistoricFilter: '" . $pin->getIdHistoricFilter() . "' ,
             map: map });
-            console.log(".$markerName.".title);
             markerAry.push(".$markerName.");
             ";
 

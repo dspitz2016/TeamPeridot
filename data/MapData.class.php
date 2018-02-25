@@ -76,6 +76,10 @@ Class MapData{
                 ORDER BY RAND() LIMIT 2");
     }
 
+    public function getAllWiderAreaMapData(){
+        return ConnectDb::getInstance()->returnObject("Location.class", "Select * from Location;");
+    }
+
     public function getAllTypeFilters(){
         return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT idType, typeFilter, buttonColor FROM Type;
         ) as typeFilters");
