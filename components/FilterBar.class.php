@@ -20,6 +20,7 @@ class FilterBar {
     }
 
     public function getHistoricFilterBar($historicFilterObjectArray){
+
         echo '<div class="section cust-color-seafoam">';
             echo '<div class="row container white-text center">';
                 echo '<h5>Historic Filters<h5>';

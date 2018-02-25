@@ -81,8 +81,9 @@ $mapService = new MapService();
 
 <div id="graveModal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4>Grave</h4>
-        <p id="graveModalDescription">I tried</p>
+        <h4 id="graveName">Name</h4> <br/>
+        <p id="graveModalDescription">I tried</p> <br/>
+        <img id="graveImage" src="" alt=""/> <br/>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -91,8 +92,10 @@ $mapService = new MapService();
 
 <div id="vegetationModal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4>Vegetation</h4>
-        <p id="vegetationModalDescription">I tried</p>
+        <h4 id="vegetationCommonName">Vegetation</h4> <br/>
+        <h4 id="vegetationScientificName">Vegetation</h4> <br/>
+        <p id="vegetationModalDescription">I tried</p> <br/>
+        <img id="vegetationImage" src="" alt=""/> <br/>
 
     </div>
     <div class="modal-footer">
@@ -102,8 +105,8 @@ $mapService = new MapService();
 
 <div id="otherObjectModal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4>Other</h4>
-        <p id="otherModalDescription">I tried</p>
+        <h4 id="otherObjectName">Other</h4>
+        <p id="otherObjectDescription">I tried</p>
 
     </div>
     <div class="modal-footer">

@@ -90,7 +90,7 @@ Class MapData{
         if($id == 0) {
             return json_encode(ConnectDb::getInstance()->returnObject("", "Select * from TrackableObject tobj
                 Join Grave g on tobj.idGrave = g.idGrave where tobj.idTrackableObject = 
-                " . $id));
+                " . $id)[0]);
         }
         else if ($id == 1){
             return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj

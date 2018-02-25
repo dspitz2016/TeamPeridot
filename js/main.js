@@ -49,16 +49,45 @@ function setTypeFilter(idType){
 function loadModalContent(id){
 
 	console.log(id);
+
     $.ajax({
-        datatype: "json",
+        datatype: "text",
         type: "GET",
-        url: "../services/MapService.Class.php",
+        url: "../services/MapService.class.php",
         data: "id="+id,
+		async: true,
         success: function(data) {
-			alert("Yay: " + data);
-			$('#graveModalDescription').replaceWith(data);
-            $('#vegetationModalDescription').replaceWith(data);
-            $('#otherModalDescription').replaceWith(data);
+
+        	var str = data;
+        	var jsonStr = data.substring( str.indexOf("{"), str.length-2);
+
+
+        	var jsonData = $.parseJSON(jsonStr);
+
+        	if(jsonData.idType == 0){ //Grave
+                alert(jsonData.firstName);
+
+                $('#graveName').html(jsonData.firstName + " " + jsonData.middleName + " " + jsonData.lastName);
+                $('#graveModalDescription').html(jsonData.description);
+                $('#graveImage').src = jsonData.imagePath;
+
+            } else if(jsonData.idType == 1){ // Vegetation
+                alert(jsonData.commonName);
+
+                $('#vegetationCommonName').html(jsonData.commonName);
+				$('#vegetationScientificName').html(jsonData.scientificName);
+                $('#vegetationDescription').html(jsonData.description);
+
+
+            } else { // other object
+                alert(jsonData.name);
+
+                $('#otherObjectName').html(jsonData.name);
+                $('#otherObjectDescription').html(jsonData.description);
+
+            }
+
+
 
         }
     });
