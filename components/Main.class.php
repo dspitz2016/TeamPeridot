@@ -15,7 +15,7 @@ class Main {
     public function getPath($page){
         $path = '../';
         if($page == "admin"){
-            $path = "../../";
+            $path = "../";
         } else if ($page == "main"){
             $path = "../";
         }

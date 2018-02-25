@@ -12,6 +12,10 @@ html, body {
 	font-family: 'Roboto', sans-serif;
 }
 
+.main{
+	padding-left:300px;
+}
+
 .cust-color-rust{
 	background-color: #B56357;
 }
@@ -32,6 +36,10 @@ html, body {
 	background-color: #fff;
 }
 
+.cust-nav{
+	display: none;
+}
+
 /*************************
  PIN INFO WINDOW STYLING
  ************************/
@@ -44,3 +52,12 @@ html, body {
 	width: 100%;
 }
 
+@media only screen and (max-width: 992px) {
+	.main{
+		padding-left: 0px;
+	}
+
+	.cust-nav{
+		display: block;
+	}
+}
