@@ -109,8 +109,6 @@ function loadLocationModal(id){
         data: "idLocation="+id,
         async: true,
         success: function(data) {
-            alert(data);
-
             var str = data;
             var jsonStr = data.substring( str.indexOf("{"), str.length-2);
 
