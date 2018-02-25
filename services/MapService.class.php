@@ -65,15 +65,6 @@ class MapService {
         return $mapInit;
     }
 
-    /**
-     * Gets all Mappable objects from the database and returns them as map pins.
-     * @return array - returns array of map pins
-     */
-    public function getAllTrackableObjectsAsPins(){
-        $mapData = new MapData();
-        $pinData = $mapData->getAllTrackableObjectPinData();
-        return $this->addMapPinObjects($pinData);
-    }
 
     /**
      * @return array
@@ -101,10 +92,13 @@ class MapService {
         return $temp;
     }
 
-    public function addMapPinObjects($mapPinDataAry){
+    public function getAllTrackableObjectsAsPins(){
+        $mapData = new MapData();
+        $pinData = $mapData->getAllTrackableObjectPinData();
+
         $temp = array();
 
-        foreach($mapPinDataAry as $pinArray){
+        foreach($pinData as $pinArray){
             $pin = new MapPin(
                 $pinArray['idTrackableObject'],
                 $pinArray['longitude'],
