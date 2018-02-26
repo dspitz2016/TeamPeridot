@@ -17,6 +17,7 @@ $main = Main::getInstance();
 		</div>
 		
 		<h3 class="center-align white-text">John Doe</h3>
+		<div class="section"></div>
 <!--
 	  <div class="email"></div>
 -->
@@ -24,7 +25,9 @@ $main = Main::getInstance();
 	  <li><a class="waves-effect" href="#!"><i class="material-icons">event</i>Events</a></li>
 	  <li><a class="waves-effect" href="#!"><i class="material-icons">nature</i>Environment</a></li>
 	  <li><a class="waves-effect" href="#!"><i class="material-icons">exposure_plus_1</i>Graves</a></li>
-	  <li><a class="waves-effect" href="#!"><i class="material-icons">feedback</i>FAQs</a></li> 
+	  <li><a class="waves-effect" href="#!"><i class="material-icons">feedback</i>FAQs</a></li>
+	  <li><div class="divider"></div></li>
+	  <li><a class="waves-effect" href="#!"><i class="material-icons">arrow_back</i>Sign Off</a></li>
 </ul>
 <!-- cust-nav used for media query -->
 <nav class="cust-nav">

@@ -3,7 +3,7 @@
 ini_set( 'error_reporting', E_ALL );
 ini_set( 'display_errors', true );
 
-include '../services/ConnectDb.class.php';
+//include '../services/ConnectDb.class.php'; // if adding an events page keep otherwise delete if putting in index
 
 class EventData {
 
