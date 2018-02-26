@@ -5,25 +5,20 @@ ini_set( 'display_errors', true );
 
 include '../components/Main.class.php';
 include '../services/MapService.class.php';
+include '../services/LocationService.class.php';
 
 $main = Main::getInstance();
 $main->getHeader("main");
 $main->getNavigationBar();
 
 $mapService = new MapService();
-
+$LocationData = new LocationData();
+$locationService = new LocationService();
 ?>
 
 <h1>Wider Area Map Page</h1>
 
 <div id="map"></div>
-
-<?php
-    $mapData = new MapData();
-    $data = $mapService->getWiderAreaMapAsPins();
-    var_dump($data);
-
-?>
 
 <script type="text/javascript">
 
@@ -33,21 +28,18 @@ $mapService = new MapService();
     function initMap() {
 
         // Scavenger hunt is random pull of trackable objects
-        <?php echo $mapService->initMap($mapService->getWiderAreaMapAsPins(),43.129467, -77.639153, 20); ?>
-
+        <?php echo $mapService->initMap($locationService->getAllLocationsAsPins(),43.130016, -77.633851, 15, true); ?>
 
     }
 
 </script>
 
-<div id="otherObjectModal" class="modal bottom-sheet">
+<div id="modal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4 id="otherObjectName">Other</h4>
-        <p id="otherObjectDescription">I tried</p>
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Return to Map </a>
     </div>
 </div>
 

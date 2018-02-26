@@ -1,6 +1,6 @@
 <?php
 
-include '../services/ConnectDb.class.php';
+require_once '../services/ConnectDb.class.php';
 
 Class MapData{
 
@@ -74,10 +74,6 @@ Class MapData{
                 
                 ) as MapPin
                 ORDER BY RAND() LIMIT 2");
-    }
-
-    public function getAllWiderAreaMapData(){
-        return ConnectDb::getInstance()->returnObject("Location.class", "Select * from Location;");
     }
 
     public function getAllTypeFilters(){

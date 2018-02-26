@@ -115,45 +115,14 @@ $mapService = new MapService();
     </div>
 </div>
 
-<div id="graveModal" class="modal bottom-sheet">
+<div id="modal" class="modal bottom-sheet">
     <div class="modal-content">
-        <h4 id="graveName">Name</h4> <br/>
-        <p id="graveModalDescription">I tried</p> <br/>
-        <img id="graveImage" src="" alt=""/> <br/>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-</div>
-
-<div id="vegetationModal" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h4 id="vegetationCommonName">Vegetation</h4> <br/>
-        <h4 id="vegetationScientificName">Vegetation</h4> <br/>
-        <p id="vegetationModalDescription">I tried</p> <br/>
-        <img id="vegetationImage" src="" alt=""/> <br/>
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Return to Map </a>
     </div>
 </div>
-
-<div id="otherObjectModal" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h4 id="otherObjectName">Other</h4>
-        <p id="otherObjectDescription">I tried</p>
-
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-</div>
-
-
-<?php
-    $pins = $mapService->getAllTrackableObjectsAsPins();
-?>
 
 <script type="text/javascript">
 
@@ -162,7 +131,7 @@ $mapService = new MapService();
 
     function initMap() {
 
-    <?php echo $mapService->initMap($pins, 43.129467, -77.639153, 20); ?>
+    <?php echo $mapService->initMap($mapService->getAllTrackableObjectsAsPins(), 43.129467, -77.639153, 20, false); ?>
 
     }
 

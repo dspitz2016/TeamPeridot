@@ -259,15 +259,15 @@ class Location {
 
     // Allow it to use the create Map Pin Service
 	public function getIdType(){
-    	return "99999";
+    	return "-2";
 	}
 
-	public function getIdHistoricFilter(){
+    public function getIdHistoricFilter(){
     	return "";
 	}
 
 	public function getIdTrackableObject(){
-    	return "";
+    	return "Location";
 	}
 
 }

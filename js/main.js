@@ -51,7 +51,7 @@ function loadModalContent(id){
 	console.log(id);
 
     $.ajax({
-        datatype: "text",
+        datatype: "json",
         type: "GET",
         url: "../services/MapService.class.php",
         data: "id="+id,
@@ -63,27 +63,64 @@ function loadModalContent(id){
 
 
         	var jsonData = $.parseJSON(jsonStr);
+        	var htmlContent = "";
 
         	if(jsonData.idType == 0){ //Grave
 
-                $('#graveName').html(jsonData.firstName + " " + jsonData.middleName + " " + jsonData.lastName);
-                $('#graveModalDescription').html(jsonData.description);
-                $('#graveImage').src = jsonData.imagePath;
+                htmlContent = '<h4>' + jsonData.firstName + ' ' + jsonData.middleName + ' ' + jsonData.lastName + '</h4> <br/>' +
+                              '<p>' + jsonData.description + '</p> <br/>' +
+                              '<img src="' + jsonData.imagePath +'" alt=""/> <br/>';
+
 
             } else if(jsonData.idType == 1){ // Vegetation
 
-                $('#vegetationCommonName').html(jsonData.commonName);
-				$('#vegetationScientificName').html(jsonData.scientificName);
-                $('#vegetationDescription').html(jsonData.description);
+                htmlContent =   '<h4>' + jsonData.commonName + '</h4> <br/>' +
+                                '<h4>' + jsonData.scientificName + '</h4> <br/>' +
+                                '<p>' + jsonData.description + '</p> <br/>' +
+                                '<img src="' + jsonData.imagePath +'" alt=""/> <br/>';
 
 
             } else { // other object
 
-                $('#otherObjectName').html(jsonData.name);
-                $('#otherObjectDescription').html(jsonData.description);
+                htmlContent =   '<h4>' + jsonData.name + '</h4> <br/>' +
+                                '<p>' + jsonData.description + '</p>';
 
             }
 
+            $('.modal-content').html(htmlContent);
+
+
+
+
+        }
+    });
+    return false;
+
+}
+
+function loadLocationModal(id){
+
+    console.log(id);
+
+    $.ajax({
+        datatype: "json",
+        type: "GET",
+        url: "../services/LocationService.class.php",
+        data: "idLocation="+id,
+        success: function(data) {
+            var str = data;
+            var jsonStr = data.substring( str.indexOf("{"), str.length-2);
+
+
+            var jsonData = $.parseJSON(jsonStr);
+            var htmlContent = "";
+
+            htmlContent = '<h4>' + jsonData.name + '</h4> <br/>' +
+                '<p>' + jsonData.description + '</p> <br/>' +
+                '<img src="' + jsonData.imagePath +'" alt=""/> <br/>';
+
+
+            $('.modal-content').html(htmlContent);
 
 
         }
