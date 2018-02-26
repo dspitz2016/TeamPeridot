@@ -105,9 +105,8 @@ function loadLocationModal(id){
     $.ajax({
         datatype: "json",
         type: "GET",
-        url: "../services/MapService.class.php",
+        url: "../services/LocationService.class.php",
         data: "idLocation="+id,
-        async: true,
         success: function(data) {
             var str = data;
             var jsonStr = data.substring( str.indexOf("{"), str.length-2);

@@ -15,11 +15,6 @@ if(isset($_GET['id'])){
     var_dump($data);
 }
 
-if(isset($_GET['idLocation'])){
-    $mapService = new MapService();
-    $data = $mapService->getLocationModalInformation($_GET['idLocation']);
-    var_dump($data);
-}
 /*
  * MapService Class
  *  > Contains Functionality to pull data for mapped objects
@@ -113,35 +108,6 @@ class MapService {
                 $pinArray['pinDesign'],
                 $pinArray['idType'],
                 $pinArray['idHistoricFilter']
-            );
-
-            array_push($temp, $pin);
-        }
-
-        return $temp;
-    }
-
-    public function getWiderAreaMapAsPins(){
-        $mapData = new MapData();
-        $pinData = $mapData->getAllWiderAreaMapInfo();
-
-        $temp = array();
-
-        foreach($pinData as $pinArray){
-            $pin = new Location(
-                $pinArray['idLocation'],
-                $pinArray['name'],
-                $pinArray['description'],
-                $pinArray['url'],
-                $pinArray['longitude'],
-                $pinArray['latitude'],
-                $pinArray['address'],
-                $pinArray['city'],
-                $pinArray['state'],
-                $pinArray['zipcode'],
-                $pinArray['imagePath'],
-                $pinArray['imageDescription'],
-                $pinArray['pinDesign']
             );
 
             array_push($temp, $pin);
@@ -254,12 +220,7 @@ class MapService {
         //echo "Made it to the Map Service: " . $id;
     }
 
-    public function getLocationModalInformation($id){
-        $mapData = new MapData();
 
-        return $mapData->getAllWiderAreaMapModalInfo($id);
-        //echo "Made it to the Map Service: " . $id;
-    }
 
     public function getModalId($id){
         switch($id){

@@ -5,13 +5,15 @@ ini_set( 'display_errors', true );
 
 include '../components/Main.class.php';
 include '../services/MapService.class.php';
+include '../services/LocationService.class.php';
 
 $main = Main::getInstance();
 $main->getHeader("main");
 $main->getNavigationBar();
 
 $mapService = new MapService();
-
+$LocationData = new LocationData();
+$locationService = new LocationService();
 ?>
 
 <h1>Wider Area Map Page</h1>
@@ -26,8 +28,7 @@ $mapService = new MapService();
     function initMap() {
 
         // Scavenger hunt is random pull of trackable objects
-        <?php echo $mapService->initMap($mapService->getWiderAreaMapAsPins(),43.130016, -77.633851, 15, true); ?>
-
+        <?php echo $mapService->initMap($locationService->getAllLocationsAsPins(),43.130016, -77.633851, 15, true); ?>
 
     }
 
