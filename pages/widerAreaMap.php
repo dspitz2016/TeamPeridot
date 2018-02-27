@@ -16,8 +16,6 @@ $LocationData = new LocationData();
 $locationService = new LocationService();
 ?>
 
-<h1>Wider Area Map Page</h1>
-
 <div id="map"></div>
 
 <script type="text/javascript">

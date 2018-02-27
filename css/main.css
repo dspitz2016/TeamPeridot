@@ -40,13 +40,14 @@ html, body {
 	display: none;
 }
 
-/*************************
- PIN INFO WINDOW STYLING
- ************************/
-
-
 
 /* Override Materialize */
+
+/* Filter Bar padding override */
+.filterRow{
+	margin: 0;
+	padding: .25em;
+}
 
 .container{
 	width: 100%;

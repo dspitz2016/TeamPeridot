@@ -3,6 +3,7 @@
 class MapPin {
 
     private $idTrackableObject;
+    private $imagePath;
     private $longitude;
     private $latitude;
     private $name;
@@ -13,6 +14,7 @@ class MapPin {
     /**
      * MapPin constructor.
      * @param $idTrackableObject
+     * @param $imagePath
      * @param $longitude
      * @param $latitude
      * @param $name
@@ -20,9 +22,10 @@ class MapPin {
      * @param $idType
      * @param $idHistoricFilter
      */
-    public function __construct($idTrackableObject, $longitude, $latitude, $name, $pinDesign, $idType, $idHistoricFilter)
+    public function __construct($idTrackableObject, $imagePath, $longitude, $latitude, $name, $pinDesign, $idType, $idHistoricFilter)
     {
         $this->idTrackableObject = $idTrackableObject;
+        $this->imagePath = $imagePath;
         $this->longitude = $longitude;
         $this->latitude = $latitude;
         $this->name = $name;
@@ -45,6 +48,22 @@ class MapPin {
     public function setIdTrackableObject($idTrackableObject)
     {
         $this->idTrackableObject = $idTrackableObject;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * @param mixed $imagePath
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
     }
 
     /**

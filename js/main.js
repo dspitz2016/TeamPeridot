@@ -46,18 +46,18 @@ function setTypeFilter(idType){
     }
 }
 
-function loadModalContent(id){
+function loadModalContent(id, idType){
 
-	console.log(id);
+	console.log(id, idType);
 
     $.ajax({
         datatype: "json",
         type: "GET",
         url: "../services/MapService.class.php",
-        data: "id="+id,
+        data: "id="+id+"&idType="+idType,
 		async: true,
         success: function(data) {
-
+            console.log(data);
         	var str = data;
         	var jsonStr = data.substring( str.indexOf("{"), str.length-2);
 
@@ -68,14 +68,14 @@ function loadModalContent(id){
         	if(jsonData.idType == 0){ //Grave
 
                 htmlContent = '<h4>' + jsonData.firstName + ' ' + jsonData.middleName + ' ' + jsonData.lastName + '</h4> <br/>' +
-                              '<p>' + jsonData.description + '</p> <br/>' +
-                              '<img src="' + jsonData.imagePath +'" alt=""/> <br/>';
+                              '<img src="' + jsonData.imagePath +'" alt=""/> <br/>' +
+                              '<p>' + jsonData.description + '</p> <br/>';
 
 
             } else if(jsonData.idType == 1){ // Vegetation
 
                 htmlContent =   '<h4>' + jsonData.commonName + '</h4> <br/>' +
-                                '<h4>' + jsonData.scientificName + '</h4> <br/>' +
+                                '<img height="150px" src="' + jsonData.imagePath +'" alt=""/> <br/>'+
                                 '<p>' + jsonData.description + '</p> <br/>' +
                                 '<img src="' + jsonData.imagePath +'" alt=""/> <br/>';
 
@@ -83,7 +83,9 @@ function loadModalContent(id){
             } else { // other object
 
                 htmlContent =   '<h4>' + jsonData.name + '</h4> <br/>' +
+                                '<img height="150px" src="' + jsonData.imagePath +'" alt=""/> <br/>'+
                                 '<p>' + jsonData.description + '</p>';
+
 
             }
 
@@ -108,6 +110,9 @@ function loadLocationModal(id){
         url: "../services/LocationService.class.php",
         data: "idLocation="+id,
         success: function(data) {
+            console.log(id);
+            console.log(data);
+
             var str = data;
             var jsonStr = data.substring( str.indexOf("{"), str.length-2);
 
@@ -117,7 +122,8 @@ function loadLocationModal(id){
 
             htmlContent = '<h4>' + jsonData.name + '</h4> <br/>' +
                 '<p>' + jsonData.description + '</p> <br/>' +
-                '<img src="' + jsonData.imagePath +'" alt=""/> <br/>';
+                '<img src="' + jsonData.imagePath +'" alt=""/> <br/>' +
+                '<a href="' + jsonData.url + '">'+ jsonData.name + ' Website' +'</a>';
 
 
             $('.modal-content').html(htmlContent);

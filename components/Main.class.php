@@ -42,23 +42,23 @@ class Main {
         echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
         echo '<ul class="right hide-on-med-and-down">';
         echo '<li><a href="index.php">History</a></li>';
-        echo '<li><a href="/pages/tours.php">Tours</a></li>';
+//        echo '<li><a href="/pages/tours.php">Tours</a></li>';
         echo '<li><a href="/pages/widerAreaMap.php">Wider Area Map</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
-        echo '<li><a href="/pages/events.php">Events</a></li>';
-        echo '<li><a href="/pages/contact.php">Contact</a></li>';
+//        echo '<li><a href="/pages/events.php">Events</a></li>';
+//        echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
         echo '<ul class="side-nav cust-color-seafoam z-depth-3" id="mobile-demo">';
         echo '<h3>Naviagation</h3>';
         echo '<hr />';
         echo '<li><a href="index.php">Home</a></li>';
-        echo '<li><a href="/pages/tours.php">Tours</a></li>';
+//        echo '<li><a href="/pages/tours.php">Tours</a></li>';
         echo '<li><a href="/pages/widerAreaMap.php">Wider Area Map</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
-        echo '<li><a href="/pages/events.php">Events</a></li>';
-        echo '<li><a href="/pages/contact.php">Contact</a></li>';
+//        echo '<li><a href="/pages/events.php">Events</a></li>';
+//        echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
         echo '</div>';
         echo '</nav>';
@@ -74,6 +74,14 @@ class Main {
     }
 
     public function getFooter(){
+
+        echo '<div class="section cust-color-rust">';
+            echo '<div class="row container white-text center-align">';
+                echo '<div class="col s12">';
+                echo '&copy; Team Peridot 2018';
+                echo '</div>';
+            echo '</div>';
+        echo '</div>';
         echo "</body>";
         echo "</html>";
     }

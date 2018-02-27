@@ -4,9 +4,9 @@ class ConnectDb {
   private static $instance = null;
   private $conn;
 
-  private $host = 'localhost:3306';
+  private $host = 'localhost:8889';
   private $user = 'root';
-  private $pass = 'Ch33zeB@llFestival!!';
+  private $pass = '';
   private $db = 'RapidsCemetery';
 
   private function __construct()

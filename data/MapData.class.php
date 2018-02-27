@@ -30,22 +30,22 @@ Class MapData{
 
     public function getAllTrackableObjectPinData(){
         return ConnectDb::getInstance()->returnObject("MapPin.class", "SELECT * FROM(
-                SELECT idTrackableObject, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinDesign, TF.idType as idType, hf.idHistoricFilter as idHistoricFilter
+                SELECT idTrackableObject, T.imagePath, longitude, latitude, concat(IFNULL(firstName, ''), ' ', IFNULL(middleName,''), ' ', IFNULL(lastName,'')) as name, pinDesign, TF.idType as idType, IFNULL(hf.idHistoricFilter, \"\") as idHistoricFilter
                 FROM Grave G 
                 JOIN TrackableObject T on G.idGrave = T.idGrave
-                JOIN HistoricFilter hf on G.idHistoricFilter = hf.idHistoricFilter
+                LEFT OUTER JOIN HistoricFilter hf on G.idHistoricFilter = hf.idHistoricFilter
                 JOIN Type TF on T.idType = TF.idType
                 UNION 
                 
-                SELECT idTrackableObject, longitude, latitude, commonName as name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
-                FROM Vegetation V
-                JOIN TrackableObject T on V.idVegetation = T.idVegetation
+                SELECT idTrackableObject, T.imagePath, longitude, latitude, commonName as name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
+                FROM Flora V
+                JOIN TrackableObject T on V.idFlora = T.idFlora
                 JOIN Type TF on T.idType = TF.idType
                 UNION
                 
-                SELECT idTrackableObject, longitude, latitude, name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
-                FROM OtherObject O
-                JOIN TrackableObject T on O.idOtherObject = T.idOtherObject
+                SELECT idTrackableObject, T.imagePath, longitude, latitude, name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
+                FROM NaturalHistory O
+                JOIN TrackableObject T on O.idNaturalHistory = T.idNaturalHistory
                 JOIN Type TF on T.idType = TF.idType
                 
                 ) as MapPin");
@@ -62,14 +62,14 @@ Class MapData{
                 UNION 
                 
                 SELECT idTrackableObject, longitude, latitude, commonName as name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
-                FROM Vegetation V
-                JOIN TrackableObject T on V.idVegetation = T.idVegetation
+                FROM Flora V
+                JOIN TrackableObject T on V.idFlora = T.idFlora
                 JOIN Type TF on T.idType = TF.idType
                 UNION
                 
                 SELECT idTrackableObject, longitude, latitude, name, pinDesign, TF.idType as idType, concat(\"\") as idHistoricFilter
-                FROM OtherObject O
-                JOIN TrackableObject T on O.idOtherObject = T.idOtherObject
+                FROM NaturalHistory O
+                JOIN TrackableObject T on O.idNaturalHistory = T.idNaturalHistory
                 JOIN Type TF on T.idType = TF.idType
                 
                 ) as MapPin
@@ -77,7 +77,7 @@ Class MapData{
     }
 
     public function getAllTypeFilters(){
-        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT idType, typeFilter, buttonColor FROM Type;
+        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT idType, typeFilter, description, buttonColor FROM Type;
         ) as typeFilters");
     }
 
@@ -85,21 +85,21 @@ Class MapData{
         return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter;");
     }
 
-    public function getModalInformation($id){
+    public function getModalInformation($id, $idType){
         // Grave
-        if($id == 0) {
+        if($idType == 0) {
             return json_encode(ConnectDb::getInstance()->returnObject("", "Select * from TrackableObject tobj
                 Join Grave g on tobj.idGrave = g.idGrave where tobj.idTrackableObject = 
                 " . $id)[0]);
         }
-        else if ($id == 1){
+        else if ($idType == 1){
             return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj
-Join Vegetation v on tobj.idVegetation = v.idVegetation
-where tobj.idTrackableObject =".$id)[0]);
+Join Flora v on tobj.idFlora = v.idFlora
+where tobj.idTrackableObject = ".$id)[0]);
 
         } else {
             return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj
-Join OtherObject oo on tobj.idOtherObject = oo.idOtherObject
+Join NaturalHistory oo on tobj.idNaturalHistory = oo.idNaturalHistory
 where tobj.idTrackableObject =  ".$id)[0]);
 
         }

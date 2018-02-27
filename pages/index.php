@@ -23,13 +23,14 @@ $mapService = new MapService();
 <div class="section cust-color-white">
 
     <div class="row container">
-        <h3 class="header">Welcome to Rapids Cemetery!</h3>
-        <p class="grey-text text-darken-3 lighten-3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum rhoncus iaculis. Etiam blandit venenatis nibh et consequat. In pretium sem id est tempor, vitae mattis tortor condimentum. Suspendisse potenti. Nullam sed eros aliquet, dictum nibh id, egestas quam. Nulla fringilla laoreet luctus. Aliquam vel maximus turpis, lacinia gravida nunc. Quisque pretium dictum nibh et euismod. Praesent aliquam lorem ut consequat tristique. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc nec enim iaculis leo tristique finibus. Phasellus pellentesque justo a porttitor fringilla.
-
-            <br/><br/>
-            19th Ward Community Association --- 216 Thurston Road Rochester, NY 14619 --- Phone: (585) 328-6571 ---- 19thWard@19wca.org
-        </p>
+        <div class="col s12">
+            <h3 class="header">Welcome to Rapids Cemetery!</h3>
+            <p class="grey-text text-darken-3 lighten-3">
+                This cemetery was probably founded between 1810 and 1812. The property was originally owned by the Wadsworth family which owned land from Geneseo to Rochester. The Wadsworths set aside one and a quarter acre for a burial place of area residents. The cemetery resided in the Town of Gates until 1902 when the area was annexed into the City of Rochester. The road leading to the cemetery was originally called Cemetery Road. Then between 1880 and 1890 the name was changed to Chester Street. In 1899, Chester Street became Congress Avenue.
+                <br/><br/>
+                19th Ward Community Association --- 216 Thurston Road Rochester, NY 14619 --- Phone: (585) 328-6571 ---- 19thWard@19wca.org
+            </p>
+        </div>
     </div>
 
 </div>
@@ -63,39 +64,41 @@ $mapService = new MapService();
     </div>
 </div>
 
+
 <?php
 	$eventService = new EventService();
 	$eventObjects = $eventService->getAllEventsOrderedByDate();
 ?>
 
-<div class="section cust-color-mint">
-<ul class="collection with-header">
-<li class="collection-header center-align"><h4>Events</h4></li>
+
+<!--<div class="section cust-color-mint">-->
+<!--<ul class="collection with-header">-->
+<!--<li class="collection-header center-align"><h4>Events</h4></li>-->
 <?php
-	foreach($eventObjects as $event){
-		echo '<li class="collection-item">
-				  <div class="row">
-					  <div>
-						  <div class="card">
-							<div class="center-align waves-effect waves-block waves-light cust-color-seafoam">
-							  <h1 class="activator">'. $event['name'] .'</h1>
-							</div>
-							<div class="card-content">
-							  <span class="card-title activator grey-text text-darken-4">Begins: '. $event['startTime'] .'<i class="material-icons right">more_vert</i></span>
-							  <span class="card-title activator grey-text text-darken-4">Ends: '. $event['endTime'] .'<i class="material-icons right">more_vert</i></span>
-							</div>
-							<div class="card-reveal">
-							  <span class="card-title grey-text text-darken-4">Event Description<i class="material-icons right">close</i></span>
-							  <p>'. $event['description'] .'</p>
-							</div>
-						  </div>
-					  </div>
-				  </div>
-				</li>';
-	}
+//	foreach($eventObjects as $event){
+//		echo '<li class="collection-item">
+//				  <div class="row">
+//					  <div>
+//						  <div class="card">
+//							<div class="center-align waves-effect waves-block waves-light cust-color-seafoam">
+//							  <h1 class="activator">'. $event['name'] .'</h1>
+//							</div>
+//							<div class="card-content">
+//							  <span class="card-title activator grey-text text-darken-4">Begins: '. $event['startTime'] .'<i class="material-icons right">more_vert</i></span>
+//							  <span class="card-title activator grey-text text-darken-4">Ends: '. $event['endTime'] .'<i class="material-icons right">more_vert</i></span>
+//							</div>
+//							<div class="card-reveal">
+//							  <span class="card-title grey-text text-darken-4">Event Description<i class="material-icons right">close</i></span>
+//							  <p>'. $event['description'] .'</p>
+//							</div>
+//						  </div>
+//					  </div>
+//				  </div>
+//				</li>';
+//	}
 ?>
-</ul>
-</div>
+<!--</ul>-->
+<!--</div>-->
 
 <?php
     $filterBar = new FilterBar();
@@ -104,16 +107,6 @@ $mapService = new MapService();
 ?>
 
 <div id="map"></div>
-
-
-<div class="section cust-color-rust">
-    <div class="row container white-text">
-        <div class="col s12">
-            Footer placeholder
-        </div>
-
-    </div>
-</div>
 
 <div id="modal" class="modal bottom-sheet">
     <div class="modal-content">

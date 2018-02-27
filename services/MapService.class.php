@@ -9,9 +9,11 @@ include '../models/TypeFilter.class.php';
 include '../models/HistoricFilter.class.php';
 include '../models/Location.class.php';
 
-if(isset($_GET['id'])){
-    $mapService = new MapService();
-    $data = $mapService->getModalInformation($_GET['id']);
+if(isset($_GET['id']) && isset($_GET['idType'])){
+    //$mapService = new MapService();
+    //$data = $mapService->getModalInformation($_GET['id'], $_GET['idType']);
+    $mapData = new MapData();
+    $data = $mapData->getModalInformation($_GET['id'], $_GET['idType']);
     var_dump($data);
 }
 
@@ -40,27 +42,34 @@ class MapService {
             infoWindow = new google.maps.InfoWindow;
 
         ".$this->createMapPins($mapPinObjects, $isLocation)."
-             if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                    }, function () {
-                        handleLocationError(true, infoWindow, map.getCenter());
-                    });
+                 // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude
+                    };
+        
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                  }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                  });
                 } else {
-                    // Browser doesn't support Geolocation
-                    handleLocationError(false, infoWindow, map.getCenter());
+                  // Browser doesn't support Geolocation
+                  handleLocationError(false, infoWindow, map.getCenter());
                 }
-
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+              }
+        
+              function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                 infoWindow.setPosition(pos);
                 infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
+                                      'Error: The Geolocation service failed.' :
+                                      'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
-            }
+              
         ";
 
         return $mapInit;
@@ -79,10 +88,11 @@ class MapService {
         foreach($pinData as $pinArray){
             $pin = new MapPin(
                 $pinArray['idTrackableObject'],
+                $pinArray['imagePath'],
                 $pinArray['longitude'],
                 $pinArray['latitude'],
                 $pinArray['name'],
-    "https://cdn0.iconfinder.com/data/icons/travel-vacation/289/travel-transport-hotel-vacation-holidays-tourist-tourism-travelling-traveling_178-128.png",
+    "https://team-peridot.ist.rit.edu/images/questionMarkPin.png",
                 $pinArray['idType'],
                 $pinArray['idHistoricFilter']
             );
@@ -102,6 +112,7 @@ class MapService {
         foreach($pinData as $pinArray){
             $pin = new MapPin(
                 $pinArray['idTrackableObject'],
+                $pinArray['imagePath'],
                 $pinArray['longitude'],
                 $pinArray['latitude'],
                 $pinArray['name'],
@@ -125,6 +136,7 @@ class MapService {
             $filterBtn = new TypeFilter(
                 $typeFilter['idType'],
                 $typeFilter['typeFilter'],
+                $typeFilter['description'],
                 $typeFilter['buttonColor']
             );
 
@@ -195,12 +207,14 @@ class MapService {
         if($isLocation){
             $ajaxFunction = "loadLocationModal(".$pin->getIdLocation().")";
         } else {
-            $ajaxFunction = "loadModalContent(".$pin->getIdTrackableObject().")";
+            $ajaxFunction = "loadModalContent(".$pin->getIdTrackableObject().",".$pin->getIdType().")";
         }
 
 
-        $infoWindowContent = '"'."<div class=" . "'infoWindow'>". $pin->getName()."</div>". "<a class='waves-effect waves-light btn modal-trigger' href='#modal' onclick='".$ajaxFunction."')>Modal</a>"
-.'"';
+        $infoWindowContent = '"'."<div class=" . "'content'><h4 style='margin:0;'>". $pin->getName().
+                                    "</h4><br/><img height='150px' class='' src='".$pin->getImagePath()."' alt=''><br/>".
+                                    "<a class='waves-effect waves-light btn modal-trigger' href='#modal' onclick='".$ajaxFunction."')>See More Info</a>"
+                                .'</div>'.'"';
 
         $infoWindowGenerator = "var infowindow = new google.maps.InfoWindow();";
         $infoWindowListener = "google.maps.event.addListener(" . $markerName . ", 'click', (function(" . $markerName . ") {
@@ -213,11 +227,9 @@ class MapService {
     }
 
 
-    public function getModalInformation($id){
+    public function getModalInformation($id, $idType){
         $mapData = new MapData();
-
-        return $mapData->getModalInformation($id);
-        //echo "Made it to the Map Service: " . $id;
+        return $mapData->getModalInformation($id, $idType);
     }
 
 
