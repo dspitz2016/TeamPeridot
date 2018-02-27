@@ -53,7 +53,7 @@ class MapService {
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     infoWindow.open(map);
-                    map.setCenter(pos);
+                    //map.setCenter(pos);
                   }, function() {
                     handleLocationError(true, infoWindow, map.getCenter());
                   });
