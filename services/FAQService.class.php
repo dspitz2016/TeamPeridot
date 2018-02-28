@@ -5,22 +5,20 @@ ini_set( 'display_errors', true );
 require_once '../data/FaqData.class.php';
 require_once '../models/FAQ.class.php';
 
+
+/**
+ * Class EventService
+ * Author: Dustin Spitz
+ * Purpose: Calls the FaqData class to retrieve an associative array and formats this into php objects using the provided model
+ */
 class FAQService {
 
-    private $faqs;
-
-    /**
-     * FAQService constructor.
-     * @param $faqs
-     */
-    public function __construct()
-    {
-        $this->faqs = $this->getAllFAQs();
-    }
 
     // CREATE
 
-    // READ
+    /**
+     * @return array - Retuns array of FAQ Objects
+     */
     public function getAllFAQs(){
         $faqData = new FAQData();
         $faqsData = $faqData->getAllFAQs();
