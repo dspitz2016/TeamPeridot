@@ -124,7 +124,7 @@ $mapService = new MapService();
 
     function initMap() {
 
-    <?php echo $mapService->initMap($mapService->getAllTrackableObjectsAsPins(), 43.129467, -77.639153, 20, false); ?>
+    <?php echo $mapService->initMap($mapService->getAllTrackableObjectsAsPins(), 43.129467, -77.639153, 20, "HYBRID", false); ?>
 
     }
 

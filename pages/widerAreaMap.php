@@ -26,7 +26,7 @@ $locationService = new LocationService();
     function initMap() {
 
         // Scavenger hunt is random pull of trackable objects
-        <?php echo $mapService->initMap($locationService->getAllLocationsAsPins(),43.130016, -77.633851, 15, true); ?>
+        <?php echo $mapService->initMap($locationService->getAllLocationsAsPins(),43.14082151589615, -77.62816645057916, 14, "ROADMAP", true); ?>
 
     }
 
