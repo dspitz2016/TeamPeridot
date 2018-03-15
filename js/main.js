@@ -77,7 +77,7 @@ function loadModalContent(id, idType){
                 htmlContent =   '<h4>' + jsonData.commonName + '</h4> <br/>' +
                                 '<img height="150px" src="' + jsonData.imagePath +'" alt=""/> <br/>'+
                                 '<p>' + jsonData.description + '</p> <br/>';
-
+m
 
             } else { // other object
 
@@ -131,5 +131,4 @@ function loadLocationModal(id){
         }
     });
     return false;
-
 }

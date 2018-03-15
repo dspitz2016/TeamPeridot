@@ -1,4 +1,7 @@
 <?php
+    ob_start();
+    session_start();
+
     include '../components/Main.class.php';
     include '../services/LoginService.class.php';
 
@@ -8,30 +11,28 @@
     /**
     * If someone is logged in currently clear session
     **/
-    if($_SESSION['email']){
-        echo "Email Unset";
-        sesion_unset();
+
+    if(isset($_SESSION['email'])){
+        header('Location: admin.php');
     }
 
     /**
     * If form submitted login
     **/
     if(isset($_POST['submit'])){
-        echo "Submit clicked and being processed <br/>";
+
         if($_POST['email'] != "" && $_POST['password'] != ""){
 
             $longinService = new LoginService();
             $validateEmail = $longinService->validatePassword($_POST['email'], $_POST['password']);
-            echo "Validate Email: " . $vaildateEmail . "<br/>";
-            var_dump($validateEmail);
 
             if($validateEmail){
                 $_SESSION['email'] = $_POST['email'];
                 echo "You will be redirect to admin home page";
                 header('Location: admin.php');
             } else {
+//                header('Location: adminLogin.php');
                 echo "Incorrect Credentials";
-                header('Location: adminLogin.php');
             }
         } else {
             echo "Please enter an email and password";

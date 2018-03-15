@@ -38,8 +38,6 @@ class LoginData {
     public function validatePassword($email, $password)
     {
         try{
-            echo "Validating Password Against DB";
-
             $userPassword = null;
             $stmt = $this->conn->prepare("SELECT password FROM Account WHERE email = :email");
             $stmt->execute(array(":email"=>$email));
@@ -49,7 +47,8 @@ class LoginData {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if($user !== false){
-                if($password == $user['password']){
+
+                if(sha1($password) == $user['password']){
                     return true;
                 } else {
                     return false;
