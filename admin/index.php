@@ -6,7 +6,7 @@
     include '../services/LoginService.class.php';
 
     $main = Main::getInstance();
-    $main->getHeader("admin");
+    $main->getHeader();
 
     /**
     * If someone is logged in currently clear session
@@ -94,6 +94,6 @@
 </main>
 
 <?php
-    $main->getScripts("admin");
+    $main->getScripts();
     $main->getFooter();
 ?>

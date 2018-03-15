@@ -12,24 +12,14 @@ class Main {
         return self::$instance;
     }
 
-    public function getPath($page){
-        $path = '../';
-        if($page == "admin"){
-            $path = "../";
-        } else if ($page == "main"){
-            $path = "../";
-        }
-        return $path;
-    }
-
-    public function getHeader($page){
+    public function getHeader(){
         echo '<!DOCTYPE html>';
         echo '<html>';
         echo '<head>';
         echo '<title>Rapids Cemetery</title>';
         echo    '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
-        echo    '<link type="text/css" rel="stylesheet" href="'.$this->getPath($page).'css/materialize.css" media="screen,projection">';
-        echo    '<link type="text/css" rel="stylesheet" href="'.$this->getPath($page).'css/main.css" />';
+        echo    '<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection">';
+        echo    '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
         echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
         echo '</head>';
         echo '<body>';
@@ -64,12 +54,12 @@ class Main {
         echo '</nav>';
     }
 
-    public function getScripts($page){
+    public function getScripts(){
 //        echo    '<script src="'.$this->getPath($page).'js/jquery-3.3.1.min.js"></script>';
 //        echo    '<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
         echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
-        echo    '<script src="'.$this->getPath($page).'js/materialize.js"></script>';
-        echo    '<script src="'.$this->getPath($page).'js/main.js"></script>';
+        echo    '<script src="../js/materialize.js"></script>';
+        echo    '<script src="../js/main.js"></script>';
 //        echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>';
     }
 

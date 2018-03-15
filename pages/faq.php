@@ -4,7 +4,7 @@ include '../components/Main.class.php';
 include '../services/FAQService.class.php';
 
 $main = Main::getInstance();
-$main->getHeader("main");
+$main->getHeader();
 $main->getNavigationBar();
 ?>
 
@@ -48,6 +48,6 @@ $main->getNavigationBar();
 
 <!--<a href="https://codyhouse.co/demo/faq-template/index.html">Sample Collapsible FAQ</a>-->
 
-<?php $main->getScripts("main"); ?>
+<?php $main->getScripts(); ?>
 <?php $main->getFooter(); ?>
 

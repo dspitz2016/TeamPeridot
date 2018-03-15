@@ -4,7 +4,7 @@ include '../components/Main.class.php';
 include '../services/MapService.class.php';
 
 $main = Main::getInstance();
-$main->getHeader("main");
+$main->getHeader();
 $main->getNavigationBar();
 ?>
 
@@ -28,7 +28,7 @@ $main->getNavigationBar();
 
 
 
-<?php $main->getScripts("main"); ?>
+<?php $main->getScripts(); ?>
 
 
 <?php

@@ -5,7 +5,7 @@ include '../services/MapService.class.php';
 include '../services/TourService.class.php';
 
 $main = Main::getInstance();
-$main->getHeader("main");
+$main->getHeader();
 $main->getNavigationBar();
 
 $tourService = new TourService();

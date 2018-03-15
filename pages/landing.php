@@ -4,7 +4,7 @@
     include '../services/MapService.class.php';
 
     $main = Main::getInstance();
-    $main->getHeader("main");
+    $main->getHeader();
     $main->getNavigationBar();
  ?>
 	
@@ -45,7 +45,7 @@ $mapService = new MapService();
 
 </script>
 
-<?php $main->getScripts("main"); ?>
+<?php $main->getScripts(); ?>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>
 

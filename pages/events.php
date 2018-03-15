@@ -5,7 +5,7 @@ include '../components/Main.class.php';
 include '../services/EventService.class.php';
 
 $main = Main::getInstance();
-$main->getHeader("main");
+$main->getHeader();
 $main->getNavigationBar();
 ?>
 
@@ -96,6 +96,6 @@ $eventObjects = $eventService->getAllEventsOrderedByDate();
 </div>
 -->
 
-<?php $main->getScripts("main"); ?>
+<?php $main->getScripts(); ?>
 <?php $main->getFooter(); ?>
 

@@ -4,7 +4,7 @@ include '../components/Main.class.php';
 include '../services/MapService.class.php';
 
 $main = Main::getInstance();
-$main->getHeader("main");
+$main->getHeader();
 $main->getNavigationBar();
 ?>
 
@@ -72,6 +72,6 @@ Simple contact page, must be tested for sending email
     </form>
     </div>
 
-<?php $main->getScripts("main"); ?>
+<?php $main->getScripts(); ?>
 <?php $main->getFooter(); ?>
 

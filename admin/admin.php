@@ -5,7 +5,7 @@
     include '../components/Main.class.php';
 
     $main = Main::getInstance();
-	$main->getHeader("admin");
+	$main->getHeader();
 
 
 	if(!isset($_SESSION['email'])){
@@ -26,6 +26,10 @@
                   <div class="email"></div>
             -->
         </div></li>
+
+    <li><a class="waves-effect" href="#!"><i class="material-icons">event</i>Events</a></li>
+
+
     <li><a class="waves-effect" href="#!"><i class="material-icons">event</i>Events</a></li>
     <li><a class="waves-effect" href="#!"><i class="material-icons">nature</i>Environment</a></li>
     <li><a class="waves-effect" href="#!"><i class="material-icons">exposure_plus_1</i>Graves</a></li>
@@ -145,5 +149,5 @@
 </div>
 
 
-<?php $main->getScripts("admin"); ?>
+<?php $main->getScripts(); ?>
 <?php $main->getFooter(); ?>
