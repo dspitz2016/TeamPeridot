@@ -9,7 +9,7 @@
 
 
 	if(!isset($_SESSION['email'])){
-        header('Location: adminLogin.php');
+        header('Location: index.php');
     }
 
 ?>

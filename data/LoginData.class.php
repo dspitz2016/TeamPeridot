@@ -39,7 +39,7 @@ class LoginData {
     {
         try{
             $userPassword = null;
-            $stmt = $this->conn->prepare("SELECT password FROM Account WHERE email = :email");
+            $stmt = $this->conn->prepare( "SELECT password FROM Account WHERE email = :email");
             $stmt->execute(array(":email"=>$email));
 
             $stmt->bindValue(':email', $email);

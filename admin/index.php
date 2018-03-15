@@ -31,7 +31,6 @@
                 echo "You will be redirect to admin home page";
                 header('Location: admin.php');
             } else {
-//                header('Location: adminLogin.php');
                 echo "Incorrect Credentials";
             }
         } else {
