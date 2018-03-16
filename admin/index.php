@@ -42,16 +42,13 @@
 
 <div class="section"></div>
 <main>
-    <center>
-        <!--
-              <img class="responsive-img" style="width: 250px;" src="https://i.imgur.com/ax0NCsK.gif" />
-        -->
         <div class="section"></div>
 
-        <h5 class="brown-text">Please, login into your account</h5>
         <div class="section"></div>
 
-        <div class="container">
+        <div class="container center">
+            <h5 class="brown-text center">Please, login into your account</h5>
+
             <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
                 <form class="col s12" method="post" action="<?php print $_SERVER['PHP_SELF']?>">
@@ -86,8 +83,6 @@
                 </form>
             </div>
         </div>
-        <a href="#!">Create account</a>
-    </center>
 
     <div class="section"></div>
     <div class="section"></div>
