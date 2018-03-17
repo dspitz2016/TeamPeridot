@@ -65,10 +65,7 @@ $mapService = new MapService();
 </div>
 
 
-<?php
-	$eventService = new EventService();
-	$eventObjects = $eventService->getAllEventsOrderedByDate();
-?>
+
 
 
 <!--<div class="section cust-color-mint">-->
@@ -107,6 +104,12 @@ $mapService = new MapService();
 ?>
 
 <div id="map"></div>
+
+<?php
+    $eventService = new EventService();
+    echo $eventService->getAllStyledHTMLEvents();
+?>
+
 
 <div id="modal" class="modal bottom-sheet">
     <div class="modal-content">

@@ -60,16 +60,17 @@ class FAQService {
 
     public function getCollapsibleFAQs(){
         $data = $this->getAllFAQs();
-        $allCollapsibleItems = '';
+        $faqCollection = '';
 
         foreach ($data as $faq){
-            $allCollapsibleItems .= '<li>
+            $faqCollection .= '<li>
                     <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>'.$faq->getQuestion().'</div>
                     <div class="collapsible-body cust-color-white"><span>'.$faq->getAnswer().'</span></div>
                   </li>';
         }
 
-        return $allCollapsibleItems;
+
+        return $faqCollection;
 
     }
 }

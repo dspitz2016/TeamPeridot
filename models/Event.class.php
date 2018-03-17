@@ -20,12 +20,12 @@ class Event {
      */
     public function __construct($name, $description, $startTime, $endTime, $imagePath, $imageDescription)
     {
-        $this->name = $this->setName($name);
-        $this->description = $this->setDescription($description);
-        $this->startTime = $this->setStartTime($startTime);
-        $this->endTime = $this->setEndTime($endTime);
-        $this->imagePath = $this->setImagePath($imagePath);
-        $this->imageDescription = $this->setImageDescription($imageDescription);
+        $this->name = $name;
+        $this->description = $description;
+        $this->startTime = date('F j, Y, g:i a', strtotime($startTime));
+        $this->endTime = date('F j, Y, g:i a', strtotime($endTime));;
+        $this->imagePath = $imagePath;
+        $this->imageDescription = $imageDescription;
     }
 
     /**
