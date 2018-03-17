@@ -13,6 +13,19 @@ require_once '../models/FAQ.class.php';
  */
 class FAQService {
 
+    private static $instance = null;
+
+    /**
+     * @return ConnectDb|null
+     * Get Instance establishes a singleton design pattern
+     */
+    public static function getInstance()
+    {
+        if (!self::$instance) {
+            self::$instance = new FAQService();
+        }
+        return self::$instance;
+    }
 
     // CREATE
 
@@ -41,7 +54,24 @@ class FAQService {
 
     // DELETE
 
+    /**
+     * HTML Components
+     */
 
+    public function getCollapsibleFAQs(){
+        $data = $this->getAllFAQs();
+        $allCollapsibleItems = '';
+
+        foreach ($data as $faq){
+            $allCollapsibleItems .= '<li>
+                    <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>'.$faq->getQuestion().'</div>
+                    <div class="collapsible-body cust-color-white"><span>'.$faq->getAnswer().'</span></div>
+                  </li>';
+        }
+
+        return $allCollapsibleItems;
+
+    }
 }
 
 ?>

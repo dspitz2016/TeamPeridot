@@ -6,6 +6,9 @@ include '../services/FAQService.class.php';
 $main = Main::getInstance();
 $main->getHeader();
 $main->getNavigationBar();
+
+$faqService = new FAQService();
+
 ?>
 
 <!--<div class="parallax-container">-->
@@ -25,17 +28,7 @@ $main->getNavigationBar();
             <ul class="collapsible" data-collapsible="accordion">
 
                 <?php
-                $faqService = new FAQService();
-                $data = $faqService->getAllFAQs();
-
-                foreach ($data as $faq){
-                    echo '<li>
-                            <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>'.$faq->getQuestion().'</div>
-                            <div class="collapsible-body cust-color-white"><span>'.$faq->getAnswer().'</span></div>
-                          </li>';
-                }
-
-
+                    echo $faqService->getCollapsibleFAQs();
                 ?>
 
             </ul>

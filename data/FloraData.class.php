@@ -16,7 +16,7 @@ class FloraData {
     }
 
     public function readAllFlora(){
-
+        return ConnectDb::getInstance()->returnObject("", "Select * FROM Flora");
     }
 
     public function updateFlora(){
