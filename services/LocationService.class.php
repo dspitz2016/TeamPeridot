@@ -65,6 +65,43 @@ class LocationService {
         return $locationData->getLocationModalInfo($id);
     }
 
+    /**
+     * Admin CRUD Styling
+     */
+    public function readLocationTable(){
+        $data = $this->getAllLocationsAsPins();
+        $locationTable = "
+                    <h3>Locations</h3>
+                    <table class='responsive-table striped'>
+                    <thead>
+                      <tr>
+                          <th>Location Name</th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>";
+
+
+        foreach($data as $location){
+            $locationTable .= "
+                      <tr>
+                        <td>".$location->getName()."</td>
+                        <td><button class='btn waves-effect waves-light green' type='submit' onclick='alert()'> Edit
+                            <i class='material-icons'>edit</i>
+                        </button></td>  
+                        <td><button class='btn waves-effect waves-light red' type='submit' onclick='alert()'> Delete
+                            <i class='material-icons'>delete</i>
+                        </button></td> 
+                      </tr>
+            ";
+        }
+
+        $locationTable .= "</tbody></table>";
+
+        return $locationTable;
+    }
+
 }
 
 ?>

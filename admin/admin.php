@@ -3,9 +3,10 @@
     session_start();
 
     include '../components/Main.class.php';
+    include '../services/LocationService.class.php';
 
     $main = Main::getInstance();
-	$main->getHeader();
+	$main->getAdminHeader();
 
 
 	if(!isset($_SESSION['email'])){
@@ -13,10 +14,9 @@
     }
 
     $main->getAdminSideBar();
+
+	$locationService = new LocationService();
 ?>
-
-
-
 
 <!-- cust-nav used for media query -->
 <nav class="cust-nav">
@@ -26,11 +26,8 @@
 
 <!-- main class used for resizing in the media query -->
 <div class="main">
-
-    <h1 class="center-align">Rapids Cemetery</h1>
-
     <div class="tabularData">
-        show data formatted as a table here
+        <?php echo $locationService->readLocationTable(); ?>
     </div>
 
 <!--    <form action="#" class="card-panel light-blue lighten-5">-->

@@ -79,6 +79,21 @@ class Main {
     /**
      * Admin Things
      */
+
+    public function getAdminHeader(){
+        echo '<!DOCTYPE html>';
+        echo '<html>';
+        echo '<head>';
+        echo '<title>Rapids Cemetery</title>';
+        echo    '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
+        echo    '<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection">';
+        echo    '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
+        echo    '<link type="text/css" rel="stylesheet" href="../css/admin.css" />';
+        echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
+        echo '</head>';
+        echo '<body>';
+    }
+
     public function getAdminSideBar(){
         echo '<ul id="slide-out" class="side-nav fixed cust-color-slate col s3">';
         echo '<li><div class="user-view">';
