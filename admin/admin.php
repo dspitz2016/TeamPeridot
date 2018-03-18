@@ -4,6 +4,7 @@
 
     include '../components/Main.class.php';
     include '../services/LocationService.class.php';
+    include '../services/GraveService.class.php';
 
     $main = Main::getInstance();
 	$main->getAdminHeader();
@@ -16,6 +17,8 @@
     $main->getAdminSideBar();
 
 	$locationService = new LocationService();
+	$graveService = new GraveService();
+	var_dump( $graveService->readAllGravesAsObjects());
 ?>
 
 <!-- cust-nav used for media query -->
