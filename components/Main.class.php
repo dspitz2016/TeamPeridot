@@ -33,7 +33,7 @@ class Main {
         echo '<ul class="right hide-on-med-and-down">';
         echo '<li><a href="index.php">History</a></li>';
 //        echo '<li><a href="/pages/tours.php">Tours</a></li>';
-        echo '<li><a href="/pages/widerAreaMap.php">Historic Trail</a></li>';
+        echo '<li><a href="/pages/historicTrails.php">Historic Trail</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
 //        echo '<li><a href="/pages/events.php">Events</a></li>';
@@ -44,7 +44,7 @@ class Main {
         echo '<hr />';
         echo '<li><a href="index.php">Home</a></li>';
 //        echo '<li><a href="/pages/tours.php">Tours</a></li>';
-        echo '<li><a href="/pages/widerAreaMap.php">Historic Trail</a></li>';
+        echo '<li><a href="/pages/historicTrails.php">Historic Trail</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
 //        echo '<li><a href="/pages/events.php">Events</a></li>';

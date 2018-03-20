@@ -15,6 +15,7 @@ class Location {
 	private $imagePath;
 	private $imageDescription;
 	private $pinDesign;
+	private $trailOrder;
 
     /**
      * Location constructor.
@@ -31,8 +32,9 @@ class Location {
      * @param $imagePath
      * @param $imageDescription
      * @param $pinDesign
+     * @param $trailOrder
      */
-    public function __construct($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign)
+    public function __construct($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder)
     {
         $this->idLocation = $idLocation;
         $this->name = $name;
@@ -47,6 +49,7 @@ class Location {
         $this->imagePath = $imagePath;
         $this->imageDescription = $imageDescription;
         $this->pinDesign = $pinDesign;
+        $this->trailOrder = $trailOrder;
     }
 
     /**
@@ -257,18 +260,34 @@ class Location {
         $this->pinDesign = $pinDesign;
     }
 
-    // Allow it to use the create Map Pin Service
-	public function getIdType(){
-    	return "-2";
-	}
+    /**
+     * @return mixed
+     */
+    public function getTrailOrder()
+    {
+        return $this->trailOrder;
+    }
 
-    public function getIdHistoricFilter(){
-    	return "";
-	}
+    /**
+     * @param mixed $trailOrder
+     */
+    public function setTrailOrder($trailOrder)
+    {
+        $this->trailOrder = $trailOrder;
+    }
 
-	public function getIdTrackableObject(){
-    	return "Location";
-	}
+    /**
+     * @return mixed
+     */
+    public function getIdType()
+    {
+        return "";
+    }
+
+    public function getIdHistoricFilter()
+    {
+        return "";
+    }
 
 }
 

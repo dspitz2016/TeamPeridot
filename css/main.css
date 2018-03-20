@@ -3,6 +3,11 @@
 #map {
 	height: 50em;
 }
+
+.flex{
+	display: flex;
+	flex-wrap: wrap;
+}
 /* Optional: Makes the sample page fill the window. */
 
 html, body {
@@ -39,8 +44,6 @@ html, body {
 .cust-nav{
 	display: none;
 }
-
-
 
 /* Override Materialize */
 

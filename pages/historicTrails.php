@@ -14,9 +14,16 @@ $main->getNavigationBar();
 $mapService = new MapService();
 $LocationData = new LocationData();
 $locationService = new LocationService();
+
 ?>
 
-<div id="map"></div>
+<div class="section row">
+    <div class="col s10 push-s1 pull-s1">
+        <div id="map"></div>
+    </div>
+</div>
+
+<?php echo $locationService->getHistoricTrailDetails(); ?>
 
 <script type="text/javascript">
 
