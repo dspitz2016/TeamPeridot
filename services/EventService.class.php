@@ -12,7 +12,6 @@ include '../models/Event.class.php';
  */
 class EventService
 {
-
     /**
      * @return array - returns a list of php objects ordered by date
      */

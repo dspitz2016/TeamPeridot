@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('GMT');
 
 include '../components/Main.class.php';
 include '../services/MapService.class.php';
