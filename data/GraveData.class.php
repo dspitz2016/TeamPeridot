@@ -11,8 +11,28 @@ require_once '../services/ConnectDb.class.php';
  */
 class GraveData {
 
-    public function createGrave(){
+    public function createGrave($firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter){
+        try{
+            $stmnt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Grave (firstName, middleName, lastName, birth, death, description, idHistoricFilter) VALUES (:firstName, :middleName, :lastName, :birth, :death, :description, :idHistoricFilter)");
 
+            // Bind
+            $stmnt->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+            $stmnt->bindParam(':middleName', $middleName, PDO::PARAM_STR);
+            $stmnt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+            $stmnt->bindParam(':birth', $birth, PDO::PARAM_STR);
+            $stmnt->bindParam(':death', $death, PDO::PARAM_INT);
+            $stmnt->bindParam(':description', $description, PDO::PARAM_INT);
+            $stmnt->bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_STR);
+            $stmnt->execute();
+
+            return ConnectDb::getInstance()->getConnection()->lastInsertId();
+
+        }
+        catch(PDOException $e){
+            echo "Failed in create Grave <br/>";
+            echo $e->getMessage();
+            die();
+        }
     }
 
     public function readAllGraves(){

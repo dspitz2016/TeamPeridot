@@ -18,7 +18,7 @@
 
 	$locationService = new LocationService();
 	$graveService = new GraveService();
-	var_dump( $graveService->readAllGravesAsObjects());
+	//var_dump( $graveService->readAllGravesAsObjects());
 ?>
 
 <!-- cust-nav used for media query -->
@@ -29,6 +29,14 @@
 
 <!-- main class used for resizing in the media query -->
 <div class="main">
+    <div class="section">
+        <?php
+            //$graveService->createGrave("Dustin", "Tyler", "Spitz", "1994-06-27", "2018-03-17", "I Tried...", 4, -77.639091, 43.129458, "You might find him", "", "", 1,1);
+
+        ?>
+
+    </div>
+
     <div class="tabularData">
         <?php echo $locationService->readLocationTable(); ?>
     </div>

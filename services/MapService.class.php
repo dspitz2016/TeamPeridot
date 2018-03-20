@@ -71,9 +71,6 @@ class MapService
                 }
               }
         
-              google.maps.event.addListener(map, 'click', function(event) {
-                    infoWindow.close();
-              });
               
               function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                 infoWindow.setPosition(pos);

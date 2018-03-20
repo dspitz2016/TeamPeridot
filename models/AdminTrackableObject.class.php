@@ -3,7 +3,7 @@
 class AdminTrackableObject {
     private $idTrackableObject;
     private $longitude;
-    private $latitute;
+    private $latitude;
     private $scavengerHuntHint;
     private $imagePath;
     private $imageDescription;
@@ -14,18 +14,18 @@ class AdminTrackableObject {
      * AdminTrackableObject constructor.
      * @param $idTrackableObject
      * @param $longitude
-     * @param $latitute
+     * @param $latitude
      * @param $scavengerHuntHint
      * @param $imagePath
      * @param $imageDescription
      * @param $idLocation
      * @param $idType
      */
-    public function __construct($idTrackableObject, $longitude, $latitute, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    public function __construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
     {
         $this->idTrackableObject = $idTrackableObject;
         $this->longitude = $longitude;
-        $this->latitute = $latitute;
+        $this->latitude = $latitude;
         $this->scavengerHuntHint = $scavengerHuntHint;
         $this->imagePath = $imagePath;
         $this->imageDescription = $imageDescription;
@@ -68,17 +68,17 @@ class AdminTrackableObject {
     /**
      * @return mixed
      */
-    public function getLatitute()
+    public function getLatitude()
     {
-        return $this->latitute;
+        return $this->latitude;
     }
 
     /**
-     * @param mixed $latitute
+     * @param mixed $latitude
      */
-    public function setLatitute($latitute)
+    public function setLatitude($latitude)
     {
-        $this->latitute = $latitute;
+        $this->latitude = $latitude;
     }
 
     /**

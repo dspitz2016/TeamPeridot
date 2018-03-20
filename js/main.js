@@ -65,14 +65,14 @@ function loadModalContent(id, idType){
         	var jsonData = $.parseJSON(jsonStr);
         	var htmlContent = "";
 
-        	if(jsonData.idType == 0){ //Grave
+        	if(jsonData.idType == 1){ //Grave
 
                 htmlContent = '<h4>' + jsonData.firstName + ' ' + jsonData.middleName + ' ' + jsonData.lastName + '</h4> <br/>' +
                               '<img src="' + jsonData.imagePath +'" alt=""/> <br/>' +
                               '<p>' + jsonData.description + '</p> <br/>';
 
 
-            } else if(jsonData.idType == 1){ // Vegetation
+            } else if(jsonData.idType == 2){ // Vegetation
 
                 htmlContent =   '<h4>' + jsonData.commonName + '</h4> <br/>' +
                                 '<img height="150px" src="' + jsonData.imagePath +'" alt=""/> <br/>'+

@@ -87,12 +87,12 @@ Class MapData{
 
     public function getModalInformation($id, $idType){
         // Grave
-        if($idType == 0) {
+        if($idType == 1) {
             return json_encode(ConnectDb::getInstance()->returnObject("", "Select * from TrackableObject tobj
                 Join Grave g on tobj.idGrave = g.idGrave where tobj.idTrackableObject = 
                 " . $id)[0]);
         }
-        else if ($idType == 1){
+        else if ($idType == 2){
             return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj
 Join Flora v on tobj.idFlora = v.idFlora
 where tobj.idTrackableObject = ".$id)[0]);
