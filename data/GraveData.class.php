@@ -43,8 +43,41 @@ class GraveData {
                                                                             LEFT OUTER JOIN HistoricFilter HF ON G.idHistoricFilter = HF.idHistoricFilter");
     }
 
-    public function updateGrave(){
+    public function updateGrave($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter){
+        try{
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE Grave 
+                                                                                   SET firstName = :firstName, 
+                                                                                   middleName = :middleName, 
+                                                                                   lastName = :lastName, 
+                                                                                   birth = :birth, 
+                                                                                   death = :death, 
+                                                                                   description = :description, 
+                                                                                   idHistoricFilter = :idHistoricFilter 
+                                                                                   WHERE idGrave = :idGrave");
 
+
+            // Bind
+            $stmt->bindParam(':idGrave', $idGrave, PDO::PARAM_INT);
+            $stmt->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+            $stmt->bindParam(':middleName', $middleName, PDO::PARAM_STR);
+            $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+            $stmt->bindParam(':birth', $birth, PDO::PARAM_STR);
+            $stmt->bindParam(':death', $death, PDO::PARAM_INT);
+            $stmt->bindParam(':description', $description, PDO::PARAM_INT);
+
+            if ($idHistoricFilter == null) {
+                $stmt -> bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_NULL);
+            }else {
+                $stmt -> bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_INT);
+            }
+
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo "Failed in create Grave <br/>";
+            echo $e->getMessage();
+            die();
+        }
     }
 
     public function deleteGrave(){

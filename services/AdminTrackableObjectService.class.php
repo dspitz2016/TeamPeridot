@@ -45,8 +45,18 @@ class AdminTrackableObjectService {
     }
 
     // UPDATE
-    public function updateTrackableObject(){
+    public function updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+        $idTrackableObject = filter_var($idTrackableObject, FILTER_SANITIZE_NUMBER_INT);
+        $longitude = filter_var($longitude, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $latitude = filter_var($latitude, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $scavengerHuntHint = filter_var($scavengerHuntHint, FILTER_SANITIZE_STRING);
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_URL);
+        $imageDescription = filter_var($imageDescription, FILTER_SANITIZE_STRING);
+        $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+        $idType = filter_var($idType, FILTER_SANITIZE_NUMBER_INT);
 
+        // Update TrackableObject Data
+        $this->adminTrackableObjectData->updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
     }
 
     // DELETE

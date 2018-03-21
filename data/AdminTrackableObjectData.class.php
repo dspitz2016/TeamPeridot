@@ -10,18 +10,18 @@ class AdminTrackableObjectData {
     public function createTrackableObject($longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
         try{
 
-            $stmnt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO `TrackableObject` (longitude, latitude, scavengerHuntHint, imagePath, imageDescription, idLocation, idType) VALUES (:longitude, :latitude, :scavengerHuntHint, :imagePath, :imageDescription, :idLocation, :idType)");
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO `TrackableObject` (longitude, latitude, scavengerHuntHint, imagePath, imageDescription, idLocation, idType) VALUES (:longitude, :latitude, :scavengerHuntHint, :imagePath, :imageDescription, :idLocation, :idType)");
 
             // Bind
-            $stmnt->bindParam(':longitude', $longitude, PDO::PARAM_STR);
-            $stmnt->bindParam(':latitude', $latitude, PDO::PARAM_STR);
-            $stmnt->bindParam(':scavengerHuntHint', $scavengerHuntHint, PDO::PARAM_STR);
-            $stmnt->bindParam(':imagePath', $imagePath, PDO::PARAM_STR);
-            $stmnt->bindParam(':imageDescription', $imageDescription, PDO::PARAM_STR);
-            $stmnt->bindParam(':idLocation', $idLocation, PDO::PARAM_INT);
-            $stmnt->bindParam(':idType', $idType, PDO::PARAM_INT);
+            $stmt->bindParam(':longitude', $longitude, PDO::PARAM_STR);
+            $stmt->bindParam(':latitude', $latitude, PDO::PARAM_STR);
+            $stmt->bindParam(':scavengerHuntHint', $scavengerHuntHint, PDO::PARAM_STR);
+            $stmt->bindParam(':imagePath', $imagePath, PDO::PARAM_STR);
+            $stmt->bindParam(':imageDescription', $imageDescription, PDO::PARAM_STR);
+            $stmt->bindParam(':idLocation', $idLocation, PDO::PARAM_INT);
+            $stmt->bindParam(':idType', $idType, PDO::PARAM_INT);
 
-            $stmnt->execute();
+            $stmt->execute();
 
             return ConnectDb::getInstance()->getConnection()->lastInsertId();
 
@@ -35,13 +35,13 @@ class AdminTrackableObjectData {
     // UPDATE GRAVE, FLORA, NATURALHISTORY ID
     public function updateReferencedTrackableObject($idTrackableObject, $idReferencedObject, $referenceType){
         try{
-            $stmnt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE TrackableObject SET id".$referenceType." = :idReferencedObject WHERE idTrackableObject = :idTrackableObject ");
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE TrackableObject SET id".$referenceType." = :idReferencedObject WHERE idTrackableObject = :idTrackableObject ");
 
             // Bind Params
-            $stmnt->bindParam(':idTrackableObject', $idTrackableObject, PDO::PARAM_INT);
-            $stmnt->bindParam(':idReferencedObject', $idReferencedObject, PDO::PARAM_INT);
+            $stmt->bindParam(':idTrackableObject', $idTrackableObject, PDO::PARAM_INT);
+            $stmt->bindParam(':idReferencedObject', $idReferencedObject, PDO::PARAM_INT);
 
-            $stmnt->execute();
+            $stmt->execute();
         }
         catch(PDOException $e){
             echo $e->getMessage();
@@ -51,7 +51,28 @@ class AdminTrackableObjectData {
 
     // UPDATE
 
-    public function updateTrackableObject(){
+    public function updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+        try{
+            //global $updateTrackableObjectQuery;
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE TrackableObject
+SET longitude = :longitude, latitude = :latitude, scavengerHuntHint = :scavengerHuntHint, imagePath = :imagePath, imageDescription = :imageDescription, idLocation = :idLocation ,idType = :idType WHERE idTrackableObject = :idTrackableObject");
+
+            $stmt->bindParam(':longitude', $longitude, PDO::PARAM_STR);
+            $stmt->bindParam(':latitude', $latitude, PDO::PARAM_STR);
+            $stmt->bindParam(':scavengerHuntHint', $scavengerHuntHint, PDO::PARAM_STR);
+            $stmt->bindParam(':imagePath', $imagePath, PDO::PARAM_STR);
+            $stmt->bindParam(':imageDescription', $imageDescription, PDO::PARAM_STR);
+            $stmt->bindParam(':idLocation', $idLocation, PDO::PARAM_STR);
+            $stmt->bindParam(':idType', $idType, PDO::PARAM_STR);
+            $stmt->bindParam(':idTrackableObject', $idTrackableObject, PDO::PARAM_STR);
+
+            $stmt->execute();
+            return ConnectDb::getInstance()->getConnection()->lastInsertId();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
 
     }
 
