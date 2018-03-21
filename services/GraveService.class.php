@@ -7,6 +7,10 @@ include '../data/GraveData.class.php';
 include '../models/Grave.class.php';
 include 'AdminTrackableObjectService.class.php';
 
+/**
+ * Class GraveService - Responsible for updating all Grave objects for the application
+ * Extends AdminTrackableObject Service - User must add information for both objects in order to update a Grave
+ */
 class GraveService extends AdminTrackableObjectService {
 
     private $adminTrackableObjectService;
@@ -25,6 +29,9 @@ class GraveService extends AdminTrackableObjectService {
     }
 
 
+    /**
+     * @return array of php grave objects
+     */
     public function readAllGravesAsObjects(){
         $graves = $this->graveData->readAllGraves();
         $allGraves = array();
@@ -55,7 +62,27 @@ class GraveService extends AdminTrackableObjectService {
         return $allGraves;
     }
 
-    // CREATE
+    /**
+     * Creates a new TrackableObject & Grave within the Database
+     * Calls AdminTrackableObjectService to create a new Trackable Object
+     * Filter values before passing them to the database
+     * Calls Grave Data to insert new Grave into the database
+     * Updates the TrackableObjects reference to the Grave object
+     * @param $firstName
+     * @param $middleName
+     * @param $lastName
+     * @param $birth
+     * @param $death
+     * @param $description
+     * @param $idHistoricFilter
+     * @param $longitude
+     * @param $latitude
+     * @param $scavengerHuntHint
+     * @param $imagePath
+     * @param $imageDescription
+     * @param $idLocation
+     * @param $idType
+     */
     public function createGrave($firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter,
                                 $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
 
@@ -79,12 +106,28 @@ class GraveService extends AdminTrackableObjectService {
 
         // Update Trackable object with GraveID
         $this->adminTrackableObjectService->updateReferencedTrackableObject($lastIdTrackableObject, $lastIdGrave, "Grave");
-
-        return $lastIdTrackableObject . " " . $lastIdTrackableObject;
     }
 
 
-    // UPDATE
+    /**
+     * Updates associated graves
+     * @param $idGrave
+     * @param $firstName
+     * @param $middleName
+     * @param $lastName
+     * @param $birth
+     * @param $death
+     * @param $description
+     * @param $idHistoricFilter
+     * @param $idTrackableObject
+     * @param $longitude
+     * @param $latitude
+     * @param $scavengerHuntHint
+     * @param $imagePath
+     * @param $imageDescription
+     * @param $idLocation
+     * @param $idType
+     */
     public function updateGrave($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter,
                                 $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
 
@@ -109,9 +152,15 @@ class GraveService extends AdminTrackableObjectService {
 
     }
 
-    // DELETE
+    /**
+     * @param $idGrave - the grave you want to delete
+     * Database is set to cascade delete the TrackableObject if the idGrave is deleted.
+     */
     public function deleteGrave($idGrave){
+        $idGrave = filter_var($idGrave, FILTER_SANITIZE_NUMBER_INT);
 
+        // Delete Grave
+        $this->graveData->deleteGrave($idGrave);
     }
 }
 

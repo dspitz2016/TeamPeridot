@@ -59,10 +59,6 @@ class AdminTrackableObjectService {
         $this->adminTrackableObjectData->updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
     }
 
-    // DELETE
-    public function deleteTrackableObject(){
-
-    }
 }
 
 ?>

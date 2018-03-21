@@ -36,6 +36,9 @@
 
             //$graveService->updateGrave(16, "Jimmy", "B.", "Smithy", "1999-06-27", "2000-03-17", "abc", "", 14, -77.63913, 43.12935, "You who what me", "tester", "testertester", 1,1);
 
+            //$graveService->deleteGrave(16, 14);
+
+            $graveService->deleteGrave(15)
 
         ?>
 

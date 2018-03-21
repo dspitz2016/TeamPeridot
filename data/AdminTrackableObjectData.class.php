@@ -75,11 +75,6 @@ SET longitude = :longitude, latitude = :latitude, scavengerHuntHint = :scavenger
         }
 
     }
-
-    // DELETE
-    public function deleteTrackableObject(){
-
-    }
 }
 
 ?>
