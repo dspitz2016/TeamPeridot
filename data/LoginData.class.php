@@ -1,6 +1,6 @@
 <?php
 
-include '../services/ConnectDb.class.php';
+require_once '../services/ConnectDb.class.php';
 
 class LoginData {
 

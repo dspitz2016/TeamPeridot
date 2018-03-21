@@ -3,9 +3,9 @@
 ini_set( 'error_reporting', E_ALL );
 ini_set( 'display_errors', true );
 
-include '../data/GraveData.class.php';
-include '../models/Grave.class.php';
-include 'AdminTrackableObjectService.class.php';
+require_once '../data/GraveData.class.php';
+require_once '../models/Grave.class.php';
+require_once 'AdminTrackableObjectService.class.php';
 
 /**
  * Class GraveService - Responsible for updating all Grave objects for the application

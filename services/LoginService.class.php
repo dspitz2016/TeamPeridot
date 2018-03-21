@@ -3,7 +3,7 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 
-include '../data/LoginData.class.php';
+require_once '../data/LoginData.class.php';
 
 /**
  * Used to generate the Location modals on the wider area map

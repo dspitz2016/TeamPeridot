@@ -6,6 +6,7 @@
     include '../services/LocationService.class.php';
     include '../services/GraveService.class.php';
     include '../services/EventService.class.php';
+    require_once '../services/FAQService.class.php';
 
     $main = Main::getInstance();
 	$main->getAdminHeader();
@@ -20,6 +21,7 @@
 	$locationService = new LocationService();
 	$graveService = new GraveService();
 	$eventService = new EventService();
+	$faqService = new FAQService();
 	//var_dump( $graveService->readAllGravesAsObjects());
 ?>
 
@@ -42,6 +44,8 @@
             //$eventService->createEvent("Grave Tour", "An amazing tour of all the graves here at Rapids.", "2018-06-13 12:00:00", "2018-06-13 13:00:00", "imagePath", "imageDescription", 1);
             //$eventService->updateEvent(5, "Grave touring amazing", "AHHHH.", "2018-07-13 12:00:00", "2018-07-13 13:00:00", "imagePath2", "imageDescription2", 1)
             //$eventService->deleteEvent(5);
+
+
         ?>
 
     </div>

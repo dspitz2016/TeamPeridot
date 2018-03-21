@@ -3,11 +3,11 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 
-include '../data/MapData.class.php';
-include '../models/MapPin.class.php';
-include '../models/TypeFilter.class.php';
-include '../models/HistoricFilter.class.php';
-include '../models/Location.class.php';
+require_once '../data/MapData.class.php';
+require_once '../models/MapPin.class.php';
+require_once '../models/TypeFilter.class.php';
+require_once '../models/HistoricFilter.class.php';
+require_once '../models/Location.class.php';
 
 
 /**

@@ -3,7 +3,7 @@
 ini_set( 'error_reporting', E_ALL );
 ini_set( 'display_errors', true );
 
-include '../data/AdminTrackableObjectData.class.php';
+require_once '../data/AdminTrackableObjectData.class.php';
 
 class AdminTrackableObjectService {
 
