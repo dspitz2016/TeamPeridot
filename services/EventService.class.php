@@ -12,6 +12,16 @@ include '../models/Event.class.php';
  */
 class EventService
 {
+    private $eventData;
+
+    /**
+     * EventService constructor.
+     */
+    public function __construct(){
+        $this->eventData = new EventData();
+    }
+
+
     /**
      * @return array - returns a list of php objects ordered by date
      */
@@ -24,18 +34,53 @@ class EventService
 
         foreach ($eventsData as $event) {
             $newEvent = new Event(
+                $event['idEvent'],
                 $event['name'],
                 $event['description'],
                 $event['startTime'],
                 $event['endTime'],
                 $event['imagePath'],
-                $event['imageDescription']
+                $event['imageDescription'],
+                $event['idLocation']
             );
 
             array_push($allEvents, $newEvent);
         };
 
         return $allEvents;
+    }
+
+    public function createEvent($name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation){
+
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
+        $description = filter_var($description, FILTER_SANITIZE_STRING);
+        $startTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($startTime)));
+        $endTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($endTime)));
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_STRING);
+        $imageDescription = filter_var($imageDescription, FILTER_SANITIZE_STRING);
+        $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+
+
+        $this->eventData->createEvent($name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation);
+    }
+
+    public function updateEvent($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation){
+
+        $idEvent = filter_var($idEvent, FILTER_SANITIZE_NUMBER_INT);
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
+        $description = filter_var($description, FILTER_SANITIZE_STRING);
+        $startTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($startTime)));
+        $endTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($endTime)));
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_STRING);
+        $imageDescription = filter_var($imageDescription, FILTER_SANITIZE_STRING);
+        $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+
+        $this->eventData->updateEvent($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation);
+    }
+
+    public function deleteEvent($idEvent){
+        $idEvent = filter_var($idEvent, FILTER_SANITIZE_NUMBER_INT);
+        $this->eventData->deleteEvent($idEvent);
     }
 
     /**

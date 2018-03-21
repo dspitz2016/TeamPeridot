@@ -2,30 +2,52 @@
 
 class Event {
 
+    private $idEvent;
 	private $name;
 	private $description;
 	private $startTime;
 	private $endTime;
 	private $imagePath;
 	private $imageDescription;
+	private $idLocation;
 
     /**
      * Event constructor.
+     * @param $idEvent
      * @param $name
      * @param $description
      * @param $startTime
      * @param $endTime
      * @param $imagePath
      * @param $imageDescription
+     * @param $idLocation
      */
-    public function __construct($name, $description, $startTime, $endTime, $imagePath, $imageDescription)
+    public function __construct($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation)
     {
+        $this->idEvent = $idEvent;
         $this->name = $name;
         $this->description = $description;
         $this->startTime = date('F j, Y, g:i a', strtotime($startTime));
-        $this->endTime = date('F j, Y, g:i a', strtotime($endTime));;
+        $this->endTime = date('F j, Y, g:i a', strtotime($endTime));
         $this->imagePath = $imagePath;
         $this->imageDescription = $imageDescription;
+        $this->idLocation = $idLocation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdEvent()
+    {
+        return $this->idEvent;
+    }
+
+    /**
+     * @param mixed $idEvent
+     */
+    public function setIdEvent($idEvent)
+    {
+        $this->idEvent = $idEvent;
     }
 
     /**
@@ -61,7 +83,7 @@ class Event {
     }
 
     /**
-     * @return mixed
+     * @return false|string
      */
     public function getStartTime()
     {
@@ -69,7 +91,7 @@ class Event {
     }
 
     /**
-     * @param mixed $startTime
+     * @param false|string $startTime
      */
     public function setStartTime($startTime)
     {
@@ -77,7 +99,7 @@ class Event {
     }
 
     /**
-     * @return mixed
+     * @return false|string
      */
     public function getEndTime()
     {
@@ -85,7 +107,7 @@ class Event {
     }
 
     /**
-     * @param mixed $endTime
+     * @param false|string $endTime
      */
     public function setEndTime($endTime)
     {
@@ -122,6 +144,22 @@ class Event {
     public function setImageDescription($imageDescription)
     {
         $this->imageDescription = $imageDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdLocation()
+    {
+        return $this->idLocation;
+    }
+
+    /**
+     * @param mixed $idLocation
+     */
+    public function setIdLocation($idLocation)
+    {
+        $this->idLocation = $idLocation;
     }
 
 

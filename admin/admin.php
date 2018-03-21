@@ -5,6 +5,7 @@
     include '../components/Main.class.php';
     include '../services/LocationService.class.php';
     include '../services/GraveService.class.php';
+    include '../services/EventService.class.php';
 
     $main = Main::getInstance();
 	$main->getAdminHeader();
@@ -18,6 +19,7 @@
 
 	$locationService = new LocationService();
 	$graveService = new GraveService();
+	$eventService = new EventService();
 	//var_dump( $graveService->readAllGravesAsObjects());
 ?>
 
@@ -33,13 +35,13 @@
         <?php
             //$graveService->createGrave("Dustin", "Tyler", "Spitz", "1994-06-27", "2018-03-17", "I Tried...", 4, -77.639091, 43.129458, "You might find him", "", "", 1,1);
             //$graveService->createGrave("John", "J.", "Smith", "1974-06-27", "2018-03-17", "Do words like this work? I don't know hmm.", "", -77.63913, 43.12935, "You might find him here ' 's", "test", "tester", 1,1);
-
             //$graveService->updateGrave(16, "Jimmy", "B.", "Smithy", "1999-06-27", "2000-03-17", "abc", "", 14, -77.63913, 43.12935, "You who what me", "tester", "testertester", 1,1);
-
             //$graveService->deleteGrave(16, 14);
+            //$graveService->deleteGrave(15)
 
-            $graveService->deleteGrave(15)
-
+            //$eventService->createEvent("Grave Tour", "An amazing tour of all the graves here at Rapids.", "2018-06-13 12:00:00", "2018-06-13 13:00:00", "imagePath", "imageDescription", 1);
+            //$eventService->updateEvent(5, "Grave touring amazing", "AHHHH.", "2018-07-13 12:00:00", "2018-07-13 13:00:00", "imagePath2", "imageDescription2", 1)
+            //$eventService->deleteEvent(5);
         ?>
 
     </div>
