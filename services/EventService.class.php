@@ -56,7 +56,7 @@ class EventService
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $startTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($startTime)));
         $endTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($endTime)));
-        $imagePath = filter_var($imagePath, FILTER_SANITIZE_STRING);
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_URL);
         $imageDescription = filter_var($imageDescription, FILTER_SANITIZE_STRING);
         $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
 
@@ -71,7 +71,7 @@ class EventService
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $startTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($startTime)));
         $endTime = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($endTime)));
-        $imagePath = filter_var($imagePath, FILTER_SANITIZE_STRING);
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_URL);
         $imageDescription = filter_var($imageDescription, FILTER_SANITIZE_STRING);
         $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
 

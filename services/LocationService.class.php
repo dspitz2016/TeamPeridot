@@ -24,12 +24,22 @@ if(isset($_GET['idLocation'])){
 
 class LocationService {
 
+    private $locationData;
+
+    /**
+     * LocationService constructor.
+     */
+    public function __construct()
+    {
+        $this->locationData = new LocationData();
+    }
+
+
     /**
      * @return array - Returns all location as php objects
      */
     public function getAllLocationsAsPins(){
-        $locationData = new LocationData();
-        $pinData = $locationData->getAllLocationPinData();
+        $pinData = $this->locationData->getAllLocationPinData();
 
         $temp = array();
 
@@ -55,6 +65,51 @@ class LocationService {
         }
 
         return $temp;
+    }
+
+    // Create
+    public function createLocation($name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder){
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
+        $description = filter_var($description, FILTER_SANITIZE_STRING);
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        $longitude = filter_var($longitude, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $latitude = filter_var($latitude, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $address = filter_var($address, FILTER_SANITIZE_STRING);
+        $city = filter_var($city, FILTER_SANITIZE_STRING);
+        $state = filter_var($state, FILTER_SANITIZE_STRING);
+        $zipcode = filter_var($zipcode, FILTER_SANITIZE_STRING);
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_URL);
+        $imageDescription = filter_var($imageDescription, FILTER_SANITIZE_STRING);
+        $pinDesign = filter_var($pinDesign, FILTER_SANITIZE_URL);
+        $trailOrder = filter_var($trailOrder, FILTER_SANITIZE_NUMBER_INT);
+
+        $this->locationData->createLocation($name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder);
+    }
+
+    // Update
+    public function updateLocation($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder){
+        $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
+        $description = filter_var($description, FILTER_SANITIZE_STRING);
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        $longitude = filter_var($longitude, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $latitude = filter_var($latitude, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $address = filter_var($address, FILTER_SANITIZE_STRING);
+        $city = filter_var($city, FILTER_SANITIZE_STRING);
+        $state = filter_var($state, FILTER_SANITIZE_STRING);
+        $zipcode = filter_var($zipcode, FILTER_SANITIZE_STRING);
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_URL);
+        $imageDescription = filter_var($imageDescription, FILTER_SANITIZE_STRING);
+        $pinDesign = filter_var($pinDesign, FILTER_SANITIZE_URL);
+        $trailOrder = filter_var($trailOrder, FILTER_SANITIZE_NUMBER_INT);
+
+        $this->locationData->updateLocation($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder);
+    }
+
+    // Delete
+    public function deleteLocation($idLocation){
+        $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+        ConnectDb::getInstance()->deleteObject($idLocation, "Location");
     }
 
     /**
