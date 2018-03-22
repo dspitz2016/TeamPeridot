@@ -85,6 +85,19 @@ class ConnectDb
         }
     }
 
+    public function deleteObject($objectID, $tableName){
+        try{
+            $stmt = $this->getConnection()->prepare("DELETE FROM ". $tableName . " Where id" .$tableName. " = :objectID");
+            $stmt->bindParam(':objectID', $objectID, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo 'Failed to delete ' . $tableName;
+            echo $e->getMessage();
+            die();
+        }
+    }
+
 }
 
 ?>
