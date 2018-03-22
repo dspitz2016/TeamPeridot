@@ -24,9 +24,9 @@ class Grave extends AdminTrackableObject {
      * @param $idHistoricFilter
      */
     public function __construct($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter,
-                                $idTrackableObject, $longitude, $latitute, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+                                $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
     {
-        AdminTrackableObject::__construct($idTrackableObject, $longitude, $latitute, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
+        AdminTrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
         $this->idGrave = $idGrave;
         $this->firstName = $firstName;
         $this->middleName = $middleName;

@@ -13,7 +13,7 @@ require_once 'TrackableObjectService.class.php';
  */
 class GraveService extends TrackableObjectService {
 
-    private $adminTrackableObjectService;
+    private $trackableObjectService;
     private $graveData;
 
     /**
@@ -24,7 +24,7 @@ class GraveService extends TrackableObjectService {
     public function __construct()
     {
         parent::__construct();
-        $this->adminTrackableObjectService = new TrackableObjectService();
+        $this->trackableObjectService = new TrackableObjectService();
         $this->graveData = new GraveData();
     }
 
@@ -99,13 +99,13 @@ class GraveService extends TrackableObjectService {
         }
 
         // Create a trackable object
-        $lastIdTrackableObject = $this->adminTrackableObjectService->createTrackableObject($longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
+        $lastIdTrackableObject = $this->trackableObjectService->createTrackableObject($longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
 
         // Create a Grave Object
         $lastIdGrave = $this->graveData->createGrave($firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter);
 
         // Update Trackable object with GraveID
-        $this->adminTrackableObjectService->updateReferencedTrackableObject($lastIdTrackableObject, $lastIdGrave, "Grave");
+        $this->trackableObjectService->updateReferencedTrackableObject($lastIdTrackableObject, $lastIdGrave, "Grave");
     }
 
 
@@ -145,7 +145,7 @@ class GraveService extends TrackableObjectService {
         }
 
         // Update Trackable Object
-        $this->adminTrackableObjectService->updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
+        $this->trackableObjectService->updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
 
         // Update Grave Object
         $this->graveData->updateGrave($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter);

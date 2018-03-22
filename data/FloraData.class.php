@@ -11,20 +11,52 @@ require_once '../services/ConnectDb.class.php';
  */
 class FloraData {
 
-    public function createFlora(){
-
-    }
-
     public function readAllFlora(){
         return ConnectDb::getInstance()->returnObject("", "Select * FROM Flora");
     }
 
-    public function updateFlora(){
 
+    public function createFlora($commonName, $scientificName, $description){
+        try{
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Flora 
+                                                                                  (commonName, scientificName, description)
+                                                                                  VALUES (:commonName, :scientificName, :description)");
+
+            $stmt->bindParam(':commonName', $commonName, PDO::PARAM_STR);
+            $stmt->bindParam(':scientificName', $scientificName, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return ConnectDb::getInstance()->getConnection()->lastInsertId();
+
+        }
+        catch(PDOException $e){
+            echo 'Failed to create Flora';
+            echo $e->getMessage();
+            die();
+        }
     }
 
-    public function deleteFlora(){
+    public function updateFlora($idFlora, $commonName, $scientificName, $description){
+        try{
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE Flora
+                                                                                    SET commonName = :commonName,
+                                                                                        scientificName = :scientificName,
+                                                                                        description = :description
+                                                                                    WHERE idFlora = :idFlora");
+            $stmt->bindParam(':idFlora', $idFlora, PDO::PARAM_INT);
+            $stmt->bindParam(':commonName', $commonName, PDO::PARAM_STR);
+            $stmt->bindParam(':scientificName', $scientificName, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
 
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo 'Failed to update flora';
+            echo $e->getMessage();
+            die();
+        }
     }
 
 }

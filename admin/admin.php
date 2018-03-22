@@ -4,7 +4,8 @@
 
     include '../components/Main.class.php';
     include '../services/LocationService.class.php';
-    include '../services/GraveService.class.php';
+    //include '../services/GraveService.class.php';
+    include '../services/FloraService.class.php';
     include '../services/EventService.class.php';
     include '../services/FAQService.class.php';
 
@@ -19,7 +20,8 @@
     $main->getAdminSideBar();
 
 	$locationService = new LocationService();
-	$graveService = new GraveService();
+	//$graveService = new GraveService();
+    $floraService = new FloraService();
 	$eventService = new EventService();
 	$faqService = new FAQService();
 ?>
@@ -38,6 +40,10 @@
             //$graveService->createGrave("John", "J.", "Smith", "1974-06-27", "2018-03-17", "Do words like this work? I don't know hmm.", "", -77.63913, 43.12935, "You might find him here ' 's", "test", "tester", 1,1);
             //$graveService->updateGrave(6, "Jimmy", "B.", "Smithy", "1999-06-27", "2000-03-17", "abc", "", 14, -77.63913, 43.12935, "You who what me", "tester", "testertester", 1,1);
             //$graveService->deleteGrave(6);
+
+            //$floraService->createFlora("Tropical Pitcher Plant", "Nepenthes Ventricosa", "Amazing", -77.639081, 43.129468, "Carnivorous Plant", "/image/path", "image descriptions", 1, 2);
+            //$floraService->updateFlora(6,"Tropical Pitcher", "Nepenthes truncata", "Amazingadsf", 15, -77.639081, 43.129468, "Carnivorous Plants", "/image/pathasdf", "image descriptionssdf", 1, 2);
+            //$floraService->deleteFlora(6);
 
             //$eventService->createEvent("Grave Tour", "An amazing tour of all the graves here at Rapids.", "2018-06-13 12:00:00", "2018-06-13 13:00:00", "imagePath", "imageDescription", 1);
             //$eventService->updateEvent(5, "Grave touring amazing", "AHHHH.", "2018-07-13 12:00:00", "2018-07-13 13:00:00", "imagePath2", "imageDescription2", 1)

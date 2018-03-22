@@ -16,9 +16,9 @@ class Flora extends AdminTrackableObject {
      * @param $description
      */
     public function __construct($idFlora, $commonName, $scientificName, $description,
-                                $idTrackableObject, $longitude, $latitute, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+                                $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
     {
-        AdminTrackableObject::__construct($idTrackableObject, $longitude, $latitute, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
+        AdminTrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
         $this->idFlora = $idFlora;
         $this->commonName = $commonName;
         $this->scientificName = $scientificName;
