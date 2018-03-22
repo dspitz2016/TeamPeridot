@@ -5,13 +5,13 @@ ini_set( 'display_errors', true );
 
 require_once '../data/GraveData.class.php';
 require_once '../models/Grave.class.php';
-require_once 'AdminTrackableObjectService.class.php';
+require_once 'TrackableObjectService.class.php';
 
 /**
  * Class GraveService - Responsible for updating all Grave objects for the application
  * Extends AdminTrackableObject Service - User must add information for both objects in order to update a Grave
  */
-class GraveService extends AdminTrackableObjectService {
+class GraveService extends TrackableObjectService {
 
     private $adminTrackableObjectService;
     private $graveData;
@@ -24,7 +24,7 @@ class GraveService extends AdminTrackableObjectService {
     public function __construct()
     {
         parent::__construct();
-        $this->adminTrackableObjectService = new AdminTrackableObjectService();
+        $this->adminTrackableObjectService = new TrackableObjectService();
         $this->graveData = new GraveData();
     }
 
@@ -64,7 +64,7 @@ class GraveService extends AdminTrackableObjectService {
 
     /**
      * Creates a new TrackableObject & Grave within the Database
-     * Calls AdminTrackableObjectService to create a new Trackable Object
+     * Calls TrackableObjectService to create a new Trackable Object
      * Filter values before passing them to the database
      * Calls Grave Data to insert new Grave into the database
      * Updates the TrackableObjects reference to the Grave object

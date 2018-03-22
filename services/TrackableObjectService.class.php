@@ -3,19 +3,19 @@
 ini_set( 'error_reporting', E_ALL );
 ini_set( 'display_errors', true );
 
-require_once '../data/AdminTrackableObjectData.class.php';
+require_once '../data/TrackableObjectData.class.php';
 
-class AdminTrackableObjectService {
+class TrackableObjectService {
 
     private $adminTrackableObjectData;
 
     /**
-     * AdminTrackableObjectService constructor.
+     * TrackableObjectService constructor.
      * @param $adminTrackableObjectData
      */
     public function __construct()
     {
-        $this->adminTrackableObjectData = new AdminTrackableObjectData();
+        $this->adminTrackableObjectData = new TrackableObjectData();
     }
 
 

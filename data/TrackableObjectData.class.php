@@ -4,7 +4,7 @@ ini_set( 'display_errors', true );
 
 require_once '../services/ConnectDb.class.php';
 
-class AdminTrackableObjectData {
+class TrackableObjectData {
 
     // CREATE
     public function createTrackableObject($longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){

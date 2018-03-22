@@ -1,5 +1,5 @@
 <?php
-include 'AdminTrackableObject.class.php';
+include 'TrackableObject.class.php';
 
 class Flora extends AdminTrackableObject {
 
