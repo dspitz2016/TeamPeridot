@@ -13,21 +13,26 @@ require_once '../models/FAQ.class.php';
  */
 class FAQService {
 
-    private static $instance = null;
+    private $faqData;
 
     /**
-     * @return ConnectDb|null
-     * Get Instance establishes a singleton design pattern
+     * FAQService constructor.
+     * @param $faqData
      */
-    public static function getInstance()
+    public function __construct()
     {
-        if (!self::$instance) {
-            self::$instance = new FAQService();
-        }
-        return self::$instance;
+        $this->faqData = new FAQData();
     }
 
+
     // CREATE
+    public function createFAQ($question, $answer, $idLocation){
+        $question = filter_var($question, FILTER_SANITIZE_STRING);
+        $answer = filter_var($answer, FILTER_SANITIZE_STRING);
+        $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+
+        $this->faqData->createFAQ($question, $answer, $idLocation);
+    }
 
     /**
      * @return array - Retuns array of FAQ Objects
@@ -41,7 +46,8 @@ class FAQService {
             $newFaq = new FAQ(
                     $faq['idFAQ'],
                     $faq['question'],
-                    $faq['answer']
+                    $faq['answer'],
+                    $faq['idLocation']
             );
 
             array_push($allFAQs, $newFaq);
@@ -51,8 +57,22 @@ class FAQService {
     }
 
     // UPDATE
+    public function updateFAQ($idFAQ, $question, $answer, $idLocation){
+        $idFAQ = filter_var($idFAQ, FILTER_SANITIZE_NUMBER_INT);
+        $question = filter_var($question, FILTER_SANITIZE_STRING);
+        $answer = filter_var($answer, FILTER_SANITIZE_STRING);
+        $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+
+        $this->faqData->updateFAQ($idFAQ, $question, $answer, $idLocation);
+    }
 
     // DELETE
+    public function deleteFAQ($idFAQ){
+        $idFAQ = filter_var($idFAQ, FILTER_SANITIZE_NUMBER_INT);
+        ConnectDb::getInstance()->deleteObject($idFAQ, "FAQ");
+        //$this->faqData->deleteFAQ($idFAQ);
+    }
+
 
     /**
      * HTML Components

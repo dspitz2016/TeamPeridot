@@ -65,19 +65,6 @@ class EventData {
             die();
         }
     }
-
-    public function deleteEvent($idEvent){
-        try{
-            $stmt = ConnectDb::getInstance()->getConnection()->prepare("DELETE FROM Event WHERE idEvent= :idEvent");
-            $stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
-            $stmt->execute();
-        }
-        catch(PDOException $e){
-            echo "Failed in delete Event <br/>";
-            echo $e->getMessage();
-            die();
-        }
-    }
 }
 
 ?>

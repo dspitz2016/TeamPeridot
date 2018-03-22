@@ -80,7 +80,7 @@ class EventService
 
     public function deleteEvent($idEvent){
         $idEvent = filter_var($idEvent, FILTER_SANITIZE_NUMBER_INT);
-        $this->eventData->deleteEvent($idEvent);
+        ConnectDb::getInstance()->deleteObject($idEvent, "Event");
     }
 
     /**

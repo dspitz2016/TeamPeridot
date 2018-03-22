@@ -80,17 +80,4 @@ class GraveData {
         }
     }
 
-    public function deleteGrave($idGrave){
-        try{
-            $stmt = ConnectDb::getInstance()->getConnection()->prepare("DELETE FROM Grave WHERE idGrave= :idGrave");
-            $stmt->bindParam(':idGrave', $idGrave, PDO::PARAM_INT);
-            $stmt->execute();
-        }
-        catch(PDOException $e){
-            echo "Failed in delete Grave <br/>";
-            echo $e->getMessage();
-            die();
-        }
-    }
-
 }

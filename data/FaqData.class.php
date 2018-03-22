@@ -8,23 +8,8 @@ require_once '../services/ConnectDb.class.php';
 class FAQData {
 
     private static $instance = null;
-    private $conn;
 
-    /**
-     * Login constructor.
-     */
-    public function __construct()
-    {
-        try{
-            $this->conn = ConnectDb::getInstance()->getConnection();
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-            die();
-        }
-    }
-
-    public static function getInstance()
+    static function getInstance()
     {
         echo "Login Instance <br/>";
 
@@ -36,6 +21,22 @@ class FAQData {
     }
 
     // CREATE
+    public function createFAQ($question, $answer, $idLocation){
+        try{
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT into FAQ (question, answer, idLocation) VALUES (:question, :answer, :idLocation)");
+
+            $stmt->bindParam(':question', $question, PDO::PARAM_STR);
+            $stmt->bindParam(':answer', $answer, PDO::PARAM_STR);
+            $stmt->bindParam(':idLocation', $idLocation, PDO::PARAM_STR);
+
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo "Failed in create FAQ <br/>";
+            echo $e->getMessage();
+            die();
+        }
+    }
 
     // READ
     public function getAllFAQs(){
@@ -43,8 +44,27 @@ class FAQData {
     }
 
     // UPDATE
+    public function updateFAQ($idFAQ, $question, $answer, $idLocation){
+        try{
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("Update FAQ
+                                                                                    SET question = :question,
+                                                                                        answer = :answer,
+                                                                                        idLocation = :idLocation
+                                                                                    WHERE idFAQ = :idFAQ");
 
-    // DELETE
+            $stmt->bindParam(':question', $question, PDO::PARAM_STR);
+            $stmt->bindParam(':answer', $answer, PDO::PARAM_STR);
+            $stmt->bindParam(':idLocation', $idLocation, PDO::PARAM_STR);
+            $stmt->bindParam(':idFAQ', $idFAQ, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo "Failed to update FAQ";
+            echo $e->getMessage();
+            die();
+        }
+    }
+
 }
 
 ?>

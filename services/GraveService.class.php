@@ -158,9 +158,7 @@ class GraveService extends AdminTrackableObjectService {
      */
     public function deleteGrave($idGrave){
         $idGrave = filter_var($idGrave, FILTER_SANITIZE_NUMBER_INT);
-
-        // Delete Grave
-        $this->graveData->deleteGrave($idGrave);
+        ConnectDb::getInstance()->deleteObject($idGrave, "Grave");
     }
 }
 
