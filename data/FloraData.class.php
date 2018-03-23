@@ -12,7 +12,10 @@ require_once '../services/ConnectDb.class.php';
 class FloraData {
 
     public function readAllFlora(){
-        return ConnectDb::getInstance()->returnObject("", "Select * FROM Flora");
+        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation, F.commonName, F.scientificName, F.description, F.idFlora
+                                                                            FROM Flora F 
+                                                                            JOIN TrackableObject T ON F.idFlora = T.idFlora 
+                                                                            JOIN Type TF ON T.idType = TF.idType");
     }
 
 

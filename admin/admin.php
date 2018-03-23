@@ -5,7 +5,8 @@
     include '../components/Main.class.php';
     include '../services/LocationService.class.php';
     //include '../services/GraveService.class.php';
-    include '../services/FloraService.class.php';
+    //include '../services/FloraService.class.php';
+    include '../services/NaturalHistoryService.class.php';
     include '../services/EventService.class.php';
     include '../services/FAQService.class.php';
 
@@ -21,8 +22,10 @@
 
 	$locationService = new LocationService();
 	//$graveService = new GraveService();
-    $floraService = new FloraService();
-	$eventService = new EventService();
+    //$floraService = new FloraService();
+	$naturalHistoryService = new NaturalHistoryService();
+
+    $eventService = new EventService();
 	$faqService = new FAQService();
 ?>
 
@@ -44,6 +47,10 @@
             //$floraService->createFlora("Tropical Pitcher Plant", "Nepenthes Ventricosa", "Amazing", -77.639081, 43.129468, "Carnivorous Plant", "/image/path", "image descriptions", 1, 2);
             //$floraService->updateFlora(6,"Tropical Pitcher", "Nepenthes truncata", "Amazingadsf", 15, -77.639081, 43.129468, "Carnivorous Plants", "/image/pathasdf", "image descriptionssdf", 1, 2);
             //$floraService->deleteFlora(6);
+
+            //$naturalHistoryService->createNaturalHistory("Amazing Rock", "Made this hill", -77.639091, 43.129478, "What made the area like it is?", "images/images", "images descripty", 1, 3);
+            //$naturalHistoryService->updateNaturalHistory(4, "Bryan's Rock", "Why did he do this?", 16, -77.639181, 43.129368, "A good rock", "/image/path", "description of image", 1, 4);
+            //$naturalHistoryService->deleteNaturalHistory(4);
 
             //$eventService->createEvent("Grave Tour", "An amazing tour of all the graves here at Rapids.", "2018-06-13 12:00:00", "2018-06-13 13:00:00", "imagePath", "imageDescription", 1);
             //$eventService->updateEvent(5, "Grave touring amazing", "AHHHH.", "2018-07-13 12:00:00", "2018-07-13 13:00:00", "imagePath2", "imageDescription2", 1)
