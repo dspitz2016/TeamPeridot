@@ -155,6 +155,7 @@ class MapService
                 $typeFilter['idType'],
                 $typeFilter['typeFilter'],
                 $typeFilter['description'],
+                $typeFilter['pinDesign'],
                 $typeFilter['buttonColor']
             );
 

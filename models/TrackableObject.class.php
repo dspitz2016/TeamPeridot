@@ -1,6 +1,6 @@
 <?php
 
-class AdminTrackableObject {
+class TrackableObject {
     private $idTrackableObject;
     private $longitude;
     private $latitude;

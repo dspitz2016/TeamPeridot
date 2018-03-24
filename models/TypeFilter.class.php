@@ -6,6 +6,7 @@ class TypeFilter {
     private $idType;
     private $typeFilter;
     private $description;
+    private $pinDesign;
     private $buttonColor;
 
     /**
@@ -13,13 +14,15 @@ class TypeFilter {
      * @param $idType
      * @param $typeFilter
      * @param $description
+     * @param $pinDesign
      * @param $buttonColor
      */
-    public function __construct($idType, $typeFilter, $description, $buttonColor)
+    public function __construct($idType, $typeFilter, $description, $pinDesign, $buttonColor)
     {
         $this->idType = $idType;
         $this->typeFilter = $typeFilter;
         $this->description = $description;
+        $this->pinDesign = $pinDesign;
         $this->buttonColor = $buttonColor;
     }
 
@@ -74,6 +77,22 @@ class TypeFilter {
     /**
      * @return mixed
      */
+    public function getPinDesign()
+    {
+        return $this->pinDesign;
+    }
+
+    /**
+     * @param mixed $pinDesign
+     */
+    public function setPinDesign($pinDesign)
+    {
+        $this->pinDesign = $pinDesign;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getButtonColor()
     {
         return $this->buttonColor;
@@ -86,7 +105,6 @@ class TypeFilter {
     {
         $this->buttonColor = $buttonColor;
     }
-
 
 }
 

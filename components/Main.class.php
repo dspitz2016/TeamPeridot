@@ -108,9 +108,12 @@ class Main {
         echo '<li><a class="waves-effect" href="#"><i class="material-icons">exposure_plus_1</i>Graves</a></li>';
         echo '<li><a class="waves-effect" href="#"><i class="material-icons">filter_vintage</i>Flora</a></li>';
         echo '<li><a class="waves-effect" href="#"><i class="material-icons">nature</i>Miscellaneous</a></li>';
+        echo '<li><a class="waves-effect" href="#"><i class="material-icons">Misc</i>FAQs</a></li>';
 
         echo '<li><a class="waves-effect" href="#"><i class="material-icons">event</i>Events</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">feedback</i>FAQs</a></li>';
+        echo '<li><a class="waves-effect" href="#"><i class="material-icons">feedback</i>Feedback</a></li>';
+        echo '<li><a class="waves-effect" href="#"><i class="material-icons">Type</i>Type</a></li>';
+        echo '<li><a class="waves-effect" href="#"><i class="material-icons">Historic Filters</i>HIstoricFilter</a></li>';
 
         echo '<li><div class="divider"></div></li>';
 

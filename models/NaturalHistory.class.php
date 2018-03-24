@@ -1,7 +1,7 @@
 <?php
-include 'TrackableObject.class.php';
+require_once 'TrackableObject.class.php';
 
-class NaturalHistory extends AdminTrackableObject {
+class NaturalHistory extends TrackableObject {
 
     private $idNaturalHistory;
     private $name;
@@ -17,7 +17,7 @@ class NaturalHistory extends AdminTrackableObject {
     public function __construct($idNaturalHistory, $name, $description,
                                 $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
     {
-        AdminTrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
+        TrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
         $this->idNaturalHistory = $idNaturalHistory;
         $this->name = $name;
         $this->description = $description;

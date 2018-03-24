@@ -4,11 +4,13 @@
 
     include '../components/Main.class.php';
     include '../services/LocationService.class.php';
-    //include '../services/GraveService.class.php';
-    //include '../services/FloraService.class.php';
+    include '../services/GraveService.class.php';
+    include '../services/FloraService.class.php';
     include '../services/NaturalHistoryService.class.php';
     include '../services/EventService.class.php';
     include '../services/FAQService.class.php';
+    include '../services/HistoricFilterService.class.php';
+    include '../services/TypeFilterService.class.php';
 
     $main = Main::getInstance();
 	$main->getAdminHeader();
@@ -21,12 +23,13 @@
     $main->getAdminSideBar();
 
 	$locationService = new LocationService();
-	//$graveService = new GraveService();
-    //$floraService = new FloraService();
+	$graveService = new GraveService();
+    $floraService = new FloraService();
 	$naturalHistoryService = new NaturalHistoryService();
-
     $eventService = new EventService();
 	$faqService = new FAQService();
+	$historicFilterService = new HistoricFilterService();
+	$typeFilterService = new TypeFilterService();
 ?>
 
 <!-- cust-nav used for media query -->
@@ -64,6 +67,13 @@
             //$locationService->updateLocation(7,"Spongebob's Pineapple", "Where's patrick?", "url/path/to", -77.640953, 43.129256, "abc 123 ","who", "NJ", "222222", "image/pathrer","image descriptionasdf", "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=3|FE6256|000000", 7);
             //$locationService->deleteLocation(7);
 
+            //$historicFilterService->createHistoricFilter("Amazing #2", "ffec89");
+            //$historicFilterService->updateHistoricFilter(7, "oh no", "000000");
+            //$historicFilterService->deleteHistoricFilter(7);
+
+            //$typeFilterService->createTypeFilter("Tinashe",  "good bops", "http://www.pngall.com/map-marker-png", "FF0000");
+            //$typeFilterService->updateAllTypeFilter(6, "Britney", "bops", "/image/", "FFFFF");
+            $typeFilterService->deleteTypeFilter(6);
         ?>
 
     </div>

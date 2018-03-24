@@ -23,7 +23,6 @@ class GraveService extends TrackableObjectService {
      */
     public function __construct()
     {
-        parent::__construct();
         $this->trackableObjectService = new TrackableObjectService();
         $this->graveData = new GraveData();
     }

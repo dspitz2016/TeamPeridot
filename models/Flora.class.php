@@ -1,7 +1,7 @@
 <?php
-include 'TrackableObject.class.php';
+require_once 'TrackableObject.class.php';
 
-class Flora extends AdminTrackableObject {
+class Flora extends TrackableObject {
 
     private $idFlora;
     private $commonName;
@@ -18,7 +18,7 @@ class Flora extends AdminTrackableObject {
     public function __construct($idFlora, $commonName, $scientificName, $description,
                                 $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
     {
-        AdminTrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
+        TrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
         $this->idFlora = $idFlora;
         $this->commonName = $commonName;
         $this->scientificName = $scientificName;

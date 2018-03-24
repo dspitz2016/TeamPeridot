@@ -1,7 +1,7 @@
 <?php
-    include 'TrackableObject.class.php';
+    require_once 'TrackableObject.class.php';
 
-class Grave extends AdminTrackableObject {
+class Grave extends TrackableObject {
 
     private $idGrave;
     private $firstName;
@@ -26,7 +26,7 @@ class Grave extends AdminTrackableObject {
     public function __construct($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter,
                                 $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
     {
-        AdminTrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
+        TrackableObject::__construct($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
         $this->idGrave = $idGrave;
         $this->firstName = $firstName;
         $this->middleName = $middleName;

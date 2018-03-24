@@ -77,12 +77,12 @@ Class MapData{
     }
 
     public function getAllTypeFilters(){
-        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT idType, typeFilter, description, buttonColor FROM Type;
+        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT * FROM Type;
         ) as typeFilters");
     }
 
     public function getAllHistoricFilters(){
-        return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter;");
+        return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT * FROM HistoricFilter;");
     }
 
     public function getModalInformation($id, $idType){
