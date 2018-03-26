@@ -73,110 +73,76 @@
 
             //$typeFilterService->createTypeFilter("Tinashe",  "good bops", "http://www.pngall.com/map-marker-png", "FF0000");
             //$typeFilterService->updateAllTypeFilter(6, "Britney", "bops", "/image/", "FFFFF");
-            $typeFilterService->deleteTypeFilter(6);
+            //$typeFilterService->deleteTypeFilter(6);
         ?>
 
     </div>
 
     <div class="tabularData">
-        <?php echo $locationService->readLocationTable(); ?>
+
+        <!-- Locations -->
+        <div class="navLinks" id="1"> <?php echo $locationService->readLocationTable(); ?> </div>
+
+        <!-- Graves -->
+        <div class="navLinks" id="2"> <?php echo $graveService->readGravesTable(); ?></div>
+
+        <!-- Flora -->
+        <div class="navLinks" id="3"> <?php echo $floraService->readFloraTable(); ?></div>
+
+        <!-- Miscellaneous -->
+        <div class="navLinks" id="4">Miscellaneous Table</div>
+
+        <!-- FAQ -->
+        <div class="navLinks" id="5">FAQ Table</div>
+
+        <!-- Events -->
+        <div class="navLinks" id="6">Events Table</div>
+
+        <!-- Feedback -->
+        <div class="navLinks" id="7">Feedback Table</div>
+
+        <!-- Type -->
+        <div class="navLinks" id="8">Type Table</div>
+
+        <!-- Historic -->
+        <div class="navLinks" id="3">Historic Table</div>
+
     </div>
 
-<!--    <form action="#" class="card-panel light-blue lighten-5">-->
-<!--        <a class="waves-effect" href="#!"><i class="material-icons">add_circle</i>Add Grave</a>-->
-<!---->
-<!--        <div class="row">-->
-<!--            <div class="input-field col s4">-->
-<!--                <input id="first_name" type="text" class="validate">-->
-<!--                <label for="first_name">First Name</label>-->
-<!--            </div>-->
-<!--            ?>-->
-<!---->
-<!--            <div class="input-field col s4">-->
-<!--                <input id="middle_name" type="text" class="validate">-->
-<!--                <label for="middle_name">Middle Name</label>-->
-<!--            </div>-->
-<!---->
-<!--            <div class="input-field col s4">-->
-<!--                <input id="last_name" type="text" class="validate">-->
-<!--                <label for="last_name">Last Name</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="row">-->
-<!--            <label for="birth" class="col s12">Birthdate:</label>-->
-<!--            <div id="birth" class="input-field">-->
-<!--                <div class="input-field col s2">-->
-<!--                    <input id="birthmonth" type="text" class="validate" data-length="2" />-->
-<!--                    <label for="birthmonth">Month</label>-->
-<!--                </div>-->
-<!--                <div class="input-field col s2">-->
-<!--                    <input id="birthday" type="text" class="validate" data-length="2" />-->
-<!--                    <label for="birthday">Day</label>-->
-<!--                </div>-->
-<!--                <div class="input-field col s2">-->
-<!--                    <input id="birthyear" type="text" class="validate" data-length="4" />-->
-<!--                    <label for="birthyear">Year</label>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--            <label for="death" class="col s12">Deathdate:</label>-->
-<!--            <div id="death" class="input-field">-->
-<!--                <div class="input-field col s2">-->
-<!--                    <input id="deathmonth" type="text" class="validate" data-length="2" />-->
-<!--                    <label for="deathmonth">Month</label>-->
-<!--                </div>-->
-<!--                <div class="input-field col s2">-->
-<!--                    <input id="deathday" type="text" class="validate" data-length="2" />-->
-<!--                    <label for="deathday">Day</label>-->
-<!--                </div>-->
-<!--                <div class="input-field col s2">-->
-<!--                    <input id="deathyear" type="text" class="validate" data-length="4" />-->
-<!--                    <label for="deathyear">Year</label>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--            <div class="row">-->
-<!--                <div class="input-field col s12">-->
-<!--                    <textarea id="desc" class="materialize-textarea"></textarea>-->
-<!--                    <label for="desc">Description</label>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
-<!--    </form>-->
-<!---->
-<!---->
-<!--    <form action="#" class="card-panel light-blue lighten-5">-->
-<!--        <a class="waves-effect" href="#!"><i class="material-icons">add_circle</i>Add Vegetation</a>-->
-<!---->
-<!--        <div class="row">-->
-<!--            <div class="input-field col s12">-->
-<!--                <input id="common_name" type="text" class="validate">-->
-<!--                <label for="common_name">Common Name</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="row">-->
-<!--            <div class="input-field col s12">-->
-<!--                <input id="sci_name" type="text" class="validate">-->
-<!--                <label for="sci_name">Scientific Name</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="row">-->
-<!--            <div class="input-field col s12">-->
-<!--                <textarea id="desc" class="materialize-textarea"></textarea>-->
-<!--                <label for="desc">Description</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--</div>-->
-<!--</form>-->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <h5>Create</h5>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Discard Changes</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        </div>
+    </div>
 
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <h5>Edit</h5>
 
-    <?php $main->getScripts(); ?>
-    <?php $main->getFooter(); ?>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Discard Changes</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h5>Are you sure you would like to delete?</h5>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">No</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+
+        </div>
+    </div>
+
+    <?php $main->getAdminScripts(); ?>
+    <?php //$main->getFooter(); ?>
 </div>
 
 

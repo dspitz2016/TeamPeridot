@@ -58,8 +58,9 @@ class Main {
 //        echo    '<script src="'.$this->getPath($page).'js/jquery-3.3.1.min.js"></script>';
 //        echo    '<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
         echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
-        echo    '<script src="../js/materialize.js"></script>';
-        echo    '<script src="../js/main.js"></script>';
+        echo '<script src="../js/materialize.js"></script>';
+        echo '<script src="../js/main.js"></script>';
+
 //        echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>';
     }
 
@@ -78,6 +79,7 @@ class Main {
 
     /**
      * Admin Things
+     * createAction, updateAction, deleteAction used as globals for all modal CRUD actions
      */
 
     public function getAdminHeader(){
@@ -90,6 +92,10 @@ class Main {
         echo    '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
         echo    '<link type="text/css" rel="stylesheet" href="../css/admin.css" />';
         echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
+        echo    "<script>     
+                        var createAction = 'create';
+                        var updateAction = 'update';
+                        var deleteAction = 'delete';</script>";
         echo '</head>';
         echo '<body>';
     }
@@ -104,16 +110,17 @@ class Main {
 
             echo '</div></li>';
 
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">add_location</i>Locations</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">exposure_plus_1</i>Graves</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">filter_vintage</i>Flora</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">nature</i>Miscellaneous</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">Misc</i>FAQs</a></li>';
 
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">event</i>Events</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">feedback</i>Feedback</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">Type</i>Type</a></li>';
-        echo '<li><a class="waves-effect" href="#"><i class="material-icons">Historic Filters</i>HIstoricFilter</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#1"><i class="material-icons">add_location</i>Locations</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#2"><i class="material-icons">exposure_plus_1</i>Graves</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#3"><i class="material-icons">filter_vintage</i>Flora</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#4"><i class="material-icons">nature</i>Miscellaneous</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#5"><i class="material-icons">Misc</i>FAQs</a></li>';
+
+        echo '<li><a class="navTab waves-effect" href="#6"><i class="material-icons">event</i>Events</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#7"><i class="material-icons">feedback</i>Feedback</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">Type</i>Type</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#9"><i class="material-icons">Historic Filters</i>HIstoricFilter</a></li>';
 
         echo '<li><div class="divider"></div></li>';
 
@@ -122,6 +129,13 @@ class Main {
         echo '</form>';
 
         echo '</ul>';
+    }
+
+    public function getAdminScripts(){
+        echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
+        echo '<script src="../js/materialize.js"></script>';
+        echo '<script src="../js/main.js"></script>';
+        echo '<script src="../js/adminModal.js"></script>';
     }
 
 }

@@ -69,7 +69,7 @@ class FloraService extends TrackableObjectService {
         $commonName = filter_var($commonName, FILTER_SANITIZE_STRING);
         $scientificName = filter_var($scientificName, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
-        
+
         $this->floraData->updateFlora($idFlora, $commonName, $scientificName, $description);
         $this->trackableObjectService->updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
     }
@@ -78,6 +78,54 @@ class FloraService extends TrackableObjectService {
         $idFlora = filter_var($idFlora, FILTER_SANITIZE_NUMBER_INT);
         ConnectDb::getInstance()->deleteObject($idFlora, "Flora");
     }
+
+    /**
+     * Admin CRUD Styling
+     */
+    public function readFloraTable(){
+        $data = $this->readAllFlora();
+        $table = "
+                    <div class='row'>
+                            <div class='col s10'>
+                                  <h4>Flora</h4>
+                            </div>
+                            <div class='col s2'>
+                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='createForm()'><i class='material-icons'>add</i></a>
+                            </div>
+                    </div>
+
+                    <table class='responsive-table striped'>
+                    <thead>
+                      <tr>
+                          <th>Common Name</th>
+                          <th>Scientific Name</th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>";
+
+
+        foreach($data as $obj){
+            $table .= "
+                      <tr>
+                        <td>".$obj->getCommonName()."</td>
+                        <td>".$obj->getScientificName()."</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='updateForm()'> Edit
+                            <i class='material-icons'>edit</i>
+                        </button></td>  
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit'> Delete
+                            <i class='material-icons'>delete</i>
+                        </button></td> 
+                      </tr>
+            ";
+        }
+
+        $table .= "</tbody></table>";
+
+        return $table;
+    }
+
 
 }
 

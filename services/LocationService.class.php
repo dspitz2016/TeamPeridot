@@ -157,7 +157,15 @@ class LocationService {
     public function readLocationTable(){
         $data = $this->getAllLocationsAsPins();
         $locationTable = "
-                    <h3>Locations</h3>
+                    <div class='row'>
+                            <div class='col s10'>
+                                  <h4>Locations</h4>
+                            </div>
+                            <div class='col s2'>
+                                   <a class='btn-floating btn-large waves-effect waves-light'><i class='material-icons'>add</i></a>
+                            </div>
+                    </div>
+
                     <table class='responsive-table striped'>
                     <thead>
                       <tr>
@@ -186,6 +194,14 @@ class LocationService {
         $locationTable .= "</tbody></table>";
 
         return $locationTable;
+    }
+
+    public function createLocationForm(){
+
+    }
+
+    public function updateLocationForm(){
+
     }
 
 }

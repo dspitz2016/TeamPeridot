@@ -37,6 +37,12 @@ class Grave extends TrackableObject {
         $this->idHistoricFilter = $idHistoricFilter;
     }
 
+    /**
+     * @return Full Name
+     */
+    public function getFullName(){
+        return $this->firstName . " " . $this->middleName . " " . $this->lastName;
+    }
 
     /**
      * @return mixed

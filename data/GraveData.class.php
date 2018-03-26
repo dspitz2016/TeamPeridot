@@ -10,6 +10,22 @@ require_once '../services/ConnectDb.class.php';
  * Used for Grave CREATE, READ, UPDATE, DELETE QUERIES
  */
 class GraveData {
+    public function readAllGraves(){
+        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, firstName, middleName, lastName, birth, death, G.description, HF.idHistoricFilter, HF.historicFilter, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation
+                                                                            FROM Grave G 
+                                                                            JOIN TrackableObject T ON G.idGrave = T.idGrave 
+                                                                            JOIN Type TF ON T.idType = TF.idType 
+                                                                            LEFT OUTER JOIN HistoricFilter HF ON G.idHistoricFilter = HF.idHistoricFilter");
+    }
+
+    public function getGraveByID($idGrave){
+        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, firstName, middleName, lastName, birth, death, G.description, HF.idHistoricFilter, HF.historicFilter, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation
+                                                                            FROM Grave G 
+                                                                            JOIN TrackableObject T ON G.idGrave = T.idGrave 
+                                                                            JOIN Type TF ON T.idType = TF.idType 
+                                                                            LEFT OUTER JOIN HistoricFilter HF ON G.idHistoricFilter = HF.idHistoricFilter
+                                                                            WHERE T.idGrave =" . $idGrave);
+    }
 
     public function createGrave($firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter){
         try{
@@ -33,14 +49,6 @@ class GraveData {
             echo $e->getMessage();
             die();
         }
-    }
-
-    public function readAllGraves(){
-        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, firstName, middleName, lastName, birth, death, G.description, HF.idHistoricFilter, HF.historicFilter, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation
-                                                                            FROM Grave G 
-                                                                            JOIN TrackableObject T ON G.idGrave = T.idGrave 
-                                                                            JOIN Type TF ON T.idType = TF.idType 
-                                                                            LEFT OUTER JOIN HistoricFilter HF ON G.idHistoricFilter = HF.idHistoricFilter");
     }
 
     public function updateGrave($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter){
