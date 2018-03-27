@@ -74,7 +74,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
             case "Location":
                 break;
             case "Grave";
-                echo "Deleting Grave";
+                echo "Delete Grave GET";
                 //echo $graveService->deleteGrave($_GET['objId']);
                 break;
             case "Flora";
@@ -101,9 +101,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
  * Get Requests only used to populate modals, not required for delete because modal is always the same
  */
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    //parse_str(file_get_contents("php://input"), $data);
-// Cast it to an object
-    //$data = (object)$data;
+
     echo "in POST";
 
     if(!empty($_POST['action'])){
@@ -117,8 +115,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(!empty($_POST['objId'])){
         echo "ID: " . $_POST['objId'];
     }
-    //echo $data[0] . " " . $data[1] . " " . $data[2];
-    //var_dump($data);
 }
 
 
@@ -127,16 +123,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
     $object = $_POST['object'];
     $objId = $_POST['objId'];
 
-    echo "Made it to Post";
+    echo "Made it to Post Request <br/>";
 
     if($action === "create"){
-        echo "made it to create post";
+        echo "Made it to create";
 
         switch($object){
             case "Location":
                 break;
             case "Grave";
-                echo $graveService->createGraveForm();
+                echo "made it to delete Grave </br>";
+                //echo $graveService->createGraveForm();
                 break;
             case "Flora";
                 break;
@@ -186,13 +183,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
     }
 
     if($action === "delete"){
-        echo "made it to delete post";
+        echo "made it to delete <br/>";
         switch($object){
             case "Location":
                 break;
             case "Grave";
                 echo "Deleting Grave";
-                echo $graveService->deleteGrave($objId);
+                //echo $graveService->deleteGrave($objId);
                 break;
             case "Flora";
                 break;

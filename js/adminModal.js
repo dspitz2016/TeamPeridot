@@ -14,6 +14,7 @@ function modalController(action, obj, objId){
         type: "GET",
         url: '../services/AdminModalController.php',
         data: 'action='+action+'&object='+obj+'&objId='+objId,
+
         success: function(data){
             // var obj =  '"' + obj + '"';
             // var objId =  '"' + objId + '"';
@@ -30,8 +31,8 @@ function modalController(action, obj, objId){
                     $('#deleteModal .modal-footer').html(
                         "<a href='#!' class='modal-action modal-close waves-effect waves-red btn-flat'>Maybe</a>"
                         + "<button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' id='deleteBtn' type='submit'> Delete" +
-                        "                            <i class='material-icons'>delete</i>" +
-                        "                        </button>"
+                        "  <i class='material-icons'>delete</i>" +
+                        "  </button>"
                     );
 
                     break;
@@ -52,16 +53,18 @@ function modalController(action, obj, objId){
                 $.ajax({
                     type: "POST",
                     url: '../services/AdminModalController.php',
+
                     data: 'action='+action+'&object='+obj+'&objId='+objId,
+                    processData: false,
+                    // contentType: false,
                     // data: formData,
                     // data: {
                     //     'action': action,
                     //     'object': obj,
                     //     'objId' : objId
                     // },
-                    // contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                    processData: false,
-                    contentType: false,
+                    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+
                     success: function(){
                         console.log("deleted object");
                     },
@@ -72,19 +75,20 @@ function modalController(action, obj, objId){
                 });
 
             });
+
         }
     });
 }
 
 
 
-$(document).delegate('click', '#deleteModal .deleteBtn', function(){
-    alert("Please work");
-});
-
-
-function deleteObject(action){
-    alert("yay: " + action);
-}
+// $(document).delegate('click', '#deleteModal .deleteBtn', function(){
+//     alert("Please work");
+// });
+//
+//
+// function deleteObject(action){
+//     alert("yay: " + action);
+// }
 
 
