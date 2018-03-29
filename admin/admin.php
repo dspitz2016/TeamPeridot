@@ -103,7 +103,7 @@
 
 
         <!-- Historic -->
-        <div class="navLinks" id="8">Historic Table</div>
+        <div class="navLinks" id="8"><?php echo $historicFilterService->readHistoricFilterTable(); ?></div>
 
     </div>
 
