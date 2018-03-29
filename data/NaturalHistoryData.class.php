@@ -31,6 +31,14 @@ class NaturalHistoryData {
                                                                             JOIN Type TF ON T.idType = TF.idType ");
     }
 
+    public function getNaturalHistoryById($idNaturalHistory){
+        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation, NH.idNaturalHistory, NH.name, NH.description, NH.idNaturalHistory
+                                                                            FROM NaturalHistory NH 
+                                                                            JOIN TrackableObject T ON T.idNaturalHistory = NH.idNaturalHistory 
+                                                                            JOIN Type TF ON T.idType = TF.idType 
+                                                                            WHERE NH.idNaturalHistory=".$idNaturalHistory);
+    }
+
     // Update
     public function updateNaturalHistory($idNaturalHistory, $name, $description){
         try{

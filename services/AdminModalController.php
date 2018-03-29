@@ -39,6 +39,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $floraService->createFloraForm();
                 break;
             case "Miscellaneous";
+                echo $naturalHistoryService->createNaturalHistoryForm();
                 break;
             case "FAQs";
                 break;
@@ -67,6 +68,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $floraService->updateFloraForm($objId);
                 break;
             case "Miscellaneous";
+                echo $naturalHistoryService->updateNaturalHistoryForm($objId);
                 break;
             case "FAQs";
                 break;
@@ -82,34 +84,6 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo "update default";
         }
 
-    }
-
-    if($action === "delete"){
-        echo "made it to delete";
-        switch($object){
-            case "Location":
-                break;
-            case "Grave";
-                echo "Delete Grave GET";
-                //echo $graveService->deleteGrave($_GET['objId']);
-                break;
-            case "Flora";
-                break;
-            case "Miscellaneous";
-                break;
-            case "FAQs";
-                break;
-            case "Events";
-                break;
-            case "Feedback";
-                break;
-            case "Type";
-                break;
-            case "HistoricalFilter";
-                break;
-            default:
-                echo "delete default";
-        }
     }
 }
 
@@ -195,6 +169,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     2); // Always Flora
                 break;
             case "Miscellaneous";
+                $naturalHistoryService->createNaturalHistory(
+                    $_POST['name'],
+                    $_POST['description'],
+                    $_POST['longitude'],
+                    $_POST['latitude'],
+                    $_POST['scavengerHuntHint'],
+                    $_POST['imagePath'],
+                    $_POST['imageDescription'],
+                    1,
+                    3);
                 break;
             case "FAQs";
                 break;
@@ -267,6 +251,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     2); // Always Flora
                 break;
             case "Miscellaneous";
+                $naturalHistoryService->updateNaturalHistory(
+                    $_POST['idNaturalHistory'],
+                    $_POST['name'],
+                    $_POST['description'],
+                    $_POST['idTrackableObject'],
+                    $_POST['longitude'],
+                    $_POST['latitude'],
+                    $_POST['scavengerHuntHint'],
+                    $_POST['imagePath'],
+                    $_POST['imageDescription'],
+                    1,
+                    2);
                 break;
             case "FAQs";
                 break;
@@ -298,6 +294,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 $floraService->deleteFlora($objId);
                 break;
             case "Miscellaneous";
+                $naturalHistoryService->deleteNaturalHistory($objId);
                 break;
             case "FAQs";
                 break;
