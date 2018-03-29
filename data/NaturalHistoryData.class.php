@@ -25,7 +25,7 @@ class NaturalHistoryData {
 
     // READ
     public function readAllNaturalHistory(){
-        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation, NH.idNaturalHistory, NH.name, NH.idNaturalHistory
+        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation, NH.idNaturalHistory, NH.name, NH.description, NH.idNaturalHistory
                                                                             FROM NaturalHistory NH 
                                                                             JOIN TrackableObject T ON T.idNaturalHistory = NH.idNaturalHistory 
                                                                             JOIN Type TF ON T.idType = TF.idType ");

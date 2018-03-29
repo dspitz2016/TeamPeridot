@@ -93,7 +93,7 @@
         <hr>
 
         <!-- Miscellaneous -->
-        <div class="navLinks" id="4">Miscellaneous Table</div>
+        <div class="navLinks" id="4"><?php echo $naturalHistoryService->readNaturalHistoryTable(); ?></div>
         <hr>
 
         <!-- FAQ -->

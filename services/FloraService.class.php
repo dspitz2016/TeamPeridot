@@ -84,13 +84,17 @@ class FloraService extends TrackableObjectService {
      */
     public function readFloraTable(){
         $data = $this->readAllFlora();
-        $table = "
+
+        $table = "<script>
+                        var grave = 'Flora';
+                    </script>";
+        $table .= "
                     <div class='row'>
                             <div class='col s10'>
                                   <h4>Flora</h4>
                             </div>
                             <div class='col s2'>
-                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='createForm()'><i class='material-icons'>add</i></a>
+                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, flora, -1)'><i class='material-icons'>add</i></a>
                             </div>
                     </div>
 
@@ -98,7 +102,6 @@ class FloraService extends TrackableObjectService {
                     <thead>
                       <tr>
                           <th>Common Name</th>
-                          <th>Scientific Name</th>
                           <th></th>
                           <th></th>
                       </tr>
@@ -110,11 +113,10 @@ class FloraService extends TrackableObjectService {
             $table .= "
                       <tr>
                         <td>".$obj->getCommonName()."</td>
-                        <td>".$obj->getScientificName()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='updateForm()'> Edit
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, ".$obj->getIdFlora().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, ".$obj->getIdFlora().")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -124,6 +126,7 @@ class FloraService extends TrackableObjectService {
         $table .= "</tbody></table>";
 
         return $table;
+
     }
 
 
