@@ -82,38 +82,28 @@
 
         <!-- Locations -->
         <div class="navLinks" id="1"> <?php echo $locationService->readLocationTable(); ?> </div>
-        <hr>
 
         <!-- Graves -->
         <div class="navLinks" id="2"> <?php echo $graveService->readGravesTable(); ?></div>
-        <hr>
 
         <!-- Flora -->
         <div class="navLinks" id="3"> <?php echo $floraService->readFloraTable(); ?></div>
-        <hr>
 
         <!-- Miscellaneous -->
         <div class="navLinks" id="4"><?php echo $naturalHistoryService->readNaturalHistoryTable(); ?></div>
-        <hr>
 
         <!-- FAQ -->
         <div class="navLinks" id="5"><?php echo $faqService->readFAQTable(); ?></div>
-        <hr>
 
         <!-- Events -->
         <div class="navLinks" id="6"><?php echo $eventService->readEventsTable(); ?></div>
-        <hr>
-
-        <!-- Feedback -->
-        <div class="navLinks" id="7">Feedback Table</div>
-        <hr>
 
         <!-- Type -->
-        <div class="navLinks" id="8">Type Table</div>
-        <hr>
+        <div class="navLinks" id="7"><?php echo $typeFilterService->readTypeTable(); ?></div>
+
 
         <!-- Historic -->
-        <div class="navLinks" id="3">Historic Table</div>
+        <div class="navLinks" id="8">Historic Table</div>
 
     </div>
 

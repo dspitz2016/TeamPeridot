@@ -81,7 +81,7 @@ class NaturalHistoryService extends TrackableObjectService {
         $table .= "
                     <div class='row'>
                             <div class='col s10'>
-                                  <h4>NaturalHistory</h4>
+                                  <h4>Miscellaneous Objects</h4>
                             </div>
                             <div class='col s2'>
                                    <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, miscellaneous, -1)'><i class='material-icons'>add</i></a>

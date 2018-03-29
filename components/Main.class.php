@@ -118,9 +118,8 @@ class Main {
         echo '<li><a class="navTab waves-effect" href="#5"><i class="material-icons">Misc</i>FAQs</a></li>';
 
         echo '<li><a class="navTab waves-effect" href="#6"><i class="material-icons">event</i>Events</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#7"><i class="material-icons">feedback</i>Feedback</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">Type</i>Type</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#9"><i class="material-icons">Historic Filters</i>HIstoricFilter</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#7"><i class="material-icons">Type</i>Type</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">Historic Filters</i>HIstoricFilter</a></li>';
 
         echo '<li><div class="divider"></div></li>';
 
