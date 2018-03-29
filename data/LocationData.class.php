@@ -81,6 +81,10 @@ class LocationData {
         return ConnectDb::getInstance()->returnObject("Location.class", "Select * from Location Order by trailOrder");
     }
 
+    public function getLocationById($idLocation){
+        return ConnectDb::getInstance()->returnObject("", "SELECT * FROM Location WHERE idLocation = ".$idLocation);
+    }
+
     public function getLocationModalInfo($id){
         return json_encode(ConnectDb::getInstance()->returnObject("Location.class", "Select * from Location where idLocation = ".$id)[0]);
     }

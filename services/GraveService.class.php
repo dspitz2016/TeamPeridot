@@ -337,6 +337,11 @@ class GraveService extends TrackableObjectService {
                                 <textarea id="description" name="description" class="materialize-textarea">'.$singleGrave->getDescription().'</textarea>
                             </div>
                         </div>'
+                .  '<div class="row" style="display:none;">
+                            <div class="input-field col s12">
+                                <input id="idGrave" name="idGrave" type="text" value="'.$singleGrave->getIdGrave().'">
+                            </div>
+                        </div>'
                 . $this->locationService->getLocationDropdownByObject($singleGrave->getIdLocation())
                 . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleGrave)
                 . $this->historicFilterService->getHistoricFilterFormDropdownForObject($singleGrave->getIdHistoricFilter());

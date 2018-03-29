@@ -67,6 +67,28 @@ class LocationService {
         return $temp;
     }
 
+    public function getLocationById($idLocation){
+        $IdLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
+        $location = $this->locationData->getLocationById($idLocation);
+        $singleLocation = new Location(
+            $location[0]['idLocation'],
+            $location[0]['name'],
+            $location[0]['description'],
+            $location[0]['url'],
+            $location[0]['longitude'],
+            $location[0]['latitude'],
+            $location[0]['address'],
+            $location[0]['city'],
+            $location[0]['state'],
+            $location[0]['zipcode'],
+            $location[0]['imagePath'],
+            $location[0]['imageDescription'],
+            $location[0]['pinDesign'],
+            $location[0]['trailOrder']
+        );
+
+        return $singleLocation;
+    }
     // Create
     public function createLocation($name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder){
         $name = filter_var($name, FILTER_SANITIZE_STRING);
@@ -156,13 +178,17 @@ class LocationService {
      */
     public function readLocationTable(){
         $data = $this->getAllLocationsAsPins();
-        $locationTable = "
+
+        $table = "<script>
+                        var loc = 'Location';
+                    </script>";
+        $table .= "
                     <div class='row'>
                             <div class='col s10'>
                                   <h4>Locations</h4>
                             </div>
-                            <div class='col s2'>
-                                   <a class='btn-floating btn-large waves-effect waves-light'><i class='material-icons'>add</i></a>
+                               <div class='col s2'>
+                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, loc, -1)'><i class='material-icons'>add</i></a>
                             </div>
                     </div>
 
@@ -170,6 +196,7 @@ class LocationService {
                     <thead>
                       <tr>
                           <th>Location Name</th>
+                          <th>Trail Order</th>
                           <th></th>
                           <th></th>
                       </tr>
@@ -177,38 +204,220 @@ class LocationService {
                     <tbody>";
 
 
-        foreach($data as $location){
-            $locationTable .= "
+        foreach($data as $obj){
+            $table .= "
                       <tr>
-                        <td>".$location->getName()."</td>
-                        <td><button class='btn waves-effect waves-light green' type='submit' onclick='alert()'> Edit
+                        <td>".$obj->getName()."</td>
+                        <td>".$obj->getTrailOrder()."</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, loc, ".$obj->getIdLocation().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red' type='submit' onclick='alert()'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, loc, ".$obj->getIdLocation().")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
             ";
         }
 
-        $locationTable .= "</tbody></table>";
+        $table .= "</tbody></table>";
 
-        return $locationTable;
+        return $table;
     }
 
     public function createLocationForm(){
+        return '
+                        <div class="row"><div class="col s12"><h5>Create Location</h5></div></div>
 
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true">
+                                <label for="name">Name</label>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                                <label for="description">Description</label>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="url" name="url" class="materialize-textarea"></textarea>
+                                <label for="url">Url</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label for="longitude">longitude</label><br/>
+                                <input id="longitude" name="longitude" type="text" required="" aria-required="true">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="latitude">latitude</label><br/>
+                                <input id="latitude" name="latitude" type="text" required="" aria-required="true">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="address" name="address" type="text" class="validate" required="" aria-required="true">
+                                <label for="address">Address</label>
+                            </div>
+                        </div>  
+                        
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <input id="city" name="city" type="text" class="validate" required="" aria-required="true">
+                                <label for="city">City</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id="state" name="state" maxlength="2" text" class="validate" required="" aria-required="true">
+                                <label for="state">State</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id="zipcode" name="zipcode" type="text" class="validate" required="" aria-required="true">
+                                <label for="zipcode">Zip Code</label>
+                            </div>
+                        </div>  
+               
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true">
+                                <label for="imagePath">Image Path</label>
+                            </div>
+                        </div> 
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="imageDescription" name="imageDescription" type="text" class="validate" required="" aria-required="true">
+                                <label for="imageDescription">Image Description</label>
+                            </div>
+                        </div>  
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="pinDesign">Pin Design (URL) - Set chld=trailOrder, or set custom pin design</label><br/>
+                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FE6256|000000">
+                            </div>
+                        </div>  
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="trailOrder" name="trailOrder" type="text" class="validate" required="" aria-required="true">
+                                <label for="trailOrder">Trail Order</label>
+                            </div>
+                        </div>  
+                         
+                       '
+            ;
     }
 
-    public function updateLocationForm(){
+    public function updateLocationForm($idLocation){
+        $singleLocation = $this->getLocationById($idLocation);
 
+        return '
+                        <div class="row"><div class="col s12"><h5>Update Location</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="name">Name</label><br/>
+                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getName().'">
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="description">Description</label><br/>
+                                <textarea id="description" name="description" class="materialize-textarea">'.$singleLocation->getDescription().'</textarea>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="url">Url</label><br/>                            
+                                <input id="url" name="url" class="materialize-textarea" value="'.$singleLocation->getUrl().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label for="longitude">longitude</label><br/>
+                                <input id="longitude" name="longitude" type="text" required="" aria-required="true" value="'.$singleLocation->getLongitude().'">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="latitude">latitude</label><br/>
+                                <input id="latitude" name="latitude" type="text" required="" aria-required="true" value="'.$singleLocation->getLatitude().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="address">Address</label><br/>
+                                <input id="address" name="address" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getAddress().'">
+                            </div>
+                        </div>  
+                        
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <label for="city">City</label><br/>                            
+                                <input id="city" name="city" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getCity().'">
+                            </div>
+                            <div class="input-field col s4">
+                                <label for="state">State</label><br/>                            
+                                <input id="state" name="state" maxlength="2" text" class="validate" required="" aria-required="true" value="'.$singleLocation->getState().'">
+                            </div>
+                            <div class="input-field col s4">
+                                <label for="zipcode">Zip Code</label><br/>
+                                <input id="zipcode" name="zipcode" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getZipcode().'">
+                            </div>
+                        </div>  
+               
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="imagePath">Image Path</label><br/>
+                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getImagePath().'">
+                            </div>
+                        </div> 
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="imageDescription">Image Description</label><br/>
+                                <input id="imageDescription" name="imageDescription" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getImageDescription().'">
+                            </div>
+                        </div>  
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="pinDesign">Pin Design (URL)</label><br/>
+                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getPinDesign().'">
+                            </div>
+                        </div>  
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="trailOrder">Trail Order (Number)</label><br/>
+                                <input id="trailOrder" name="trailOrder" type="number" class="validate" required="" aria-required="true" value="'.$singleLocation->getTrailOrder().'">
+                            </div>
+                        </div>  
+                        
+                        <div class="row" style="display:none;">
+                            <div class="input-field col s12">
+                                <input id="idLocation" name="idLocation" type="number" class="validate" required="" aria-required="true" value="'.$singleLocation->getIdLocation().'">
+                            </div>
+                        </div>  
+                         
+                       '
+
+            ;
     }
 
     public function getLocationDropdownByObject($idLocation){
         $data = $this->getAllLocationsAsPins();
         $elem = '<div class="row">
                     <div class="input-field col s12">
-                    <select name="idHistoricFilter">';
+                    <select name="idLocation">';
         // If the Historic filter is null set the default selected as the Choose an option
         if($idLocation == "" || $idLocation == null){
             $elem .= '<option value="0" disabled selected>Choose your option</option>';

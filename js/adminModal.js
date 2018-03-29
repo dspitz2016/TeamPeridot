@@ -46,6 +46,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("created object");
+                        //location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);
@@ -67,6 +68,8 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("updated object");
+                        //location.reload();
+
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);
