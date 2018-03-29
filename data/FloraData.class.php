@@ -18,6 +18,13 @@ class FloraData {
                                                                             JOIN Type TF ON T.idType = TF.idType");
     }
 
+    public function getFloraById($idFlora){
+        return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation, F.commonName, F.scientificName, F.description, F.idFlora
+                                                                            FROM Flora F 
+                                                                            JOIN TrackableObject T ON F.idFlora = T.idFlora 
+                                                                            JOIN Type TF ON T.idType = TF.idType
+                                                                            WHERE F.idFlora=".$idFlora);
+    }
 
     public function createFlora($commonName, $scientificName, $description){
         try{

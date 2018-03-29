@@ -441,7 +441,6 @@ class LocationService {
 
     public function getDefaultLocationDropdown(){
         $data = $this->getAllLocationsAsPins();
-        echo 'location dropdown';
         $elem = '<div class="row">
                     <div class="input-field col s12">
                     <select name="idLocation">';

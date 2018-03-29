@@ -5,10 +5,22 @@ ini_set( 'display_errors', true );
 
 require_once 'GraveService.class.php';
 require_once 'LocationService.class.php';
+require_once 'FloraService.class.php';
+require_once 'NaturalHistoryService.class.php';
+require_once 'FAQService.class.php';
+require_once 'EventService.class.php';
+require_once 'TypeFilterService.class.php';
+require_once 'HistoricFilterService.class.php';
+
 
 $graveService = new GraveService();
 $locationService = new LocationService();
-
+$floraService = new FloraService();
+$naturalHistoryService = new NaturalHistoryService();
+$faqService = new FAQService();
+$eventService = new EventService();
+$typeFilterService = new TypeFilterService();
+$historicFilterService = new HistoricFilterService();
 
 if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET['object']) && isset($_GET['objId'])){
     $action = $_GET['action'];
@@ -24,6 +36,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $graveService->createGraveForm();
                 break;
             case "Flora";
+                echo $floraService->createFloraForm();
                 break;
             case "Miscellaneous";
                 break;
@@ -51,6 +64,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $graveService->updateGraveForm($objId);
                 break;
             case "Flora";
+                echo $floraService->updateFloraForm($objId);
                 break;
             case "Miscellaneous";
                 break;
@@ -151,22 +165,34 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 break;
             case "Grave";
                 echo "Made it to create <br/>";
-                $graveService->createGrave( $_POST['firstName'],
-                                            $_POST['middleName'],
-                                            $_POST['lastName'],
-                                            $_POST['birth'],
-                                            $_POST['death'],
-                                            $_POST['description'],
-                                            null,
-                                            $_POST['longitude'],
-                                            $_POST['latitude'],
-                                            $_POST['scavengerHuntHint'],
-                                            $_POST['imagePath'],
-                                            $_POST['imageDescription'],
-                                            $_POST['idLocation'],
-                                            1); // Always Grave
+                $graveService->createGrave(
+                    $_POST['firstName'],
+                    $_POST['middleName'],
+                    $_POST['lastName'],
+                    $_POST['birth'],
+                    $_POST['death'],
+                    $_POST['description'],
+                    $_POST['idHistoricFilter'],
+                    $_POST['longitude'],
+                    $_POST['latitude'],
+                    $_POST['scavengerHuntHint'],
+                    $_POST['imagePath'],
+                    $_POST['imageDescription'],
+                    $_POST['idLocation'],
+                    1); // Always Grave
                 break;
             case "Flora";
+                $floraService->createFlora(
+                    $_POST['commonName'],
+                    $_POST['scientificName'],
+                    $_POST['description'],
+                    $_POST['longitude'],
+                    $_POST['latitude'],
+                    $_POST['scavengerHuntHint'],
+                    $_POST['imagePath'],
+                    $_POST['imageDescription'],
+                    1,
+                    2); // Always Flora
                 break;
             case "Miscellaneous";
                 break;
@@ -226,6 +252,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                                            1); // Always Grave
                 break;
             case "Flora";
+                $floraService->updateFlora(
+                    $_POST['idFlora'],
+                    $_POST['commonName'],
+                    $_POST['scientificName'],
+                    $_POST['description'],
+                    $_POST['idTrackableObject'],
+                    $_POST['longitude'],
+                    $_POST['latitude'],
+                    $_POST['scavengerHuntHint'],
+                    $_POST['imagePath'],
+                    $_POST['imageDescription'],
+                    1,
+                    2); // Always Flora
                 break;
             case "Miscellaneous";
                 break;
@@ -256,6 +295,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 $graveService->deleteGrave($objId);
                 break;
             case "Flora";
+                $floraService->deleteFlora($objId);
                 break;
             case "Miscellaneous";
                 break;
