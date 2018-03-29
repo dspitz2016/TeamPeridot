@@ -8,7 +8,9 @@ require_once '../services/ConnectDb.class.php';
 class EventData {
 
     public function getAllEventsOrderedByDate(){
-        return ConnectDb::getInstance()->returnObject("Even.class", "Select * From Event order by startTime desc;");
+        return ConnectDb::getInstance()->returnObject("Event.class", "SELECT e.idEvent, e.name, e.description, e.startTime, e.endTime, e.imagePath, e.imageDescription, e.idLocation, l.name as locationName FROM Event e
+INNER JOIN
+Location l on e.idLocation = l.idLocation order by startTime desc;");
     }
 
     public function createEvent($name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation){

@@ -101,7 +101,7 @@
         <hr>
 
         <!-- Events -->
-        <div class="navLinks" id="6">Events Table</div>
+        <div class="navLinks" id="6"><?php echo $eventService->readEventsTable(); ?></div>
         <hr>
 
         <!-- Feedback -->

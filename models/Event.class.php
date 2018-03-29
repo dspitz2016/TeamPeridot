@@ -10,6 +10,7 @@ class Event {
 	private $imagePath;
 	private $imageDescription;
 	private $idLocation;
+	private $locationName;
 
     /**
      * Event constructor.
@@ -22,7 +23,7 @@ class Event {
      * @param $imageDescription
      * @param $idLocation
      */
-    public function __construct($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation)
+    public function __construct($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation, $locationName)
     {
         $this->idEvent = $idEvent;
         $this->name = $name;
@@ -32,7 +33,26 @@ class Event {
         $this->imagePath = $imagePath;
         $this->imageDescription = $imageDescription;
         $this->idLocation = $idLocation;
+        $this->locationName = $locationName;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLocationName()
+    {
+        return $this->locationName;
+    }
+
+    /**
+     * @param mixed $locationName
+     */
+    public function setLocationName($locationName)
+    {
+        $this->locationName = $locationName;
+    }
+
+    
 
     /**
      * @return mixed
