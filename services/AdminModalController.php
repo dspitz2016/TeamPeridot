@@ -42,6 +42,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $naturalHistoryService->createNaturalHistoryForm();
                 break;
             case "FAQs";
+                echo $faqService->createFAQForm();
                 break;
             case "Events";
                 break;
@@ -71,6 +72,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $naturalHistoryService->updateNaturalHistoryForm($objId);
                 break;
             case "FAQs";
+                echo $faqService->updateFAQForm($objId);
                 break;
             case "Events";
                 break;
@@ -181,10 +183,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     3);
                 break;
             case "FAQs";
+                $faqService->createFAQ(
+                    $_POST['question'],
+                    $_POST['answer'],
+                    1
+                );
                 break;
             case "Events";
-                break;
-            case "Feedback";
                 break;
             case "Type";
                 break;
@@ -265,10 +270,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     2);
                 break;
             case "FAQs";
+                $faqService->updateFAQ(
+                    $_POST['idFAQ'],
+                    $_POST['question'],
+                    $_POST['answer'],
+                    1
+                );
                 break;
             case "Events";
-                break;
-            case "Feedback";
                 break;
             case "Type";
                 break;
@@ -297,10 +306,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 $naturalHistoryService->deleteNaturalHistory($objId);
                 break;
             case "FAQs";
+                $faqService->deleteFAQ($objId);
                 break;
             case "Events";
-                break;
-            case "Feedback";
                 break;
             case "Type";
                 break;

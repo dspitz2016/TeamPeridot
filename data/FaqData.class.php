@@ -43,6 +43,11 @@ class FAQData {
         return ConnectDb::getInstance()->returnObject("FAQ.class", "Select * FROM FAQ");
     }
 
+    public function getFAQById($idFAQ){
+        return ConnectDb::getInstance()->returnObject("FAQ.class", "Select * FROM FAQ WHERE idFAQ=".$idFAQ);
+
+    }
+
     // UPDATE
     public function updateFAQ($idFAQ, $question, $answer, $idLocation){
         try{

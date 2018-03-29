@@ -56,6 +56,19 @@ class FAQService {
         return $allFAQs;
     }
 
+    public function getFAQbyId($idFAQ){
+        $idFAQ = filter_var($idFAQ, FILTER_SANITIZE_NUMBER_INT);
+        $obj = $this->faqData->getFAQById($idFAQ);
+        $singleFAQ = new FAQ(
+            $obj[0]['idFAQ'],
+            $obj[0]['question'],
+            $obj[0]['answer'],
+            $obj[0]['idLocation']
+        );
+
+        return $singleFAQ;
+    }
+
     // UPDATE
     public function updateFAQ($idFAQ, $question, $answer, $idLocation){
         $idFAQ = filter_var($idFAQ, FILTER_SANITIZE_NUMBER_INT);
@@ -122,10 +135,10 @@ class FAQService {
             $table .= "
                       <tr>
                         <td>".$obj->getQuestion()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, ".$obj->getIdFaq().")'> Edit
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, faq, ".$obj->getIdFaq().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, ".$obj->getIdFaq().")'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, faq, ".$obj->getIdFaq().")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -135,6 +148,57 @@ class FAQService {
         $table .= "</tbody></table>";
 
         return $table;
+    }
+
+    public function createFAQForm(){
+        return '
+                        <div class="row"><div class="col s12"><h5>Create Frequently Asked Question</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="question">Question</label><br/>
+                                <input id="question" name="question" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="answer">Answer</label><br/>
+                                <input id="answer" name="answer" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
+                        '
+            ;
+    }
+
+    public function updateFAQForm($idFAQ){
+        $singleFAQ = $this->getFAQbyId($idFAQ);
+        return '
+                        <div class="row"><div class="col s12"><h5>Update Frequently Asked Question</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="question">Question</label><br/>
+                                <input id="question" name="question" type="text" class="validate" required="" aria-required="true" value="'.$singleFAQ->getQuestion().'">
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="answer">Answer</label><br/>
+                                <input id="answer" name="answer" type="text" class="validate" required="" aria-required="true" value="'.$singleFAQ->getAnswer().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="display:none;">
+                           <div class="input-field col s12">
+                                <input id="idFAQ" name="idFAQ" type="text" class="validate" required="" aria-required="true" value="'.$singleFAQ->getIdFAQ().'">
+                            </div>
+                        </div>
+                        '
+            ;
+
+
     }
 }
 
