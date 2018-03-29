@@ -2,15 +2,15 @@
     ob_start();
     session_start();
 
-    include '../components/Main.class.php';
-    include '../services/LocationService.class.php';
-    include '../services/GraveService.class.php';
-    include '../services/FloraService.class.php';
-    include '../services/NaturalHistoryService.class.php';
-    include '../services/EventService.class.php';
-    include '../services/FAQService.class.php';
-    include '../services/HistoricFilterService.class.php';
-    include '../services/TypeFilterService.class.php';
+    require_once '../components/Main.class.php';
+    require_once '../services/LocationService.class.php';
+    require_once '../services/GraveService.class.php';
+    require_once '../services/FloraService.class.php';
+    require_once '../services/NaturalHistoryService.class.php';
+    require_once '../services/EventService.class.php';
+    require_once '../services/FAQService.class.php';
+    require_once '../services/HistoricFilterService.class.php';
+    require_once '../services/TypeFilterService.class.php';
 
     $main = Main::getInstance();
 	$main->getAdminHeader();
@@ -82,27 +82,35 @@
 
         <!-- Locations -->
         <div class="navLinks" id="1"> <?php echo $locationService->readLocationTable(); ?> </div>
+        <hr>
 
         <!-- Graves -->
         <div class="navLinks" id="2"> <?php echo $graveService->readGravesTable(); ?></div>
+        <hr>
 
         <!-- Flora -->
         <div class="navLinks" id="3"> <?php echo $floraService->readFloraTable(); ?></div>
+        <hr>
 
         <!-- Miscellaneous -->
         <div class="navLinks" id="4">Miscellaneous Table</div>
+        <hr>
 
         <!-- FAQ -->
         <div class="navLinks" id="5">FAQ Table</div>
+        <hr>
 
         <!-- Events -->
         <div class="navLinks" id="6">Events Table</div>
+        <hr>
 
         <!-- Feedback -->
         <div class="navLinks" id="7">Feedback Table</div>
+        <hr>
 
         <!-- Type -->
         <div class="navLinks" id="8">Type Table</div>
+        <hr>
 
         <!-- Historic -->
         <div class="navLinks" id="3">Historic Table</div>
@@ -111,33 +119,31 @@
 
     <div id="createModal" class="modal">
         <div class="modal-content">
-            <h5>Create</h5>
+            <form id="createForm"></form>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Discard Changes</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+            <button class='btn waves-effect waves-light modal-close' href='#createModal' type='submit'>Discard</button>
+            <button class='btn waves-effect waves-light green modal-trigger' href='#createModal' id='createBtn' type='submit'>Create</button>
         </div>
     </div>
 
     <div id="updateModal" class="modal">
         <div class="modal-content">
-            <h5>Edit</h5>
-
+            <form id="updateForm"></form>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Discard Changes</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+            <button class='btn waves-effect waves-light modal-close' href='#updateModal' type='submit'>Discard Changes</button>
+            <button class='btn waves-effect waves-light green modal-trigger' href='#updateModal' id='updateBtn' type='submit'>Update</button>
         </div>
     </div>
 
     <div id="deleteModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content ">
             <h5>Are you sure you would like to delete?</h5>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">No</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
-
+            <button class='btn waves-effect waves-light modal-close' href='#deleteModal' type='submit'> Cancel</button>
+            <button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' id='deleteBtn' type='submit'>Delete</button>
         </div>
     </div>
 

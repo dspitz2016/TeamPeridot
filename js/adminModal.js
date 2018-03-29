@@ -8,12 +8,13 @@ function modalController(action, obj, objId){
 
     console.log("Perform " + action + " on " + obj + " ID: " + objId);
 
+    var objectData = 'action='+action+'&object='+obj+'&objId='+objId;
 
     $.ajax({
         datatype: "html",
         type: "GET",
         url: '../services/AdminModalController.php',
-        data: 'action='+action+'&object='+obj+'&objId='+objId,
+        data: objectData,
 
         success: function(data){
             // var obj =  '"' + obj + '"';
@@ -21,50 +22,69 @@ function modalController(action, obj, objId){
 
             switch(action){
                 case "create":
-                    $('#createModal .modal-content').html(data);
+                    $('#createModal .modal-content #createForm').html(data);
                     break;
                 case "update":
-                    $('#updateModal .modal-content').html(data);
-                    break;
-                case "delete":
-
-                    $('#deleteModal .modal-footer').html(
-                        "<a href='#!' class='modal-action modal-close waves-effect waves-red btn-flat'>Maybe</a>"
-                        + "<button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' id='deleteBtn' type='submit'> Delete" +
-                        "  <i class='material-icons'>delete</i>" +
-                        "  </button>"
-                    );
-
+                    $('#updateModal .modal-content #updateForm').html(data);
                     break;
             }
+
+            $('select').material_select(); // initializes material select
+
         },
         complete: function(){
-            // Convert Action to String
 
-            $( "#deleteBtn" ).click(function() {
-                alert( "Amazing: " + action + " ID: " + objId);
-
-                // var formData = new FormData();
-                //
-                // formData.append("action", action);
-                // formData.append("object", obj);
-                // formData.append("objId", objId);
+            $( "#createBtn" ).click(function() {
+                alert( "Create: " + action + " ID: " + objId);
+                var data = objectData +"&"+ $('#createForm').serialize();
 
                 $.ajax({
                     type: "POST",
                     url: '../services/AdminModalController.php',
+                    data: data,
+                    processData: false,
+                    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function(){
+                        console.log("created object");
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
 
+            });
+
+            $( "#updateBtn" ).click(function() {
+                alert( "Update: " + action + " ID: " + objId);
+                var data = objectData + "&" + $('#updateForm').serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: '../services/AdminModalController.php',
+                    data: data,
+                    processData: false,
+                    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function(){
+                        console.log("updated object");
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+
+            });
+
+            // Create a JQuery ajax request when delete button is pressed passing in params to call required php function
+            $( "#deleteBtn" ).click(function() {
+                alert( "Amazing: " + action + " ID: " + objId);
+                $.ajax({
+                    type: "POST",
+                    url: '../services/AdminModalController.php',
                     data: 'action='+action+'&object='+obj+'&objId='+objId,
                     processData: false,
-                    // contentType: false,
-                    // data: formData,
-                    // data: {
-                    //     'action': action,
-                    //     'object': obj,
-                    //     'objId' : objId
-                    // },
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-
                     success: function(){
                         console.log("deleted object");
                     },
@@ -79,8 +99,6 @@ function modalController(action, obj, objId){
         }
     });
 }
-
-
 
 // $(document).delegate('click', '#deleteModal .deleteBtn', function(){
 //     alert("Please work");

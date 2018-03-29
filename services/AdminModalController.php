@@ -13,8 +13,6 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
     $objId = $_GET['objId'];
 
     if($action === "create"){
-        echo "made it to create";
-
         switch($object){
             case "Location":
                 break;
@@ -41,7 +39,6 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
     }
 
     if($action === "update"){
-        echo "made it to update";
         switch($object){
             case "Location":
                 break;
@@ -105,15 +102,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     echo "in POST";
 
     if(!empty($_POST['action'])){
-        echo "Action: " . $_POST['action'];
+        echo "Action: " . $_POST['action'] . "<br/>";
     }
 
     if(!empty($_POST['object'])){
-        echo "Object: " . $_POST['object'];
+        echo "Object: " . $_POST['object'] . "<br/>";
     }
 
     if(!empty($_POST['objId'])){
-        echo "ID: " . $_POST['objId'];
+        echo "ID: " . $_POST['objId'] . "<br/>";
     }
 }
 
@@ -126,14 +123,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
     echo "Made it to Post Request <br/>";
 
     if($action === "create"){
-        echo "Made it to create";
 
         switch($object){
             case "Location":
                 break;
             case "Grave";
-                echo "made it to delete Grave </br>";
-                //echo $graveService->createGraveForm();
+                echo "Made it to create <br/>";
+                $graveService->createGrave( $_POST['firstName'],
+                                            $_POST['middleName'],
+                                            $_POST['lastName'],
+                                            $_POST['birth'],
+                                            $_POST['death'],
+                                            $_POST['description'],
+                                            null,
+                                            $_POST['longitude'],
+                                            $_POST['latitude'],
+                                            $_POST['scavengerHuntHint'],
+                                            $_POST['imagePath'],
+                                            $_POST['imageDescription'],
+                                            1,
+                                            1);
+                //if(!empty[$_POST['firstName']]){ echo "FirstName: " . $_POST['firstName']; }
                 break;
             case "Flora";
                 break;
@@ -160,7 +170,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
             case "Location":
                 break;
             case "Grave";
-                echo $graveService->updateGraveForm($objId);
+                echo "Made it to POST UPDATE";
+                //$graveService->updateGrave($_POST['idGrave'], $_POST['firstName'], $_POST['middleName'], $_POST['lastName'], $_POST['birth'], $_POST['death'], $_POST['description'],
                 break;
             case "Flora";
                 break;
@@ -189,7 +200,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 break;
             case "Grave";
                 echo "Deleting Grave";
-                //echo $graveService->deleteGrave($objId);
+                echo $graveService->deleteGrave($objId);
                 break;
             case "Flora";
                 break;
@@ -211,107 +222,5 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
     }
 }
 
-
-
-
-
-//if(isset($_GET['action']) && isset($_GET['object'])){
-
-
-
-//}
-
-/**
- * Used to perform database modifications
- */
-//if(isset($_POST['action']) && isset($_POST['object'])){
-//    echo $_POST['action'];
-//    echo $_POST['object'];
-//
-//    if($_POST['action'] == "create"){
-//        switch($_POST['object']){
-//            case "Location":
-//                break;
-//            case "Grave";
-//                break;
-//            case "Flora";
-//                break;
-//            case "Miscellaneous";
-//                break;
-//            case "FAQs";
-//                break;
-//            case "Events";
-//                break;
-//            case "Feedback";
-//                break;
-//            case "Type";
-//                break;
-//            case "HistoricalFilter";
-//                break;
-//        }
-//    }
-//
-//    else if(isset($_POST['action']) == "update" && isset($_POST['objId'])){
-//        switch($_POST['object']){
-//            case "Location":
-//                break;
-//            case "Grave";
-//                break;
-//            case "Flora";
-//                break;
-//            case "Miscellaneous";
-//                break;
-//            case "FAQs";
-//                break;
-//            case "Events";
-//                break;
-//            case "Feedback";
-//                break;
-//            case "Type";
-//                break;
-//            case "HistoricalFilter";
-//                break;
-//        }
-//    }
-//
-//    else if(isset($_POST['action']) == "delete" && isset($_POST['objId'])){
-//        switch($_POST['object']){
-//            case "Location":
-//                break;
-//            case "Grave";
-//                echo 'Deleing Grave Object';
-//                $graveService->deleteGrave($_POST['objId']);
-//                break;
-//            case "Flora";
-//                break;
-//            case "Miscellaneous";
-//                break;
-//            case "FAQs";
-//                break;
-//            case "Events";
-//                break;
-//            case "Feedback";
-//                break;
-//            case "Type";
-//                break;
-//            case "HistoricalFilter";
-//                break;
-//        }
-//    }
-//
-//}
-
-
-// Populate Edit Modal Forms
-
-//if(isset($_GET['modalAction'])){
-//    switch($_GET['modalAction']){
-//        case "createGrave":
-//            echo $graveService->createGraveForm();
-//        break;
-//            case "updateGrave";
-//        break;
-//    }
-//}
 
 ?>

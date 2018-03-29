@@ -19,19 +19,19 @@ class HistoricFilterService {
 
     public function readAllHistoricFilters(){
         $historicFilterData = $this->historicFilterData->readAllHistoricFilters();
-        $allHistoricFilters = array();
+        $allHistoricalFilters = array();
 
         foreach ($historicFilterData as $historicFilter) {
-            $newHistoricFilter = new HistoricFilter(
+            $filterBtn = new HistoricFilter(
                 $historicFilter['idHistoricFilter'],
                 $historicFilter['historicFilter'],
                 $historicFilter['buttonColor']
             );
 
-            array_push($allHistoricalFilters, $newHistoricFilter);
+            array_push($allHistoricalFilters, $filterBtn);
         }
 
-        return $allHistoricFilters;
+        return $allHistoricalFilters;
     }
 
     public function createHistoricFilter($historicFilter, $buttonColor){
@@ -53,6 +53,55 @@ class HistoricFilterService {
     public function deleteHistoricFilter($idHistoricFilter){
         $idHistoricFilter = filter_var($idHistoricFilter, FILTER_SANITIZE_NUMBER_INT);
         ConnectDb::getInstance()->deleteObject($idHistoricFilter, "HistoricFilter");
+    }
+
+    public function getHistoricFilterFormDropdownForObject($idHistoricFilter){
+        $data = $this->readAllHistoricFilters();
+        $elem = '<div class="row">
+                    <div class="input-field col s12">
+                    <select name="idHistoricFilter">';
+
+        // If the Historic filter is null set the default selected as the Choose an option
+        if($idHistoricFilter == "" || $idHistoricFilter == null){
+            $elem .= '<option value="0" disabled selected>Choose your option</option>';
+        }
+
+        foreach($data as $historicFilter){
+            $idHistoricFilterListValue = $historicFilter->getIdHistoricFilter();
+
+            // If it's not null it should match and display the field that matches
+            if($idHistoricFilterListValue == $idHistoricFilter){
+                $elem .= '<option value="'.$idHistoricFilterListValue.'" selected>'.$historicFilter->getHistoricFilter().'</option>';
+            } else {
+                $elem .= '<option value="'.$idHistoricFilterListValue.'">'.$historicFilter->getHistoricFilter().'</option>';
+            }
+
+
+
+        }
+
+        $elem .= '</select><label>Historic Filter Selection</label></div></div>';
+
+        return $elem;
+    }
+
+    public function getDefaultHistoricFilterDropdown(){
+        $data = $this->readAllHistoricFilters();
+        $elem = '<div class="row">
+                    <div class="input-field col s12">
+                    <select name="idHistoricFilter">';
+        $elem .= '<option value="0" disabled selected>Choose your option</option>';
+
+
+        foreach($data as $historicFilter){
+            $idHistoricFilterListValue = $historicFilter->getIdHistoricFilter();
+
+            $elem .= '<option value="'.$idHistoricFilterListValue.'">'.$historicFilter->getHistoricFilter().'</option>';
+        }
+
+        $elem .= '</select><label>Historic Filter Selection</label></div></div>';
+
+        return $elem;
     }
 }
 

@@ -12,9 +12,9 @@ body {
   background: #fff;
 }
 
-.navLinks{
-  display: none;
-}
+/*.navLinks{*/
+  /*display: none;*/
+/*}*/
 
 .input-field input[type=date]:focus + label,
 .input-field input[type=text]:focus + label,

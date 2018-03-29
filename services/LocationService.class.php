@@ -204,6 +204,50 @@ class LocationService {
 
     }
 
+    public function getLocationDropdownByObject($idLocation){
+        $data = $this->getAllLocationsAsPins();
+        $elem = '<div class="row">
+                    <div class="input-field col s12">
+                    <select name="idHistoricFilter">';
+        // If the Historic filter is null set the default selected as the Choose an option
+        if($idLocation == "" || $idLocation == null){
+            $elem .= '<option value="0" disabled selected>Choose your option</option>';
+        }
+
+        foreach($data as $loc){
+            $idLocationListValue = $loc->getIdLocation();
+
+            // If it's not null it should match and display the field that matches
+            if($idLocationListValue == $idLocation){
+                $elem .= '<option value="'.$idLocationListValue.'" selected>'.$loc->getName().'</option>';
+            } else {
+                $elem .= '<option value="'.$idLocationListValue.'">'.$loc->getName().'</option>';
+            }
+        }
+
+        $elem .= '</select><label>Location Filter Selection</label></div></div>';
+
+        return $elem;
+    }
+
+    public function getDefaultLocationDropdown(){
+        $data = $this->getAllLocationsAsPins();
+        echo 'location dropdown';
+        $elem = '<div class="row">
+                    <div class="input-field col s12">
+                    <select name="idLocation">';
+        $elem .= '<option value="0" disabled selected>Choose your option</option>';
+
+
+        foreach($data as $loc){
+            $idLocation = $loc->getIdLocation();
+            $elem .= '<option value="'.$idLocation.'">'.$loc->getName().'</option>';
+        }
+
+        $elem .= '</select><label>Location Selection</label></div></div>';
+
+        return $elem;
+    }
 }
 
 ?>

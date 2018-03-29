@@ -6,6 +6,8 @@ ini_set( 'display_errors', true );
 require_once '../data/GraveData.class.php';
 require_once '../models/Grave.class.php';
 require_once 'TrackableObjectService.class.php';
+require_once '../services/HistoricFilterService.class.php';
+require_once '../services/LocationService.class.php';
 
 
 /**
@@ -16,18 +18,22 @@ class GraveService extends TrackableObjectService {
 
     private $trackableObjectService;
     private $graveData;
+    private $historicFilterService;
+    private $locationService;
 
     /**
      * GraveService constructor.
-     * @param $adminTrackableData
-     * @param $graveData
+     * $adminTrackableData -> Allows CRUD of Trackable Objects
+     * $graveData -> Allows CRUD of Grave
+     * $historicFilterService -> Allows Form to be populated with Historic filter
      */
     public function __construct()
     {
         $this->trackableObjectService = new TrackableObjectService();
         $this->graveData = new GraveData();
+        $this->historicFilterService = new HistoricFilterService();
+        $this->locationService = new LocationService();
     }
-
 
     /**
      * @return array of php grave objects
@@ -62,10 +68,11 @@ class GraveService extends TrackableObjectService {
         return $allGraves;
     }
 
-    public function readSingleGrave(){
 
-    }
-
+    /**
+     * @param $idGrave of the grave you are looking for
+     * @return Grave - returns a single grave object
+     */
     public function getGraveByID($idGrave){
         $idGrave = filter_var($idGrave, FILTER_SANITIZE_NUMBER_INT);
         $grave = $this->graveData->getGraveByID($idGrave);
@@ -190,6 +197,9 @@ class GraveService extends TrackableObjectService {
         ConnectDb::getInstance()->deleteObject($idGrave, "Grave");
     }
 
+    /**
+     * @return string - displayed to end user containing all graves and buttons to instantiate CRUD elements
+     */
     public function readGravesTable(){
         $data = $this->readAllGravesAsObjects();
 
@@ -202,7 +212,7 @@ class GraveService extends TrackableObjectService {
                                   <h4>Graves</h4>
                             </div>
                             <div class='col s2'>
-                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, grave, 0)'><i class='material-icons'>add</i></a>
+                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, grave, -1)'><i class='material-icons'>add</i></a>
                             </div>
                     </div>
 
@@ -240,20 +250,24 @@ class GraveService extends TrackableObjectService {
         return $table;
     }
 
+    /**
+     * @return string - pushes a create form to the modal on ajax call
+     */
     public function createGraveForm(){
-        return '<div class="row">
-                    <form class="col s12" method="POST" action="">
+        return '
+                        <div class="row"><div class="col s12"><h5>Create Grave</h5></div></div>
+
                         <div class="row">
                             <div class="input-field col s4">
-                                <input id="firstName" type="text" class="validate">
+                                <input id="firstName" name="firstName" type="text" class="validate" required="" aria-required="true">
                                 <label for="firstName">First Name</label>
                             </div>
                             <div class="input-field col s4">
-                                <input id="middleName" type="text" class="validate">
+                                <input id="middleName" name="middleName" type="text" class="validate" required="" aria-required="true">
                                 <label for="middleName">Middle Name</label>
                             </div>
                             <div class="input-field col s4">
-                                <input id="lastName" type="text" class="validate">
+                                <input id="lastName" name="lastName" type="text" class="validate" required="" aria-required="true">
                                 <label for="lastName">Last Name</label>
                             </div>
                         </div>
@@ -261,141 +275,73 @@ class GraveService extends TrackableObjectService {
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="birth">Birth</label><br/>
-                                <input id="birth" type="date">
+                                <input id="birth" name="birth" type="date" required="" aria-required="true">
                             </div>
                             <div class="input-field col s6">
                                 <label for="death">Death</label><br/>
-                                <input id="death" type="date">
+                                <input id="death" name="death" type="date" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea id="description" class="materialize-textarea"></textarea>
+                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
                                 <label for="description">Description</label>
                             </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <label for="longitude">longitude</label><br/>
-                                <input id="longitude" type="text">
-                            </div>
-                            <div class="input-field col s6">
-                                <label for="latitude">latitude</label><br/>
-                                <input id="latitude" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="scavengerHuntHint">Scavenger Hunt Hint</label><br/>
-                                <input id="scavengerHuntHint" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="imagePath">Image Path</label><br/>
-                                <input id="imagePath" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="imageDescription">Image Description</label><br/>
-                                <input id="imageDescription" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            </button>
-                        </div>
-                    </form>
-                </div>';
+                        </div>'
+                        . $this->locationService->getDefaultLocationDropdown()
+                        . $this->trackableObjectService->getCreateTrackableObjectFormElements()
+                        . $this->historicFilterService->getDefaultHistoricFilterDropdown()
+                       ;
     }
 
+    /**
+     * @param $graveId - the grave you want to update
+     * @return string - returns an update form populated with objects data
+     */
     public function updateGraveForm($graveId){
         $singleGrave = $this->getGraveByID($graveId);
 
-        $firstName = $singleGrave->getFirstName();
-        $middleName = $singleGrave->getMiddleName();
-        $lastName = $singleGrave->getLastName();
-
-        $updateform = '<div class="row">
-                    <form class="col s12" method="POST" action="">
+        $updateform = '
+                        <div class="row"><div class="col s12"><h5>Update '.$singleGrave->getFullName().'</h5></div></div>
+                        
                         <div class="row">
                             <div class="input-field col s4">
-                                <input id="firstName" type="text" class="validate" value="'.$singleGrave->getFirstName().'"><br/>
-                                <label for="firstName">FirstName</label>
+                                <label for="firstName">First Name</label><br/>
+                                <input id="firstName" name="firstName" type="text" class="validate" value="'.$singleGrave->getFirstName().'"><br/>
                             </div>
                             <div class="input-field col s4">
-                                <input id="middleName" type="text" class="validate active" value="'. $singleGrave->getMiddleName().'">
-                                <label for="middleName"></label>
+                                <label for="middleName">Middle Name</label><br/>
+                                <input id="middleName" name="middleName" type="text" class="validate active" value="'. $singleGrave->getMiddleName().'">
                             </div>
                             <div class="input-field col s4">
-                                <input id="lastName" type="text" class="validate" value="'.$singleGrave->getLastName().'">
-                                <label for="lastName"></label>
+                                <label for="lastName">Last Name</label><br/>
+                                <input id="lastName" name="lastName" type="text" class="validate" value="'.$singleGrave->getLastName().'">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="birth">Birth</label><br/>
-                                <input id="birth" type="date" value ="'.$singleGrave->getBirth().'">
+                                <input id="birth" name="birth" type="date" value ="'.$singleGrave->getBirth().'">
                             </div>
                             <div class="input-field col s6">
                                 <label for="death">Death</label><br/>
-                                <input id="death" type="date" value="'.$singleGrave->getDeath().'">
+                                <input id="death" name="death" type="date" value="'.$singleGrave->getDeath().'">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea id="description" class="materialize-textarea"></textarea>
-                                <label for="description">'.$singleGrave->getDescription().'</label>
+                                <label for="description">Description</label><br/>
+                                <textarea id="description" name="description" class="materialize-textarea">'.$singleGrave->getDescription().'</textarea>
                             </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <label for="longitude">'.$singleGrave->getLongitude().'</label><br/>
-                                <input id="longitude" type="text">
-                            </div>
-                            <div class="input-field col s6">
-                                <label for="latitude">'.$singleGrave->getLatitude().'</label><br/>
-                                <input id="latitude" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="scavengerHuntHint">'.$singleGrave->getScavengerHuntHint().'</label><br/>
-                                <input id="scavengerHuntHint" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="imagePath">'.$singleGrave->getImagePath().'</label><br/>
-                                <input id="imagePath" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <label for="imageDescription">'.$singleGrave->getImageDescription().'</label><br/>
-                                <input id="imageDescription" type="text">
-                            </div>
-                        </div>
-            
-                        <div class="row">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            </button>
-                        </div>
-                    </form>
-                </div>';
+                        </div>'
+                . $this->locationService->getLocationDropdownByObject($singleGrave->getIdLocation())
+                . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleGrave)
+                . $this->historicFilterService->getHistoricFilterFormDropdownForObject($singleGrave->getIdHistoricFilter());
+
+        ;
 
         return $updateform;
     }
