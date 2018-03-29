@@ -97,7 +97,7 @@
         <hr>
 
         <!-- FAQ -->
-        <div class="navLinks" id="5">FAQ Table</div>
+        <div class="navLinks" id="5"><?php echo $faqService->readFAQTable(); ?></div>
         <hr>
 
         <!-- Events -->

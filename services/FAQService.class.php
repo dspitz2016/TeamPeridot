@@ -88,10 +88,53 @@ class FAQService {
                     <div class="collapsible-body cust-color-white"><span>'.$faq->getAnswer().'</span></div>
                   </li>';
         }
-
-
         return $faqCollection;
+    }
 
+    public function readFAQTable(){
+        $data = $this->getAllFAQs();
+
+        $table = "<script>
+                        var faq = 'FAQs';
+                    </script>";
+        $table .= "
+                    <div class='row'>
+                            <div class='col s10'>
+                                  <h4>FAQ</h4>
+                            </div>
+                            <div class='col s2'>
+                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, faq, -1)'><i class='material-icons'>add</i></a>
+                            </div>
+                    </div>
+
+                    <table class='responsive-table striped'>
+                    <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>";
+
+
+        foreach($data as $obj){
+            $table .= "
+                      <tr>
+                        <td>".$obj->getQuestion()."</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, ".$obj->getIdFaq().")'> Edit
+                            <i class='material-icons'>edit</i>
+                        </button></td>  
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, ".$obj->getIdFaq().")'> Delete
+                            <i class='material-icons'>delete</i>
+                        </button></td> 
+                      </tr>
+            ";
+        }
+
+        $table .= "</tbody></table>";
+
+        return $table;
     }
 }
 
