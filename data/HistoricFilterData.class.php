@@ -8,6 +8,10 @@ class HistoricFilterData {
         return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter;");
     }
 
+    public function getHistoricFilterById($idHistoricFilter){
+        return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter WHERE idHistoricFilter =".$idHistoricFilter);
+    }
+
     public function createHistoricFilter($historicFilter, $buttonColor){
         try{
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO HistoricFilter

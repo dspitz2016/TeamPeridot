@@ -13,6 +13,12 @@ INNER JOIN
 Location l on e.idLocation = l.idLocation order by startTime desc;");
     }
 
+    public function getEventById($idEvent){
+        return ConnectDb::getInstance()->returnObject("Event.class", "SELECT e.idEvent, e.name, e.description, e.startTime, e.endTime, e.imagePath, e.imageDescription, e.idLocation, l.name as locationName FROM Event e
+INNER JOIN
+Location l on e.idLocation = l.idLocation WHERE idEvent =".$idEvent);
+    }
+
     public function createEvent($name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation){
         try{
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Event (name, description, startTime, endTime, imagePath, imageDescription, idLocation) 

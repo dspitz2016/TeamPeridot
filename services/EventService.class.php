@@ -51,6 +51,24 @@ class EventService
         return $allEvents;
     }
 
+    public function getEventbyId($idEvent){
+        $idEvent = filter_var($idEvent, FILTER_SANITIZE_NUMBER_INT);
+        $obj = $this->eventData->getEventById($idEvent);
+        $singleEvent = new Event(
+            $obj[0]['idEvent'],
+            $obj[0]['name'],
+            $obj[0]['description'],
+            $obj[0]['startTime'],
+            $obj[0]['endTime'],
+            $obj[0]['imagePath'],
+            $obj[0]['imageDescription'],
+            $obj[0]['idLocation'],
+            $obj[0]['locationName']
+        );
+
+        return $singleEvent;
+    }
+
     public function createEvent($name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation){
 
         $name = filter_var($name, FILTER_SANITIZE_STRING);
@@ -152,10 +170,10 @@ class EventService
                         <td>".$obj->getLocationName()."</td>
                         <td>".$obj->getStartTime()."</td>
 
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, ".$obj->getIdEvent().")'> Edit
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, eventt, ".$obj->getIdEvent().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, ".$obj->getIdEvent().")'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, eventt, ".$obj->getIdEvent().")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -167,6 +185,75 @@ class EventService
         return $table;
     }
 
+    public function createEventForm(){
+        return '<div class="row"><div class="col s12"><h5>Create Event</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true">
+                                <label for="name">Name</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                                <label for="description">Description</label>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label for="startTime">Event Start</label><br/>
+                                <input id="startTime" name="startTime" type="datetime-local" required="" aria-required="true">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="endTime">Event End</label><br/>
+                                <input id="endTime" name="endTime" type="datetime-local" required="" aria-required="true">
+                            </div>
+                        </div>
+            
+                      ';
+    }
+
+    public function updateEventForm($idEvent){
+        $singleEvent = $this->getEventbyId($idEvent);
+
+        return '<div class="row"><div class="col s12"><h5>Create Event</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="name">Name</label><br/>
+                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true" value="'.$singleEvent->getName().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="description">Description</label><br/>
+                                <textarea id="description" name="description" class="materialize-textarea">'.$singleEvent->getDescription().'</textarea>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label for="startTime">Event Start</label><br/>
+                                <input id="startTime" name="startTime" type="datetime-local" required="" aria-required="true" value="'.$singleEvent->getStartTime().'">
+                            </div>
+                            <div class="input-field col s6">
+                                <label for="endTime">Event End</label><br/>
+                                <input id="endTime" name="endTime" type="datetime-local" required="" aria-required="true" value="'.$singleEvent->getEndTime().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="display:none;">
+                            <div class="input-field col s12">
+                                <input id="idEvent" name="idEvent" type="text" class="validate" required="" aria-required="true" value="'.$singleEvent->getIdEvent().'">
+                            </div>
+                        </div>
+            
+                      ';
+    }
 }
 
 ?>

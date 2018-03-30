@@ -45,7 +45,21 @@ class TypeFilterService {
         return $allTypeFilters;
     }
 
-    public function updateAllTypeFilter($idType, $typeFilter, $description, $buttonColor){
+    public function getTypeFilterById($idType){
+        $idType = filter_var($idType, FILTER_SANITIZE_NUMBER_INT);
+        $obj = $this->typeFilterData->getTypeFilterById($idType);
+        $singleType = new TypeFilter(
+            $obj[0]['idType'],
+            $obj[0]['typeFilter'],
+            $obj[0]['description'],
+            $obj[0]['pinDesign'],
+            $obj[0]['buttonColor']
+        );
+
+        return $singleType;
+    }
+
+    public function updateTypeFilter($idType, $typeFilter, $description, $buttonColor){
         $idType = filter_var($idType, FILTER_SANITIZE_NUMBER_INT);
         $typeFilter = filter_var($typeFilter, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
@@ -63,7 +77,7 @@ class TypeFilterService {
         $data = $this->readAllTypeFilters();
 
         $table = "<script>
-                        var typ = 'type';
+                        var typ = 'Type';
                     </script>";
         $table .= "
                     <div class='row'>
@@ -71,7 +85,7 @@ class TypeFilterService {
                                   <h4>Type Filters</h4>
                             </div>
                             <div class='col s2'>
-                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, type, -1)'><i class='material-icons'>add</i></a>
+                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, typ, -1)'><i class='material-icons'>add</i></a>
                             </div>
                     </div>
 
@@ -90,10 +104,10 @@ class TypeFilterService {
             $table .= "
                       <tr>
                         <td>".$obj->getTypeFilter()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, ".$obj->getIdType().")'> Edit
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, typ, ".$obj->getIdType().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, ".$obj->getIdType().")'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, typ, ".$obj->getIdType().")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -103,6 +117,84 @@ class TypeFilterService {
         $table .= "</tbody></table>";
 
         return $table;
+    }
+
+    public function createTypeForm(){
+        return '
+                        <div class="row"><div class="col s12"><h5>Create a Type</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="typeFilter">Type Filter</label><br/>
+                                <input id="typeFilter" name="typeFilter" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="pinDesign">Pin Design</label><br/>
+                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="buttonColor">Button Color</label><br/>
+                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                                <label for="description">Description</label>
+                            </div>
+                        </div>
+                        '
+            ;
+    }
+
+    public function updateTypeForm($idType){
+        $singleType = $this->getTypeFilterById($idType);
+
+        return '
+                        <div class="row"><div class="col s12"><h5>Update Type</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="typeFilter">Type Filter</label><br/>
+                                <input id="typeFilter" name="typeFilter" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getTypeFilter().'">
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="pinDesign">Pin Design</label><br/>
+                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getPinDesign().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="buttonColor">Button Color</label><br/>
+                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getButtonColor().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="description">Description</label><br/>
+                                <textarea id="description" name="description" class="materialize-textarea">'.$singleType->getDescription().'</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="display:none;">
+                            <div class="input-field col s12">
+                                <input id="idType" name="idType" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getIdType().'">
+                            </div>
+                        </div>
+                        '
+            ;
     }
 
 }

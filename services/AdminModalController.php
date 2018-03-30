@@ -45,12 +45,13 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $faqService->createFAQForm();
                 break;
             case "Events";
-                break;
-            case "Feedback";
+                echo $eventService->createEventForm();
                 break;
             case "Type";
+                echo $typeFilterService->createTypeForm();
                 break;
             case "HistoricalFilter";
+                echo $historicFilterService->createHistoricFilterForm();
                 break;
             default:
                 echo "create default";
@@ -75,12 +76,13 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 echo $faqService->updateFAQForm($objId);
                 break;
             case "Events";
-                break;
-            case "Feedback";
+                echo $eventService->updateEventForm($objId);
                 break;
             case "Type";
+                echo $typeFilterService->updateTypeForm($objId);
                 break;
             case "HistoricalFilter";
+                echo $historicFilterService->updateHistoricFilterForm($objId);
                 break;
             default:
                 echo "update default";
@@ -88,27 +90,6 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
 
     }
 }
-
-/**
- * Get Requests only used to populate modals, not required for delete because modal is always the same
- */
-//if($_SERVER['REQUEST_METHOD'] == "POST"){
-//
-//    echo "in POST";
-//
-//    if(!empty($_POST['action'])){
-//        echo "Action: " . $_POST['action'] . "<br/>";
-//    }
-//
-//    if(!empty($_POST['object'])){
-//        echo "Object: " . $_POST['object'] . "<br/>";
-//    }
-//
-//    if(!empty($_POST['objId'])){
-//        echo "ID: " . $_POST['objId'] . "<br/>";
-//    }
-//}
-
 
 if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_POST['object']) && !empty($_POST['objId'])){
     $action = $_POST['action'];
@@ -137,7 +118,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['pinDesign'],
                     $_POST['trailOrder']
                 );
-
                 break;
             case "Grave";
                 echo "Made it to create <br/>";
@@ -190,8 +170,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 );
                 break;
             case "Events";
+                $eventService->createEvent(
+                    $_POST['name'],
+                    $_POST['description'],
+                    $_POST['startTime'],
+                    $_POST['endTime'],
+                    "",
+                    "",
+                    1);
                 break;
             case "Type";
+                $typeFilterService->createTypeFilter(
+                    $_POST['typeFilter'],
+                    $_POST['description'],
+                    $_POST['pinDesign'],
+                    $_POST['buttonColor']
+                );
                 break;
             case "HistoricalFilter";
                 break;
@@ -223,22 +217,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 break;
             case "Grave";
                 echo "Made it to POST UPDATE";
-                $graveService->updateGrave($_POST['idGrave'],
-                                           $_POST['firstName'],
-                                           $_POST['middleName'],
-                                           $_POST['lastName'],
-                                           $_POST['birth'],
-                                           $_POST['death'],
-                                           $_POST['description'],
-                                           $_POST['idHistoricFilter'],
-                                           $_POST['idTrackableObject'],
-                                           $_POST['longitude'],
-                                           $_POST['latitude'],
-                                           $_POST['scavengerHuntHint'],
-                                           $_POST['imagePath'],
-                                           $_POST['imageDescription'],
-                                           $_POST['idLocation'],
-                                           1); // Always Grave
+                $graveService->updateGrave(
+                    $_POST['idGrave'],
+                    $_POST['firstName'],
+                    $_POST['middleName'],
+                    $_POST['lastName'],
+                    $_POST['birth'],
+                    $_POST['death'],
+                    $_POST['description'],
+                    $_POST['idHistoricFilter'],
+                    $_POST['idTrackableObject'],
+                    $_POST['longitude'],
+                    $_POST['latitude'],
+                    $_POST['scavengerHuntHint'],
+                    $_POST['imagePath'],
+                    $_POST['imageDescription'],
+                    $_POST['idLocation'],
+                    1); // Always Grave
                 break;
             case "Flora";
                 $floraService->updateFlora(
@@ -278,8 +273,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 );
                 break;
             case "Events";
+                $eventService->updateEvent(
+                    $_POST['idEvent'],
+                    $_POST['name'],
+                    $_POST['description'],
+                    $_POST['startTime'],
+                    $_POST['endTime'],
+                    "",
+                    "",
+                    1);
                 break;
             case "Type";
+                $typeFilterService->updateTypeFilter(
+                    $_POST['idType'],
+                    $_POST['typeFilter'],
+                    $_POST['description'],
+                    $_POST['buttonColor']
+                );
                 break;
             case "HistoricalFilter";
                 break;
@@ -309,8 +319,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 $faqService->deleteFAQ($objId);
                 break;
             case "Events";
+                $eventService->deleteEvent($objId);
                 break;
             case "Type";
+
                 break;
             case "HistoricalFilter";
                 break;

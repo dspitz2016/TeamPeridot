@@ -34,6 +34,18 @@ class HistoricFilterService {
         return $allHistoricalFilters;
     }
 
+    public function getHistoricFilterById($idHistoricFilter){
+        $idHistoricFilter = filter_var($idHistoricFilter, FILTER_SANITIZE_NUMBER_INT);
+        $obj = $this->historicFilterData->getHistoricFilterById($idHistoricFilter);
+        $singleHF = new HistoricFilter(
+            $obj[0]['idHistoricFilter'],
+            $obj[0]['historicFilter'],
+            $obj[0]['buttonColor']
+        );
+
+        return $singleHF;
+    }
+
     public function createHistoricFilter($historicFilter, $buttonColor){
 
         $historicFilter = filter_var($historicFilter, FILTER_SANITIZE_STRING);
@@ -148,6 +160,57 @@ class HistoricFilterService {
         $table .= "</tbody></table>";
 
         return $table;
+    }
+
+    public function createHistoricFilterForm(){
+        return '
+                        <div class="row"><div class="col s12"><h5>Create a Historic Filter</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="historicFilter">Historic Filter</label><br/>
+                                <input id="historicFilter" name="historicFilter" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="buttonColor">Button Color</label><br/>
+                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                                <label for="description">Description</label>
+                            </div>
+                        </div>
+                        '
+            ;
+    }
+
+    public function updateHistoricFilterForm($idHistoricFilter){
+        $singleHF = $this->getHistoricFilterById($idHistoricFilter);
+        return '
+                        <div class="row"><div class="col s12"><h5>Update a Historic Filter</h5></div></div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="historicFilter">Historic Filter</label><br/>
+                                <input id="historicFilter" name="historicFilter" type="text" class="validate" required="" aria-required="true" value="'.$singleHF->getHistoricFilter().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="buttonColor">Button Color</label><br/>
+                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="'.$singleHF->getButtonColor().'">
+                            </div>
+                        </div>
+                       
+                        '
+            ;
     }
 }
 

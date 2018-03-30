@@ -35,7 +35,7 @@ function modalController(action, obj, objId){
         complete: function(){
 
             $( "#createBtn" ).click(function() {
-                alert( "Create: " + action + " ID: " + objId);
+                console.log( "Create: " + action + " ID: " + objId);
                 var data = objectData +"&"+ $('#createForm').serialize();
 
                 $.ajax({
@@ -46,7 +46,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("created object");
-                        //location.reload();
+                        location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);
@@ -57,7 +57,7 @@ function modalController(action, obj, objId){
             });
 
             $( "#updateBtn" ).click(function() {
-                alert( "Update: " + action + " ID: " + objId);
+                console.log( "Update: " + action + " ID: " + objId);
                 var data = objectData + "&" + $('#updateForm').serialize();
 
                 $.ajax({
@@ -68,7 +68,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("updated object");
-                        //location.reload();
+                        location.reload();
 
                     },
                     error: function(xhr, ajaxOptions, thrownError){
@@ -81,7 +81,7 @@ function modalController(action, obj, objId){
 
             // Create a JQuery ajax request when delete button is pressed passing in params to call required php function
             $( "#deleteBtn" ).click(function() {
-                alert( "Amazing: " + action + " ID: " + objId);
+                console.log( "Amazing: " + action + " ID: " + objId);
                 $.ajax({
                     type: "POST",
                     url: '../services/AdminModalController.php',
@@ -90,6 +90,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("deleted object");
+                        location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);
@@ -102,14 +103,3 @@ function modalController(action, obj, objId){
         }
     });
 }
-
-// $(document).delegate('click', '#deleteModal .deleteBtn', function(){
-//     alert("Please work");
-// });
-//
-//
-// function deleteObject(action){
-//     alert("yay: " + action);
-// }
-
-

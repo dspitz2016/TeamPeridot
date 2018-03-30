@@ -25,8 +25,11 @@ class TypeFilterData {
     }
 
     public function readAllTypeFilters(){
-        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT * FROM Type;
-        ) as typeFilters");
+        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT * FROM Type");
+    }
+
+    public function getTypeFilterById($idType){
+        return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT * FROM Type WHERE idType=".$idType);
     }
 
     public function updateTypeFilter($idType, $typeFilter, $description, $buttonColor){
