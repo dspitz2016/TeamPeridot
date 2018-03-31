@@ -32,6 +32,25 @@ class TypeFilterData {
         return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT * FROM Type WHERE idType=".$idType);
     }
 
+    public function checkIfTypeIsInUse($idType){
+        try{
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("SELECT idType from TrackableObject Where idType = :idType");
+            $stmt->bindParam(':idType', $idType, PDO::PARAM_INT);
+            $stmt->execute();
+            $count = $stmt->rowCount();
+            if($count > 0){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        catch(PDOException $e){
+            echo "Failed to check if Type is in use";
+            echo $e->getMessage();
+            die();
+        }
+    }
+
     public function updateTypeFilter($idType, $typeFilter, $description, $buttonColor){
         try{
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE Type

@@ -120,7 +120,7 @@ class HistoricFilterService {
         $data = $this->readAllHistoricFilters();
 
         $table = "<script>
-                        var hf = 'HistoricFilters';
+                        var hf = 'HistoricFilter';
                     </script>";
         $table .= "
                     <div class='row'>
@@ -147,10 +147,10 @@ class HistoricFilterService {
             $table .= "
                       <tr>
                         <td>".$obj->getHistoricFilter()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, ".$obj->getIdHistoricFilter().")'> Edit
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, hf, ".$obj->getIdHistoricFilter().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, ".$obj->getIdHistoricFilter().")'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, hf, ".$obj->getIdHistoricFilter().")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -206,6 +206,12 @@ class HistoricFilterService {
                            <div class="input-field col s12">
                                 <label for="buttonColor">Button Color</label><br/>
                                 <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="'.$singleHF->getButtonColor().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="display:none;">
+                           <div class="input-field col s12">
+                                <input id="idHistoricFilter" name="idHistoricFilter" type="text" class="validate" required="" aria-required="true" value="'.$singleHF->getIdHistoricFilter().'">
                             </div>
                         </div>
                        

@@ -129,11 +129,8 @@
 
     <div id="deleteModal" class="modal">
         <div class="modal-content ">
-            <h5>Are you sure you would like to delete?</h5>
         </div>
         <div class="modal-footer">
-            <button class='btn waves-effect waves-light modal-close' href='#deleteModal' type='submit'> Cancel</button>
-            <button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' id='deleteBtn' type='submit'>Delete</button>
         </div>
     </div>
 

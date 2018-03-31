@@ -70,7 +70,14 @@ class TypeFilterService {
     }
 
     public function deleteTypeFilter($idType){
+        if($this->typeFilterData->checkIfTypeIsInUse(filter_var($idType,FILTER_SANITIZE_NUMBER_INT))){
+            return "Type Filter Currently in use and cannot be deleted.";
+        } else {
+            $idType = filter_var($idType, FILTER_SANITIZE_NUMBER_INT);
+            ConnectDb::getInstance()->deleteObject($idType, "Type");
+            return "";
 
+        }
     }
 
     public function readTypeTable(){

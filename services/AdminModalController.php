@@ -81,7 +81,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
             case "Type";
                 echo $typeFilterService->updateTypeForm($objId);
                 break;
-            case "HistoricalFilter";
+            case "HistoricFilter";
                 echo $historicFilterService->updateHistoricFilterForm($objId);
                 break;
             default:
@@ -96,13 +96,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
     $object = $_POST['object'];
     $objId = $_POST['objId'];
 
-    echo "Made it to Post Request <br/>";
-
     if($action === "create"){
 
         switch($object){
             case "Location":
-                echo "Made it to create Location";
                 $locationService->createLocation(
                     $_POST['name'],
                     $_POST['description'],
@@ -120,7 +117,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 );
                 break;
             case "Grave";
-                echo "Made it to create <br/>";
                 $graveService->createGrave(
                     $_POST['firstName'],
                     $_POST['middleName'],
@@ -187,7 +183,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['buttonColor']
                 );
                 break;
-            case "HistoricalFilter";
+            case "HistoricFilter";
                 break;
             default:
                 echo "create default";
@@ -195,7 +191,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
     }
 
     if($action === "update"){
-        echo "made it to update post";
         switch($object){
             case "Location":
                 $locationService->updateLocation(
@@ -291,7 +286,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['buttonColor']
                 );
                 break;
-            case "HistoricalFilter";
+            case "HistoricFilter";
+                $historicFilterService->updateHistoricFilter(
+                    $_POST['idHistoricFilter'],
+                    $_POST['historicFilter'],
+                    $_POST['buttonColor']
+                );
                 break;
             default:
                 echo "update default";
@@ -300,13 +300,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
     }
 
     if($action === "delete"){
-        echo "made it to delete <br/>";
         switch($object){
             case "Location":
                 $locationService->deleteLocation($objId);
                 break;
             case "Grave";
-                echo "Deleting Grave";
                 $graveService->deleteGrave($objId);
                 break;
             case "Flora";
@@ -322,9 +320,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 $eventService->deleteEvent($objId);
                 break;
             case "Type";
-
+                echo $typeFilterService->deleteTypeFilter($objId);
                 break;
-            case "HistoricalFilter";
+            case "HistoricFilter";
                 break;
             default:
                 echo "delete default";
