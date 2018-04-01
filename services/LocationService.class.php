@@ -273,7 +273,7 @@ class LocationService {
                                 <label for="city">City</label>
                             </div>
                             <div class="input-field col s4">
-                                <input id="state" name="state" maxlength="2" text" class="validate" required="" aria-required="true">
+                                <input id="state" name="state" maxlength="2" type="text" class="validate" required="" aria-required="true">
                                 <label for="state">State</label>
                             </div>
                             <div class="input-field col s4">
