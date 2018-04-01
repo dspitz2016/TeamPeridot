@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `RapidsCemetery` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `RapidsCemetery`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: RapidsCemetery
@@ -40,7 +38,6 @@ CREATE TABLE `Account` (
 
 LOCK TABLES `Account` WRITE;
 /*!40000 ALTER TABLE `Account` DISABLE KEYS */;
-INSERT INTO `Account` VALUES (1,'Dustin','Spitz','dts5425@rit.edu','c02c8e4776c5a2135fa88f31652b8d79b81a437a'),(2,'David','Camacho','dac6892@rit.edu',NULL);
 /*!40000 ALTER TABLE `Account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +91,7 @@ CREATE TABLE `Event` (
   PRIMARY KEY (`idEvent`,`idLocation`),
   KEY `fk_Event_Location1_idx` (`idLocation`),
   CONSTRAINT `fk_Event_Location1` FOREIGN KEY (`idLocation`) REFERENCES `Location` (`idLocation`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +100,6 @@ CREATE TABLE `Event` (
 
 LOCK TABLES `Event` WRITE;
 /*!40000 ALTER TABLE `Event` DISABLE KEYS */;
-INSERT INTO `Event` VALUES (9,'Amazin','asdfasd','0000-00-00 00:00:00','0000-00-00 00:00:00','','',1);
 /*!40000 ALTER TABLE `Event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,4 +349,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-01 18:17:28
+-- Dump completed on 2018-04-01 13:09:00
