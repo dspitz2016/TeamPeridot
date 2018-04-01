@@ -28,26 +28,24 @@ class Main {
     public function getNavigationBar(){
         echo '<nav>';
         echo '<div class="nav-wrapper cust-color-rust z-depth-1">';
-        echo '<a href="index.php" class="brand-logo">Rapids</a>';
+        echo '<a href="index.php" class="brand-logo">Rapids Cemetery</a>';
         echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
         echo '<ul class="right hide-on-med-and-down">';
         echo '<li><a href="index.php">History</a></li>';
 //        echo '<li><a href="/pages/tours.php">Tours</a></li>';
         echo '<li><a href="/pages/historicTrails.php">Historic Trail</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
+        echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
-//        echo '<li><a href="/pages/events.php">Events</a></li>';
+        echo '<li><a href="https://www.paypal.me/DustinSpitz">Donate</a></li>';
 //        echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
-        echo '<ul class="side-nav cust-color-seafoam z-depth-3" id="mobile-demo">';
-        echo '<h3>Naviagation</h3>';
+        echo '<ul class="side-nav z-depth-3" id="mobile-demo">';
         echo '<hr />';
         echo '<li><a href="index.php">Home</a></li>';
-//        echo '<li><a href="/pages/tours.php">Tours</a></li>';
         echo '<li><a href="/pages/historicTrails.php">Historic Trail</a></li>';
         echo '<li><a href="/pages/scavengerHunt.php">Scavenger Hunt</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
-//        echo '<li><a href="/pages/events.php">Events</a></li>';
 //        echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '</ul>';
         echo '</div>';
@@ -120,6 +118,7 @@ class Main {
         echo '<li><a class="navTab waves-effect" href="#6"><i class="material-icons">event</i>Events</a></li>';
         echo '<li><a class="navTab waves-effect" href="#7"><i class="material-icons">Type</i>Type</a></li>';
         echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">Historic Filters</i>HIstoricFilter</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#9"><i class="material-icons">Contact</i>Contact</a></li>';
 
         echo '<li><div class="divider"></div></li>';
 

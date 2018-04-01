@@ -11,6 +11,7 @@
     require_once '../services/FAQService.class.php';
     require_once '../services/HistoricFilterService.class.php';
     require_once '../services/TypeFilterService.class.php';
+    require_once '../services/ContactService.class.php';
 
     $main = Main::getInstance();
 	$main->getAdminHeader();
@@ -30,6 +31,7 @@
 	$faqService = new FAQService();
 	$historicFilterService = new HistoricFilterService();
 	$typeFilterService = new TypeFilterService();
+	$contactService = new ContactService();
 ?>
 
 <!-- cust-nav used for media query -->
@@ -104,6 +106,10 @@
 
         <!-- Historic -->
         <div class="navLinks" id="8"><?php echo $historicFilterService->readHistoricFilterTable(); ?></div>
+
+        <!-- Contacts -->
+        <div class="navLinks" id="9"><?php echo $contactService->readContactTable(); ?></div>
+
 
     </div>
 

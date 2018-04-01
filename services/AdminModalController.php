@@ -11,6 +11,7 @@ require_once 'FAQService.class.php';
 require_once 'EventService.class.php';
 require_once 'TypeFilterService.class.php';
 require_once 'HistoricFilterService.class.php';
+require_once 'ContactService.class.php';
 
 
 $graveService = new GraveService();
@@ -21,6 +22,7 @@ $faqService = new FAQService();
 $eventService = new EventService();
 $typeFilterService = new TypeFilterService();
 $historicFilterService = new HistoricFilterService();
+$contactService = new ContactService();
 
 if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET['object']) && isset($_GET['objId'])){
     $action = $_GET['action'];
@@ -53,6 +55,9 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
             case "HistoricalFilter";
                 echo $historicFilterService->createHistoricFilterForm();
                 break;
+            case "Contact";
+                echo $contactService->createContactForm();
+                break;
             default:
                 echo "create default";
         }
@@ -83,6 +88,9 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
                 break;
             case "HistoricFilter";
                 echo $historicFilterService->updateHistoricFilterForm($objId);
+                break;
+            case "Contact";
+                echo $contactService->updateContactForm($objId);
                 break;
             default:
                 echo "update default";
@@ -184,6 +192,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 );
                 break;
             case "HistoricFilter";
+                break;
+            case "Contact";
+                $contactService->createContact(
+                    $_POST['firstName'],
+                    $_POST['lastName'],
+                    $_POST['email'],
+                    $_POST['title'],
+                    $_POST['description'],
+                    1
+                );
                 break;
             default:
                 echo "create default";
@@ -293,6 +311,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['buttonColor']
                 );
                 break;
+            case "Contact";
+                $contactService->updateContact(
+                    $_POST['idContact'],
+                    $_POST['firstName'],
+                    $_POST['lastName'],
+                    $_POST['email'],
+                    $_POST['title'],
+                    $_POST['description'],
+                    1
+                );
+                break;
             default:
                 echo "update default";
         }
@@ -323,6 +352,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 echo $typeFilterService->deleteTypeFilter($objId);
                 break;
             case "HistoricFilter";
+                break;
+            case "Contact";
+                $contactService->deleteContact($objId);
                 break;
             default:
                 echo "delete default";

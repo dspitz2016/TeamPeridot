@@ -115,7 +115,7 @@ class EventService
 					  <div class="col s4">
 						  <div class="card">
 							<div class="center-align waves-effect waves-block waves-light cust-color-rust">
-							  <h3 class="activator white-text">'. $event->getName() .'<i class="material-icons right">more_vert</i></h3>
+							  <h3 class="activator white-text">'. $event->getName() .'</h3>
 							</div>
 							<div class="card-content">
 							  <span class="card-title activator grey-text text-darken-4"><strong>Beings</strong> <br/>'. $event->getStartTime() . '</span>

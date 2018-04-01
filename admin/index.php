@@ -46,40 +46,38 @@
 
         <div class="section"></div>
 
-        <div class="container center">
-            <h5 class="brown-text center">Please, login into your account</h5>
+        <div class="container">
+            <h5 class="brown-text center">Rapids Cemetery Administrative Portal</h5>
 
-            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+            <div class="z-depth-1 grey lighten-4 row">
 
-                <form class="col s12" method="post" action="<?php print $_SERVER['PHP_SELF']?>">
-                    <div class='row'>
-                        <div class='col s12'>
-                        </div>
-                    </div>
+                <form class="col s6 push-l3 pull-l3" method="post" action="<?php print $_SERVER['PHP_SELF']?>">
+
+                    <br/>
 
                     <div class='row'>
                         <div class='input-field col s12'>
                             <input class='validate' type='email' name='email' id='email' />
-                            <label for='email'>Enter your email</label>
+                            <label for='email'>Email</label>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
                             <input class='validate' type='password' name='password' id='password' />
-                            <label for='password'>Enter your password</label>
+                            <label for='password'>Password</label>
                         </div>
-                        <label style='float: right;'>
-                            <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-                        </label>
                     </div>
 
-                    <br />
-                    <center>
-                        <div class='row'>
-                            <button type='submit' name='submit' value='submit' class='col s12 btn btn-large brown lighten-1 waves-effect brown'>Login</button>
-                        </div>
-                    </center>
+                    <br/>
+
+                    <div class='row'>
+                        <button type='submit' name='submit' value='submit' class='col s12 btn btn-large brown lighten-1 waves-effect brown'>Login</button>
+                    </div>
+
+                    <br/>
+                    <br/>
+
                 </form>
             </div>
         </div>
@@ -90,5 +88,4 @@
 
 <?php
     $main->getScripts();
-    $main->getFooter();
 ?>
