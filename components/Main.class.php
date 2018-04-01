@@ -100,25 +100,19 @@ class Main {
 
     public function getAdminSideBar(){
         echo '<ul id="slide-out" class="side-nav fixed cust-color-slate col s3">';
-        echo '<li><div class="user-view">';
-                echo '<div class="background">';
-                    echo '<img src="https://i.imgur.com/jvQH23p.jpg" />';
-                echo '</div>';
-                echo '<div class="section"></div>';
-
-            echo '</div></li>';
+        echo '<li><h4>Rapids Cemetery Admin Portal</h4></li>';
 
 
         echo '<li><a class="navTab waves-effect" href="#1"><i class="material-icons">add_location</i>Locations</a></li>';
         echo '<li><a class="navTab waves-effect" href="#2"><i class="material-icons">exposure_plus_1</i>Graves</a></li>';
         echo '<li><a class="navTab waves-effect" href="#3"><i class="material-icons">filter_vintage</i>Flora</a></li>';
         echo '<li><a class="navTab waves-effect" href="#4"><i class="material-icons">nature</i>Miscellaneous</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#5"><i class="material-icons">Misc</i>FAQs</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#5"><i class="material-icons">question_answer</i>FAQs</a></li>';
 
         echo '<li><a class="navTab waves-effect" href="#6"><i class="material-icons">event</i>Events</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#7"><i class="material-icons">Type</i>Type</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">Historic Filters</i>HIstoricFilter</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#9"><i class="material-icons">Contact</i>Contact</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#7"><i class="material-icons">filter_list</i>Type</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">filter_list</i>HistoricFilter</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#9"><i class="material-icons">contacts</i>Contact</a></li>';
 
         echo '<li><div class="divider"></div></li>';
 
