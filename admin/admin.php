@@ -42,7 +42,7 @@
 
 <!-- main class used for resizing in the media query -->
 <div class="main">
-    <div class="section">
+<!--    <div class="section">-->
         <?php
             //$graveService->createGrave("Dustin", "Tyler", "Spitz", "1994-06-27", "2018-03-17", "I Tried...", 4, -77.639091, 43.129458, "You might find him", "", "", 1,1);
             //$graveService->createGrave("John", "J.", "Smith", "1974-06-27", "2018-03-17", "Do words like this work? I don't know hmm.", "", -77.63913, 43.12935, "You might find him here ' 's", "test", "tester", 1,1);
@@ -78,7 +78,7 @@
             //$typeFilterService->deleteTypeFilter(6);
         ?>
 
-    </div>
+<!--    </div>-->
 
     <div class="tabularData">
 

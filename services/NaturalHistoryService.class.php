@@ -103,14 +103,14 @@ class NaturalHistoryService extends TrackableObjectService {
                         var misc = 'Miscellaneous';
                     </script>";
         $table .= "
-                    <div class='row'>
-                            <div class='col s10'>
-                                  <h4>Miscellaneous Objects</h4>
-                            </div>
-                            <div class='col s2'>
-                                   <a class='btn-floating btn-large waves-effect waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, misc, -1)'><i class='material-icons'>add</i></a>
-                            </div>
+                    <div class='card'>
+                    
+                    <div class='card-panel cust-color-rust'>
+                        <span class='card-title white-text'>Miscellaneous</span>
+                        <a class='btn-floating waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, loc, -1)'><i class='material-icons'>add</i></a>
                     </div>
+                    
+                    <div class='card-content'>
 
                     <table class='responsive-table striped'>
                     <thead>
@@ -137,7 +137,7 @@ class NaturalHistoryService extends TrackableObjectService {
             ";
         }
 
-        $table .= "</tbody></table>";
+        $table .= "</tbody></table></div></div>";
 
         return $table;
     }
