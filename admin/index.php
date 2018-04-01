@@ -1,91 +1,94 @@
 <?php
-    ob_start();
-    session_start();
+ob_start();
+session_start();
 
-    include '../components/Main.class.php';
-    include '../services/LoginService.class.php';
+include '../components/Main.class.php';
+include '../services/LoginService.class.php';
 
-    $main = Main::getInstance();
-    $main->getHeader();
+$main = Main::getInstance();
+$main->getHeader();
 
-    /**
-    * If someone is logged in currently clear session
-    **/
+/**
+ * If someone is logged in currently clear session
+ **/
 
-    if(isset($_SESSION['email'])){
-        header('Location: admin.php');
-    }
+if (isset($_SESSION['email'])) {
+    header('Location: admin.php');
+}
 
-    /**
-    * If form submitted login
-    **/
-    if(isset($_POST['submit'])){
+/**
+ * If form submitted login
+ **/
+if (isset($_POST['submit'])) {
 
-        if($_POST['email'] != "" && $_POST['password'] != ""){
+    if ($_POST['email'] != "" && $_POST['password'] != "") {
 
-            $longinService = new LoginService();
-            $validateEmail = $longinService->validatePassword($_POST['email'], $_POST['password']);
+        $longinService = new LoginService();
+        $validateEmail = $longinService->validatePassword($_POST['email'], $_POST['password']);
 
-            if($validateEmail){
-                $_SESSION['email'] = $_POST['email'];
-                echo "You will be redirect to admin home page";
-                header('Location: admin.php');
-            } else {
-                echo "Incorrect Credentials";
-            }
+        if ($validateEmail) {
+            $_SESSION['email'] = $_POST['email'];
+            echo "You will be redirect to admin home page";
+            header('Location: admin.php');
         } else {
-            echo "Please enter an email and password";
+            echo "Incorrect Credentials";
         }
-
+    } else {
+        echo "Please enter an email and password";
     }
+
+}
 ?>
 
-<div class="section"></div>
-<main>
-        <div class="section"></div>
+<div class="container">
+    <div class="section"></div>
+    <div class="section"></div>
 
-        <div class="section"></div>
 
-        <div class="container">
-            <h5 class="brown-text center">Rapids Cemetery Administrative Portal</h5>
+    <div class='row'>
+        <div class='card col s8 offset-s2 m4 offset-m4 l4 offset-l4'>
+            <div class='card-panel cust-color-rust'>
+                <span class='card-title white-text flex'>Rapids Cemetery Admin Portal</span>
 
-            <div class="z-depth-1 grey lighten-4 row">
+            </div>
 
-                <form class="col s6 push-l3 pull-l3" method="post" action="<?php print $_SERVER['PHP_SELF']?>">
-
-                    <br/>
+            <div class='card-content'>
+                <form class='row' method='post'
+                      action='<?php print $_SERVER['PHP_SELF'] ?>'>
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate' type='email' name='email' id='email' />
-                            <label for='email'>Email</label>
+                            <i class="material-icons prefix">email</i>
+                            <input id='icon_prefix' class='validate' type='email' name='email' id='email'/>
+                            <label for='icon_prefix'>Email</label>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate' type='password' name='password' id='password' />
-                            <label for='password'>Password</label>
+                            <i class="material-icons prefix">lock</i>
+
+                            <input id='icon_prefix' validate' type='password' name='password' id='password'/>
+                            <label for='icon_prefix'>Password</label>
                         </div>
                     </div>
 
-                    <br/>
-
-                    <div class='row'>
-                        <button type='submit' name='submit' value='submit' class='col s12 btn btn-large brown lighten-1 waves-effect brown'>Login</button>
+                    <div class='row center'>
+                        <button type='submit' name='submit' value='submit'
+                                class='btn btn-large brown lighten-1 waves-effect brown'>Login
+                        </button>
                     </div>
 
                     <br/>
-                    <br/>
-
                 </form>
             </div>
+
         </div>
+    </div>
 
     <div class="section"></div>
     <div class="section"></div>
-</main>
 
-<?php
+    <?php
     $main->getScripts();
-?>
+    ?>
