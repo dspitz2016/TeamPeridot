@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
             case "Type";
                 echo $typeFilterService->createTypeForm();
                 break;
-            case "HistoricalFilter";
+            case "HistoricFilter";
                 echo $historicFilterService->createHistoricFilterForm();
                 break;
             case "Contact";
@@ -192,6 +192,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 );
                 break;
             case "HistoricFilter";
+                $historicFilterService->createHistoricFilter(
+                    $_POST['historicFilter'],
+                    $_POST['buttonColor']
+                );
                 break;
             case "Contact";
                 $contactService->createContact(

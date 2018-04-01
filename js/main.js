@@ -9,9 +9,6 @@ $(document).ready(function(){
     $('.navTab').click(function(){
         $('.navLinks').hide();
         $(this.getAttribute('href')).show();
-        console.log(this.getAttribute('href'));
-        console.log($('.navLinks').index(this));
-
     });
 
 });

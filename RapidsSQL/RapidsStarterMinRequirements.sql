@@ -243,7 +243,7 @@ CREATE TABLE `Location` (
 
 LOCK TABLES `Location` WRITE;
 /*!40000 ALTER TABLE `Location` DISABLE KEYS */;
-INSERT INTO `Location` VALUES (7,'Rapids Cemetery','Rapids Cemetery Description','http://mcnygenealogy.com/cem/rapids.htm',-77.639473,43.129366,'86 Congress Ave','Rochester','NY',14619,'http://api.ning.com/files/y7kCYIEatclT5iVzRPqE0gFrR55*qb5v-odLCEdh1GiCaCYBsLFjWNm-35MBiZtC0hn7ee4ulxjtrNIzuGgZT8MAUAYrmqDX/RAPIDSCEMETERYI.JPG','Path Description','http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FE6256|000000',1);
+INSERT INTO `Location` VALUES (1,'Rapids Cemetery','Rapids Cemetery Description','http://mcnygenealogy.com/cem/rapids.htm',-77.639473,43.129366,'86 Congress Ave','Rochester','NY',14619,'http://api.ning.com/files/y7kCYIEatclT5iVzRPqE0gFrR55*qb5v-odLCEdh1GiCaCYBsLFjWNm-35MBiZtC0hn7ee4ulxjtrNIzuGgZT8MAUAYrmqDX/RAPIDSCEMETERYI.JPG','Path Description','http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FE6256|000000',1);
 /*!40000 ALTER TABLE `Location` ENABLE KEYS */;
 UNLOCK TABLES;
 

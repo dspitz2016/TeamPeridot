@@ -179,13 +179,7 @@ class HistoricFilterService {
                                 <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
-                        
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
-                                <label for="description">Description</label>
-                            </div>
-                        </div>
+                       
                         '
             ;
     }

@@ -131,7 +131,11 @@ class LocationService {
     // Delete
     public function deleteLocation($idLocation){
         $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
-        ConnectDb::getInstance()->deleteObject($idLocation, "Location");
+        if($idLocation == 1){
+            echo "Rapids Cemetery cannot be removed from the Database.";
+        } else {
+            ConnectDb::getInstance()->deleteObject($idLocation, "Location");
+        }
     }
 
     /**
