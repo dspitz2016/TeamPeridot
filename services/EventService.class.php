@@ -126,7 +126,7 @@ class EventService
 							  <span class="card-title activator grey-text text-darken-4"><strong>Beings</strong> <br/>'. $event->getFormattedStartTime() . '</span>
 							  <span class="card-title activator grey-text text-darken-4"><strong>Ends</strong> <br/>'. $event->getFormattedEndTime() .'</span>
 							  <span class="card-title activator grey-text text-darken-4"><strong>Location</strong> <br/>'. $event->getLocationName() .'</span>
-							  <span class="card-title activator grey-text text-darken-4"><strong>Address</strong> <br/>'. $singleLocation->getFullAddress() .'</span>
+							  <span class="card-title activator grey-text text-darken-4">'. $singleLocation->getFullAddress() .'</span>
 
 							</div>
 							<div class="card-reveal">

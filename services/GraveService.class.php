@@ -289,6 +289,7 @@ class GraveService extends TrackableObjectService {
                                 <label for="description">Description</label>
                             </div>
                         </div>'
+                        . $this->locationService->getDefaultLocationDropdown()
                         . $this->trackableObjectService->getCreateTrackableObjectFormElements()
                         . $this->historicFilterService->getDefaultHistoricFilterDropdown()
                        ;
@@ -341,6 +342,7 @@ class GraveService extends TrackableObjectService {
                                 <input id="idGrave" name="idGrave" type="text" value="'.$singleGrave->getIdGrave().'">
                             </div>
                         </div>'
+            . $this->locationService->getDefaultLocationDropdown()
                 . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleGrave)
                 . $this->historicFilterService->getHistoricFilterFormDropdownForObject($singleGrave->getIdHistoricFilter());
 

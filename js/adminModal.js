@@ -34,7 +34,7 @@ function modalController(action, obj, objId){
             }
 
             $('select').material_select(); // initializes material select
-
+            // $(".select.currentFilter option:selected").val();
         },
         complete: function(){
 

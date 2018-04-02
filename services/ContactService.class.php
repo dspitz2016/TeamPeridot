@@ -61,31 +61,46 @@ class ContactService {
      */
     public function getAllContactCards(){
         $data = $this->readAllContacts();
-        $contactCollection = '<div class="row"><div class="col s12"><h3>Contact Us</h3></div><div class="row">';
+        $contactCollection = '
+                             
+                              <div class="row cust-color-seafoam">
+                                <div class="col s12">
+                                    <h5 class="center-align white-text">Contacts</h5>
+                                </div>
+                              </div>
+                              <div class="row cust-color-slate">
+
+                              
+                              ';
+
+
+
 
         foreach ($data as $contact){
             $contactCollection .= '
-					<div class="col s12 m12 lg12">
-                    <div class="card horizontal">
-                        <div class="card-panel cust-color-rust center-align">
-                            <img class="responsive-img circle" style="height:10em;" src="'.$contact->getImagePath().'">
-                            <h5 class="center white-text">'.$contact->getFirstName().' '.$contact->getLastName().'</h5>
-                            <h5 class="center white-text">'.$contact->getTitle().'</h5>
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h5>About</h5>
-                                <p>'.$contact->getDescription().'</p>
-                                <br/>
-                                <h5>Contact</h5>
-                                <p><i class="material-icons">email</i> '.$contact->getEmail().'</p>
+
+                        <div class="col s12 m6 lg6">
+                            <div class="card">
+                                <div class="card-panel contact-panel cust-color-rust center-align">
+                                    <img class="responsive-img circle" style="height:10em;" src="'.$contact->getImagePath().'">
+                                    <h5 class="center white-text">'.$contact->getFirstName().' '.$contact->getLastName().'</h5>
+                                    <h5 class="center white-text">'.$contact->getTitle().'</h5>
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <h5>About</h5>
+                                        <p>'.$contact->getDescription().'</p>
+                                        <br/>
+                                        <h5>Contact</h5>
+                                        <p><i class="material-icons">email</i> '.$contact->getEmail().'</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>';
+                ';
         }
 
-        $contactCollection .= "</div></div>";
+        $contactCollection .= "</div>";
 
         return $contactCollection;
     }

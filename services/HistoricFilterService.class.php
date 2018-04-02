@@ -178,10 +178,10 @@ class HistoricFilterService {
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <div class="row" style="display:none;">
                            <div class="input-field col s12">
                                 <label for="buttonColor">Button Color</label><br/>
-                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true">
+                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="b0bec5">
                             </div>
                         </div>
                        
@@ -201,10 +201,10 @@ class HistoricFilterService {
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <div class="row" style="display:none;">
                            <div class="input-field col s12">
                                 <label for="buttonColor">Button Color</label><br/>
-                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="'.$singleHF->getButtonColor().'">
+                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="b0bec5">
                             </div>
                         </div>
                         
