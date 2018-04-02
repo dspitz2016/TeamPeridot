@@ -177,8 +177,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 $eventService->createEvent(
                     $_POST['name'],
                     $_POST['description'],
-                    $_POST['startTime'],
-                    $_POST['endTime'],
+                    $_POST['startDate'] . ' ' . $_POST['startTime'] .':00', //seconds
+                    $_POST['endDate'] . ' ' . $_POST['endTime'] .':00', //seconds
                     "",
                     "",
                     1); // Always Rapids
@@ -294,8 +294,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['idEvent'],
                     $_POST['name'],
                     $_POST['description'],
-                    $_POST['startTime'],
-                    $_POST['endTime'],
+                    $_POST['startDate'] . ' ' . $_POST['startTime'] .':00', //seconds
+                    $_POST['endDate'] . ' ' . $_POST['endTime'] .':00', //seconds
                     "",
                     "",
                     1);// Always Rapids

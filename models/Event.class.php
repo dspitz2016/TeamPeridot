@@ -44,14 +44,20 @@ class Event {
         return date('F j, Y, g:i a', strtotime($this->endTime));
     }
 
-    public function getFormFormattedStartTime(){
-        //return date("Y-m-d H:i:s",strtotime($this->startTime));
-        return date('Y-m-d\TH:i:sP', strtotime($this->startTime));
+    public function getStartDate(){
+        return date('Y-m-d', strtotime($this->startTime));
     }
 
-    public function getFormFormattedEndTime(){
-        //return date("Y-m-d H:i:s",strtotime($this->startTime));
-        return date("m-d-Y h:i A", strtotime($this->endTime));
+    public function getEndDate(){
+        return date('Y-m-d', strtotime($this->endTime));
+    }
+
+    public function getFormStartTime(){
+        return date('H:i:s', strtotime($this->startTime));
+    }
+
+    public function getFormEndTime(){
+        return date('H:i:s', strtotime($this->endTime));
     }
 
     /**

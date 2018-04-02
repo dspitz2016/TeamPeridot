@@ -120,7 +120,7 @@ class TrackableObjectService {
                         </div>
             
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field col s12" style="display:none;">
                                 <label for="scavengerHuntHint">Scavenger Hunt Hint</label>
                                 <input id="scavengerHuntHint" name="scavengerHuntHint" type="text" required="" aria-required="true">
                             </div>

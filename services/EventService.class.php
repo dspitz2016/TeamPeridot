@@ -112,7 +112,7 @@ class EventService
 
         foreach ($data as $event){
             $eventCollection .= '
-					  <div class="col s4">
+					  <div class="col s12 m6 l6">
 						  <div class="card">
 							<div class="center-align waves-effect waves-block waves-light cust-color-rust">
 							  <h3 class="activator white-text">'. $event->getName() .'</h3>
@@ -205,13 +205,25 @@ class EventService
             
                         <div class="row">
                             <div class="input-field col s6">
-                                <label for="startTime">Event Start</label><br/>
-                                <input id="startTime" name="startTime" type="datetime-local" required="" aria-required="true">
+                                <label for="startDate">Event Start Date</label><br/>
+                                <input id="startDate" name="startDate" type="date" required="" aria-required="true">
                             </div>
                             <div class="input-field col s6">
-                                <label for="endTime">Event End</label><br/>
-                                <input id="endTime" name="endTime" type="datetime-local" required="" aria-required="true">
+                                <label for="startTime">Event Start Time</label><br/>
+                                <input id="startTime" name="startTime" type="time" required="" aria-required="true">
                             </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="input-field col s6">
+                                <label for="endDate">Event End Date</label><br/>
+                                <input id="endDate" name="endDate" type="date" required="" aria-required="true">
+                          </div>                         
+                          
+                          <div class="input-field col s6">
+                                <label for="endTime">Event End Time</label><br/>
+                                <input id="endTime" name="endTime" type="time" required="" aria-required="true">
+                          </div>
                         </div>
             
                       ';
@@ -238,13 +250,25 @@ class EventService
             
                         <div class="row">
                             <div class="input-field col s6">
-                                <label for="startTime">Event Start</label><br/>
-                                <input id="startTime" name="startTime" type="datetime-local" required="" aria-required="true" value="'. $singleEvent->getFormFormattedStartTime().'">
+                                <label for="startDate">Event Start Date</label><br/>
+                                <input id="startDate" name="startDate" type="date" required="" aria-required="true" value="'. $singleEvent->getStartDate().'">
                             </div>
                             <div class="input-field col s6">
-                                <label for="endTime">Event End</label><br/>
-                                <input id="endTime" name="endTime" type="datetime-local" required="" aria-required="true" value="'.$singleEvent->getFormFormattedEndTime().'">
+                                <label for="startTime">Event Start Time</label><br/>
+                                <input id="startTime" name="startTime" type="time" required="" aria-required="true" value="'.$singleEvent->getFormStartTime().'">
                             </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="input-field col s6">
+                                <label for="endDate">Event End Date</label><br/>
+                                <input id="endDate" name="endDate" type="date" required="" aria-required="true" value="'.$singleEvent->getEndDate().'">
+                          </div>                         
+                          
+                          <div class="input-field col s6">
+                                <label for="endTime">Event End Time</label><br/>
+                                <input id="endTime" name="endTime" type="time" required="" aria-required="true" value="'.$singleEvent->getFormEndTime().'">
+                          </div>
                         </div>
                         
                         <div class="row" style="display:none;">
