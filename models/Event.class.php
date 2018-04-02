@@ -28,12 +28,30 @@ class Event {
         $this->idEvent = $idEvent;
         $this->name = $name;
         $this->description = $description;
-        $this->startTime = date('F j, Y, g:i a', strtotime($startTime));
-        $this->endTime = date('F j, Y, g:i a', strtotime($endTime));
+        $this->startTime = $startTime;
+        $this->endTime = $endTime;
         $this->imagePath = $imagePath;
         $this->imageDescription = $imageDescription;
         $this->idLocation = $idLocation;
         $this->locationName = $locationName;
+    }
+
+    public function getFormattedStartTime(){
+        return date('F j, Y, g:i a', strtotime($this->startTime));
+    }
+
+    public function getFormattedEndTime(){
+        return date('F j, Y, g:i a', strtotime($this->endTime));
+    }
+
+    public function getFormFormattedStartTime(){
+        //return date("Y-m-d H:i:s",strtotime($this->startTime));
+        return date('Y-m-d\TH:i:sP', strtotime($this->startTime));
+    }
+
+    public function getFormFormattedEndTime(){
+        //return date("Y-m-d H:i:s",strtotime($this->startTime));
+        return date("m-d-Y h:i A", strtotime($this->endTime));
     }
 
     /**

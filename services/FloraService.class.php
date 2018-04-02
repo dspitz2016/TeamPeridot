@@ -161,21 +161,21 @@ class FloraService extends TrackableObjectService {
 
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="commonName">Common Name</label><br/>
+                                <label for="commonName">Common Name</label>
                                 <input id="commonName" name="commonName" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                            <div class="input-field col s12">
-                                <label for="scientificName">Scientific Name</label><br/>
+                                <label for="scientificName">Scientific Name</label>
                                 <input id="scientificName" name="scientificName" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="description">Description</label><br/>
+                                <label for="description">Description</label>
                                 <textarea id="description" name="description" class="materialize-textarea"></textarea>
                             </div>
                         </div>'
@@ -210,13 +210,13 @@ class FloraService extends TrackableObjectService {
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <div class="row" style="display:none;">
                            <div class="input-field col s12">
                                 <input id="idFlora" name="idFlora" type="text" class="validate" required="" aria-required="true" value="'.$singleFlora->getIdFlora().'">
                             </div>
                         </div>
                         '
-            . $this->locationService->getLocationDropdownByObject($singleFlora->getIdLocation())
+            . $this->locationService->getDefaultLocationDropdown()
             . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleFlora)
             ;
     }

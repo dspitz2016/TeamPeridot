@@ -431,7 +431,7 @@ class LocationService {
             $idLocationListValue = $loc->getIdLocation();
 
             // If it's not null it should match and display the field that matches
-            if($idLocationListValue == $idLocation){
+            if($idLocationListValue == 1){
                 $elem .= '<option value="'.$idLocationListValue.'" selected>'.$loc->getName().'</option>';
             } else {
                 $elem .= '<option value="'.$idLocationListValue.'">'.$loc->getName().'</option>';
@@ -448,12 +448,13 @@ class LocationService {
         $elem = '<div class="row">
                     <div class="input-field col s12">
                     <select name="idLocation">';
-        $elem .= '<option value="0" disabled selected>Choose your option</option>';
 
 
         foreach($data as $loc){
             $idLocation = $loc->getIdLocation();
-            $elem .= '<option value="'.$idLocation.'">'.$loc->getName().'</option>';
+            if($idLocation == 1){ // everythign belongs to rapids currently
+                $elem .= '<option value="'.$idLocation.'" disabled selected>'.$loc->getName().'</option>';
+            }
         }
 
         $elem .= '</select><label>Location Selection</label></div></div>';

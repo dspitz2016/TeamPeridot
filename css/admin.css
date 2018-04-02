@@ -34,3 +34,7 @@ body {
 .tabularData{
   padding: 1em;
 }
+
+table{
+  overflow: auto;
+}

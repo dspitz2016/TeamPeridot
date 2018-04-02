@@ -107,7 +107,7 @@ class NaturalHistoryService extends TrackableObjectService {
                     
                     <div class='card-panel cust-color-rust'>
                         <span class='card-title white-text'>Miscellaneous</span>
-                        <a class='btn-floating waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, loc, -1)'><i class='material-icons'>add</i></a>
+                        <a class='btn-floating waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, misc, -1)'><i class='material-icons'>add</i></a>
                     </div>
                     
                     <div class='card-content'>
@@ -148,14 +148,14 @@ class NaturalHistoryService extends TrackableObjectService {
 
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="name">Name</label><br/>
+                                <label for="name">Name</label>
                                 <input id="name" name="name" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="description">Description</label><br/>
+                                <label for="description">Description</label>
                                 <textarea id="description" name="description" class="materialize-textarea"></textarea>
                             </div>
                         </div>'

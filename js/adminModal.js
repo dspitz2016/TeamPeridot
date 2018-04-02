@@ -38,9 +38,19 @@ function modalController(action, obj, objId){
         },
         complete: function(){
 
+            $('select').change((e) => {
+                this.model[e.currentTarget.name] = e.currentTarget.value;
+            });
+
+            //$('select').material_select(); // initializes material select
+            // $('select').on('contentChanged', function() {
+            //     $(this).material_select();
+            // });
+
             $( "#createBtn" ).click(function() {
                 console.log( "Create: " + action + " ID: " + objId);
                 var data = objectData +"&"+ $('#createForm').serialize();
+
 
                 $.ajax({
                     type: "POST",
@@ -63,6 +73,10 @@ function modalController(action, obj, objId){
             $( "#updateBtn" ).click(function() {
                 console.log( "Update: " + action + " ID: " + objId);
                 var data = objectData + "&" + $('#updateForm').serialize();
+
+                var sel = $('idHistoricFilter').material_select();
+                alert("Select Value: " + sel);
+                $('select').material_select(); // initializes material select
 
                 $.ajax({
                     type: "POST",

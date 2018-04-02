@@ -90,7 +90,7 @@ class TypeFilterService {
                     <div class='card'>
                     
                     <div class='card-panel cust-color-rust'>
-                        <span class='card-title white-text'>Events</span>
+                        <span class='card-title white-text'>Type Filters</span>
                         <a class='btn-floating waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, typ, -1)'><i class='material-icons'>add</i></a>
                     </div>
                     

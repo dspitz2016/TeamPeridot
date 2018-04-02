@@ -101,8 +101,8 @@ class HistoricFilterService {
         $data = $this->readAllHistoricFilters();
         $elem = '<div class="row">
                     <div class="input-field col s12">
-                    <select name="idHistoricFilter">';
-        $elem .= '<option value="0" disabled selected>Choose your option</option>';
+                    <select id="idHistoricFilter" name="idHistoricFilter">';
+        $elem .= '<option value="" selected>Choose your option</option>';
 
 
         foreach($data as $historicFilter){
@@ -126,7 +126,7 @@ class HistoricFilterService {
                     <div class='card'>
                     
                     <div class='card-panel cust-color-rust'>
-                        <span class='card-title white-text'>Events</span>
+                        <span class='card-title white-text'>Historic Filters</span>
                         <a class='btn-floating waves-light modal-trigger' href='#createModal' onclick='modalController(createAction, hf, -1)'><i class='material-icons'>add</i></a>
                     </div>
                     

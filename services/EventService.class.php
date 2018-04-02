@@ -108,7 +108,7 @@ class EventService
 
     public function getAllStyledHTMLEvents(){
         $data = $this->getAllEventsOrderedByDate();
-        $eventCollection = '<div class="row cust-color-seafoam"><div class="col s12"><h2 class="white-text">Upcoming Events</h2></div><div class="row">';
+        $eventCollection = '<div class="row"><div class="col s12"><h2 class="black-text">Upcoming Events</h2></div><div class="row">';
 
         foreach ($data as $event){
             $eventCollection .= '
@@ -118,8 +118,8 @@ class EventService
 							  <h3 class="activator white-text">'. $event->getName() .'</h3>
 							</div>
 							<div class="card-content">
-							  <span class="card-title activator grey-text text-darken-4"><strong>Beings</strong> <br/>'. $event->getStartTime() . '</span>
-							  <span class="card-title activator grey-text text-darken-4"><strong>Ends</strong> <br/>'. $event->getEndTime() .'</span>
+							  <span class="card-title activator grey-text text-darken-4"><strong>Beings</strong> <br/>'. $event->getFormattedStartTime() . '</span>
+							  <span class="card-title activator grey-text text-darken-4"><strong>Ends</strong> <br/>'. $event->getFormattedEndTime() .'</span>
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">Event Description<i class="material-icons right">close</i></span>
@@ -156,6 +156,7 @@ class EventService
                           <th>Name</th>
                           <th>Location</th>
                           <th>Start Time</th>
+                          <th>End Time</th>
                           <th></th>
                           <th></th>
                       </tr>
@@ -168,8 +169,8 @@ class EventService
                       <tr>
                         <td>".$obj->getName()."</td>
                         <td>".$obj->getLocationName()."</td>
-                        <td>".$obj->getStartTime()."</td>
-
+                        <td>".$obj->getFormattedStartTime()."</td>
+                        <td>".$obj->getFormattedEndTime()."</td>
                         <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, eventt, ".$obj->getIdEvent().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
@@ -238,11 +239,11 @@ class EventService
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="startTime">Event Start</label><br/>
-                                <input id="startTime" name="startTime" type="datetime-local" required="" aria-required="true" value="'.$singleEvent->getStartTime().'">
+                                <input id="startTime" name="startTime" type="datetime-local" required="" aria-required="true" value="'. $singleEvent->getFormFormattedStartTime().'">
                             </div>
                             <div class="input-field col s6">
                                 <label for="endTime">Event End</label><br/>
-                                <input id="endTime" name="endTime" type="datetime-local" required="" aria-required="true" value="'.$singleEvent->getEndTime().'">
+                                <input id="endTime" name="endTime" type="datetime-local" required="" aria-required="true" value="'.$singleEvent->getFormFormattedEndTime().'">
                             </div>
                         </div>
                         

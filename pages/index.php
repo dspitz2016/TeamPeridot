@@ -41,10 +41,10 @@ $mapService = new MapService();
     <div class="row container white-text">
 
         <div class="col s4 center-align">
-            <h5>Tours</h5>
+            <h5>Historical Trails</h5>
             <i class="large material-icons">map</i>
             <p class="center-align">
-                Learn about the cemetery through interactive tours.
+                Learn the history of Rochester, NY!
             </p>
         </div>
         <div class="col s4 center-align">

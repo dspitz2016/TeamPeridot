@@ -110,32 +110,32 @@ class TrackableObjectService {
     public function getCreateTrackableObjectFormElements(){
         return  '<div class="row">
                             <div class="input-field col s6">
-                                <label for="longitude">longitude</label><br/>
+                                <label for="longitude">longitude</label>
                                 <input id="longitude" name="longitude" type="text" required="" aria-required="true">
                             </div>
                             <div class="input-field col s6">
-                                <label for="latitude">latitude</label><br/>
+                                <label for="latitude">latitude</label>
                                 <input id="latitude" name="latitude" type="text" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="scavengerHuntHint">Scavenger Hunt Hint</label><br/>
+                                <label for="scavengerHuntHint">Scavenger Hunt Hint</label>
                                 <input id="scavengerHuntHint" name="scavengerHuntHint" type="text" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="imagePath">Image Path</label><br/>
+                                <label for="imagePath">Image Path</label>
                                 <input id="imagePath" name="imagePath" type="text" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="imageDescription">Image Description</label><br/>
+                                <label for="imageDescription">Image Description</label>
                                 <input id="imageDescription" name="imageDescription" type="text" required="" aria-required="true">
                             </div>
                         </div>';

@@ -157,14 +157,14 @@ class FAQService {
 
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="question">Question</label><br/>
+                                <label for="question">Question</label>
                                 <input id="question" name="question" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                            <div class="input-field col s12">
-                                <label for="answer">Answer</label><br/>
+                                <label for="answer">Answer</label>
                                 <input id="answer" name="answer" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>

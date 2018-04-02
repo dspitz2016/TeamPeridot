@@ -138,7 +138,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['scavengerHuntHint'],
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
-                    $_POST['idLocation'],
+                    1, // Always Rapids
                     1); // Always Grave
                 break;
             case "Flora";
@@ -151,7 +151,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['scavengerHuntHint'],
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
-                    1,
+                    1, // Always Rapids
                     2); // Always Flora
                 break;
             case "Miscellaneous";
@@ -163,14 +163,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['scavengerHuntHint'],
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
-                    1,
-                    3);
+                    1, // Always Rapids
+                    3); // Always Misc
                 break;
             case "FAQs";
                 $faqService->createFAQ(
                     $_POST['question'],
                     $_POST['answer'],
-                    1
+                    1 // Always Rapids
                 );
                 break;
             case "Events";
@@ -181,7 +181,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['endTime'],
                     "",
                     "",
-                    1);
+                    1); // Always Rapids
                 break;
             case "Type";
                 $typeFilterService->createTypeFilter(
@@ -204,7 +204,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['email'],
                     $_POST['title'],
                     $_POST['description'],
-                    1
+                    1 // Always Rapids
                 );
                 break;
             default:
@@ -249,7 +249,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['scavengerHuntHint'],
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
-                    $_POST['idLocation'],
+                    1, // Always Rapids
                     1); // Always Grave
                 break;
             case "Flora";
@@ -264,7 +264,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['scavengerHuntHint'],
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
-                    1,
+                    1, // Always Rapids
                     2); // Always Flora
                 break;
             case "Miscellaneous";
@@ -278,15 +278,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['scavengerHuntHint'],
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
-                    1,
-                    2);
+                    1, // Always Rapids
+                    3);
                 break;
             case "FAQs";
                 $faqService->updateFAQ(
                     $_POST['idFAQ'],
                     $_POST['question'],
                     $_POST['answer'],
-                    1
+                    1 // Always Rapids
                 );
                 break;
             case "Events";
@@ -298,7 +298,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['endTime'],
                     "",
                     "",
-                    1);
+                    1);// Always Rapids
                 break;
             case "Type";
                 $typeFilterService->updateTypeFilter(
@@ -323,7 +323,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['email'],
                     $_POST['title'],
                     $_POST['description'],
-                    1
+                    1 // Always Rapids
                 );
                 break;
             default:
