@@ -1,6 +1,7 @@
 <?php
     ob_start();
     session_start();
+    date_default_timezone_set('America/New_York');
 
     require_once '../components/Main.class.php';
     require_once '../services/LocationService.class.php';
