@@ -1,11 +1,13 @@
 <?php
 
     require_once '../data/HistoricFilterData.class.php';
+    require_once '../data/GraveData.class.php';
     require_once '../models/HistoricFilter.class.php';
 
 class HistoricFilterService {
 
     private $historicFilterData;
+    private $graveData;
 
     /**
      * HistoricFilterService constructor.
@@ -14,6 +16,7 @@ class HistoricFilterService {
     public function __construct()
     {
         $this->historicFilterData = new HistoricFilterData();
+        $this->graveData = new GraveData();
     }
 
 
@@ -64,6 +67,8 @@ class HistoricFilterService {
 
     public function deleteHistoricFilter($idHistoricFilter){
         $idHistoricFilter = filter_var($idHistoricFilter, FILTER_SANITIZE_NUMBER_INT);
+        // Update any Grave that uses this id set to null
+        $this->graveData->updateDeletedHistoricFilterToNull($idHistoricFilter);
         ConnectDb::getInstance()->deleteObject($idHistoricFilter, "HistoricFilter");
     }
 

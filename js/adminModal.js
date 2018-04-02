@@ -38,14 +38,6 @@ function modalController(action, obj, objId){
         },
         complete: function(){
 
-            $('select').change((e) => {
-                this.model[e.currentTarget.name] = e.currentTarget.value;
-            });
-
-            //$('select').material_select(); // initializes material select
-            // $('select').on('contentChanged', function() {
-            //     $(this).material_select();
-            // });
 
             $( "#createBtn" ).click(function() {
                 console.log( "Create: " + action + " ID: " + objId);
@@ -60,7 +52,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("created object");
-                        // location.reload();
+                        location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);
@@ -74,9 +66,9 @@ function modalController(action, obj, objId){
                 console.log( "Update: " + action + " ID: " + objId);
                 var data = objectData + "&" + $('#updateForm').serialize();
 
-                var sel = $('idHistoricFilter').material_select();
-                alert("Select Value: " + sel);
-                $('select').material_select(); // initializes material select
+                // var sel = $('idHistoricFilter').material_select();
+                // alert("Select Value: " + sel);
+                // $('select').material_select(); // initializes material select
 
                 $.ajax({
                     type: "POST",
@@ -86,7 +78,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("updated object");
-                        // location.reload();
+                        location.reload();
 
                     },
                     error: function(xhr, ajaxOptions, thrownError){
@@ -115,7 +107,8 @@ function modalController(action, obj, objId){
                             $('#deleteModal .modal-content').html('<h5>' + data + '</h5>');
                             $('#deleteModal .modal-footer').html("<button class='btn waves-effect waves-light modal-close' href='#deleteModal' type='submit'> Cancel</button>");
                         }
-                        // location.reload();
+
+                        location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);

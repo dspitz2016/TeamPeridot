@@ -69,8 +69,13 @@ function loadModalContent(id, idType){
         	var htmlContent = "";
 
         	if(jsonData.idType == 1){ //Grave
+                // var dateFormat = require('dateformat');
+                // var birth = new Date(jsonData.birth);
+                // var death = new Date(jsonData.death);
+                // var birthFormatted = dateFormat(birth, )
 
                 htmlContent = '<h4>' + jsonData.firstName + ' ' + jsonData.middleName + ' ' + jsonData.lastName + '</h4> <br/>' +
+                              '<p>(' + jsonData.birth + ' - ' + jsonData.death + ')</p> <br/>' +
                               '<img src="' + jsonData.imagePath +'" alt=""/> <br/>' +
                               '<p>' + jsonData.description + '</p> <br/>';
 

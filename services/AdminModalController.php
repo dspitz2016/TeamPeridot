@@ -356,6 +356,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 echo $typeFilterService->deleteTypeFilter($objId);
                 break;
             case "HistoricFilter";
+                $historicFilterService->deleteHistoricFilter($objId);
                 break;
             case "Contact";
                 $contactService->deleteContact($objId);

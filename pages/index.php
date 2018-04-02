@@ -113,7 +113,7 @@ $mapService = new MapService();
 
 
 <div id="modal" class="modal bottom-sheet">
-    <div class="modal-content">
+    <div class="modal-content center">
 
     </div>
     <div class="modal-footer">

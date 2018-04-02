@@ -88,4 +88,18 @@ class GraveData {
         }
     }
 
+    public function updateDeletedHistoricFilterToNull($idHistoricFilter){
+        try{
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("Update Grave
+                                                                                  SET idHistoricFilter = NULL 
+                                                                                  Where idHistoricFilter = :idHistoricFilter");
+            $stmt->bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo "Failed to Update Historic Filters";
+            echo $e->getMessage();
+            die();
+        }
+    }
 }
