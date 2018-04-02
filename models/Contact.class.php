@@ -8,6 +8,7 @@ class Contact {
     private $email;
     private $title;
     private $description;
+    private $imagePath;
     private $idLocation;
 
     /**
@@ -18,9 +19,10 @@ class Contact {
      * @param $email
      * @param $title
      * @param $description
+     * @param $imagePath
      * @param $idLocation
      */
-    public function __construct($idContact, $firstName, $lastname, $email, $title, $description, $idLocation)
+    public function __construct($idContact, $firstName, $lastname, $email, $title, $description, $imagePath, $idLocation)
     {
         $this->idContact = $idContact;
         $this->firstName = $firstName;
@@ -28,6 +30,7 @@ class Contact {
         $this->email = $email;
         $this->title = $title;
         $this->description = $description;
+        $this->imagePath = $imagePath;
         $this->idLocation = $idLocation;
     }
 
@@ -125,6 +128,22 @@ class Contact {
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * @param mixed $imagePath
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
     }
 
     /**

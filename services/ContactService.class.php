@@ -28,6 +28,7 @@ class ContactService {
                 $contact['email'],
                 $contact['title'],
                 $contact['description'],
+                $contact['imagePath'],
                 $contact['idLocation']
             );
 
@@ -47,6 +48,7 @@ class ContactService {
             $obj[0]['email'],
             $obj[0]['title'],
             $obj[0]['description'],
+            $obj[0]['imagePath'],
             $obj[0]['idLocation']
         );
 
@@ -59,27 +61,28 @@ class ContactService {
      */
     public function getAllContactCards(){
         $data = $this->readAllContacts();
-        $contactCollection = '<div class="row"><div class="col s12"><h2>Contact Us</h2></div><div class="row">';
+        $contactCollection = '<div class="row"><div class="col s12"><h3>Contact Us</h3></div><div class="row">';
 
         foreach ($data as $contact){
             $contactCollection .= '
-					  <div class="col s4">
-						  <div class="card">
-							<div class="center-align waves-effect waves-block waves-light cust-color-rust">
-							  <h4 class="activator white-text">'. $contact->getFirstName() .' '. $contact->getLastName(). '</h4>
-							</div>
-							<div class="card-content">
-							  <span class="card-title activator grey-text text-darken-4"><strong>Title: </strong>'.$contact->getTitle().'</span>
-							</div>
-							<div class="card-reveal">
-							  <span class="card-title grey-text text-darken-4"><strong>About Me</strong></span>
-							  <span class="card-content grey-text text-darken-4">'.$contact->getDescription().'</span>
-							  
-							  <span class="card-title grey-text text-darken-4"><strong>Contact</strong></span>
-							  <span class="card-content grey-text text-darken-4">'.$contact->getEmail().'</span>
-							</div>
-						  </div>
-					  </div>';
+					<div class="col s12 m12 lg12">
+                    <div class="card horizontal">
+                        <div class="card-panel cust-color-rust center-align">
+                            <img class="responsive-img circle" style="height:10em;" src="'.$contact->getImagePath().'">
+                            <h5 class="center white-text">'.$contact->getFirstName().' '.$contact->getLastName().'</h5>
+                            <h5 class="center white-text">'.$contact->getTitle().'</h5>
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h5>About</h5>
+                                <p>'.$contact->getDescription().'</p>
+                                <br/>
+                                <h5>Contact</h5>
+                                <p><i class="material-icons">email</i> '.$contact->getEmail().'</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
         }
 
         $contactCollection .= "</div></div>";
@@ -87,27 +90,30 @@ class ContactService {
         return $contactCollection;
     }
 
-    public function createContact($firstName, $lastname, $email, $title, $description, $idLocation){
+    public function createContact($firstName, $lastname, $email, $title, $description, $imagePath, $idLocation){
         $firstName = filter_var($firstName, FILTER_SANITIZE_STRING);
         $lastname = filter_var($lastname, FILTER_SANITIZE_STRING);
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $title = filter_var($title, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_URL);
         $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
 
-        $this->contactData->createContact($firstName, $lastname, $email, $title, $description, $idLocation);
+
+        $this->contactData->createContact($firstName, $lastname, $email, $title, $description, $imagePath, $idLocation);
     }
 
-    public function updateContact($idContact, $firstName, $lastname, $email, $title, $description, $idLocation){
+    public function updateContact($idContact, $firstName, $lastname, $email, $title, $description, $imagePath, $idLocation){
         $idContact = filter_var($idContact, FILTER_SANITIZE_NUMBER_INT);
         $firstName = filter_var($firstName, FILTER_SANITIZE_STRING);
         $lastname = filter_var($lastname, FILTER_SANITIZE_STRING);
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $title = filter_var($title, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
+        $imagePath = filter_var($imagePath, FILTER_SANITIZE_URL);
         $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
 
-        $this->contactData->updateContact($idContact, $firstName, $lastname, $email, $title, $description, $idLocation);
+        $this->contactData->updateContact($idContact, $firstName, $lastname, $email, $title, $description, $imagePath, $idLocation);
 
     }
 
@@ -185,6 +191,13 @@ class ContactService {
                                 <input id="title" name="title" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
+                        
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="imagePath">Profile Image Path</label><br/>
+                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true">
+                            </div>
+                        </div>
             
                         <div class="row">
                            <div class="input-field col s12">
@@ -223,6 +236,13 @@ class ContactService {
                            <div class="input-field col s12">
                                 <label for="title">Title</label><br/>
                                 <input id="title" name="title" type="text" class="validate" required="" aria-required="true" value="'.$singleContact->getTitle().'">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <label for="imagePath">Profile Image Path</label><br/>
+                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
             

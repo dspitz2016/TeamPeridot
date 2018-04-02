@@ -14,5 +14,5 @@ echo $contactService->getAllContactCards();
 ?>
 
 <?php $main->getScripts(); ?>
-<?php $main->getFooter(); ?>
+<?php //$main->getFooter(); ?>
 

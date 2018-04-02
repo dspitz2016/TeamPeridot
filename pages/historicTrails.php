@@ -48,6 +48,8 @@ $locationService = new LocationService();
     </div>
 </div>
 
+<div class="section"></div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>
 
 <?php $main->getScripts(); ?>

@@ -203,6 +203,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['lastName'],
                     $_POST['email'],
                     $_POST['title'],
+                    $_POST['imagePath'],
                     $_POST['description'],
                     1 // Always Rapids
                 );
@@ -323,6 +324,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['email'],
                     $_POST['title'],
                     $_POST['description'],
+                    $_POST['imagePath'],
                     1 // Always Rapids
                 );
                 break;
