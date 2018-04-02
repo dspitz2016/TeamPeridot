@@ -234,40 +234,40 @@ class LocationService {
 
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true">
                                 <label for="name">Name</label>
+                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
                                 <label for="description">Description</label>
+                                <textarea id="description" name="description" class="materialize-textarea"></textarea>
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea id="url" name="url" class="materialize-textarea"></textarea>
                                 <label for="url">Url</label>
+                                <input id="url" name="url" type="text" class="validate" required="" aria-required="true">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="input-field col s6">
-                                <label for="longitude">longitude</label><br/>
+                                <label for="longitude">longitude</label>
                                 <input id="longitude" name="longitude" type="text" required="" aria-required="true">
                             </div>
                             <div class="input-field col s6">
-                                <label for="latitude">latitude</label><br/>
+                                <label for="latitude">latitude</label>
                                 <input id="latitude" name="latitude" type="text" required="" aria-required="true">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="input-field col s12">
+                                <label for="address">Address</label>  
                                 <input id="address" name="address" type="text" class="validate" required="" aria-required="true">
-                                <label for="address">Address</label>
                             </div>
                         </div>  
                         
@@ -302,14 +302,14 @@ class LocationService {
                         
                         <div class="row">
                             <div class="input-field col s12">
-                                <label for="pinDesign">Pin Design (URL) - Set chld=trailOrder, or set custom pin design</label><br/>
+                                <label for="pinDesign">Pin Design</label><br/>
                                 <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|FE6256|000000">
                             </div>
                         </div>  
                         
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="trailOrder" name="trailOrder" type="text" class="validate" required="" aria-required="true">
+                                <input id="trailOrder" name="trailOrder" type="number" class="validate" required="" aria-required="true">
                                 <label for="trailOrder">Trail Order</label>
                             </div>
                         </div>  

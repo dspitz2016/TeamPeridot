@@ -8,6 +8,8 @@ include '../services/LoginService.class.php';
 $main = Main::getInstance();
 $main->getHeader();
 
+$errorMsg = '';
+
 /**
  * If someone is logged in currently clear session
  **/
@@ -28,13 +30,12 @@ if (isset($_POST['submit'])) {
 
         if ($validateEmail) {
             $_SESSION['email'] = $_POST['email'];
-            echo "You will be redirect to admin home page";
             header('Location: admin.php');
         } else {
-            echo "Incorrect Credentials";
+            $errorMsg = "Incorrect email and password combination.";
         }
     } else {
-        echo "Please enter an email and password";
+        $errorMsg = "Incorrect email and password combination.";
     }
 
 }
@@ -48,7 +49,7 @@ if (isset($_POST['submit'])) {
     <div class='row'>
         <div class='card col s8 offset-s2 m4 offset-m4 l4 offset-l4'>
             <div class='card-panel cust-color-rust'>
-                <span class='card-title white-text flex'>Rapids Cemetery Admin Portal</span>
+                <span class='card-title white-text center-align'>Rapids Cemetery <br/> Admin Portal</span>
 
             </div>
 
@@ -70,6 +71,12 @@ if (isset($_POST['submit'])) {
 
                             <input id='icon_prefix' validate' type='password' name='password' id='password'/>
                             <label for='icon_prefix'>Password</label>
+                        </div>
+                    </div>
+
+                    <div class='row warning'>
+                        <div class="col s12 red-text center-align section ">
+                            <?php echo $errorMsg; ?>
                         </div>
                     </div>
 

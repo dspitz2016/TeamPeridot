@@ -238,8 +238,8 @@ class MapService
         }
 
 
-        $infoWindowContent = '"' . "<div class=" . "'content'><h4 style='margin:0;'>" . $pin->getName() .
-            "</h4><br/><img height='150px' class='' src='" . $pin->getImagePath() . "' alt=''><br/>" .
+        $infoWindowContent = '"' . "<div class=" . "'content center'><h5 style='margin:0;'>" . $pin->getName() .
+            "</h5><br/><img height='150px' class='' src='" . $pin->getImagePath() . "' alt=''><br/>" .
             "<a class='waves-effect waves-light btn modal-trigger' href='#modal' onclick='" . $ajaxFunction . "')>See More Info</a>"
             . '</div>' . '"';
 

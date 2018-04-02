@@ -6,8 +6,8 @@ ini_set('display_errors', true);
 require_once '../data/LoginData.class.php';
 
 /**
- * Used to generate the Location modals on the wider area map
- * onclick a button sends an ajax get request providing idLocation which is used to get the information for the modal
+ * Author: Dustin Spitz
+ * > Sanitizes and encrypts data before it gets passed to data layer for validation
  */
 class LoginService
 {
@@ -31,15 +31,9 @@ class LoginService
      */
     public function validatePassword($email, $password)
     {
-        // Sanitize
         $user = filter_var($email, FILTER_SANITIZE_STRING);
         $pass = filter_var($password, FILTER_SANITIZE_STRING);
-
-        echo "Validate Password Function <br/>";
-        echo "User: " . $user . "<br/>";
-        echo "Pass: " . $pass . "<br/>";
         $validatedResult = LoginData::getInstance()->validatePassword($user, $pass);
-        echo "Is Valid? " . $validatedResult . "<br/>";
         return $validatedResult;
     }
 }

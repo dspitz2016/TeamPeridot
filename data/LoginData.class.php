@@ -2,6 +2,14 @@
 
 require_once '../services/ConnectDb.class.php';
 
+/**
+ * Class LoginData
+ * Author: Dustin Spitz
+ * Contributor: Brianna Jones
+ *
+ * This class is responsible for communiting valid login credentials against the database.
+ */
+
 class LoginData {
 
     private static $instance = null;
@@ -12,11 +20,8 @@ class LoginData {
      */
     public function __construct()
     {
-        echo "Login Constructor <br/>";
-
         try{
             $this->conn = ConnectDb::getInstance()->getConnection();
-            echo "Login Conn: ";
         }
         catch(PDOException $e){
             echo $e->getMessage();
@@ -26,7 +31,6 @@ class LoginData {
 
     public static function getInstance()
     {
-        echo "Login Instance <br/>";
 
         if(!self::$instance)
         {
