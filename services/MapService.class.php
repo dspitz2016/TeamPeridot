@@ -60,7 +60,7 @@ if (navigator.geolocation) {
                 mark = new google.maps.Marker({
                     position: pos,
                     map: map,
-                    icon: \"images/pins/userMarker.png\"
+                    icon: \"images/pins/userpin.png\"
                 });
                 var myVar = setInterval(updateUserLocation, 15000);
             }, function () {
