@@ -2,11 +2,12 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 
+date_default_timezone_set('GMT');
+
 require_once '../data/EventData.class.php';
 require_once 'LocationService.class.php';
 require_once '../models/Event.class.php';
 
-date_default_timezone_set('America/New_York');
 
 
 /**
