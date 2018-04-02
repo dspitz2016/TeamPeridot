@@ -148,10 +148,10 @@ class LocationService {
         $clearfix = 0;
 
         foreach($data as $loc){
-            $locDetailString .= '<div class="col s10 push-s1 pull-s1 m5 push-m1 pull-m1 col l5 push-l1 pull-l1">';
+            $locDetailString .= '<div class="col s10 push-s1 pull-s1 m10 push-m1 pull-m1 col l5 push-l1 pull-l1">';
                 $locDetailString .= '<h5>'.$loc->getTrailOrder().') '.$loc->getName().'</h5>';
                 $locDetailString .= '<p>'.$loc->getDescription().'</p>';
-                $locDetailString .= '<a href="'.$loc->getURL().'">Link to: '.$loc->getName().'</a>';
+                $locDetailString .= '<a class="waves-effect waves-light btn" href="'.$loc->getURL().'">Go to '.$loc->getName().' Website</a>';
             $locDetailString .= '</div>';
 
             if($clearfix%2){

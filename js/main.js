@@ -65,8 +65,6 @@ function loadModalContent(id, idType){
             console.log(data);
         	var str = data;
         	var jsonStr = data.substring( str.indexOf("{"), str.length-2);
-
-
         	var jsonData = $.parseJSON(jsonStr);
         	var htmlContent = "";
 
@@ -77,12 +75,12 @@ function loadModalContent(id, idType){
                               '<p>' + jsonData.description + '</p> <br/>';
 
 
-            } else if(jsonData.idType == 2){ // Vegetation
+            } else if(jsonData.idType == 2){ // Flora
 
                 htmlContent =   '<h4>' + jsonData.commonName + '</h4> <br/>' +
                                 '<img height="150px" src="' + jsonData.imagePath +'" alt=""/> <br/>'+
                                 '<p>' + jsonData.description + '</p> <br/>';
-m
+
 
             } else { // other object
 
@@ -124,7 +122,8 @@ function loadLocationModal(id){
             htmlContent = '<h4>' + jsonData.name + '</h4> <br/>' +
                 '<p>' + jsonData.description + '</p> <br/>' +
                 '<img src="' + jsonData.imagePath +'" alt=""/> <br/>' +
-                '<a href="' + jsonData.url + '">'+ jsonData.name + ' Website' +'</a>';
+                '<p>' + jsonData.address + ', ' + jsonData.city + ', ' + jsonData.state + ' ' + jsonData.zipcode +'</p>' +
+                '<a class="waves-effect waves-light btn" href="'+ jsonData.url +'">Go to '+ jsonData.name + ' Website</a>';
 
 
             $('.modal-content').html(htmlContent);
