@@ -6,6 +6,9 @@ require_once '../data/EventData.class.php';
 require_once 'LocationService.class.php';
 require_once '../models/Event.class.php';
 
+date_default_timezone_set('America/New_York');
+
+
 /**
  * Class EventService
  * Author: Dustin Spitz
