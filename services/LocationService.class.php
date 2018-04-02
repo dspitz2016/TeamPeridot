@@ -150,6 +150,7 @@ class LocationService {
         foreach($data as $loc){
             $locDetailString .= '<div class="col s10 push-s1 pull-s1 m10 push-m1 pull-m1 col l5 push-l1 pull-l1">';
                 $locDetailString .= '<h5>'.$loc->getTrailOrder().') '.$loc->getName().'</h5>';
+                $locDetailString .= '<p>'.$loc->getFullAddress().'</p>';
                 $locDetailString .= '<p>'.$loc->getDescription().'</p>';
                 $locDetailString .= '<a class="waves-effect waves-light btn" href="'.$loc->getURL().'">Go to '.$loc->getName().' Website</a>';
             $locDetailString .= '</div>';
@@ -454,6 +455,27 @@ class LocationService {
             $idLocation = $loc->getIdLocation();
             if($idLocation == 1){ // everythign belongs to rapids currently
                 $elem .= '<option value="'.$idLocation.'" disabled selected>'.$loc->getName().'</option>';
+            }
+        }
+
+        $elem .= '</select><label>Location Selection</label></div></div>';
+
+        return $elem;
+    }
+
+    public function getEventLocationDropdown(){
+        $data = $this->getAllLocationsAsPins();
+        $elem = '<div class="row">
+                    <div class="input-field col s12">
+                    <select name="idLocation">';
+
+
+        foreach($data as $loc){
+            $idLocation = $loc->getIdLocation();
+            if($idLocation == 1){ // everythign belongs to rapids currently
+                $elem .= '<option value="'.$idLocation.'" disabled selected>'.$loc->getName().'</option>';
+            } else {
+                $elem .= '<option value="'.$idLocation.'">'.$loc->getName().'</option>';
             }
         }
 

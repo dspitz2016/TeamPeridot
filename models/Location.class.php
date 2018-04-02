@@ -52,6 +52,10 @@ class Location {
         $this->trailOrder = $trailOrder;
     }
 
+    public function getFullAddress(){
+        return $this->address . ', ' . $this->city . ', ' . $this->state . ', ' . $this->zipcode;
+    }
+
     /**
      * @return mixed
      */

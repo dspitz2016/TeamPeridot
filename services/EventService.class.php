@@ -3,6 +3,7 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 
 require_once '../data/EventData.class.php';
+require_once 'LocationService.class.php';
 require_once '../models/Event.class.php';
 
 /**
@@ -13,12 +14,14 @@ require_once '../models/Event.class.php';
 class EventService
 {
     private $eventData;
+    private $locationService;
 
     /**
      * EventService constructor.
      */
     public function __construct(){
         $this->eventData = new EventData();
+        $this->locationService = new LocationService();
     }
 
 
@@ -111,6 +114,8 @@ class EventService
         $eventCollection = '<div class="row"><div class="col s12"><h2 class="black-text">Upcoming Events</h2></div><div class="row">';
 
         foreach ($data as $event){
+            $singleLocation = $this->locationService->getLocationById($event->getIdLocation());
+
             $eventCollection .= '
 					  <div class="col s12 m6 l6">
 						  <div class="card">
@@ -120,6 +125,9 @@ class EventService
 							<div class="card-content">
 							  <span class="card-title activator grey-text text-darken-4"><strong>Beings</strong> <br/>'. $event->getFormattedStartTime() . '</span>
 							  <span class="card-title activator grey-text text-darken-4"><strong>Ends</strong> <br/>'. $event->getFormattedEndTime() .'</span>
+							  <span class="card-title activator grey-text text-darken-4"><strong>Location</strong> <br/>'. $event->getLocationName() .'</span>
+							  <span class="card-title activator grey-text text-darken-4"><strong>Address</strong> <br/>'. $singleLocation->getFullAddress() .'</span>
+
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">Event Description<i class="material-icons right">close</i></span>
@@ -201,9 +209,11 @@ class EventService
                                 <textarea id="description" name="description" class="materialize-textarea"></textarea>
                                 <label for="description">Description</label>
                             </div>
-                        </div>
+                        </div>'
+
+                        .$this->locationService->getEventLocationDropdown().
             
-                        <div class="row">
+                        '<div class="row">
                             <div class="input-field col s6">
                                 <label for="startDate">Event Start Date</label><br/>
                                 <input id="startDate" name="startDate" type="date" required="" aria-required="true">
@@ -225,6 +235,8 @@ class EventService
                                 <input id="endTime" name="endTime" type="time" required="" aria-required="true">
                           </div>
                         </div>
+                        
+                        
             
                       ';
     }

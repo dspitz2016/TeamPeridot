@@ -51,25 +51,50 @@ class MapService
 
         " . $this->createMapPins($mapPinObjects, $isLocation) . "
 //                 // Try HTML5 geolocation.
-                if (navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude
-                    };
-        
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    //infoWindow.open(map);
-                    //map.setCenter(pos);
-                  }, function() {
-                    //handleLocationError(true, infoWindow, map.getCenter());
-                  });
-                } else {
-                  // Browser doesn't support Geolocation
-                  //handleLocationError(false, infoWindow, map.getCenter());
-                }
-              }
+if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                mark = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: \"images/pins/userMarker.png\"
+                });
+                var myVar = setInterval(updateUserLocation, 15000);
+            }, function () {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+        //its in ms so 1000ms/second
+    }
+    function updateUserLocation() {
+        <!-- This needs to be tested -->
+        // HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                mark.setMap(null);
+                mark = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    icon: \"images/pins/userMarker.png\"
+                });
+            }, function () {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
         
               
               function handleLocationError(browserHasGeolocation, infoWindow, pos) {
