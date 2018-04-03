@@ -262,9 +262,10 @@ class EventService
                                 <label for="description">Description</label><br/>
                                 <textarea id="description" name="description" class="materialize-textarea">'.$singleEvent->getDescription().'</textarea>
                             </div>
-                        </div>
-            
-                        <div class="row">
+                        </div>'
+                        .$this->locationService->getLocationDropdownByObject($singleEvent->getIdLocation()).
+        '
+                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="startDate">Event Start Date</label><br/>
                                 <input id="startDate" name="startDate" type="date" required="" aria-required="true" value="'. $singleEvent->getStartDate().'">
