@@ -1,3 +1,18 @@
+$(document).ready(function(){
+
+    // Resets POST variables on modal close to keep user from passing data twice.
+    var reloadPage = function(){
+        location.reload();
+    };
+
+    $("#createModal").modal({dismissible: false, complete : reloadPage});
+    $("#updateModal").modal({dismissible: false, complete : reloadPage})
+    $("#deleteModal").modal({dismissible: false, complete : reloadPage})
+
+});
+
+
+
 /**
  * @param action - create, update
  * @param obj - any object on the navigation stored where tables are generated
@@ -23,6 +38,7 @@ function modalController(action, obj, objId){
             switch(action){
                 case "create":
                     $('#createModal .modal-content #createForm').html(data);
+
                     break;
                 case "update":
                     $('#updateModal .modal-content #updateForm').html(data);
@@ -37,7 +53,6 @@ function modalController(action, obj, objId){
             // $(".select.currentFilter option:selected").val();
         },
         complete: function(){
-
 
             $( "#createBtn" ).click(function() {
                 console.log( "Create: " + action + " ID: " + objId);
@@ -78,7 +93,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("updated object");
-                        //location.reload();
+                        // location.reload();
 
                     },
                     error: function(xhr, ajaxOptions, thrownError){
@@ -108,7 +123,7 @@ function modalController(action, obj, objId){
                             $('#deleteModal .modal-footer').html("<button class='btn waves-effect waves-light modal-close' href='#deleteModal' type='submit'> Cancel</button>");
                         }
 
-                        //location.reload();
+                        // location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);

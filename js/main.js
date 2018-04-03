@@ -2,6 +2,10 @@ $(document).ready(function(){
 	$(".button-collapse").sideNav();
 	$('.parallax').parallax();
 	$('.modal').modal();
+    $("#createModal").modal({dismissible: false});
+    $("#updateModal").modal({dismissible: false})
+    $("#deleteModal").modal({dismissible: false})
+
     $('.collapsible').collapsible({
 		accordian: true
 	});

@@ -77,7 +77,7 @@
 
     </div>
 
-    <div id="createModal" class="modal">
+    <div id="createModal" class="modal admin-modal">
         <div class="modal-content">
             <form id="createForm"></form>
         </div>
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <div id="updateModal" class="modal">
+    <div id="updateModal" class="modal admin-modal">
         <div class="modal-content">
             <form id="updateForm"></form>
         </div>
@@ -97,7 +97,7 @@
         </div>
     </div>
 
-    <div id="deleteModal" class="modal">
+    <div id="deleteModal" class="modal admin-modal">
         <div class="modal-content ">
         </div>
         <div class="modal-footer">
