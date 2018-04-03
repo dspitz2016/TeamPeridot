@@ -120,10 +120,15 @@ function modalController(action, obj, objId){
 
                         if(data != ""){
                             $('#deleteModal .modal-content').html('<h5>' + data + '</h5>');
-                            $('#deleteModal .modal-footer').html("<button class='btn waves-effect waves-light modal-close' href='#deleteModal' type='submit'> Cancel</button>");
+                            $('#deleteModal .modal-footer').html("<button class='btn waves-effect waves-light modal-close' href='#deleteModal' id='cannotDeleteBtn' type='submit'> Cancel</button>");
+                        } else {
+                            location.reload();
                         }
-
-                        location.reload();
+                    },
+                    complete:function(){
+                         $('#cannotDeleteBtn').click(function(){
+                            location.load();
+                         });
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);
