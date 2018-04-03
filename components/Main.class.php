@@ -28,9 +28,9 @@ class Main {
     public function getNavigationBar(){
         echo '<nav>';
         echo '<div class="nav-wrapper cust-color-rust z-depth-1">';
-        echo '<a href="index.php" class="brand-logo">Rapids Cemetery</a>';
+        echo '<a href="index.php" class="brand-logo right">Rapids Cemetery</a>';
         echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
-        echo '<ul class="right hide-on-med-and-down">';
+        echo '<ul class="left hide-on-med-and-down">';
         echo '<li><a href="index.php">History</a></li>';
         echo '<li><a href="/pages/historicTrails.php">Historic Trail</a></li>';
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
