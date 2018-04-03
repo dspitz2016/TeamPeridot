@@ -52,7 +52,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("created object");
-                        location.reload();
+                        //location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);
@@ -78,7 +78,7 @@ function modalController(action, obj, objId){
                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                     success: function(){
                         console.log("updated object");
-                        location.reload();
+                        //location.reload();
 
                     },
                     error: function(xhr, ajaxOptions, thrownError){
@@ -108,7 +108,7 @@ function modalController(action, obj, objId){
                             $('#deleteModal .modal-footer').html("<button class='btn waves-effect waves-light modal-close' href='#deleteModal' type='submit'> Cancel</button>");
                         }
 
-                        location.reload();
+                        //location.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError){
                         alert(xhr.status);

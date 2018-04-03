@@ -126,7 +126,7 @@ class GraveService extends TrackableObjectService {
         $middleName = filter_var($middleName, FILTER_SANITIZE_STRING);
         $lastName = filter_var($lastName, FILTER_SANITIZE_STRING);
         $birth = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($birth)));
-        $death = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($birth)));
+        $death = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($death)));
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $idHistoricFilter = filter_var($idHistoricFilter, FILTER_SANITIZE_STRING);
 
@@ -172,7 +172,7 @@ class GraveService extends TrackableObjectService {
         $middleName = filter_var($middleName, FILTER_SANITIZE_STRING);
         $lastName = filter_var($lastName, FILTER_SANITIZE_STRING);
         $birth = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($birth)));
-        $death = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($birth)));
+        $death = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($death)));
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $idHistoricFilter = filter_var($idHistoricFilter, FILTER_SANITIZE_STRING);
 
