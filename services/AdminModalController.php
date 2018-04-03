@@ -181,7 +181,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['endDate'] . ' ' . $_POST['endTime'] .':00', //seconds
                     "",
                     "",
-                    1); // Always Rapids
+                    $_POST['idLocation']);
                 break;
             case "Type";
                 $typeFilterService->createTypeFilter(
@@ -299,7 +299,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['endDate'] . ' ' . $_POST['endTime'] .':00', //seconds
                     "",
                     "",
-                    1);// Always Rapids
+                    $_POST['idLocation']);
                 break;
             case "Type";
                 $typeFilterService->updateTypeFilter(
