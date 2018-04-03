@@ -127,11 +127,11 @@ class EventService
 							  <h3 class="activator white-text">'. $event->getName() .'</h3>
 							</div>
 							<div class="card-content">
-							  <span class="card-title activator grey-text text-darken-4"><strong>Beings</strong> <br/>'. $event->getFormattedStartTime() . '</span>
-							  <span class="card-title activator grey-text text-darken-4"><strong>Ends</strong> <br/>'. $event->getFormattedEndTime() .'</span>
-							  <span class="card-title activator grey-text text-darken-4"><strong>Location</strong> <br/>'. $event->getLocationName() .'</span>
-							  <span class="card-title activator grey-text text-darken-4">'. $singleLocation->getFullAddress() .'</span>
-
+							  <span class="card-title activator grey-text text-darken-4"><strong>Starts: </strong>'. $event->getFormattedStartTime() . '</span>
+							  <span class="card-title activator grey-text text-darken-4"><strong>Ends: </strong>'. $event->getFormattedEndTime() .'</span>
+							  <span class="card-title activator grey-text text-darken-4"><strong>Location: </strong>'. $event->getLocationName() .'</span>
+							  <span class="card-title activator grey-text text-darken-4"><strong>Address: </strong>'. $singleLocation->getFullAddress() .'</span>
+                              <span class="card-title activator green-text">Learn More...</span>
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">Event Description<i class="material-icons right">close</i></span>
