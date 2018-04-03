@@ -25,7 +25,7 @@ $locationService = new LocationService();
 </div>
 
 <div class="section row cust-color-mint">
-    <div class="col s10 push-s1 pull-s1">
+    <div class="col s12 m10 push-m1 pull-m1">
         <div id="map"></div>
     </div>
 </div>
