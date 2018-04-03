@@ -36,6 +36,7 @@ class Main {
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
         echo '<li><a href="https://www.paypal.me/DustinSpitz">Donate</a></li>';
+        echo '<li><a href="https://www.facebook.com/RapidsCemeteryRochester/?ref=br_rs">Like us on facebook</a></li>';
         echo '</ul>';
         echo '<ul class="side-nav z-depth-3" id="mobile-demo">';
         echo '<hr />';
@@ -44,7 +45,7 @@ class Main {
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
         echo '<li><a href="https://www.paypal.me/DustinSpitz">Donate</a></li>';
-        echo '<li><a href="https://www.facebook.com/RapidsCemeteryRochester/?ref=br_rs">Like us on facebook</a>';
+        echo '<li><a href="https://www.facebook.com/RapidsCemeteryRochester/?ref=br_rs">Like us on facebook</a></li>';
         echo '</ul>';
         echo '</div>';
         echo '</nav>';

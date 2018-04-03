@@ -64,8 +64,9 @@ class ContactService {
         $contactCollection = '
                              
                               <div class="row cust-color-seafoam">
-                                <div class="col s12">
-                                    <h5 class="center-align white-text">Contacts</h5>
+                                <div class="col s12 center">
+                                    <h4 class="center-align white-text">Contacts</h4>
+                                    <p class="white-text">Members of 19WCA who can answer your Rapids Cemetery Questions!</p>
                                 </div>
                               </div>
                               <div class="row cust-color-slate">
@@ -90,14 +91,18 @@ class ContactService {
                                     <div class="card-content">
                                         <h5>About</h5>
                                         <p>'.$contact->getDescription().'</p>
-                                        <br/>
-                                        <h5>Contact</h5>
-                                        <p><i class="material-icons">email</i> '.$contact->getEmail().'</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                ';
+                                        <br/>';
+
+            if($contact->getEmail() != ""){
+                $contactCollection .= '     <h5>Contact</h5>
+                                        <p><i class="material-icons">email</i> '.$contact->getEmail().'</p>';
+            }
+
+            $contactCollection .=                       '</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    ';
         }
 
         $contactCollection .= "</div>";
@@ -257,7 +262,7 @@ class ContactService {
                         <div class="row">
                            <div class="input-field col s12">
                                 <label for="imagePath">Profile Image Path</label><br/>
-                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true">
+                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true" value="'.$singleContact->getImagePath().'">
                             </div>
                         </div>
             

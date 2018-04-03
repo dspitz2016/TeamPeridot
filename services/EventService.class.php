@@ -115,7 +115,7 @@ class EventService
 
     public function getAllStyledHTMLEvents(){
         $data = $this->getAllEventsOrderedByDate();
-        $eventCollection = '<div class="row"><div class="col s12"><h2 class="black-text">Upcoming Events</h2></div><div class="row">';
+        $eventCollection = '<div class="row cust-color-seafoam"><div class="col s12"><h2 class="white-text">Upcoming Events</h2></div><div class="row">';
 
         foreach ($data as $event){
             $singleLocation = $this->locationService->getLocationById($event->getIdLocation());

@@ -17,7 +17,14 @@ $locationService = new LocationService();
 
 ?>
 
-<div class="section row">
+<div class="section row cust-color-seafoam">
+    <div class="col s12 white-text center">
+        <h4>Historic Trails</h4>
+        <p>Find places to visit in the Rochester Area!</p>
+    </div>
+</div>
+
+<div class="section row cust-color-mint">
     <div class="col s10 push-s1 pull-s1">
         <div id="map"></div>
     </div>
