@@ -28,7 +28,8 @@ class Main {
     public function getNavigationBar(){
         echo '<nav>';
         echo '<div class="nav-wrapper cust-color-rust z-depth-1">';
-        echo '<a href="index.php" class="brand-logo right">Rapids Cemetery</a>';
+        //echo '<a href="index.php" class="brand-logo right">Rapids Cemetery</a>';
+        echo '<a href="index.php" class="brand-logo right"><img src="../images/RapidsLogo.png" alt="logo" height="60px" width="60px"></a>';
         echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
         echo '<ul class="left hide-on-med-and-down">';
         echo '<li><a href="index.php">History</a></li>';
@@ -63,7 +64,7 @@ class Main {
 
     public function getFooter(){
 
-        echo '<div class="section cust-color-rust">';
+        echo '<div id="footer" class="section cust-color-rust">';
             echo '<div class="row container white-text center-align">';
                 echo '<div class="col s12">';
                 echo '&copy; Team Peridot 2018';
