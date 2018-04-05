@@ -3,7 +3,8 @@
 require_once '../data/TypeFilterData.class.php';
 require_once '../models/TypeFilter.class.php';
 
-class TypeFilterService {
+class TypeFilterService
+{
 
     private $typeFilterData;
 
@@ -17,7 +18,8 @@ class TypeFilterService {
     }
 
 
-    public function createTypeFilter($typeFilter, $description, $pinDesign, $buttonColor){
+    public function createTypeFilter($typeFilter, $description, $pinDesign, $buttonColor)
+    {
         $typeFilter = filter_var($typeFilter, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $pinDesign = filter_var($pinDesign, FILTER_SANITIZE_STRING);
@@ -26,7 +28,8 @@ class TypeFilterService {
         $this->typeFilterData->createTypeFilter($typeFilter, $description, $pinDesign, $buttonColor);
     }
 
-    public function readAllTypeFilters(){
+    public function readAllTypeFilters()
+    {
         $typeFilterData = $this->typeFilterData->readAllTypeFilters();
         $allTypeFilters = array();
 
@@ -45,7 +48,8 @@ class TypeFilterService {
         return $allTypeFilters;
     }
 
-    public function getTypeFilterById($idType){
+    public function getTypeFilterById($idType)
+    {
         $idType = filter_var($idType, FILTER_SANITIZE_NUMBER_INT);
         $obj = $this->typeFilterData->getTypeFilterById($idType);
         $singleType = new TypeFilter(
@@ -59,7 +63,8 @@ class TypeFilterService {
         return $singleType;
     }
 
-    public function updateTypeFilter($idType, $typeFilter, $description, $buttonColor){
+    public function updateTypeFilter($idType, $typeFilter, $description, $buttonColor)
+    {
         $idType = filter_var($idType, FILTER_SANITIZE_NUMBER_INT);
         $typeFilter = filter_var($typeFilter, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
@@ -69,8 +74,9 @@ class TypeFilterService {
 
     }
 
-    public function deleteTypeFilter($idType){
-        if($this->typeFilterData->checkIfTypeIsInUse(filter_var($idType,FILTER_SANITIZE_NUMBER_INT)) || $idType == 1 || $idType == 2 || $idType == 3){
+    public function deleteTypeFilter($idType)
+    {
+        if ($this->typeFilterData->checkIfTypeIsInUse(filter_var($idType, FILTER_SANITIZE_NUMBER_INT)) || $idType == 1 || $idType == 2 || $idType == 3) {
             return "Type Filter is currently in use or is a default type filter and cannot be deleted.";
         } else {
             $idType = filter_var($idType, FILTER_SANITIZE_NUMBER_INT);
@@ -80,7 +86,8 @@ class TypeFilterService {
         }
     }
 
-    public function readTypeTable(){
+    public function readTypeTable()
+    {
         $data = $this->readAllTypeFilters();
 
         $table = "<script>
@@ -107,18 +114,24 @@ class TypeFilterService {
                     <tbody>";
 
 
-        foreach($data as $obj){
+        foreach ($data as $obj) {
             $table .= "
                       <tr>
-                        <td>".$obj->getTypeFilter()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, typ, ".$obj->getIdType().")'> Edit
+                        <td>" . $obj->getTypeFilter() . "</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, typ, " . $obj->getIdType() . ")'> Edit
                             <i class='material-icons'>edit</i>
-                        </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, typ, ".$obj->getIdType().")'> Delete
-                            <i class='material-icons'>delete</i>
-                        </button></td> 
-                      </tr>
-            ";
+                        </button></td>";
+
+            if ($obj->getIdType() != 1 && $obj->getIdType() != 2 && $obj->getIdType() != 3) {
+
+                $table .= "<td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, typ, " . $obj->getIdType() . ")'> Delete
+                                <i class='material-icons'>delete</i>
+                            </button></td>";
+            } else {
+                $table .= "<td></td>";
+            }
+
+            $table .= "</tr>";
         }
 
         $table .= "</tbody></table></div></div>";
@@ -126,7 +139,8 @@ class TypeFilterService {
         return $table;
     }
 
-    public function createTypeForm(){
+    public function createTypeForm()
+    {
         return '
                         <div class="row"><div class="col s12"><h5>Create a Type</h5></div></div>
 
@@ -157,11 +171,11 @@ class TypeFilterService {
                                 <label for="description">Description</label>
                             </div>
                         </div>
-                        '
-            ;
+                        ';
     }
 
-    public function updateTypeForm($idType){
+    public function updateTypeForm($idType)
+    {
         $singleType = $this->getTypeFilterById($idType);
 
         return '
@@ -170,61 +184,61 @@ class TypeFilterService {
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="typeFilter">Type Filter</label><br/>
-                                <input id="typeFilter" name="typeFilter" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getTypeFilter().'">
+                                <input id="typeFilter" name="typeFilter" type="text" class="validate" required="" aria-required="true" value="' . $singleType->getTypeFilter() . '">
                             </div>
                         </div>
             
                         <div class="row">
                            <div class="input-field col s12">
                                 <label for="pinDesign">Pin Design</label><br/>
-                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getPinDesign().'">
+                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="' . $singleType->getPinDesign() . '">
                             </div>
                         </div>
                         
                         <div class="row">
                            <div class="input-field col s12">
                                 <label for="buttonColor">Button Color</label><br/>
-                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getButtonColor().'">
+                                <input id="buttonColor" name="buttonColor" type="text" class="validate" required="" aria-required="true" value="' . $singleType->getButtonColor() . '">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="description">Description</label><br/>
-                                <textarea id="description" name="description" class="materialize-textarea">'.$singleType->getDescription().'</textarea>
+                                <textarea id="description" name="description" class="materialize-textarea">' . $singleType->getDescription() . '</textarea>
                             </div>
                         </div>
                         
                         <div class="row" style="display:none;">
                             <div class="input-field col s12">
-                                <input id="idType" name="idType" type="text" class="validate" required="" aria-required="true" value="'.$singleType->getIdType().'">
+                                <input id="idType" name="idType" type="text" class="validate" required="" aria-required="true" value="' . $singleType->getIdType() . '">
                             </div>
                         </div>
-                        '
-            ;
+                        ';
     }
 
 
-    public function getTypeFilterForObject($idType){
+    public function getTypeFilterForObject($idType)
+    {
         $data = $this->readAllTypeFilters();
         $elem = '<div class="row">
                     <div class="input-field col s12">
                     <select name="idType">';
 
         // If the Historic filter is null set the default selected as the Choose an option
-        if($idType == "" || $idType == null){
+        if ($idType == "" || $idType == null) {
             $elem .= '<option value="0" disabled selected>Choose your option</option>';
         }
 
-        foreach($data as $typeFilter){
+        foreach ($data as $typeFilter) {
             $idTypeList = $typeFilter->getIdType();
 
-            if($idTypeList != 1 && $idTypeList != 2){
+            if ($idTypeList != 1 && $idTypeList != 2) {
                 // If it's not null it should match and display the field that matches
-                if($idTypeList == $idType){
-                    $elem .= '<option value="'.$idTypeList.'" selected>'.$typeFilter->getTypeFilter().'</option>';
+                if ($idTypeList == $idType) {
+                    $elem .= '<option value="' . $idTypeList . '" selected>' . $typeFilter->getTypeFilter() . '</option>';
                 } else {
-                    $elem .= '<option value="'.$idTypeList.'">'.$typeFilter->getTypeFilter().'</option>';
+                    $elem .= '<option value="' . $idTypeList . '">' . $typeFilter->getTypeFilter() . '</option>';
                 }
             }
 
@@ -236,17 +250,18 @@ class TypeFilterService {
     }
 
     // Only used for misc objects
-    public function getDefaultTypeFilter(){
+    public function getDefaultTypeFilter()
+    {
         $data = $this->readAllTypeFilters();
         $elem = '<div class="row">
                     <div class="input-field col s12">
                     <select name="idType">';
 
-        foreach($data as $typeFilter){
+        foreach ($data as $typeFilter) {
             $idTypeList = $typeFilter->getIdType();
 
-            if($idTypeList != 1 && $idTypeList != 2){
-                $elem .= '<option value="'.$idTypeList.'">'.$typeFilter->getTypeFilter().'</option>';
+            if ($idTypeList != 1 && $idTypeList != 2) {
+                $elem .= '<option value="' . $idTypeList . '">' . $typeFilter->getTypeFilter() . '</option>';
             }
         }
 

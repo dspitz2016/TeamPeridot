@@ -55,14 +55,12 @@ class Main {
     }
 
     public function getScripts(){
-//        echo    '<script src="'.$this->getPath($page).'js/jquery-3.3.1.min.js"></script>';
 //        echo    '<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
         echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
-        echo '<script src="../js/materialize.js"></script>';
         echo '<script src="../js/main.js"></script>';
 
-//        echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>';
-    }
+        echo '<script src="../js/materialize.js"></script>';
+        }
 
     public function getFooter(){
 
@@ -126,7 +124,7 @@ class Main {
     }
 
     public function getAdminScripts(){
-        echo '<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>';
+        echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
         echo '<script src="../js/materialize.js"></script>';
         echo '<script src="../js/main.js"></script>';
         echo '<script src="../js/adminModal.js"></script>';

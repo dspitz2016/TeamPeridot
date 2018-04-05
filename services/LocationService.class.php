@@ -217,12 +217,17 @@ class LocationService {
                         <td>".$obj->getTrailOrder()."</td>
                         <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, loc, ".$obj->getIdLocation().")'> Edit
                             <i class='material-icons'>edit</i>
-                        </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, loc, ".$obj->getIdLocation().")'> Delete
-                            <i class='material-icons'>delete</i>
-                        </button></td> 
-                      </tr>
-            ";
+                        </button></td>";
+
+                         if($obj->getIdLocation() != 1){
+                                $table .= "<td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, loc, ".$obj->getIdLocation().")'> Delete
+                                    <i class='material-icons'>delete</i>
+                                </button></td>";
+                         } else {
+                                $table .= "<td></td>";
+                         }
+
+                      $table .= "</tr>";
         }
 
         $table .= "</tbody></table></div></div>";
