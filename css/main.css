@@ -88,3 +88,29 @@ html, body {
 	min-width: 20em;
 }
 
+.overlay,
+.parallax-text {
+	/*font-size: 80px;*/
+	text-rendering: optimizeLegibility;
+	width: 90%;
+	margin-top: 5em;
+	padding: 1%;
+	background-color: rbg(234, 227, 234);
+	background-color: rgba(234,227,234,.90);
+}
+
+.overlay-nostyle {
+	/*font-size: 80px;*/
+	text-rendering: optimizeLegibility;
+	width: 90%;
+}
+
+@media only screen and (max-width: 500px) {
+	h3#header-title{
+		font-size: 2em;
+	}
+	.overlay,
+	.parallax-text{
+		margin-top:2em;
+	}
+}

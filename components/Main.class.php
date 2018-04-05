@@ -22,16 +22,17 @@ class Main {
         echo    '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
         echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
         echo '</head>';
-        echo '<body>';
+        echo '<body class="cust-color-slate">';
     }
 
     public function getNavigationBar(){
         echo '<nav>';
         echo '<div class="nav-wrapper cust-color-rust z-depth-1">';
         //echo '<a href="index.php" class="brand-logo right">Rapids Cemetery</a>';
-        echo '<a href="index.php" class="brand-logo right"><img src="../images/RapidsLogo.png" alt="logo" height="60px" width="60px"></a>';
-        echo '<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>';
-        echo '<ul class="left hide-on-med-and-down">';
+        echo '<a href="index.php" class="brand-logo left"><img src="../images/RapidsLogo.png" style="margin: 0 1%;" alt="logo" height="60px" width="60px"></a>';
+        echo '<a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>';
+
+        echo '<ul class="right hide-on-med-and-down">';
         echo '<li><a href="index.php">History</a></li>';
         echo '<li><a href="/pages/historicTrails.php">Historic Trail</a></li>';
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
@@ -39,7 +40,8 @@ class Main {
         echo '<li><a href="https://www.paypal.me/DustinSpitz">Donate</a></li>';
         echo '<li><a href="https://www.facebook.com/RapidsCemeteryRochester/?ref=br_rs">Like us on facebook</a></li>';
         echo '</ul>';
-        echo '<ul class="side-nav z-depth-3" id="mobile-demo">';
+
+        echo '<ul class="right side-nav z-depth-3" id="mobile-demo">';
         echo '<hr />';
         echo '<li><a href="index.php">Home</a></li>';
         echo '<li><a href="/pages/historicTrails.php">Historic Trail</a></li>';
@@ -64,13 +66,13 @@ class Main {
 
     public function getFooter(){
 
-        echo '<div id="footer" class="section cust-color-rust">';
+        echo '<footer><div class="section cust-color-rust">';
             echo '<div class="row container white-text center-align">';
                 echo '<div class="col s12">';
                 echo '&copy; Team Peridot 2018';
                 echo '</div>';
             echo '</div>';
-        echo '</div>';
+        echo '</div></footer>';
         echo "</body>";
         echo "</html>";
     }
@@ -124,7 +126,7 @@ class Main {
     }
 
     public function getAdminScripts(){
-        echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
+        echo '<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>';
         echo '<script src="../js/materialize.js"></script>';
         echo '<script src="../js/main.js"></script>';
         echo '<script src="../js/adminModal.js"></script>';

@@ -79,7 +79,7 @@ class TrackableObjectService {
                             </div>
                         </div>
             
-                        <div class="row">
+                        <div class="row" style="display:none;">
                             <div class="input-field col s12">
                                 <label for="scavengerHuntHint">Scavenger Hunt Hint</label><br/>
                                 <input id="scavengerHuntHint" name="scavengerHuntHint" type="text" value="'.$obj->getScavengerHuntHint().'">

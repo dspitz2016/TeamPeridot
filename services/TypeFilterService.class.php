@@ -204,6 +204,56 @@ class TypeFilterService {
             ;
     }
 
+
+    public function getTypeFilterForObject($idType){
+        $data = $this->readAllTypeFilters();
+        $elem = '<div class="row">
+                    <div class="input-field col s12">
+                    <select name="idType">';
+
+        // If the Historic filter is null set the default selected as the Choose an option
+        if($idType == "" || $idType == null){
+            $elem .= '<option value="0" disabled selected>Choose your option</option>';
+        }
+
+        foreach($data as $typeFilter){
+            $idTypeList = $typeFilter->getIdType();
+
+            if($idTypeList != 1 && $idTypeList != 2){
+                // If it's not null it should match and display the field that matches
+                if($idTypeList == $idType){
+                    $elem .= '<option value="'.$idTypeList.'" selected>'.$typeFilter->getTypeFilter().'</option>';
+                } else {
+                    $elem .= '<option value="'.$idTypeList.'">'.$typeFilter->getTypeFilter().'</option>';
+                }
+            }
+
+        }
+
+        $elem .= '</select><label>Type Filter Selection</label></div></div>';
+
+        return $elem;
+    }
+
+    // Only used for misc objects
+    public function getDefaultTypeFilter(){
+        $data = $this->readAllTypeFilters();
+        $elem = '<div class="row">
+                    <div class="input-field col s12">
+                    <select name="idType">';
+
+        foreach($data as $typeFilter){
+            $idTypeList = $typeFilter->getIdType();
+
+            if($idTypeList != 1 && $idTypeList != 2){
+                $elem .= '<option value="'.$idTypeList.'">'.$typeFilter->getTypeFilter().'</option>';
+            }
+        }
+
+        $elem .= '</select><label>Type Filter Selection</label></div></div>';
+
+        return $elem;
+    }
 }
 
 ?>

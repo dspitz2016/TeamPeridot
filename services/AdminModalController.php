@@ -164,7 +164,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
                     1, // Always Rapids
-                    3); // Always Misc
+                    $_POST['idType']); // Always Misc
                 break;
             case "FAQs";
                 $faqService->createFAQ(
@@ -280,7 +280,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['imagePath'],
                     $_POST['imageDescription'],
                     1, // Always Rapids
-                    3);
+                    $_POST['idType']);
                 break;
             case "FAQs";
                 $faqService->updateFAQ(

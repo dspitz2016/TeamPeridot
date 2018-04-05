@@ -4,12 +4,14 @@ require_once '../data/NaturalHistoryData.class.php';
 require_once '../models/NaturalHistory.class.php';
 require_once 'TrackableObjectService.class.php';
 require_once 'LocationService.class.php';
+require_once 'TypeFilterService.class.php';
 
 class NaturalHistoryService extends TrackableObjectService {
 
     private $trackableObjectService;
     private $naturalHistoryData;
     private $locationService;
+    private $typeFilterService;
 
     /**
      * NaturalHistoryService constructor.
@@ -21,6 +23,7 @@ class NaturalHistoryService extends TrackableObjectService {
         $this->trackableObjectService = new TrackableObjectService();
         $this->naturalHistoryData = new NaturalHistoryData();
         $this->locationService = new LocationService();
+        $this->typeFilterService = new TypeFilterService();
     }
 
     public function readAllNaturalHistory(){
@@ -159,6 +162,7 @@ class NaturalHistoryService extends TrackableObjectService {
                                 <textarea id="description" name="description" class="materialize-textarea"></textarea>
                             </div>
                         </div>'
+            . $this->typeFilterService->getDefaultTypeFilter()
             . $this->locationService->getDefaultLocationDropdown()
             . $this->trackableObjectService->getCreateTrackableObjectFormElements()
             ;
@@ -185,10 +189,11 @@ class NaturalHistoryService extends TrackableObjectService {
                         
                         <div class="row" style="display:none;">
                            <div class="input-field col s12">
-                                <input id="idFlora" name="idFlora" type="text" class="validate" required="" aria-required="true" value="'.$singleNH->getIdNaturalHistory().'">
+                                <input id="idNaturalHistory" name="idNaturalHistory" type="text" class="validate" required="" aria-required="true" value="'.$singleNH->getIdNaturalHistory().'">
                             </div>
                         </div>
                         '
+            . $this->typeFilterService->getTypeFilterForObject($singleNH->getIdType())
             . $this->locationService->getLocationDropdownByObject($singleNH->getIdLocation())
             . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleNH)
             ;
