@@ -23,6 +23,7 @@ $(document).ready(function(){
  ************/
 
 function clearMapFilters(){
+    infoWindow.close();
 	var len = markerAry.length;
 
 	for(var i = 0; i < len; i++){
@@ -31,6 +32,7 @@ function clearMapFilters(){
 }
 
 function setHistoricFilter(idHistoricFilter){
+    infoWindow.close();
 
     var len = markerAry.length;
 
@@ -44,6 +46,8 @@ function setHistoricFilter(idHistoricFilter){
 }
 
 function setTypeFilter(idType){
+    infoWindow.close();
+
     var len = markerAry.length;
 
     for (var i = 0; i < len; i++) {

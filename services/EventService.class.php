@@ -116,6 +116,7 @@ class EventService
     public function getAllStyledHTMLEvents(){
         $data = $this->getAllEventsOrderedByDate();
         $eventCollection = '<div class="row cust-color-seafoam"><div class="col s12"><h2 class="white-text">Upcoming Events</h2></div><div class="row">';
+        $clearfix = 0;
 
         foreach ($data as $event){
             $singleLocation = $this->locationService->getLocationById($event->getIdLocation());
@@ -139,6 +140,13 @@ class EventService
 							</div>
 						  </div>
 					  </div>';
+
+            if($clearfix%2){
+                $eventCollection .= '<div class="clearfix"></div>';
+                $clearfix += 1;
+            } else {
+                $clearfix +=1;
+            }
         }
 
         $eventCollection .= "</div></div>";

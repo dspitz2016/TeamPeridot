@@ -194,7 +194,7 @@ class NaturalHistoryService extends TrackableObjectService {
                         </div>
                         '
             . $this->typeFilterService->getTypeFilterForObject($singleNH->getIdType())
-            . $this->locationService->getLocationDropdownByObject($singleNH->getIdLocation())
+            . $this->locationService->getDefaultLocationDropdown()
             . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleNH)
             ;
     }

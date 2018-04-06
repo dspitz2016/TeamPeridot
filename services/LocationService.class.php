@@ -145,7 +145,7 @@ class LocationService {
         $data = $this->getAllLocationsAsPins();
 
         $locDetailString = "<div class='row cust-color-rust'> <div class='col s12'><h3 class='white-text center'>Historic Trail Details</h3></div></div>";
-        $locDetailString .= "<div class='row '>";
+        $locDetailString .= "<div class='row center'>";
         $clearfix = 0;
 
         foreach($data as $loc){
