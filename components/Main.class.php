@@ -38,7 +38,7 @@ class Main {
         echo '<li><a href="/pages/contact.php">Contact</a></li>';
         echo '<li><a href="/pages/faq.php">FAQ</a></li>';
         echo '<li><a href="https://www.paypal.me/DustinSpitz">Donate</a></li>';
-        echo '<li><a href="https://www.facebook.com/RapidsCemeteryRochester/?ref=br_rs">Like us on facebook</a></li>';
+        echo '<li> <a href="https://www.facebook.com/RapidsCemeteryRochester/?ref=br_rs">Like us on facebook</a></li>';
         echo '</ul>';
 
         echo '<ul class="right side-nav z-depth-3" id="mobile-demo">';
@@ -111,7 +111,7 @@ class Main {
 
         echo '<li><a class="navTab waves-effect" href="#6"><i class="material-icons">event</i>Events</a></li>';
         echo '<li><a class="navTab waves-effect" href="#7"><i class="material-icons">filter_list</i>Type</a></li>';
-        echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">filter_list</i>HistoricFilter</a></li>';
+        echo '<li><a class="navTab waves-effect" href="#8"><i class="material-icons">filter_list</i>Historic Filter</a></li>';
         echo '<li><a class="navTab waves-effect" href="#9"><i class="material-icons">contacts</i>Contact</a></li>';
 
         echo '<li><div class="divider"></div></li>';

@@ -214,7 +214,11 @@ class LocationService {
             $table .= "
                       <tr>
                         <td>".$obj->getName()."</td>
-                        <td>".$obj->getTrailOrder()."</td>
+                        <td>";
+                        if( $obj->getTrailOrder() > 0){
+                            $table .= $obj->getTrailOrder();
+                        }
+                        $table .= "</td>
                         <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, loc, ".$obj->getIdLocation().")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>";

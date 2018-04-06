@@ -85,21 +85,21 @@ function loadModalContent(id, idType){
 
                 htmlContent = '<h4>' + jsonData.firstName + ' ' + jsonData.middleName + ' ' + jsonData.lastName + '</h4> <br/>' +
                               '<p>(' + format_birth + ' - ' + format_death + ')</p> <br/>' +
-                              '<img src="' + jsonData.imagePath +'" alt=""/> <br/>' +
+                              '<img src="' + jsonData.imagePath +'" alt="'+ jsonData.imageDescription+'"/> <br/>' +
                               '<p>' + jsonData.description + '</p> <br/>';
 
 
             } else if(jsonData.idType == 2){ // Flora
 
                 htmlContent =   '<h4>' + jsonData.commonName + '</h4> <br/>' +
-                                '<img height="150px" src="' + jsonData.imagePath +'" alt=""/> <br/>'+
+                                '<img height="150px" src="' + jsonData.imagePath +'" alt="'+ jsonData.imageDescription+'"/> <br/>'+
                                 '<p>' + jsonData.description + '</p> <br/>';
 
 
             } else { // other object
 
                 htmlContent =   '<h4>' + jsonData.name + '</h4> <br/>' +
-                                '<img height="150px" src="' + jsonData.imagePath +'" alt=""/> <br/>'+
+                                '<img height="150px" src="' + jsonData.imagePath +'" alt="'+jsonData.imageDescription+'"/> <br/>'+
                                 '<p>' + jsonData.description + '</p>';
 
 
@@ -135,7 +135,7 @@ function loadLocationModal(id){
 
             htmlContent = '<h4>' + jsonData.name + '</h4> <br/>' +
                 '<p>' + jsonData.description + '</p> <br/>' +
-                '<img src="' + jsonData.imagePath +'" alt=""/> <br/>' +
+                '<img src="' + jsonData.imagePath +'" alt="'+ jsonData.imageDescription +'"/> <br/>' +
                 '<p>' + jsonData.address + ', ' + jsonData.city + ', ' + jsonData.state + ' ' + jsonData.zipcode +'</p>' +
                 '<a class="waves-effect waves-light btn" href="'+ jsonData.url +'">Go to '+ jsonData.name + ' Website</a>';
 
