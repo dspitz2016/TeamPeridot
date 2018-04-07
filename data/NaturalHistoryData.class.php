@@ -2,11 +2,13 @@
 
 require_once '../services/ConnectDb.class.php';
 
-class NaturalHistoryData {
+class NaturalHistoryData
+{
 
     // CREATE
-    public function createNaturalHistory($name, $description){
-        try{
+    public function createNaturalHistory($name, $description)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO NaturalHistory
                                                                                   (name, description) VALUES (:name, :description)");
 
@@ -15,8 +17,7 @@ class NaturalHistoryData {
             $stmt->execute();
             return ConnectDb::getInstance()->getConnection()->lastInsertId();
 
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo 'Failed to create natural history';
             echo $e->getMessage();
             die();
@@ -24,24 +25,27 @@ class NaturalHistoryData {
     }
 
     // READ
-    public function readAllNaturalHistory(){
+    public function readAllNaturalHistory()
+    {
         return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation, NH.idNaturalHistory, NH.name, NH.description, NH.idNaturalHistory
                                                                             FROM NaturalHistory NH 
                                                                             JOIN TrackableObject T ON T.idNaturalHistory = NH.idNaturalHistory 
                                                                             JOIN Type TF ON T.idType = TF.idType ");
     }
 
-    public function getNaturalHistoryById($idNaturalHistory){
+    public function getNaturalHistoryById($idNaturalHistory)
+    {
         return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation, NH.idNaturalHistory, NH.name, NH.description, NH.idNaturalHistory
                                                                             FROM NaturalHistory NH 
                                                                             JOIN TrackableObject T ON T.idNaturalHistory = NH.idNaturalHistory 
                                                                             JOIN Type TF ON T.idType = TF.idType 
-                                                                            WHERE NH.idNaturalHistory=".$idNaturalHistory);
+                                                                            WHERE NH.idNaturalHistory=" . $idNaturalHistory);
     }
 
     // Update
-    public function updateNaturalHistory($idNaturalHistory, $name, $description){
-        try{
+    public function updateNaturalHistory($idNaturalHistory, $name, $description)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE NaturalHistory
                                                                                     SET name = :name,
                                                                                     description = :description
@@ -50,8 +54,7 @@ class NaturalHistoryData {
             $stmt->bindParam(':description', $description, PDO::PARAM_STR);
             $stmt->bindParam(':idNaturalHistory', $idNaturalHistory, PDO::PARAM_INT);
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo 'Failed to update Natural History';
             echo $e->getMessage();
             die();

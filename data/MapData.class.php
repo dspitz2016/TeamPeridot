@@ -2,7 +2,8 @@
 
 require_once '../services/ConnectDb.class.php';
 
-Class MapData{
+Class MapData
+{
 
     private static $instance = null;
     private $conn;
@@ -10,25 +11,26 @@ Class MapData{
     /**
      * Map constructor.
      */
-    public function __construct(){
-        try{
+    public function __construct()
+    {
+        try {
             $this->conn = ConnectDb::getInstance()->getConnection();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
             die();
         }
     }
 
-    public static function getInstance(){
-        if(!self::$instance)
-        {
+    public static function getInstance()
+    {
+        if (!self::$instance) {
             self::$instance = new MapData();
         }
         return self::$instance;
     }
 
-    public function getAllTrackableObjectPinData(){
+    public function getAllTrackableObjectPinData()
+    {
         return ConnectDb::getInstance()->returnObject("MapPin.class", "SELECT * FROM(
                 SELECT idTrackableObject, T.imagePath, longitude, latitude, concat(IFNULL(firstName, ''), ' ', IFNULL(middleName,''), ' ', IFNULL(lastName,'')) as name, pinDesign, TF.idType as idType, IFNULL(hf.idHistoricFilter, \"\") as idHistoricFilter
                 FROM Grave G 
@@ -51,7 +53,8 @@ Class MapData{
                 ) as MapPin");
     }
 
-    public function getScavengerHuntData(){
+    public function getScavengerHuntData()
+    {
 
         return ConnectDb::getInstance()->returnObject("MapPin.class", "SELECT * FROM(
                 SELECT idTrackableObject, longitude, latitude, concat(firstName, ' ', middleName, ' ', lastName) as name, pinDesign, TF.idType as idType, hf.idHistoricFilter as idHistoricFilter
@@ -76,31 +79,33 @@ Class MapData{
                 ORDER BY RAND() LIMIT 2");
     }
 
-    public function getAllTypeFilters(){
+    public function getAllTypeFilters()
+    {
         return ConnectDb::getInstance()->returnObject("TypeFilter.class", "SELECT * FROM Type;
         ) as typeFilters");
     }
 
-    public function getAllHistoricFilters(){
+    public function getAllHistoricFilters()
+    {
         return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT * FROM HistoricFilter;");
     }
 
-    public function getModalInformation($id, $idType){
+    public function getModalInformation($id, $idType)
+    {
         // Grave
-        if($idType == 1) {
+        if ($idType == 1) {
             return json_encode(ConnectDb::getInstance()->returnObject("", "Select * from TrackableObject tobj
                 Join Grave g on tobj.idGrave = g.idGrave where tobj.idTrackableObject = 
                 " . $id)[0]);
-        }
-        else if ($idType == 2){
+        } else if ($idType == 2) {
             return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj
 Join Flora v on tobj.idFlora = v.idFlora
-where tobj.idTrackableObject = ".$id)[0]);
+where tobj.idTrackableObject = " . $id)[0]);
 
         } else {
             return json_encode(ConnectDB::getInstance()->returnObject("", "Select * from TrackableObject tobj
 Join NaturalHistory oo on tobj.idNaturalHistory = oo.idNaturalHistory
-where tobj.idTrackableObject =  ".$id)[0]);
+where tobj.idTrackableObject =  " . $id)[0]);
 
         }
 
@@ -108,4 +113,5 @@ where tobj.idTrackableObject =  ".$id)[0]);
     }
 
 }
+
 ?>

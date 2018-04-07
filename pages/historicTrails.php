@@ -1,7 +1,7 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 include '../components/Main.class.php';
 include '../services/MapService.class.php';
@@ -40,7 +40,7 @@ $locationService = new LocationService();
     function initMap() {
 
         // Scavenger hunt is random pull of trackable objects
-        <?php echo $mapService->initMap($locationService->getAllLocationsAsPins(),43.14082151589615, -77.62816645057916, 14, "ROADMAP", true); ?>
+        <?php echo $mapService->initMap($locationService->getAllLocationsAsPins(), 43.14082151589615, -77.62816645057916, 14, "ROADMAP", true); ?>
 
     }
 
@@ -57,7 +57,8 @@ $locationService = new LocationService();
 
 <div class="section"></div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxPGQ8GD6zL36rlXs-o2AE-RAOsZYpvbQ&callback=initMap" async
+        defer></script>
 
 <?php $main->getScripts(); ?>
 

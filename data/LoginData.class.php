@@ -9,8 +9,8 @@ require_once '../services/ConnectDb.class.php';
  *
  * This class is responsible for communiting valid login credentials against the database.
  */
-
-class LoginData {
+class LoginData
+{
 
     private static $instance = null;
     private $conn;
@@ -20,10 +20,9 @@ class LoginData {
      */
     public function __construct()
     {
-        try{
+        try {
             $this->conn = ConnectDb::getInstance()->getConnection();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
             die();
         }
@@ -32,8 +31,7 @@ class LoginData {
     public static function getInstance()
     {
 
-        if(!self::$instance)
-        {
+        if (!self::$instance) {
             self::$instance = new LoginData();
         }
         return self::$instance;
@@ -41,25 +39,24 @@ class LoginData {
 
     public function validatePassword($email, $password)
     {
-        try{
+        try {
             $userPassword = null;
-            $stmt = $this->conn->prepare( "SELECT password FROM Account WHERE email = :email");
-            $stmt->execute(array(":email"=>$email));
+            $stmt = $this->conn->prepare("SELECT password FROM Account WHERE email = :email");
+            $stmt->execute(array(":email" => $email));
 
             $stmt->bindValue(':email', $email);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($user !== false){
+            if ($user !== false) {
 
-                if(sha1($password) == $user['password']){
+                if (sha1($password) == $user['password']) {
                     return true;
                 } else {
                     return false;
                 }
             }
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
             die();
         }

@@ -1,23 +1,27 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once '../services/ConnectDb.class.php';
 
-class ContactData {
+class ContactData
+{
 
-   public function readAllContacts(){
-       return ConnectDb::getInstance()->returnObject("", "Select * from Contact");
-   }
-
-    public function getContactById($idContact){
-        return ConnectDb::getInstance()->returnObject("", "Select * from Contact Where idContact =".$idContact);
+    public function readAllContacts()
+    {
+        return ConnectDb::getInstance()->returnObject("", "Select * from Contact");
     }
 
-   public function createContact($firstName, $lastname, $email, $title, $description, $imagePath, $idLocation){
-        try{
-            $stmt= ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Contact
+    public function getContactById($idContact)
+    {
+        return ConnectDb::getInstance()->returnObject("", "Select * from Contact Where idContact =" . $idContact);
+    }
+
+    public function createContact($firstName, $lastname, $email, $title, $description, $imagePath, $idLocation)
+    {
+        try {
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Contact
                                                                                 (firstName, lastName, title, email, description, imagePath, idLocation)
                                                                                 VALUES
                                                                                 (:firstName, :lastName, :title, :email, :description, :imagePath, :idLocation)");
@@ -31,16 +35,16 @@ class ContactData {
             $stmt->bindParam(":idLocation", $idLocation, PDO::PARAM_INT);
 
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "failed to create contact";
             echo $e->getMessage();
             die();
         }
-   }
+    }
 
-   public function updateContact($idContact, $firstName, $lastname, $email, $title, $description, $imagePath, $idLocation){
-        try{
+    public function updateContact($idContact, $firstName, $lastname, $email, $title, $description, $imagePath, $idLocation)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE Contact
                                                                                     SET firstName = :firstName,
                                                                                         lastName = :lastName,
@@ -61,13 +65,12 @@ class ContactData {
             $stmt->bindParam(":idContact", $idContact, PDO::PARAM_INT);
 
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "failed to update contact";
             echo $e->getMessage();
             die();
         }
-   }
+    }
 
 }
 

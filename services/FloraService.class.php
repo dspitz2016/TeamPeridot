@@ -1,14 +1,15 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once '../data/FloraData.class.php';
 require_once '../models/Flora.class.php';
 require_once 'TrackableObjectService.class.php';
 require_once 'LocationService.class.php';
 
-class FloraService extends TrackableObjectService {
+class FloraService extends TrackableObjectService
+{
 
     private $floraData;
     private $trackableObjectService;
@@ -26,11 +27,12 @@ class FloraService extends TrackableObjectService {
     }
 
 
-    public function readAllFlora(){
+    public function readAllFlora()
+    {
         $floras = $this->floraData->readAllFlora();
         $allFlora = array();
 
-        foreach($floras as $obj){
+        foreach ($floras as $obj) {
             $newFlora = new Flora(
                 $obj['idFlora'],
                 $obj['commonName'],
@@ -52,7 +54,8 @@ class FloraService extends TrackableObjectService {
         return $allFlora;
     }
 
-    public function getFloraById($idFlora){
+    public function getFloraById($idFlora)
+    {
         $idFlora = filter_var($idFlora, FILTER_SANITIZE_NUMBER_INT);
         $obj = $this->floraData->getFloraById($idFlora);
         $singleFlora = new Flora(
@@ -75,7 +78,8 @@ class FloraService extends TrackableObjectService {
     }
 
     public function createFlora($commonName, $scientificName, $description,
-                                $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+                                $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
 
         // Sanitize
         $commonName = filter_var($commonName, FILTER_SANITIZE_STRING);
@@ -88,7 +92,8 @@ class FloraService extends TrackableObjectService {
     }
 
     public function updateFlora($idFlora, $commonName, $scientificName, $description,
-                                $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+                                $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
 
         $idFlora = filter_var($idFlora, FILTER_SANITIZE_NUMBER_INT);
         $commonName = filter_var($commonName, FILTER_SANITIZE_STRING);
@@ -99,7 +104,8 @@ class FloraService extends TrackableObjectService {
         $this->trackableObjectService->updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType);
     }
 
-    public function deleteFlora($idFlora){
+    public function deleteFlora($idFlora)
+    {
         $idFlora = filter_var($idFlora, FILTER_SANITIZE_NUMBER_INT);
         ConnectDb::getInstance()->deleteObject($idFlora, "Flora");
     }
@@ -107,7 +113,8 @@ class FloraService extends TrackableObjectService {
     /**
      * Admin CRUD Styling
      */
-    public function readFloraTable(){
+    public function readFloraTable()
+    {
         $data = $this->readAllFlora();
 
         $table = "<script>
@@ -134,14 +141,14 @@ class FloraService extends TrackableObjectService {
                     <tbody>";
 
 
-        foreach($data as $obj){
+        foreach ($data as $obj) {
             $table .= "
                       <tr>
-                        <td>".$obj->getCommonName()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, flora, ".$obj->getIdFlora().")'> Edit
+                        <td>" . $obj->getCommonName() . "</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, flora, " . $obj->getIdFlora() . ")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, flora, ".$obj->getIdFlora().")'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, flora, " . $obj->getIdFlora() . ")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -155,7 +162,8 @@ class FloraService extends TrackableObjectService {
     }
 
 
-    public function createFloraForm(){
+    public function createFloraForm()
+    {
         return '
                         <div class="row"><div class="col s12"><h5>Create Flora</h5></div></div>
 
@@ -180,11 +188,11 @@ class FloraService extends TrackableObjectService {
                             </div>
                         </div>'
             . $this->locationService->getDefaultLocationDropdown()
-            . $this->trackableObjectService->getCreateTrackableObjectFormElements()
-            ;
+            . $this->trackableObjectService->getCreateTrackableObjectFormElements();
     }
 
-    public function updateFloraForm($idFlora){
+    public function updateFloraForm($idFlora)
+    {
         $singleFlora = $this->getFloraById($idFlora);
         return '
                         <div class="row"><div class="col s12"><h5>Update Flora</h5></div></div>
@@ -192,33 +200,32 @@ class FloraService extends TrackableObjectService {
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="commonName">Common Name</label><br/>
-                                <input id="commonName" name="commonName" type="text" class="validate" required="" aria-required="true" value="'.$singleFlora->getCommonName().'">
+                                <input id="commonName" name="commonName" type="text" class="validate" required="" aria-required="true" value="' . $singleFlora->getCommonName() . '">
                             </div>
                         </div>
             
                         <div class="row">
                            <div class="input-field col s12">
                                 <label for="scientificName">Scientific Name</label><br/>
-                                <input id="scientificName" name="scientificName" type="text" class="validate" required="" aria-required="true" value="'.$singleFlora->getScientificName().'">
+                                <input id="scientificName" name="scientificName" type="text" class="validate" required="" aria-required="true" value="' . $singleFlora->getScientificName() . '">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="description">Description</label><br/>
-                                <textarea id="description" name="description" class="materialize-textarea">'.$singleFlora->getDescription().'</textarea>
+                                <textarea id="description" name="description" class="materialize-textarea">' . $singleFlora->getDescription() . '</textarea>
                             </div>
                         </div>
                         
                         <div class="row" style="display:none;">
                            <div class="input-field col s12">
-                                <input id="idFlora" name="idFlora" type="text" class="validate" required="" aria-required="true" value="'.$singleFlora->getIdFlora().'">
+                                <input id="idFlora" name="idFlora" type="text" class="validate" required="" aria-required="true" value="' . $singleFlora->getIdFlora() . '">
                             </div>
                         </div>
                         '
             . $this->locationService->getDefaultLocationDropdown()
-            . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleFlora)
-            ;
+            . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleFlora);
     }
 }
 

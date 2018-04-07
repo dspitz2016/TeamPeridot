@@ -1,16 +1,15 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     // Resets POST variables on modal close to keep user from passing data twice.
-    var reloadPage = function(){
+    var reloadPage = function () {
         location.reload();
     };
 
-    $("#createModal").modal({dismissible: false, complete : reloadPage});
-    $("#updateModal").modal({dismissible: false, complete : reloadPage})
-    $("#deleteModal").modal({dismissible: false, complete : reloadPage})
+    $("#createModal").modal({dismissible: false, complete: reloadPage});
+    $("#updateModal").modal({dismissible: false, complete: reloadPage})
+    $("#deleteModal").modal({dismissible: false, complete: reloadPage})
 
 });
-
 
 
 /**
@@ -19,11 +18,11 @@ $(document).ready(function(){
  * @param idObj - object of id used for update tables
  */
 
-function modalController(action, obj, objId){
+function modalController(action, obj, objId) {
 
     console.log("Perform " + action + " on " + obj + " ID: " + objId);
 
-    var objectData = 'action='+action+'&object='+obj+'&objId='+objId;
+    var objectData = 'action=' + action + '&object=' + obj + '&objId=' + objId;
 
     $.ajax({
         datatype: "html",
@@ -31,11 +30,11 @@ function modalController(action, obj, objId){
         url: '../services/AdminModalController.php',
         data: objectData,
 
-        success: function(data){
+        success: function (data) {
             // var obj =  '"' + obj + '"';
             // var objId =  '"' + objId + '"';
 
-            switch(action){
+            switch (action) {
                 case "create":
                     $('#createModal .modal-content #createForm').html(data);
 
@@ -52,11 +51,11 @@ function modalController(action, obj, objId){
             $('select').material_select(); // initializes material select
             // $(".select.currentFilter option:selected").val();
         },
-        complete: function(){
+        complete: function () {
 
-            $( "#createBtn" ).click(function() {
-                console.log( "Create: " + action + " ID: " + objId);
-                var data = objectData +"&"+ $('#createForm').serialize();
+            $("#createBtn").click(function () {
+                console.log("Create: " + action + " ID: " + objId);
+                var data = objectData + "&" + $('#createForm').serialize();
 
 
                 $.ajax({
@@ -64,12 +63,12 @@ function modalController(action, obj, objId){
                     url: '../services/AdminModalController.php',
                     data: data,
                     processData: false,
-                    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                    success: function(){
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function () {
                         console.log("created object");
                         location.reload();
                     },
-                    error: function(xhr, ajaxOptions, thrownError){
+                    error: function (xhr, ajaxOptions, thrownError) {
                         alert(xhr.status);
                         alert(thrownError);
                     }
@@ -77,8 +76,8 @@ function modalController(action, obj, objId){
 
             });
 
-            $( "#updateBtn" ).click(function() {
-                console.log( "Update: " + action + " ID: " + objId);
+            $("#updateBtn").click(function () {
+                console.log("Update: " + action + " ID: " + objId);
                 var data = objectData + "&" + $('#updateForm').serialize();
 
                 // var sel = $('idHistoricFilter').material_select();
@@ -90,13 +89,13 @@ function modalController(action, obj, objId){
                     url: '../services/AdminModalController.php',
                     data: data,
                     processData: false,
-                    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                    success: function(){
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function () {
                         console.log("updated object");
                         location.reload();
 
                     },
-                    error: function(xhr, ajaxOptions, thrownError){
+                    error: function (xhr, ajaxOptions, thrownError) {
                         alert(xhr.status);
                         alert(thrownError);
                     }
@@ -105,32 +104,32 @@ function modalController(action, obj, objId){
             });
 
             // Create a JQuery ajax request when delete button is pressed passing in params to call required php function
-            $( "#deleteBtn" ).click(function() {
-                console.log( "Amazing: " + action + " ID: " + objId);
+            $("#deleteBtn").click(function () {
+                console.log("Amazing: " + action + " ID: " + objId);
 
 
                 $.ajax({
                     type: "POST",
                     url: '../services/AdminModalController.php',
-                    data: 'action='+action+'&object='+obj+'&objId='+objId,
+                    data: 'action=' + action + '&object=' + obj + '&objId=' + objId,
                     processData: false,
-                    contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                    success: function(data){
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function (data) {
                         console.log("deleted object" + data);
 
-                        if(data != ""){
+                        if (data != "") {
                             $('#deleteModal .modal-content').html('<h5>' + data + '</h5>');
                             $('#deleteModal .modal-footer').html("<button class='btn waves-effect waves-light modal-close' href='#deleteModal' id='cannotDeleteBtn' type='submit'> Cancel</button>");
                         } else {
                             location.reload();
                         }
                     },
-                    complete:function(){
-                         $('#cannotDeleteBtn').click(function(){
+                    complete: function () {
+                        $('#cannotDeleteBtn').click(function () {
                             location.load();
-                         });
+                        });
                     },
-                    error: function(xhr, ajaxOptions, thrownError){
+                    error: function (xhr, ajaxOptions, thrownError) {
                         alert(xhr.status);
                         alert(thrownError);
                     }

@@ -1,7 +1,7 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once '../data/GraveData.class.php';
 require_once '../models/Grave.class.php';
@@ -14,7 +14,8 @@ require_once '../services/LocationService.class.php';
  * Class GraveService - Responsible for updating all Grave objects for the application
  * Extends AdminTrackableObject Service - User must add information for both objects in order to update a Grave
  */
-class GraveService extends TrackableObjectService {
+class GraveService extends TrackableObjectService
+{
 
     private $trackableObjectService;
     private $graveData;
@@ -38,11 +39,12 @@ class GraveService extends TrackableObjectService {
     /**
      * @return array of php grave objects
      */
-    public function readAllGravesAsObjects(){
+    public function readAllGravesAsObjects()
+    {
         $graves = $this->graveData->readAllGraves();
         $allGraves = array();
 
-        foreach($graves as $grave){
+        foreach ($graves as $grave) {
             $newGrave = new Grave(
                 $grave['idGrave'],
                 $grave['firstName'],
@@ -73,7 +75,8 @@ class GraveService extends TrackableObjectService {
      * @param $idGrave of the grave you are looking for
      * @return Grave - returns a single grave object
      */
-    public function getGraveByID($idGrave){
+    public function getGraveByID($idGrave)
+    {
         $idGrave = filter_var($idGrave, FILTER_SANITIZE_NUMBER_INT);
         $grave = $this->graveData->getGraveByID($idGrave);
         $singleGrave = new Grave(
@@ -120,13 +123,14 @@ class GraveService extends TrackableObjectService {
      * @param $idType
      */
     public function createGrave($firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter,
-                                $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+                                $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
 
         $firstName = filter_var($firstName, FILTER_SANITIZE_STRING);
         $middleName = filter_var($middleName, FILTER_SANITIZE_STRING);
         $lastName = filter_var($lastName, FILTER_SANITIZE_STRING);
-        $birth = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($birth)));
-        $death = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($death)));
+        $birth = filter_var(preg_replace("([^0-9/] | [^0-9-])", "", htmlentities($birth)));
+        $death = filter_var(preg_replace("([^0-9/] | [^0-9-])", "", htmlentities($death)));
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $idHistoricFilter = filter_var($idHistoricFilter, FILTER_SANITIZE_STRING);
 
@@ -165,14 +169,15 @@ class GraveService extends TrackableObjectService {
      * @param $idType
      */
     public function updateGrave($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter,
-                                $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+                                $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
 
         $idGrave = filter_var($idGrave, FILTER_SANITIZE_NUMBER_INT);
         $firstName = filter_var($firstName, FILTER_SANITIZE_STRING);
         $middleName = filter_var($middleName, FILTER_SANITIZE_STRING);
         $lastName = filter_var($lastName, FILTER_SANITIZE_STRING);
-        $birth = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($birth)));
-        $death = filter_var (preg_replace("([^0-9/] | [^0-9-])","",htmlentities($death)));
+        $birth = filter_var(preg_replace("([^0-9/] | [^0-9-])", "", htmlentities($birth)));
+        $death = filter_var(preg_replace("([^0-9/] | [^0-9-])", "", htmlentities($death)));
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $idHistoricFilter = filter_var($idHistoricFilter, FILTER_SANITIZE_STRING);
 
@@ -192,7 +197,8 @@ class GraveService extends TrackableObjectService {
      * @param $idGrave - the grave you want to delete
      * Database is set to cascade delete the TrackableObject if the idGrave is deleted.
      */
-    public function deleteGrave($idGrave){
+    public function deleteGrave($idGrave)
+    {
         $idGrave = filter_var($idGrave, FILTER_SANITIZE_NUMBER_INT);
         ConnectDb::getInstance()->deleteObject($idGrave, "Grave");
     }
@@ -200,7 +206,8 @@ class GraveService extends TrackableObjectService {
     /**
      * @return string - displayed to end user containing all graves and buttons to instantiate CRUD elements
      */
-    public function readGravesTable(){
+    public function readGravesTable()
+    {
         $data = $this->readAllGravesAsObjects();
 
         $table = "<script>
@@ -229,16 +236,16 @@ class GraveService extends TrackableObjectService {
                     <tbody>";
 
 
-        foreach($data as $obj){
+        foreach ($data as $obj) {
             $table .= "
                       <tr>
-                        <td>".$obj->getFullName()."</td>
-                        <td>".$obj->getBirth()."</td>
-                        <td>".$obj->getDeath()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, ".$obj->getIdGrave().")'> Edit
+                        <td>" . $obj->getFullName() . "</td>
+                        <td>" . $obj->getBirth() . "</td>
+                        <td>" . $obj->getDeath() . "</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, grave, " . $obj->getIdGrave() . ")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, ".$obj->getIdGrave().")'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, grave, " . $obj->getIdGrave() . ")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -253,7 +260,8 @@ class GraveService extends TrackableObjectService {
     /**
      * @return string - pushes a create form to the modal on ajax call
      */
-    public function createGraveForm(){
+    public function createGraveForm()
+    {
         return '
                         <div class="row"><div class="col s12"><h5>Create Grave</h5></div></div>
 
@@ -289,64 +297,62 @@ class GraveService extends TrackableObjectService {
                                 <label for="description">Description</label>
                             </div>
                         </div>'
-                        . $this->locationService->getDefaultLocationDropdown()
-                        . $this->trackableObjectService->getCreateTrackableObjectFormElements()
-                        . $this->historicFilterService->getDefaultHistoricFilterDropdown()
-                       ;
+            . $this->locationService->getDefaultLocationDropdown()
+            . $this->trackableObjectService->getCreateTrackableObjectFormElements()
+            . $this->historicFilterService->getDefaultHistoricFilterDropdown();
     }
 
     /**
      * @param $graveId - the grave you want to update
      * @return string - returns an update form populated with objects data
      */
-    public function updateGraveForm($graveId){
+    public function updateGraveForm($graveId)
+    {
         $singleGrave = $this->getGraveByID($graveId);
 
         $updateform = '
-                        <div class="row"><div class="col s12"><h5>Update '.$singleGrave->getFullName().'</h5></div></div>
+                        <div class="row"><div class="col s12"><h5>Update ' . $singleGrave->getFullName() . '</h5></div></div>
                         
                         <div class="row">
                             <div class="input-field col s4">
                                 <label for="firstName">First Name</label><br/>
-                                <input id="firstName" name="firstName" type="text" class="validate" value="'.$singleGrave->getFirstName().'"><br/>
+                                <input id="firstName" name="firstName" type="text" class="validate" value="' . $singleGrave->getFirstName() . '"><br/>
                             </div>
                             <div class="input-field col s4">
                                 <label for="middleName">Middle Name</label><br/>
-                                <input id="middleName" name="middleName" type="text" class="validate active" value="'. $singleGrave->getMiddleName().'">
+                                <input id="middleName" name="middleName" type="text" class="validate active" value="' . $singleGrave->getMiddleName() . '">
                             </div>
                             <div class="input-field col s4">
                                 <label for="lastName">Last Name</label><br/>
-                                <input id="lastName" name="lastName" type="text" class="validate" value="'.$singleGrave->getLastName().'">
+                                <input id="lastName" name="lastName" type="text" class="validate" value="' . $singleGrave->getLastName() . '">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="birth">Birth</label><br/>
-                                <input id="birth" name="birth" type="date" value ="'.$singleGrave->getBirth().'">
+                                <input id="birth" name="birth" type="date" value ="' . $singleGrave->getBirth() . '">
                             </div>
                             <div class="input-field col s6">
                                 <label for="death">Death</label><br/>
-                                <input id="death" name="death" type="date" value="'.$singleGrave->getDeath().'">
+                                <input id="death" name="death" type="date" value="' . $singleGrave->getDeath() . '">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="description">Description</label><br/>
-                                <textarea id="description" name="description" class="materialize-textarea">'.$singleGrave->getDescription().'</textarea>
+                                <textarea id="description" name="description" class="materialize-textarea">' . $singleGrave->getDescription() . '</textarea>
                             </div>
                         </div>'
-                .  '<div class="row" style="display:none;">
+            . '<div class="row" style="display:none;">
                             <div class="input-field col s12">
-                                <input id="idGrave" name="idGrave" type="text" value="'.$singleGrave->getIdGrave().'">
+                                <input id="idGrave" name="idGrave" type="text" value="' . $singleGrave->getIdGrave() . '">
                             </div>
                         </div>'
             . $this->locationService->getDefaultLocationDropdown()
-                . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleGrave)
-                . $this->historicFilterService->getHistoricFilterFormDropdownForObject($singleGrave->getIdHistoricFilter());
-
-        ;
+            . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleGrave)
+            . $this->historicFilterService->getHistoricFilterFormDropdownForObject($singleGrave->getIdHistoricFilter());;
 
         return $updateform;
     }

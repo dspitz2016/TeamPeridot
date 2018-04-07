@@ -1,14 +1,16 @@
 <?php
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once '../services/ConnectDb.class.php';
 
-class TrackableObjectData {
+class TrackableObjectData
+{
 
     // CREATE
-    public function createTrackableObject($longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
-        try{
+    public function createTrackableObject($longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
+        try {
 
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO `TrackableObject` (longitude, latitude, scavengerHuntHint, imagePath, imageDescription, idLocation, idType) VALUES (:longitude, :latitude, :scavengerHuntHint, :imagePath, :imageDescription, :idLocation, :idType)");
 
@@ -25,25 +27,24 @@ class TrackableObjectData {
 
             return ConnectDb::getInstance()->getConnection()->lastInsertId();
 
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
             die();
         }
     }
 
     // UPDATE GRAVE, FLORA, NATURALHISTORY ID
-    public function updateReferencedTrackableObject($idTrackableObject, $idReferencedObject, $referenceType){
-        try{
-            $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE TrackableObject SET id".$referenceType." = :idReferencedObject WHERE idTrackableObject = :idTrackableObject ");
+    public function updateReferencedTrackableObject($idTrackableObject, $idReferencedObject, $referenceType)
+    {
+        try {
+            $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE TrackableObject SET id" . $referenceType . " = :idReferencedObject WHERE idTrackableObject = :idTrackableObject ");
 
             // Bind Params
             $stmt->bindParam(':idTrackableObject', $idTrackableObject, PDO::PARAM_INT);
             $stmt->bindParam(':idReferencedObject', $idReferencedObject, PDO::PARAM_INT);
 
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
             die();
         }
@@ -51,8 +52,9 @@ class TrackableObjectData {
 
     // UPDATE
 
-    public function updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
-        try{
+    public function updateTrackableObject($idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
+        try {
             //global $updateTrackableObjectQuery;
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE TrackableObject
 SET longitude = :longitude, latitude = :latitude, scavengerHuntHint = :scavengerHuntHint, imagePath = :imagePath, imageDescription = :imageDescription, idLocation = :idLocation ,idType = :idType WHERE idTrackableObject = :idTrackableObject");

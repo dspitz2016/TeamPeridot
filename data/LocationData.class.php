@@ -2,11 +2,13 @@
 
 require_once '../services/ConnectDb.class.php';
 
-class LocationData {
+class LocationData
+{
 
 
-    public function createLocation($name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder){
-        try{
+    public function createLocation($name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Location
                                                                                   (name, description, url, longitude, latitude, address, city, state, zipcode, imagePath, imageDescription, pinDesign, trailOrder)
                                                                                   VALUES
@@ -27,16 +29,16 @@ class LocationData {
             $stmt->bindParam(':trailOrder', $trailOrder, PDO::PARAM_INT);
 
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo 'Failed to create Location';
             echo $e->getMessage();
             die();
         }
     }
 
-    public function updateLocation($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder){
-        try{
+    public function updateLocation($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE Location
                                                                                     SET name = :name,
                                                                                         description = :description,
@@ -68,8 +70,7 @@ class LocationData {
             $stmt->bindParam(':trailOrder', $trailOrder, PDO::PARAM_INT);
             $stmt->bindParam(':idLocation', $idLocation, PDO::PARAM_INT);
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo 'Failed to update Location';
             echo $e->getMessage();
             die();
@@ -77,16 +78,19 @@ class LocationData {
 
     }
 
-        public function getAllLocationPinData(){
+    public function getAllLocationPinData()
+    {
         return ConnectDb::getInstance()->returnObject("Location.class", "Select * from Location Order by trailOrder");
     }
 
-    public function getLocationById($idLocation){
-        return ConnectDb::getInstance()->returnObject("", "SELECT * FROM Location WHERE idLocation = ".$idLocation);
+    public function getLocationById($idLocation)
+    {
+        return ConnectDb::getInstance()->returnObject("", "SELECT * FROM Location WHERE idLocation = " . $idLocation);
     }
 
-    public function getLocationModalInfo($id){
-        return json_encode(ConnectDb::getInstance()->returnObject("Location.class", "Select * from Location where idLocation = ".$id)[0]);
+    public function getLocationModalInfo($id)
+    {
+        return json_encode(ConnectDb::getInstance()->returnObject("Location.class", "Select * from Location where idLocation = " . $id)[0]);
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once '../services/ConnectDb.class.php';
 
@@ -9,8 +9,10 @@ require_once '../services/ConnectDb.class.php';
  * Class GraveData
  * Used for Grave CREATE, READ, UPDATE, DELETE QUERIES
  */
-class GraveData {
-    public function readAllGraves(){
+class GraveData
+{
+    public function readAllGraves()
+    {
         return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, firstName, middleName, lastName, birth, death, G.description, HF.idHistoricFilter, HF.historicFilter, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation
                                                                             FROM Grave G 
                                                                             JOIN TrackableObject T ON G.idGrave = T.idGrave 
@@ -18,7 +20,8 @@ class GraveData {
                                                                             LEFT OUTER JOIN HistoricFilter HF ON G.idHistoricFilter = HF.idHistoricFilter");
     }
 
-    public function getGraveByID($idGrave){
+    public function getGraveByID($idGrave)
+    {
         return ConnectDb::getInstance()->returnObject("", "SELECT idTrackableObject, longitude, latitude, T.imagePath, T.imageDescription, firstName, middleName, lastName, birth, death, G.description, HF.idHistoricFilter, HF.historicFilter, T.idType, TF.typeFilter, T.idGrave, T.scavengerHuntHint, T.idLocation
                                                                             FROM Grave G 
                                                                             JOIN TrackableObject T ON G.idGrave = T.idGrave 
@@ -27,8 +30,9 @@ class GraveData {
                                                                             WHERE T.idGrave =" . $idGrave);
     }
 
-    public function createGrave($firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter){
-        try{
+    public function createGrave($firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter)
+    {
+        try {
             $stmnt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Grave (firstName, middleName, lastName, birth, death, description, idHistoricFilter) VALUES (:firstName, :middleName, :lastName, :birth, :death, :description, :idHistoricFilter)");
 
             // Bind
@@ -43,16 +47,16 @@ class GraveData {
 
             return ConnectDb::getInstance()->getConnection()->lastInsertId();
 
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "Failed in create Grave <br/>";
             echo $e->getMessage();
             die();
         }
     }
 
-    public function updateGrave($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter){
-        try{
+    public function updateGrave($idGrave, $firstName, $middleName, $lastName, $birth, $death, $description, $idHistoricFilter)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE Grave 
                                                                                    SET firstName = :firstName, 
                                                                                    middleName = :middleName, 
@@ -74,29 +78,28 @@ class GraveData {
             $stmt->bindParam(':description', $description, PDO::PARAM_INT);
 
             if ($idHistoricFilter == null) {
-                $stmt -> bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_NULL);
-            }else {
-                $stmt -> bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_INT);
+                $stmt->bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_NULL);
+            } else {
+                $stmt->bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_INT);
             }
 
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "Failed in update Grave <br/>";
             echo $e->getMessage();
             die();
         }
     }
 
-    public function updateDeletedHistoricFilterToNull($idHistoricFilter){
-        try{
+    public function updateDeletedHistoricFilterToNull($idHistoricFilter)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("Update Grave
                                                                                   SET idHistoricFilter = NULL 
                                                                                   Where idHistoricFilter = :idHistoricFilter");
             $stmt->bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_INT);
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "Failed to Update Historic Filters";
             echo $e->getMessage();
             die();

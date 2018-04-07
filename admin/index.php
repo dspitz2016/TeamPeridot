@@ -1,4 +1,9 @@
 <?php
+/**
+ * Author: Dustin Spitz
+ * Purpose: Login page keeps people out of the administrative site until they've logged in with correct credentials.
+ */
+
 ob_start();
 session_start();
 
@@ -10,10 +15,7 @@ $main->getHeader();
 
 $errorMsg = '';
 
-/**
- * If someone is logged in currently clear session
- **/
-
+// If someone is logged in push them to the admin page
 if (isset($_SESSION['email'])) {
     header('Location: admin.php');
 }

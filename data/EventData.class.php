@@ -1,26 +1,30 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once '../services/ConnectDb.class.php';
 
-class EventData {
+class EventData
+{
 
-    public function getAllEventsOrderedByDate(){
+    public function getAllEventsOrderedByDate()
+    {
         return ConnectDb::getInstance()->returnObject("Event.class", "SELECT e.idEvent, e.name, e.description, e.startTime, e.endTime, e.imagePath, e.imageDescription, e.idLocation, l.name as locationName FROM Event e
 INNER JOIN
 Location l on e.idLocation = l.idLocation order by startTime desc;");
     }
 
-    public function getEventById($idEvent){
+    public function getEventById($idEvent)
+    {
         return ConnectDb::getInstance()->returnObject("Event.class", "SELECT e.idEvent, e.name, e.description, e.startTime, e.endTime, e.imagePath, e.imageDescription, e.idLocation, l.name as locationName FROM Event e
 INNER JOIN
-Location l on e.idLocation = l.idLocation WHERE idEvent =".$idEvent);
+Location l on e.idLocation = l.idLocation WHERE idEvent =" . $idEvent);
     }
 
-    public function createEvent($name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation){
-        try{
+    public function createEvent($name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO Event (name, description, startTime, endTime, imagePath, imageDescription, idLocation) 
                                                                                     VALUES (:name, :description, :startTime, :endTime, :imagePath, :imageDescription, :idLocation)");
 
@@ -36,16 +40,16 @@ Location l on e.idLocation = l.idLocation WHERE idEvent =".$idEvent);
 
             return ConnectDb::getInstance()->getConnection()->lastInsertId();
 
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "Failed in create Event <br/>";
             echo $e->getMessage();
             die();
         }
     }
 
-    public function updateEvent($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation){
-        try{
+    public function updateEvent($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE Event 
                                                                                    SET name = :name, 
                                                                                    description = :description, 
@@ -66,8 +70,7 @@ Location l on e.idLocation = l.idLocation WHERE idEvent =".$idEvent);
             $stmt->bindParam(':idLocation', $idLocation, PDO::PARAM_INT);
 
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "Failed in update Event <br/>";
             echo $e->getMessage();
             die();

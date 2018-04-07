@@ -6,7 +6,8 @@ require_once 'TrackableObjectService.class.php';
 require_once 'LocationService.class.php';
 require_once 'TypeFilterService.class.php';
 
-class NaturalHistoryService extends TrackableObjectService {
+class NaturalHistoryService extends TrackableObjectService
+{
 
     private $trackableObjectService;
     private $naturalHistoryData;
@@ -26,11 +27,12 @@ class NaturalHistoryService extends TrackableObjectService {
         $this->typeFilterService = new TypeFilterService();
     }
 
-    public function readAllNaturalHistory(){
+    public function readAllNaturalHistory()
+    {
         $nh = $this->naturalHistoryData->readAllNaturalHistory();
         $allMiscObjects = array();
 
-        foreach($nh as $obj){
+        foreach ($nh as $obj) {
             $newNH = new NaturalHistory(
                 $obj['idNaturalHistory'],
                 $obj['name'],
@@ -51,7 +53,8 @@ class NaturalHistoryService extends TrackableObjectService {
         return $allMiscObjects;
     }
 
-    public function getNaturalHistoryById($idNaturalHistory){
+    public function getNaturalHistoryById($idNaturalHistory)
+    {
         $idNaturalHistory = filter_var($idNaturalHistory, FILTER_SANITIZE_NUMBER_INT);
         $obj = $this->naturalHistoryData->getNaturalHistoryById($idNaturalHistory);
         $singleNH = new NaturalHistory(
@@ -73,7 +76,8 @@ class NaturalHistoryService extends TrackableObjectService {
     }
 
     public function createNaturalHistory($name, $description,
-                                         $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+                                         $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
         // Sanitize
         $name = filter_var($name, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
@@ -84,7 +88,8 @@ class NaturalHistoryService extends TrackableObjectService {
     }
 
     public function updateNaturalHistory($idNaturalHistory, $name, $description,
-                                         $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType){
+                                         $idTrackableObject, $longitude, $latitude, $scavengerHuntHint, $imagePath, $imageDescription, $idLocation, $idType)
+    {
         $idNaturalHistory = filter_var($idNaturalHistory, FILTER_SANITIZE_NUMBER_INT);
         $name = filter_var($name, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
@@ -94,12 +99,14 @@ class NaturalHistoryService extends TrackableObjectService {
 
     }
 
-    public function deleteNaturalHistory($idNaturalHistory){
+    public function deleteNaturalHistory($idNaturalHistory)
+    {
         $idNaturalHistory = filter_var($idNaturalHistory, FILTER_SANITIZE_NUMBER_INT);
         ConnectDb::getInstance()->deleteObject($idNaturalHistory, "NaturalHistory");
     }
 
-    public function readNaturalHistoryTable(){
+    public function readNaturalHistoryTable()
+    {
         $data = $this->readAllNaturalHistory();
 
         $table = "<script>
@@ -126,14 +133,14 @@ class NaturalHistoryService extends TrackableObjectService {
                     <tbody>";
 
 
-        foreach($data as $obj){
+        foreach ($data as $obj) {
             $table .= "
                       <tr>
-                        <td>".$obj->getName()."</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, misc, ".$obj->getIdNaturalHistory().")'> Edit
+                        <td>" . $obj->getName() . "</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, misc, " . $obj->getIdNaturalHistory() . ")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>  
-                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, misc, ".$obj->getIdNaturalHistory().")'> Delete
+                        <td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, misc, " . $obj->getIdNaturalHistory() . ")'> Delete
                             <i class='material-icons'>delete</i>
                         </button></td> 
                       </tr>
@@ -145,7 +152,8 @@ class NaturalHistoryService extends TrackableObjectService {
         return $table;
     }
 
-    public function createNaturalHistoryForm(){
+    public function createNaturalHistoryForm()
+    {
         return '
                         <div class="row"><div class="col s12"><h5>Create Miscellaneous Object</h5></div></div>
 
@@ -164,11 +172,11 @@ class NaturalHistoryService extends TrackableObjectService {
                         </div>'
             . $this->typeFilterService->getDefaultTypeFilter()
             . $this->locationService->getDefaultLocationDropdown()
-            . $this->trackableObjectService->getCreateTrackableObjectFormElements()
-            ;
+            . $this->trackableObjectService->getCreateTrackableObjectFormElements();
     }
 
-    public function updateNaturalHistoryForm($idNaturalHistory){
+    public function updateNaturalHistoryForm($idNaturalHistory)
+    {
         $singleNH = $this->getNaturalHistoryById($idNaturalHistory);
         return '
                         <div class="row"><div class="col s12"><h5>Update Natural History</h5></div></div>
@@ -176,27 +184,26 @@ class NaturalHistoryService extends TrackableObjectService {
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="name">Name</label><br/>
-                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true" value="'.$singleNH->getName().'">
+                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true" value="' . $singleNH->getName() . '">
                             </div>
                         </div>
             
                         <div class="row">
                            <div class="input-field col s12">
                                 <label for="description">Description</label><br/>
-                                <textarea id="description" name="description" class="materialize-textarea">'.$singleNH->getDescription().'</textarea>
+                                <textarea id="description" name="description" class="materialize-textarea">' . $singleNH->getDescription() . '</textarea>
                             </div>
                         </div>
                         
                         <div class="row" style="display:none;">
                            <div class="input-field col s12">
-                                <input id="idNaturalHistory" name="idNaturalHistory" type="text" class="validate" required="" aria-required="true" value="'.$singleNH->getIdNaturalHistory().'">
+                                <input id="idNaturalHistory" name="idNaturalHistory" type="text" class="validate" required="" aria-required="true" value="' . $singleNH->getIdNaturalHistory() . '">
                             </div>
                         </div>
                         '
             . $this->typeFilterService->getTypeFilterForObject($singleNH->getIdType())
             . $this->locationService->getDefaultLocationDropdown()
-            . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleNH)
-            ;
+            . $this->trackableObjectService->getTrackableObjectFormElementsByObject($singleNH);
     }
 
 

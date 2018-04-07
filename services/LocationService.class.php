@@ -1,7 +1,7 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once '../data/LocationData.class.php';
 require_once '../models/Location.class.php';
@@ -10,7 +10,7 @@ require_once '../models/Location.class.php';
  * Used to generate the Location modals on the wider area map
  * onclick a button sends an ajax get request providing idLocation which is used to get the information for the modal
  */
-if(isset($_GET['idLocation'])){
+if (isset($_GET['idLocation'])) {
     $locationService = new LocationService();
     $data = $locationService->getLocationModalInfo($_GET['idLocation']);
     var_dump($data);
@@ -21,8 +21,8 @@ if(isset($_GET['idLocation'])){
  * Author: Dustin Spitz
  * Purpose: Calls the LocationData class to retrieve an associative array and formats this into php objects using the provided model
  */
-
-class LocationService {
+class LocationService
+{
 
     private $locationData;
 
@@ -38,12 +38,13 @@ class LocationService {
     /**
      * @return array - Returns all location as php objects
      */
-    public function getAllLocationsAsPins(){
+    public function getAllLocationsAsPins()
+    {
         $pinData = $this->locationData->getAllLocationPinData();
 
         $temp = array();
 
-        foreach($pinData as $pinArray){
+        foreach ($pinData as $pinArray) {
             $pin = new Location(
                 $pinArray['idLocation'],
                 $pinArray['name'],
@@ -67,7 +68,8 @@ class LocationService {
         return $temp;
     }
 
-    public function getLocationById($idLocation){
+    public function getLocationById($idLocation)
+    {
         $IdLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
         $location = $this->locationData->getLocationById($idLocation);
         $singleLocation = new Location(
@@ -89,8 +91,10 @@ class LocationService {
 
         return $singleLocation;
     }
+
     // Create
-    public function createLocation($name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder){
+    public function createLocation($name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder)
+    {
         $name = filter_var($name, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $url = filter_var($url, FILTER_SANITIZE_URL);
@@ -109,7 +113,8 @@ class LocationService {
     }
 
     // Update
-    public function updateLocation($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder){
+    public function updateLocation($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder)
+    {
         $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
         $name = filter_var($name, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
@@ -129,9 +134,10 @@ class LocationService {
     }
 
     // Delete
-    public function deleteLocation($idLocation){
+    public function deleteLocation($idLocation)
+    {
         $idLocation = filter_var($idLocation, FILTER_SANITIZE_NUMBER_INT);
-        if($idLocation == 1){
+        if ($idLocation == 1) {
             echo "Rapids Cemetery cannot be removed from the Database.";
         } else {
             ConnectDb::getInstance()->deleteObject($idLocation, "Location");
@@ -141,26 +147,27 @@ class LocationService {
     /**
      * Get Location Detail for under the map
      */
-    public function getHistoricTrailDetails(){
+    public function getHistoricTrailDetails()
+    {
         $data = $this->getAllLocationsAsPins();
 
         $locDetailString = "<div class='row cust-color-rust'> <div class='col s12'><h3 class='white-text center'>Historic Trail Details</h3></div></div>";
         $locDetailString .= "<div class='row center'>";
         $clearfix = 0;
 
-        foreach($data as $loc){
+        foreach ($data as $loc) {
             $locDetailString .= '<div class="col s10 push-s1 pull-s1 m10 push-m1 pull-m1 col l5 push-l1 pull-l1 historic-trail-detail">';
-                $locDetailString .= '<h4>'.$loc->getName().'</h4>';
-                $locDetailString .= '<p>'.$loc->getFullAddress().'</p>';
-                $locDetailString .= '<p>'.$loc->getDescription().'</p>';
-                $locDetailString .= '<a class="waves-effect waves-light btn" href="'.$loc->getURL().'">Go to '.$loc->getName().' Website</a>';
+            $locDetailString .= '<h4>' . $loc->getName() . '</h4>';
+            $locDetailString .= '<p>' . $loc->getFullAddress() . '</p>';
+            $locDetailString .= '<p>' . $loc->getDescription() . '</p>';
+            $locDetailString .= '<a class="waves-effect waves-light btn" href="' . $loc->getURL() . '">Go to ' . $loc->getName() . ' Website</a>';
             $locDetailString .= '</div>';
 
-            if($clearfix%2){
+            if ($clearfix % 2) {
                 $locDetailString .= '<div class="clearfix"></div>';
                 $clearfix += 1;
             } else {
-                $clearfix +=1;
+                $clearfix += 1;
             }
 
         }
@@ -174,7 +181,8 @@ class LocationService {
      * @param $id - idLocation, the associated id in the database
      * @return string - Returns a JSON string that is formatted on the client side using a json parsing function
      */
-    public function getLocationModalInfo($id){
+    public function getLocationModalInfo($id)
+    {
         $locationData = new LocationData();
         return $locationData->getLocationModalInfo($id);
     }
@@ -182,7 +190,8 @@ class LocationService {
     /**
      * Admin CRUD Styling
      */
-    public function readLocationTable(){
+    public function readLocationTable()
+    {
         $data = $this->getAllLocationsAsPins();
 
         $table = "<script>
@@ -210,28 +219,28 @@ class LocationService {
                     <tbody>";
 
 
-        foreach($data as $obj){
+        foreach ($data as $obj) {
             $table .= "
                       <tr>
-                        <td>".$obj->getName()."</td>
+                        <td>" . $obj->getName() . "</td>
                         <td>";
-                        if( $obj->getTrailOrder() > 0){
-                            $table .= $obj->getTrailOrder();
-                        }
-                        $table .= "</td>
-                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, loc, ".$obj->getIdLocation().")'> Edit
+            if ($obj->getTrailOrder() > 0) {
+                $table .= $obj->getTrailOrder();
+            }
+            $table .= "</td>
+                        <td><button class='waves-effect waves-light green btn modal-trigger' href='#updateModal' type='submit' onclick='modalController(updateAction, loc, " . $obj->getIdLocation() . ")'> Edit
                             <i class='material-icons'>edit</i>
                         </button></td>";
 
-                         if($obj->getIdLocation() != 1){
-                                $table .= "<td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, loc, ".$obj->getIdLocation().")'> Delete
+            if ($obj->getIdLocation() != 1) {
+                $table .= "<td><button class='btn waves-effect waves-light red modal-trigger' href='#deleteModal' type='submit' onclick='modalController(deleteAction, loc, " . $obj->getIdLocation() . ")'> Delete
                                     <i class='material-icons'>delete</i>
                                 </button></td>";
-                         } else {
-                                $table .= "<td></td>";
-                         }
+            } else {
+                $table .= "<td></td>";
+            }
 
-                      $table .= "</tr>";
+            $table .= "</tr>";
         }
 
         $table .= "</tbody></table></div></div>";
@@ -239,7 +248,8 @@ class LocationService {
         return $table;
     }
 
-    public function createLocationForm(){
+    public function createLocationForm()
+    {
         return '
                         <div class="row"><div class="col s12"><h5>Create Location</h5></div></div>
 
@@ -325,11 +335,11 @@ class LocationService {
                             </div>
                         </div>  
                          
-                       '
-            ;
+                       ';
     }
 
-    public function updateLocationForm($idLocation){
+    public function updateLocationForm($idLocation)
+    {
         $singleLocation = $this->getLocationById($idLocation);
 
         return '
@@ -338,114 +348,109 @@ class LocationService {
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="name">Name</label><br/>
-                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getName().'">
+                                <input id="name" name="name" type="text" class="validate" required="" aria-required="true" value="' . $singleLocation->getName() . '">
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="description">Description</label><br/>
-                                <textarea id="description" name="description" class="materialize-textarea">'.$singleLocation->getDescription().'</textarea>
+                                <textarea id="description" name="description" class="materialize-textarea">' . $singleLocation->getDescription() . '</textarea>
                             </div>
                         </div>
             
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="url">Url</label><br/>                            
-                                <input id="url" name="url" class="materialize-textarea" value="'.$singleLocation->getUrl().'">
+                                <input id="url" name="url" class="materialize-textarea" value="' . $singleLocation->getUrl() . '">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="input-field col s6">
                                 <label for="longitude">longitude</label><br/>
-                                <input id="longitude" name="longitude" type="text" required="" aria-required="true" value="'.$singleLocation->getLongitude().'">
+                                <input id="longitude" name="longitude" type="text" required="" aria-required="true" value="' . $singleLocation->getLongitude() . '">
                             </div>
                             <div class="input-field col s6">
                                 <label for="latitude">latitude</label><br/>
-                                <input id="latitude" name="latitude" type="text" required="" aria-required="true" value="'.$singleLocation->getLatitude().'">
+                                <input id="latitude" name="latitude" type="text" required="" aria-required="true" value="' . $singleLocation->getLatitude() . '">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="address">Address</label><br/>
-                                <input id="address" name="address" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getAddress().'">
+                                <input id="address" name="address" type="text" class="validate" required="" aria-required="true" value="' . $singleLocation->getAddress() . '">
                             </div>
                         </div>  
                         
                         <div class="row">
                             <div class="input-field col s4">
                                 <label for="city">City</label><br/>                            
-                                <input id="city" name="city" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getCity().'">
+                                <input id="city" name="city" type="text" class="validate" required="" aria-required="true" value="' . $singleLocation->getCity() . '">
                             </div>
                             <div class="input-field col s4">
                                 <label for="state">State</label><br/>                            
-                                <input id="state" name="state" maxlength="2" text" class="validate" required="" aria-required="true" value="'.$singleLocation->getState().'">
+                                <input id="state" name="state" maxlength="2" text" class="validate" required="" aria-required="true" value="' . $singleLocation->getState() . '">
                             </div>
                             <div class="input-field col s4">
                                 <label for="zipcode">Zip Code</label><br/>
-                                <input id="zipcode" name="zipcode" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getZipcode().'">
+                                <input id="zipcode" name="zipcode" type="text" class="validate" required="" aria-required="true" value="' . $singleLocation->getZipcode() . '">
                             </div>
                         </div>  
                
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="imagePath">Image Path</label><br/>
-                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getImagePath().'">
+                                <input id="imagePath" name="imagePath" type="text" class="validate" required="" aria-required="true" value="' . $singleLocation->getImagePath() . '">
                             </div>
                         </div> 
                         
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="imageDescription">Image Description</label><br/>
-                                <input id="imageDescription" name="imageDescription" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getImageDescription().'">
+                                <input id="imageDescription" name="imageDescription" type="text" class="validate" required="" aria-required="true" value="' . $singleLocation->getImageDescription() . '">
                             </div>
                         </div>  
                         
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="pinDesign">Pin Design (URL)</label><br/>
-                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="'.$singleLocation->getPinDesign().'">
+                                <input id="pinDesign" name="pinDesign" type="text" class="validate" required="" aria-required="true" value="' . $singleLocation->getPinDesign() . '">
                             </div>
                         </div>  
                         
                         <div class="row">
                             <div class="input-field col s12">
                                 <label for="trailOrder">Trail Order (Number)</label><br/>
-                                <input id="trailOrder" name="trailOrder" type="number" class="validate" required="" aria-required="true" value="'.$singleLocation->getTrailOrder().'">
+                                <input id="trailOrder" name="trailOrder" type="number" class="validate" required="" aria-required="true" value="' . $singleLocation->getTrailOrder() . '">
                             </div>
                         </div>  
                         
                         <div class="row" style="display:none;">
                             <div class="input-field col s12">
-                                <input id="idLocation" name="idLocation" type="number" class="validate" required="" aria-required="true" value="'.$singleLocation->getIdLocation().'">
+                                <input id="idLocation" name="idLocation" type="number" class="validate" required="" aria-required="true" value="' . $singleLocation->getIdLocation() . '">
                             </div>
                         </div>  
                          
-                       '
-
-            ;
+                       ';
     }
 
-    public function getLocationDropdownByObject($idLocation){
+    public function getLocationDropdownByObject($idLocation)
+    {
         $data = $this->getAllLocationsAsPins();
         $elem = '<div class="row">
                     <div class="input-field col s12">
                     <select name="idLocation">';
-        // If the Historic filter is null set the default selected as the Choose an option
-        if($idLocation == "" || $idLocation == null){
-            $elem .= '<option value="0" disabled selected>Choose your option</option>';
-        }
 
-        foreach($data as $loc){
+        foreach ($data as $loc) {
             $idLocationListValue = $loc->getIdLocation();
 
             // If it's not null it should match and display the field that matches
-            if($idLocationListValue == 1){
-                $elem .= '<option value="'.$idLocationListValue.'" selected>'.$loc->getName().'</option>';
+            if ($idLocation == $idLocationListValue) {
+                $elem .= '<option value="' . $idLocationListValue . '" selected>' . $loc->getName() . '</option>';
             } else {
-                $elem .= '<option value="'.$idLocationListValue.'">'.$loc->getName().'</option>';
+                $elem .= '<option value="' . $idLocationListValue . '">' . $loc->getName() . '</option>';
             }
         }
 
@@ -454,17 +459,18 @@ class LocationService {
         return $elem;
     }
 
-    public function getDefaultLocationDropdown(){
+    public function getDefaultLocationDropdown()
+    {
         $data = $this->getAllLocationsAsPins();
         $elem = '<div class="row">
                     <div class="input-field col s12">
                     <select name="idLocation">';
 
 
-        foreach($data as $loc){
+        foreach ($data as $loc) {
             $idLocation = $loc->getIdLocation();
-            if($idLocation == 1){ // everythign belongs to rapids currently
-                $elem .= '<option value="'.$idLocation.'" disabled selected>'.$loc->getName().'</option>';
+            if ($idLocation == 1) { // everythign belongs to rapids currently
+                $elem .= '<option value="' . $idLocation . '" disabled selected>' . $loc->getName() . '</option>';
             }
         }
 
@@ -473,19 +479,21 @@ class LocationService {
         return $elem;
     }
 
-    public function getEventLocationDropdown(){
+    public function getEventLocationDropdown()
+    {
         $data = $this->getAllLocationsAsPins();
         $elem = '<div class="row">
                     <div class="input-field col s12">
                     <select name="idLocation">';
 
+        $elem .= '<option value="0" disabled selected>Select a Location</option>';
 
-        foreach($data as $loc){
+        foreach ($data as $loc) {
             $idLocation = $loc->getIdLocation();
-            if($idLocation == 1){ // everythign belongs to rapids currently
-                $elem .= '<option value="'.$idLocation.'" disabled selected>'.$loc->getName().'</option>';
+            if ($idLocation == 1) { // everythign belongs to rapids currently
+                $elem .= '<option value="' . $idLocation . '">' . $loc->getName() . '</option>';
             } else {
-                $elem .= '<option value="'.$idLocation.'">'.$loc->getName().'</option>';
+                $elem .= '<option value="' . $idLocation . '">' . $loc->getName() . '</option>';
             }
         }
 

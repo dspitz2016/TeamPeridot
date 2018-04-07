@@ -1,45 +1,49 @@
 <?php
-ob_start();
-session_start();
-
-require_once '../components/Main.class.php';
-require_once '../services/LocationService.class.php';
-require_once '../services/GraveService.class.php';
-require_once '../services/FloraService.class.php';
-require_once '../services/NaturalHistoryService.class.php';
-require_once '../services/EventService.class.php';
-require_once '../services/FAQService.class.php';
-require_once '../services/HistoricFilterService.class.php';
-require_once '../services/TypeFilterService.class.php';
-require_once '../services/ContactService.class.php';
-
-$main = Main::getInstance();
-$main->getAdminHeader();
+/**
+ * Author: Dustin Spitz
+ * Purpose: Used to test CRUD services.
+ */
 
 
-if(!isset($_SESSION['email'])){
-    header('Location: index.php');
-}
-
-$main->getAdminSideBar();
-
-$locationService = new LocationService();
-$graveService = new GraveService();
-$floraService = new FloraService();
-$naturalHistoryService = new NaturalHistoryService();
-$eventService = new EventService();
-$faqService = new FAQService();
-$historicFilterService = new HistoricFilterService();
-$typeFilterService = new TypeFilterService();
-$contactService = new ContactService();
+//ob_start();
+//session_start();
+//
+//require_once '../components/Main.class.php';
+//require_once '../services/LocationService.class.php';
+//require_once '../services/GraveService.class.php';
+//require_once '../services/FloraService.class.php';
+//require_once '../services/NaturalHistoryService.class.php';
+//require_once '../services/EventService.class.php';
+//require_once '../services/FAQService.class.php';
+//require_once '../services/HistoricFilterService.class.php';
+//require_once '../services/TypeFilterService.class.php';
+//require_once '../services/ContactService.class.php';
+//
+//$main = Main::getInstance();
+//$main->getAdminHeader();
+//
+//
+//if(!isset($_SESSION['email'])){
+//    header('Location: index.php');
+//}
+//
+//$main->getAdminSideBar();
+//
+//$locationService = new LocationService();
+//$graveService = new GraveService();
+//$floraService = new FloraService();
+//$naturalHistoryService = new NaturalHistoryService();
+//$eventService = new EventService();
+//$faqService = new FAQService();
+//$historicFilterService = new HistoricFilterService();
+//$typeFilterService = new TypeFilterService();
+//$contactService = new ContactService();
 
 //$graveService->createGrave("John", "T.", "Smith", "1922-04-14", "2000-02-12", "He was one of the last members of a family to pass who still live in this cemetery", null, -77.6393805107, 43.12957151812343, "", "http://www.usgwarchives.net/wi/cemetery/images/onieda/nokomistwp-prairierapids/nokomistwp-prairierapids011.jpg", "description", 1, 1);
 //$graveService->createGrave("Jim", "H.", "Jones", "1922-04-14", "2000-02-12", "A good member", 1, -77.6393767185715, 43.12951547592116, "", "http://www.usgwarchives.net/wi/cemetery/images/onieda/nokomistwp-prairierapids/nokomistwp-prairierapids019.jpg", "description", 1, 1);
 //$graveService->createGrave("Abby", "N.", "Smithy", "1922-04-14", "2000-02-12", "Loved living in Rochester", 1, -77.63930496948035, 43.12947810348198, "", "http://www.usgwarchives.net/wi/cemetery/images/onieda/nokomistwp-prairierapids/nokomistwp-prairierapids035.jpg", "description", 1, 1);
 //$graveService->createGrave("Gloria", "R.", "Leblanc", "1922-04-14", "2000-02-12", "A medical nurse.", 2, -77.63900255041392, 43.12953347005038, "", "http://www.usgwarchives.net/wi/cemetery/images/onieda/nokomistwp-prairierapids/nokomistwp-prairierapids008.jpg", "description", 1, 1);
 //$graveService->createGrave("Arnold", "L.", "Sholtz", "1922-04-14", "2000-02-12", "In the airforce units.", 3, -77.63897908108504, 43.129482255976356, "", "http://www.usgwarchives.net/wi/cemetery/images/onieda/nokomistwp-prairierapids/nokomistwp-prairierapids012.jpg", "description", 1, 1);
-
-
 
 //$graveService->createGrave("Dustin", "Tyler", "Spitz", "1994-06-27", "2018-03-17", "I Tried...", 4, -77.639091, 43.129458, "You might find him", "", "", 1,1);
 //$graveService->createGrave("John", "J.", "Smith", "1974-06-27", "2018-03-17", "Do words like this work? I don't know hmm.", "", -77.63913, 43.12935, "You might find him here ' 's", "test", "tester", 1,1);

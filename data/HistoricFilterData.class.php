@@ -2,18 +2,22 @@
 
 require_once '../services/ConnectDb.class.php';
 
-class HistoricFilterData {
+class HistoricFilterData
+{
 
-    public function readAllHistoricFilters(){
+    public function readAllHistoricFilters()
+    {
         return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter;");
     }
 
-    public function getHistoricFilterById($idHistoricFilter){
-        return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter WHERE idHistoricFilter =".$idHistoricFilter);
+    public function getHistoricFilterById($idHistoricFilter)
+    {
+        return ConnectDb::getInstance()->returnObject("HistoricFilter.class", "SELECT idHistoricFilter, historicFilter, buttonColor FROM HistoricFilter WHERE idHistoricFilter =" . $idHistoricFilter);
     }
 
-    public function createHistoricFilter($historicFilter, $buttonColor){
-        try{
+    public function createHistoricFilter($historicFilter, $buttonColor)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("INSERT INTO HistoricFilter
                                                                                   (historicFilter, buttonColor)
                                                                                   VALUES
@@ -23,8 +27,7 @@ class HistoricFilterData {
 
             $stmt->execute();
 
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo 'Failed to create Historic Filter';
             echo $e->getMessage();
             die();
@@ -32,8 +35,9 @@ class HistoricFilterData {
 
     }
 
-    public function updateHistoricFilter($idHistoricFilter, $historicFilter, $buttonColor){
-        try{
+    public function updateHistoricFilter($idHistoricFilter, $historicFilter, $buttonColor)
+    {
+        try {
             $stmt = ConnectDb::getInstance()->getConnection()->prepare("UPDATE HistoricFilter
                                                                                     SET historicFilter = :historicFilter,
                                                                                     buttonColor = :buttonColor
@@ -44,8 +48,7 @@ class HistoricFilterData {
             $stmt->bindParam(':idHistoricFilter', $idHistoricFilter, PDO::PARAM_INT);
 
             $stmt->execute();
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo 'Failed to update Historic Filter';
             echo $e->getMessage();
             die();
@@ -53,7 +56,8 @@ class HistoricFilterData {
 
     }
 
-    public function deleteHistoricFilter($idHistoricFilter){
+    public function deleteHistoricFilter($idHistoricFilter)
+    {
 
     }
 }

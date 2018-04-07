@@ -23,18 +23,18 @@ $faqService = new FAQService();
 
 </div>
 
-    <div class="row container">
-        <div class="col s12 center">
-            <ul class="collapsible" data-collapsible="accordion">
+<div class="row container">
+    <div class="col s12 center">
+        <ul class="collapsible" data-collapsible="accordion">
 
-                <?php
-                    echo $faqService->getCollapsibleFAQs();
-                ?>
+            <?php
+            echo $faqService->getCollapsibleFAQs();
+            ?>
 
-            </ul>
+        </ul>
 
-        </div>
     </div>
+</div>
 
 
 <!--<a href="https://codyhouse.co/demo/faq-template/index.html">Sample Collapsible FAQ</a>-->

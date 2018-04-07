@@ -1,38 +1,45 @@
 <?php
-    ob_start();
-    session_start();
-    date_default_timezone_set('America/New_York');
+/**
+ * Author: Dustin Spitz
+ * Purpose: Administrative Website allows sponsors to modify the website content.
+ */
 
-    require_once '../components/Main.class.php';
-    require_once '../services/LocationService.class.php';
-    require_once '../services/GraveService.class.php';
-    require_once '../services/FloraService.class.php';
-    require_once '../services/NaturalHistoryService.class.php';
-    require_once '../services/EventService.class.php';
-    require_once '../services/FAQService.class.php';
-    require_once '../services/HistoricFilterService.class.php';
-    require_once '../services/TypeFilterService.class.php';
-    require_once '../services/ContactService.class.php';
+ob_start();
+session_start();
+date_default_timezone_set('America/New_York'); // Set Default Time Zone
 
-    $main = Main::getInstance();
-	$main->getAdminHeader();
+require_once '../components/Main.class.php';
+require_once '../services/LocationService.class.php';
+require_once '../services/GraveService.class.php';
+require_once '../services/FloraService.class.php';
+require_once '../services/NaturalHistoryService.class.php';
+require_once '../services/EventService.class.php';
+require_once '../services/FAQService.class.php';
+require_once '../services/HistoricFilterService.class.php';
+require_once '../services/TypeFilterService.class.php';
+require_once '../services/ContactService.class.php';
 
+$main = Main::getInstance();
+$main->getAdminHeader();
 
-	if(!isset($_SESSION['email'])){
-        header('Location: index.php');
-    }
+// Checks to see if there is a session set, otherwise pushes user back to login page.
+if (!isset($_SESSION['email'])) {
+    header('Location: index.php');
+}
 
-    $main->getAdminSideBar();
+$main->getAdminSideBar();
 
-	$locationService = new LocationService();
-	$graveService = new GraveService();
-    $floraService = new FloraService();
-	$naturalHistoryService = new NaturalHistoryService();
-    $eventService = new EventService();
-	$faqService = new FAQService();
-	$historicFilterService = new HistoricFilterService();
-	$typeFilterService = new TypeFilterService();
-	$contactService = new ContactService();
+// Start all Required Services used on the page.
+$locationService = new LocationService();
+$graveService = new GraveService();
+$floraService = new FloraService();
+$naturalHistoryService = new NaturalHistoryService();
+$eventService = new EventService();
+$faqService = new FAQService();
+$historicFilterService = new HistoricFilterService();
+$typeFilterService = new TypeFilterService();
+$contactService = new ContactService();
+
 ?>
 
 <!-- cust-nav used for media query -->
@@ -67,13 +74,11 @@
         <!-- Type -->
         <div class="navLinks" id="7"><?php echo $typeFilterService->readTypeTable(); ?></div>
 
-
         <!-- Historic -->
         <div class="navLinks" id="8"><?php echo $historicFilterService->readHistoricFilterTable(); ?></div>
 
         <!-- Contacts -->
         <div class="navLinks" id="9"><?php echo $contactService->readContactTable(); ?></div>
-
 
     </div>
 
@@ -83,7 +88,9 @@
         </div>
         <div class="modal-footer">
             <button class='btn waves-effect waves-light modal-close' href='#createModal' type='submit'>Discard</button>
-            <button class='btn waves-effect waves-light green modal-trigger' href='#createModal' id='createBtn' type='submit'>Create</button>
+            <button class='btn waves-effect waves-light green modal-trigger' href='#createModal' id='createBtn'
+                    type='submit'>Create
+            </button>
         </div>
     </div>
 
@@ -92,8 +99,11 @@
             <form id="updateForm"></form>
         </div>
         <div class="modal-footer">
-            <button class='btn waves-effect waves-light modal-close' href='#updateModal' type='submit'>Discard Changes</button>
-            <button class='btn waves-effect waves-light green modal-trigger' href='#updateModal' id='updateBtn' type='submit'>Update</button>
+            <button class='btn waves-effect waves-light modal-close' href='#updateModal' type='submit'>Discard Changes
+            </button>
+            <button class='btn waves-effect waves-light green modal-trigger' href='#updateModal' id='updateBtn'
+                    type='submit'>Update
+            </button>
         </div>
     </div>
 

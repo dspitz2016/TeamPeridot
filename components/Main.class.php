@@ -1,31 +1,40 @@
 <?php
 
-class Main {
+/**
+ * Author: Dustin Spitz
+ * Purpose: Used to store page setup for main and administrative pages.
+ */
+
+class Main
+{
 
     private static $instance = null;
 
-    public static function getInstance(){
-        if(!self::$instance){
+    public static function getInstance()
+    {
+        if (!self::$instance) {
             self::$instance = new Main();
         }
 
         return self::$instance;
     }
 
-    public function getHeader(){
+    public function getHeader()
+    {
         echo '<!DOCTYPE html>';
         echo '<html>';
         echo '<head>';
         echo '<title>Rapids Cemetery</title>';
-        echo    '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
-        echo    '<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection">';
-        echo    '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
-        echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
+        echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
+        echo '<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection">';
+        echo '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
+        echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
         echo '</head>';
         echo '<body class="cust-color-slate">';
     }
 
-    public function getNavigationBar(){
+    public function getNavigationBar()
+    {
         echo '<nav>';
         echo '<div class="nav-wrapper cust-color-rust z-depth-1">';
         //echo '<a href="index.php" class="brand-logo right">Rapids Cemetery</a>';
@@ -54,22 +63,24 @@ class Main {
         echo '</nav>';
     }
 
-    public function getScripts(){
+    public function getScripts()
+    {
 //        echo    '<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
         echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
         echo '<script src="../js/main.js"></script>';
 
         echo '<script src="../js/materialize.js"></script>';
-        }
+    }
 
-    public function getFooter(){
+    public function getFooter()
+    {
 
         echo '<footer><div class="section cust-color-rust">';
-            echo '<div class="row container white-text center-align">';
-                echo '<div class="col s12">';
-                echo '&copy; Team Peridot 2018';
-                echo '</div>';
-            echo '</div>';
+        echo '<div class="row container white-text center-align">';
+        echo '<div class="col s12">';
+        echo '&copy; Team Peridot 2018';
+        echo '</div>';
+        echo '</div>';
         echo '</div></footer>';
         echo "</body>";
         echo "</html>";
@@ -80,17 +91,18 @@ class Main {
      * createAction, updateAction, deleteAction used as globals for all modal CRUD actions
      */
 
-    public function getAdminHeader(){
+    public function getAdminHeader()
+    {
         echo '<!DOCTYPE html>';
         echo '<html>';
         echo '<head>';
         echo '<title>Rapids Cemetery</title>';
-        echo    '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
-        echo    '<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection">';
-        echo    '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
-        echo    '<link type="text/css" rel="stylesheet" href="../css/admin.css" />';
-        echo    '<meta name="viewport" content="width=device-width, initial-scale=1">';
-        echo    "<script>     
+        echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
+        echo '<link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection">';
+        echo '<link type="text/css" rel="stylesheet" href="../css/main.css" />';
+        echo '<link type="text/css" rel="stylesheet" href="../css/admin.css" />';
+        echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+        echo "<script>     
                         var createAction = 'create';
                         var updateAction = 'update';
                         var deleteAction = 'delete';</script>";
@@ -98,7 +110,8 @@ class Main {
         echo '<body>';
     }
 
-    public function getAdminSideBar(){
+    public function getAdminSideBar()
+    {
         echo '<ul id="slide-out" class="side-nav fixed cust-color-slate col s3">';
         echo '<li><h4>Rapids Cemetery Admin Portal</h4></li>';
 
@@ -117,13 +130,14 @@ class Main {
         echo '<li><div class="divider"></div></li>';
 
         echo '<form method="post" action="logout.php">';
-            echo '<li><button type="submit" name="logout" value="logout" class="btn btn-medium lighten-1 waves-effect"><i class="material-icons">arrow_back</i> Logout</button></li>';
+        echo '<li><button type="submit" name="logout" value="logout" class="btn btn-medium lighten-1 waves-effect"><i class="material-icons">arrow_back</i> Logout</button></li>';
         echo '</form>';
 
         echo '</ul>';
     }
 
-    public function getAdminScripts(){
+    public function getAdminScripts()
+    {
         echo '<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>';
         echo '<script src="../js/materialize.js"></script>';
         echo '<script src="../js/main.js"></script>';

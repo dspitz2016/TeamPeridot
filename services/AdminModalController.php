@@ -1,7 +1,7 @@
 <?php
 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', true);
 
 require_once 'GraveService.class.php';
 require_once 'LocationService.class.php';
@@ -24,13 +24,13 @@ $typeFilterService = new TypeFilterService();
 $historicFilterService = new HistoricFilterService();
 $contactService = new ContactService();
 
-if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET['object']) && isset($_GET['objId'])){
+if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET['object']) && isset($_GET['objId'])) {
     $action = $_GET['action'];
     $object = $_GET['object'];
     $objId = $_GET['objId'];
 
-    if($action === "create"){
-        switch($object){
+    if ($action === "create") {
+        switch ($object) {
             case "Location":
                 echo $locationService->createLocationForm();
                 break;
@@ -63,8 +63,8 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
         }
     }
 
-    if($action === "update"){
-        switch($object){
+    if ($action === "update") {
+        switch ($object) {
             case "Location":
                 echo $locationService->updateLocationForm($objId);
                 break;
@@ -99,14 +99,14 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['action']) && isset($_GET
     }
 }
 
-if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_POST['object']) && !empty($_POST['objId'])){
+if ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_POST['object']) && !empty($_POST['objId'])) {
     $action = $_POST['action'];
     $object = $_POST['object'];
     $objId = $_POST['objId'];
 
-    if($action === "create"){
+    if ($action === "create") {
 
-        switch($object){
+        switch ($object) {
             case "Location":
                 $locationService->createLocation(
                     $_POST['name'],
@@ -177,8 +177,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                 $eventService->createEvent(
                     $_POST['name'],
                     $_POST['description'],
-                    $_POST['startDate'] . ' ' . $_POST['startTime'] .':00', //seconds
-                    $_POST['endDate'] . ' ' . $_POST['endTime'] .':00', //seconds
+                    $_POST['startDate'] . ' ' . $_POST['startTime'] . ':00', //seconds
+                    $_POST['endDate'] . ' ' . $_POST['endTime'] . ':00', //seconds
                     "",
                     "",
                     $_POST['idLocation']);
@@ -213,24 +213,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
         }
     }
 
-    if($action === "update"){
-        switch($object){
+    if ($action === "update") {
+        switch ($object) {
             case "Location":
                 $locationService->updateLocation(
-                  $_POST['idLocation'],
-                  $_POST['name'],
-                  $_POST['description'],
-                  $_POST['url'],
-                  $_POST['longitude'],
-                  $_POST['latitude'],
-                  $_POST['address'],
-                  $_POST['city'],
-                  $_POST['state'],
-                  $_POST['zipcode'],
-                  $_POST['imagePath'],
-                  $_POST['imageDescription'],
-                  $_POST['pinDesign'],
-                  $_POST['trailOrder']
+                    $_POST['idLocation'],
+                    $_POST['name'],
+                    $_POST['description'],
+                    $_POST['url'],
+                    $_POST['longitude'],
+                    $_POST['latitude'],
+                    $_POST['address'],
+                    $_POST['city'],
+                    $_POST['state'],
+                    $_POST['zipcode'],
+                    $_POST['imagePath'],
+                    $_POST['imageDescription'],
+                    $_POST['pinDesign'],
+                    $_POST['trailOrder']
                 );
                 break;
             case "Grave";
@@ -295,8 +295,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
                     $_POST['idEvent'],
                     $_POST['name'],
                     $_POST['description'],
-                    $_POST['startDate'] . ' ' . $_POST['startTime'] .':00', //seconds
-                    $_POST['endDate'] . ' ' . $_POST['endTime'] .':00', //seconds
+                    $_POST['startDate'] . ' ' . $_POST['startTime'] . ':00', //seconds
+                    $_POST['endDate'] . ' ' . $_POST['endTime'] . ':00', //seconds
                     "",
                     "",
                     $_POST['idLocation']);
@@ -334,8 +334,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST['action']) && !empty($_
 
     }
 
-    if($action === "delete"){
-        switch($object){
+    if ($action === "delete") {
+        switch ($object) {
             case "Location":
                 $locationService->deleteLocation($objId);
                 break;
