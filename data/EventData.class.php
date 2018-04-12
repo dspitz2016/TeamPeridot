@@ -12,7 +12,7 @@ class EventData
     {
         return ConnectDb::getInstance()->returnObject("Event.class", "SELECT e.idEvent, e.name, e.description, e.startTime, e.endTime, e.imagePath, e.imageDescription, e.idLocation, l.name as locationName FROM Event e
 INNER JOIN
-Location l on e.idLocation = l.idLocation order by startTime desc;");
+Location l on e.idLocation = l.idLocation order by startTime asc;");
     }
 
     public function getEventById($idEvent)
