@@ -5,6 +5,7 @@ class FAQ {
 	private $idFAQ;
 	private $question;
 	private $answer;
+	private $idLocation;
 
     /**
      * FAQ constructor.
@@ -12,11 +13,28 @@ class FAQ {
      * @param $question
      * @param $answer
      */
-    public function __construct($idFAQ, $question, $answer)
+    public function __construct($idFAQ, $question, $answer, $idLocation)
     {
         $this->idFAQ = $idFAQ;
         $this->question = $question;
         $this->answer = $answer;
+        $this->idLocation = $idLocation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdLocation()
+    {
+        return $this->idLocation;
+    }
+
+    /**
+     * @param mixed $idLocation
+     */
+    public function setIdLocation($idLocation)
+    {
+        $this->idLocation = $idLocation;
     }
 
     /**

@@ -3,6 +3,11 @@
 #map {
 	height: 50em;
 }
+
+.flex{
+	display: flex;
+	flex-wrap: wrap;
+}
 /* Optional: Makes the sample page fill the window. */
 
 html, body {
@@ -10,6 +15,10 @@ html, body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
+}
+
+.main{
+	padding-left:300px;
 }
 
 .cust-color-rust{
@@ -32,15 +41,86 @@ html, body {
 	background-color: #fff;
 }
 
-/*************************
- PIN INFO WINDOW STYLING
- ************************/
+#footer{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin-bottom: 0px;
+}
 
+.cust-nav{
+	display: none;
+}
 
-
+#loginHome{
+	background-color: blue;
+}
 /* Override Materialize */
+
+/* Filter Bar padding override */
+.filterRow{
+	margin: 0;
+	padding: .25em;
+}
 
 .container{
 	width: 100%;
 }
 
+
+@media only screen and (max-width: 992px) {
+	.main{
+		padding-left: 0px;
+	}
+
+	.cust-nav{
+		display: block;
+	}
+}
+
+.row {
+	margin-bottom: 0px;
+}
+
+.contact-panel{
+	margin:0;
+	min-width: 20em;
+}
+
+.overlay,
+.parallax-text {
+	/*font-size: 80px;*/
+	text-rendering: optimizeLegibility;
+	width: 90%;
+	margin-top: 5em;
+	padding: 1%;
+	background-color: rbg(234, 227, 234);
+	background-color: rgba(234,227,234,.90);
+}
+
+.overlay-nostyle {
+	/*font-size: 80px;*/
+	text-rendering: optimizeLegibility;
+	width: 90%;
+}
+
+@media only screen and (max-width: 500px) {
+	h3#header-title{
+		font-size: 2em;
+	}
+	.overlay,
+	.parallax-text{
+		margin-top:2em;
+	}
+
+	.btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i{
+		display:none;
+	}
+
+	.btn, .btn-large{
+		letter-spacing: 0px;
+		padding: 0 1rem;
+		font-size: .9em;
+	}
+}

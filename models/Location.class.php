@@ -14,53 +14,283 @@ class Location {
 	private $zipcode;
 	private $imagePath;
 	private $imageDescription;
+	private $pinDesign;
+	private $trailOrder;
 
-	public function getIdLocation(){
-		return $this->idLocation;
-	}
+    /**
+     * Location constructor.
+     * @param $idLocation
+     * @param $name
+     * @param $description
+     * @param $url
+     * @param $longitude
+     * @param $latitude
+     * @param $address
+     * @param $city
+     * @param $state
+     * @param $zipcode
+     * @param $imagePath
+     * @param $imageDescription
+     * @param $pinDesign
+     * @param $trailOrder
+     */
+    public function __construct($idLocation, $name, $description, $url, $longitude, $latitude, $address, $city, $state, $zipcode, $imagePath, $imageDescription, $pinDesign, $trailOrder)
+    {
+        $this->idLocation = $idLocation;
+        $this->name = $name;
+        $this->description = $description;
+        $this->url = $url;
+        $this->longitude = $longitude;
+        $this->latitude = $latitude;
+        $this->address = $address;
+        $this->city = $city;
+        $this->state = $state;
+        $this->zipcode = $zipcode;
+        $this->imagePath = $imagePath;
+        $this->imageDescription = $imageDescription;
+        $this->pinDesign = $pinDesign;
+        $this->trailOrder = $trailOrder;
+    }
 
-	public function getName(){
-		return $this->name;
-	}
+    public function getFullAddress(){
+        return $this->address . ', ' . $this->city . ', ' . $this->state . ', ' . $this->zipcode;
+    }
 
-	public function getDescription(){
-		return $this->description;
-	}
+    /**
+     * @return mixed
+     */
+    public function getIdLocation()
+    {
+        return $this->idLocation;
+    }
 
-	public function getUrl(){
-		return $this->url;
-	}
+    /**
+     * @param mixed $idLocation
+     */
+    public function setIdLocation($idLocation)
+    {
+        $this->idLocation = $idLocation;
+    }
 
-	public function getLongitude(){
-		return $this->longitude;
-	}
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-    public function getLatitude(){
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param mixed $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitude()
+    {
         return $this->latitude;
     }
 
-    public function getAddress(){
+    /**
+     * @param mixed $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
         return $this->address;
     }
 
-    public function getCity(){
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
         return $this->city;
     }
 
-    public function getState(){
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
         return $this->state;
     }
 
-    public function getZipcode(){
+    /**
+     * @param mixed $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getZipcode()
+    {
         return $this->zipcode;
     }
 
-    public function getImagePath(){
+    /**
+     * @param mixed $zipcode
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagePath()
+    {
         return $this->imagePath;
     }
 
-    public function getImageDescription(){
+    /**
+     * @param mixed $imagePath
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageDescription()
+    {
         return $this->imageDescription;
+    }
+
+    /**
+     * @param mixed $imageDescription
+     */
+    public function setImageDescription($imageDescription)
+    {
+        $this->imageDescription = $imageDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPinDesign()
+    {
+        return $this->pinDesign;
+    }
+
+    /**
+     * @param mixed $pinDesign
+     */
+    public function setPinDesign($pinDesign)
+    {
+        $this->pinDesign = $pinDesign;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrailOrder()
+    {
+        return $this->trailOrder;
+    }
+
+    /**
+     * @param mixed $trailOrder
+     */
+    public function setTrailOrder($trailOrder)
+    {
+        $this->trailOrder = $trailOrder;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdType()
+    {
+        return "";
+    }
+
+    public function getIdHistoricFilter()
+    {
+        return "";
     }
 
 }

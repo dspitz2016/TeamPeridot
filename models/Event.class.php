@@ -1,31 +1,99 @@
 <?php
 
+date_default_timezone_set('GMT');
+
 class Event {
 
+    private $idEvent;
 	private $name;
 	private $description;
 	private $startTime;
 	private $endTime;
 	private $imagePath;
 	private $imageDescription;
+	private $idLocation;
+	private $locationName;
 
     /**
      * Event constructor.
+     * @param $idEvent
      * @param $name
      * @param $description
      * @param $startTime
      * @param $endTime
      * @param $imagePath
      * @param $imageDescription
+     * @param $idLocation
      */
-    public function __construct($name, $description, $startTime, $endTime, $imagePath, $imageDescription)
+    public function __construct($idEvent, $name, $description, $startTime, $endTime, $imagePath, $imageDescription, $idLocation, $locationName)
     {
-        $this->name = $this->setName($name);
-        $this->description = $this->setDescription($description);
-        $this->startTime = $this->setStartTime($startTime);
-        $this->endTime = $this->setEndTime($endTime);
-        $this->imagePath = $this->setImagePath($imagePath);
-        $this->imageDescription = $this->setImageDescription($imageDescription);
+        $this->idEvent = $idEvent;
+        $this->name = $name;
+        $this->description = $description;
+        $this->startTime = $startTime;
+        $this->endTime = $endTime;
+        $this->imagePath = $imagePath;
+        $this->imageDescription = $imageDescription;
+        $this->idLocation = $idLocation;
+        $this->locationName = $locationName;
+    }
+
+    public function getFormattedStartTime(){
+        return date('F j, Y, g:i a', strtotime($this->startTime));
+    }
+
+    public function getFormattedEndTime(){
+        return date('F j, Y, g:i a', strtotime($this->endTime));
+    }
+
+    public function getStartDate(){
+        return date('Y-m-d', strtotime($this->startTime));
+    }
+
+    public function getEndDate(){
+        return date('Y-m-d', strtotime($this->endTime));
+    }
+
+    public function getFormStartTime(){
+        return date('H:i:s', strtotime($this->startTime));
+    }
+
+    public function getFormEndTime(){
+        return date('H:i:s', strtotime($this->endTime));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocationName()
+    {
+        return $this->locationName;
+    }
+
+    /**
+     * @param mixed $locationName
+     */
+    public function setLocationName($locationName)
+    {
+        $this->locationName = $locationName;
+    }
+
+    
+
+    /**
+     * @return mixed
+     */
+    public function getIdEvent()
+    {
+        return $this->idEvent;
+    }
+
+    /**
+     * @param mixed $idEvent
+     */
+    public function setIdEvent($idEvent)
+    {
+        $this->idEvent = $idEvent;
     }
 
     /**
@@ -61,7 +129,7 @@ class Event {
     }
 
     /**
-     * @return mixed
+     * @return false|string
      */
     public function getStartTime()
     {
@@ -69,7 +137,7 @@ class Event {
     }
 
     /**
-     * @param mixed $startTime
+     * @param false|string $startTime
      */
     public function setStartTime($startTime)
     {
@@ -77,7 +145,7 @@ class Event {
     }
 
     /**
-     * @return mixed
+     * @return false|string
      */
     public function getEndTime()
     {
@@ -85,7 +153,7 @@ class Event {
     }
 
     /**
-     * @param mixed $endTime
+     * @param false|string $endTime
      */
     public function setEndTime($endTime)
     {
@@ -122,6 +190,22 @@ class Event {
     public function setImageDescription($imageDescription)
     {
         $this->imageDescription = $imageDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdLocation()
+    {
+        return $this->idLocation;
+    }
+
+    /**
+     * @param mixed $idLocation
+     */
+    public function setIdLocation($idLocation)
+    {
+        $this->idLocation = $idLocation;
     }
 
 

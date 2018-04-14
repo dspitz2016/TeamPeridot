@@ -1,17 +1,18 @@
 <?php
 
-include '../components/Main.class.php';
-include '../services/MapService.class.php';
+require_once '../components/Main.class.php';
+require_once '../services/ContactService.class.php';
 
 $main = Main::getInstance();
-$main->getHeader("main");
+$main->getHeader();
 $main->getNavigationBar();
+
+$contactService = new ContactService();
+
+echo $contactService->getAllContactCards();
+
 ?>
 
-<h1>Contact Page</h1>
-Simple contact page, must be tested for sending email
-
-
-
+<?php $main->getScripts(); ?>
 <?php $main->getFooter(); ?>
 

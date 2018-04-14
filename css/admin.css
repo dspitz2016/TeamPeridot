@@ -12,6 +12,10 @@ body {
   background: #fff;
 }
 
+/*.navLinks{*/
+  /*display: none;*/
+/*}*/
+
 .input-field input[type=date]:focus + label,
 .input-field input[type=text]:focus + label,
 .input-field input[type=email]:focus + label,
@@ -25,4 +29,12 @@ body {
 .input-field input[type=password]:focus {
   border-bottom: 2px solid #e91e63;
   box-shadow: none;
+}
+
+.tabularData{
+  padding: 1em;
+}
+
+table{
+  overflow: auto;
 }

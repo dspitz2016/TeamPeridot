@@ -1,97 +1,103 @@
 <?php
 
-class ConnectDb {
-  private static $instance = null;
-  private $conn;
+ini_set( 'error_reporting', E_ALL );
+ini_set( 'display_errors', true );
 
-  private $host = 'localhost:3306';
-  private $user = 'root';
-  private $pass = 'Ch33zeB@llFestival!!';
-  private $db = 'RapidsCemetery';
+/**
+ * Class ConnectDb
+ * Author: Dustin Spitz
+ * Purpose: This class is responsible for establishing a connection to the database
+ */
 
-  private function __construct()
-  {
-    try{
-        $this->conn = new PDO("mysql:host={$this->host};dbname={$this->db}",$this->user,$this->pass);
-    }
+class ConnectDb
+{
 
-    catch(PDOException $e){
-        echo "Fail";
-        echo $e->getMessage();
-        die();
-    }
+    private static $instance = null;
+    private $conn;
 
-    $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-  }
+    // Database Connection Information (Should be in a separate file)
+    private $host = 'localhost:3306';
+    private $user = 'root';
+    private $pass = 'Ch33zeB@llFestival!!';
+    private $db = 'RapidsCemetery';
 
-  public static function getInstance()
-  {
-    if(!self::$instance)
+    /**
+     * ConnectDb constructor.
+     * Establish a connection to the database using PDO
+     */
+    private function __construct()
     {
-      self::$instance = new ConnectDb();
+        try {
+            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->db}", $this->user, $this->pass);
+        } catch (PDOException $e) {
+            echo "Fail";
+            echo $e->getMessage();
+            die();
+        }
+
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-    return self::$instance;
-  }
 
-  public function getConnection()
-  {
-    return $this->conn;
-  }
+    /**
+     * @return ConnectDb|null
+     * Get Instance establishes a singleton design pattern
+     */
+    public static function getInstance()
+    {
+        if (!self::$instance) {
+            self::$instance = new ConnectDb();
+        }
+        return self::$instance;
+    }
 
-    /*
-   * Takes a table name, and optional sql string
-   * Prepares and executes the statement
-   * @param $objName
-   * @param $sqlString
-   * @return: $results
-   */
-    function returnObject($objName, $sqlString=""){
-        try{
+    /**
+     * @return PDO
+     * Returns established database connection
+     */
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+
+
+    /**
+     * @param $objName - Name of Object / Database Table
+     * @param string $sqlString - Complete sql select statement
+     * @return array - An associative array of objects pulled from the database
+     */
+    function returnObject($objName, $sqlString = "")
+    {
+        try {
             $results = array();
-            if($sqlString == "") {
-                $sqlString = "SELECT * FROM " .$objName;
+            if ($sqlString == "") {
+                $sqlString = "SELECT * FROM " . $objName;
             }
             $stmnt = $this->conn->prepare($sqlString);
             $stmnt->execute();
-            $stmnt->setFetchMode(PDO::FETCH_CLASS,$objName);
-            while($result = $stmnt->fetch()){ // or just fetchALl();
+            $stmnt->setFetchMode(PDO::FETCH_CLASS, $objName);
+            while ($result = $stmnt->fetch()) { // or just fetchALl();
                 $results[] = $result;
             }
             return $results;
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo $e->getMessage();
             die();
         }
     }
 
-    function getAllAccounts(){
-        return $this->returnObject("Account", "");
+    public function deleteObject($objectID, $tableName){
+        try{
+            $stmt = $this->getConnection()->prepare("DELETE FROM ". $tableName . " Where id" .$tableName. " = :objectID");
+            $stmt->bindParam(':objectID', $objectID, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            echo 'Failed to delete ' . $tableName;
+            echo $e->getMessage();
+            die();
+        }
     }
 
-    function getAllEvents(){
-        return $this->returnObject("Event", "");
-    }
-
-    function getAllFAQs(){
-        return $this->returnObject("FAQ", "");
-    }
-
-    function getAllLocations(){
-        return $this->returnObject("Location", "");
-    }
-
-    function getAllTypeFilters(){
-        return $this->returnObject("TypeFilter", "");
-    }
-
-    function getAllTrackableObjects(){
-        return $this->returnObject("TrackableObject", "");
-    }
-
-    function getAllHistoricFilters(){
-        return $this->returnObject("HistoricFilter", "");
-    }
 }
 
 ?>
