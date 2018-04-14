@@ -16,7 +16,7 @@ class ConnectDb
     private $conn;
 
     // Database Connection Information (Should be in a separate file)
-    private $host = 'localhost:3306';
+    private $host = 'localhost';
     private $user = 'root';
     private $pass = 'Ch33zeB@llFestival!!';
     private $db = 'RapidsCemetery';
@@ -28,7 +28,7 @@ class ConnectDb
     private function __construct()
     {
         try {
-            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->db}", $this->user, $this->pass);
+            $this->conn = new PDO("mysql:host={$this->host};port=3306;dbname={$this->db}", $this->user, $this->pass);
         } catch (PDOException $e) {
             echo "Fail";
             echo $e->getMessage();
