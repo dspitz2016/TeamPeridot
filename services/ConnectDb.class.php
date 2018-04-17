@@ -17,7 +17,7 @@ class ConnectDb
 
     // Database Connection Information (Should be in a separate file)
     private $host = 'localhost';
-    private $user = 'root';
+    private $user = 'mysql-editor';
     private $pass = 'Ch33zeB@llFestival!!';
     private $db = 'RapidsCemetery';
 
